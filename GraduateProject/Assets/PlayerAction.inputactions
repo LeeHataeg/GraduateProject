@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "f8934ab5-71ad-463d-a539-77f3d221eff2",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -27,6 +27,15 @@
                     "name": "Hit",
                     "type": "Button",
                     "id": "c63f1e6c-0132-4310-9704-4b53f0329e3d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "4dc48835-584e-4a6a-9746-fe4611b5a47b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -108,6 +117,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "edf0f080-c0da-419d-98f3-1ef3b5df5817",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

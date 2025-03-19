@@ -3,9 +3,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : TopDownCharacterController
 {
+    bool isGround = true;
+
+    //temp-Val
+
     public void OnMove(InputValue value)
     {
-        Vector2 direction = value.Get<Vector2>();
+        Vector2 direction;
+        if (isGround)
+        {
+            direction = value.Get<Vector2>();
+            direction.y = 0;
+        }
+        else
+        {
+            direction = value.Get<Vector2>();
+        }
+        direction = direction.normalized;
         CallMoveEvent(direction);
         Debug.Log("CalledMove");
     }
@@ -18,5 +32,19 @@ public class PlayerInputController : TopDownCharacterController
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector2 direction = mousePosition - (Vector2)transform.position;
         CallLookEvent(direction);
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Ground"))
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+            isGround = false;
     }
 }
