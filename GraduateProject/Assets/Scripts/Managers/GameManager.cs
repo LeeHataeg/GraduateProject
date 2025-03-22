@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // This script Manages Operation of Game
+    // Like Game Cycle( Gamestart,  etc )
     private volatile static GameManager instance;
 
     public static GameManager Instance
