@@ -97,7 +97,7 @@ public class BSPMapDivider
             leaves = convertBSPIntoNode(node.rightNode);
         }
 
-        leaf.spaceArea = node.BSPArea;
+        leaf.SpaceArea = node.BSPArea;
         leaves.Add(leaf);
 
         return leaves;

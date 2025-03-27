@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class  Edge : IComparable<Edge>
+public class Edge : IComparable<Edge>
 {
     public Node Start { get; }
     public Node End { get; }
     public float Distance { get; }
 
-    public Edge(Node start, Node end, float weight)
+    public Edge(Node start, Node end)
     {
         Start = start;
         End = end;
-        Distance = weight;
+        Distance = Vector2.Distance(start.SpaceArea.position, end.SpaceArea.position);
     }
 
     public int CompareTo(Edge other)
@@ -70,12 +72,10 @@ public class UnionFind
 
 public class MSTPathConnector
 {
-    public Dictionary<int, Node> GetMSTPath(Dictionary<Node, List<Node>> adjacent)
+    public List<Node> GetMSTPath(Dictionary<Node, List<Node>> adjacent)
     {
-        //return Fuck U;
-        List<Edge> edges= setEdge(adjacent);
-        Dictionary<int, Node> result = connectRooms(edges, adjacent.Count);
-        return result;
+        List<Edge> edges = setEdge(adjacent);
+        return constructMST(edges, adjacent.Count);
     }
 
     private List<Edge> setEdge(Dictionary<Node, List<Node>> adjacent)
@@ -88,29 +88,25 @@ public class MSTPathConnector
             foreach (Node neighbor in kv.Value)
             {
                 // Defending Duplicated Connections
-                if (node.id < neighbor.id)
+                if (node.Id < neighbor.Id)
                 {
-                    float weight = Vector2.Distance(node.spaceArea.position, neighbor.spaceArea.position);
-                    edges.Add(new Edge(node, neighbor, weight));
+                    edges.Add(new Edge(node, neighbor));
                 }
             }
         }
-
+        edges.Sort();
         return edges;
     }
 
-    private Dictionary<int, Node> connectRooms(List<Edge> edges, int count)
+    private List<Node> constructMST(List<Edge> edges, int count)
     {
-        edges.Sort();
-
         UnionFind uf = new UnionFind(count);
         List<Edge> mst = new List<Edge>();
-
-        Dictionary<int, Node> result = new Dictionary<int, Node>();
+        List<Node> result = new List<Node>();
 
         foreach (Edge edge in edges)
         {
-            if (uf.Union(edge.Start.id, edge.End.id))
+            if (uf.Union(edge.Start.Id, edge.End.Id))
             {
                 mst.Add(edge);
                 updatePortals(edge.Start, edge.End, result);
@@ -126,63 +122,56 @@ public class MSTPathConnector
         // 
     }
 
-    private void updatePortals(Node start, Node end, Dictionary<int, Node> result)
+    private void updatePortals(Node start, Node end, List<Node> result)
     {
-        Node tmp;
+        // TODO - Change Output Structure Into Continues
+        int sInd = result.IndexOf(start);
+        int eInd = result.IndexOf(end);
 
-        Vector2 startCenter = new Vector2(
-        start.spaceArea.x + start.spaceArea.width / 2,
-        start.spaceArea.y + start.spaceArea.height / 2
-        );
+        if (sInd == -1)
+        {
+            result.Add(start);
+            sInd = result.IndexOf(start); // 추가된 위치 업데이트
+        }
+        if (eInd == -1)
+        {
+            result.Add(end);
+            eInd = result.IndexOf(end); // 추가된 위치 업데이트
+        }
 
-        Vector2 endCenter = new Vector2(
-            end.spaceArea.x + end.spaceArea.width / 2,
-            end.spaceArea.y + end.spaceArea.height / 2
-        );
+        Vector2 startCenter = start.SpaceArea.center;
+
+        Vector2 endCenter = end.SpaceArea.center;
 
         float deltaX = endCenter.x - startCenter.x;
         float deltaY = endCenter.y - startCenter.y;
 
-        if (result.ContainsKey(start.id))
-        {
-            result.TryGetValue(start.id, out tmp);
-            result.Add(start.id, tmp);
-        }
-        if (result.ContainsKey(end.id))
-        {
-            result.TryGetValue(end.id, out tmp);
-            result.Add(end.id, tmp);
-        }
 
         if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
         {
             if (deltaX > 0)
             {
-                start.Portals.Add(new portalInfo(portalDir.right, end.id));
-                end.Portals.Add(new portalInfo(portalDir.left, start.id));
+                start.Portals.Add(new portalInfo(portalDir.right, end.Id));
+                end.Portals.Add(new portalInfo(portalDir.left, start.Id));
             }
             else
             {
-                start.Portals.Add(new portalInfo(portalDir.left, end.id));
-                end.Portals.Add(new portalInfo(portalDir.right, start.id));
+                start.Portals.Add(new portalInfo(portalDir.left, end.Id));
+                end.Portals.Add(new portalInfo(portalDir.right, start.Id));
             }
-            result.Add(start.id, start);
-            result.Add(end.id, end);
         }
         else
         {
             if (deltaY > 0)
             {
-                start.Portals.Add(new portalInfo(portalDir.down, end.id));
-                end.Portals.Add(new portalInfo(portalDir.up, start.id));
+                start.Portals.Add(new portalInfo(portalDir.down, end.Id));
+                end.Portals.Add(new portalInfo(portalDir.up, start.Id));
             }
             else
             {
-                start.Portals.Add(new portalInfo(portalDir.up, end.id));
-                end.Portals.Add(new portalInfo(portalDir.down, start.id));
+                start.Portals.Add(new portalInfo(portalDir.up, end.Id));
+                end.Portals.Add(new portalInfo(portalDir.down, start.Id));
             }
-            result.Add(start.id, start);
-            result.Add(end.id, end);
         }
     }
 }
