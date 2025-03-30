@@ -12,22 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a40fdf8ee94cd94b9dcda2aae6dcc4b, type: 3}
   m_Name: Stage01
   m_EditorClassIdentifier: 
-  topLeftWall: []
-  topRightWall: []
-  bottomLeftWall: []
-  bottomRightWall: []
-  leftSideWall: []
-  rightSideWall: []
-  ground: []
-  ceiling: []
-  leftPlatforms: []
-  rightPlatforms: []
-  middlePlatforms: []
-  mapSize: {x: 0, y: 0}
-  minSpaceSize: {x: 0, y: 0}
-  maxSpaceSize: {x: 0, y: 0}
-  minRoomSize: {x: 0, y: 0}
-  maxRoomSize: {x: 0, y: 0}
-  maxDevideRate: 0
-  minDevideRate: 0
-  maxDepth: 0
+  topLeftWall:
+  - {fileID: 11400000, guid: bdd69271e040f454b996aab78da22ef3, type: 2}
+  topRightWall:
+  - {fileID: 11400000, guid: 26f6567865bdaf0438cb400adef5888d, type: 2}
+  bottomLeftWall:
+  - {fileID: 11400000, guid: 375700e8adc00834b85e093803b5ee58, type: 2}
+  - {fileID: 11400000, guid: 00f32906b6a5a5846be9878967ba535e, type: 2}
+  bottomRightWall:
+  - {fileID: 11400000, guid: 334c42904e466434c806626daa6b87d3, type: 2}
+  leftSideWall:
+  - {fileID: 11400000, guid: aa2d87783e6e6b24b84c72a31592c6de, type: 2}
+  - {fileID: 11400000, guid: b263b7b95d50cfb40838eb0c7995df8f, type: 2}
+  rightSideWall:
+  - {fileID: 11400000, guid: d0b94a9a749b7cd4d8cae8603effadd6, type: 2}
+  - {fileID: 11400000, guid: d4357408089a684499afa009260ea599, type: 2}
+  - {fileID: 11400000, guid: 648b81db682e5ca4d994d7ec64ca3cb4, type: 2}
+  ground:
+  - {fileID: 11400000, guid: 8613d5b86ea5e7841912b99d6710d83e, type: 2}
+  - {fileID: 11400000, guid: 5319cbbed9fc6c241a848dd5ff882740, type: 2}
+  - {fileID: 11400000, guid: 2e97c6637f4081e4ca46c437355520a8, type: 2}
+  - {fileID: 11400000, guid: 219c56611456eb4439f93a31a07abe72, type: 2}
+  - {fileID: 11400000, guid: fa81aa196de90eb438bddb9b08a3ff49, type: 2}
+  - {fileID: 11400000, guid: f5538472cb4277543954ce71eed32c04, type: 2}
+  ceiling:
+  - {fileID: 11400000, guid: 44a1c8fde5b7fe6478463ee5b9e40fbb, type: 2}
+  - {fileID: 11400000, guid: 3b6a4513fd7fe3d4f86ed6eb63487143, type: 2}
+  - {fileID: 11400000, guid: 040322f3a0b27d545b9ec465d4fc2d66, type: 2}
+  leftPlatforms:
+  - {fileID: 11400000, guid: 62f433aa5b534d948847e6cc1409e14b, type: 2}
+  - {fileID: 11400000, guid: 8d6c156458ca55242a50f6228c162d0a, type: 2}
+  rightPlatforms:
+  - {fileID: 11400000, guid: afd7b716c284bc74aa4eb8cd1b06a511, type: 2}
+  middlePlatforms:
+  - {fileID: 11400000, guid: 8c0583c4997af29459616893182f1c61, type: 2}
+  - {fileID: 11400000, guid: ad1654d7c7b4f0841ab6333b8ef09583, type: 2}
+  - {fileID: 11400000, guid: 8613d5b86ea5e7841912b99d6710d83e, type: 2}
+  - {fileID: 11400000, guid: 5319cbbed9fc6c241a848dd5ff882740, type: 2}
+  - {fileID: 11400000, guid: 2e97c6637f4081e4ca46c437355520a8, type: 2}
+  - {fileID: 11400000, guid: 219c56611456eb4439f93a31a07abe72, type: 2}
+  - {fileID: 11400000, guid: fa81aa196de90eb438bddb9b08a3ff49, type: 2}
+  - {fileID: 11400000, guid: 421626d2e0c20134aab91c55b4ce632b, type: 2}
+  - {fileID: 11400000, guid: 779848281c0def348a159e2d883c9fbd, type: 2}
+  mapSize: {x: 256, y: 2565}
+  minSpaceSize: {x: 10, y: 10}
+  maxSpaceSize: {x: 30, y: 20}
+  minRoomSize: {x: 10, y: 10}
+  maxRoomSize: {x: 30, y: 20}
+  maxDevideRate: 6
+  minDevideRate: 4
+  maxDepth: 6
