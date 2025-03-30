@@ -1,36 +1,61 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "MapSO", menuName = "Scriptable Objects/MapSO")]
 public class MapSO : ScriptableObject
 {
-    [field: Header("#Room Components Prefabs")]
     #region MAP_SPRITES
-    [SerializeField] public GameObject[] topLeftWall { get; private set; }
-    [SerializeField] public GameObject[] topRightWall { get; private set; }
-    [SerializeField] public GameObject[] bottomLeftWall { get; private set; }
-    [SerializeField] public GameObject[] bottomRightWall { get; private set; }
-    // side
-    [SerializeField] public GameObject[] LeftWall { get; private set; }
-    [SerializeField] public GameObject[] RightWall { get; private set; }
-    // ceiling and ground
-    [SerializeField] public GameObject[] ground { get; private set; }
-    [SerializeField] public GameObject[] ceiling { get; private set; }
+    [Header("# Map Variables")]
+    [Header("## Walls")]
+    [SerializeField] private Tile[] topLeftWall;
+    [SerializeField] private Tile[] topRightWall;
+    [SerializeField] private Tile[] bottomLeftWall;
+    [SerializeField] private Tile[] bottomRightWall;
+
+    [SerializeField] private Tile[] leftSideWall;
+    [SerializeField] private Tile[] rightSideWall;
+    [SerializeField] private Tile[] ground;
+    [SerializeField] private Tile[] ceiling;
+
+    [Header("## platforms")]
+    [SerializeField] private Tile[] leftPlatforms;
+    [SerializeField] private Tile[] rightPlatforms;
+    [SerializeField] private Tile[] middlePlatforms;
     #endregion
 
     #region MAP_VARIABLES
-    [field: Header("#Map Variables")]
-    [SerializeField] public Vector2Int mapSize{ get; private set; }   //Total Size
+    [Header("# Map Variables")]
+    [SerializeField] private Vector2Int mapSize;   // Total Size
+    [SerializeField] private Vector2Int minSpaceSize;
+    [SerializeField] private Vector2Int maxSpaceSize;
+    [SerializeField] private Vector2Int minRoomSize;
+    [SerializeField] private Vector2Int maxRoomSize;
+    [SerializeField] private float maxDevideRate;
+    [SerializeField] private float minDevideRate;
+    [SerializeField] private int maxDepth;
+    #endregion
 
-    [SerializeField] public Vector2Int minSpaceSize{ get; private set; }
-    [SerializeField] public Vector2Int maxSpaceSize { get; private set; }
+    #region GETTERS
+    public Tile[] TopLeftWall => topLeftWall;
+    public Tile[] TopRightWall => topRightWall;
+    public Tile[] BottomLeftWall => bottomLeftWall;
+    public Tile[] BottomRightWall => bottomRightWall;
+    public Tile[] LeftWall => leftSideWall;
+    public Tile[] RightWall => rightSideWall;
+    public Tile[] Ground => ground;
+    public Tile[] Ceiling => ceiling;
 
-    [SerializeField] public Vector2Int minRoomSize{ get; private set; }
-    [SerializeField] public Vector2Int maxRoomSize { get; private set; }
+    public Tile[] LeftPlatforms => leftPlatforms;
+    public Tile[] RightPlatforms => rightPlatforms;
+    public Tile[] MiddlePlatforms => middlePlatforms;
 
-    //TODO - Two Type of Rate (Wide or Tall)
-    [SerializeField] public float maxDevideRate{ get; private set; }
-    [SerializeField] public float minDevideRate { get; private set; }
-
-    [SerializeField] public int maxDepth { get; private set; }
+    public Vector2Int MapSize => mapSize;
+    public Vector2Int MinSpaceSize => minSpaceSize;
+    public Vector2Int MaxSpaceSize => maxSpaceSize;
+    public Vector2Int MinRoomSize => minRoomSize;
+    public Vector2Int MaxRoomSize => maxRoomSize;
+    public float MaxDevideRate => maxDevideRate;
+    public float MinDevideRate => minDevideRate;
+    public int MaxDepth => maxDepth;
     #endregion
 }

@@ -22,7 +22,8 @@ public class RoomData
 
     #region ROOM_IMPLEMENTATION_VARIABLES
     public Node Node;
-    
+
+    public RectInt RoomSpace;
     #endregion
 
     #region ROOM_INGAME_VARIBALES
@@ -31,4 +32,10 @@ public class RoomData
 
     public bool isCleared;
     #endregion
+    
+    public RoomData(Node node)
+    {
+        Node = node;
+        isCleared = false;
+    }
 }

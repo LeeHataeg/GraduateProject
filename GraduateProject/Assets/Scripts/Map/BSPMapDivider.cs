@@ -27,7 +27,7 @@ public class BSPMapDivider
 {
     public List<Node> GetLeavesByBSP(MapSO so)
     {
-        BSPNode bsp = new BSPNode(new RectInt(0, 0, so.mapSize.x, so.mapSize.y));
+        BSPNode bsp = new BSPNode(new RectInt(0, 0, so.MapSize.x, so.MapSize.y));
         bsp.depth = 0;
 
         divideMap(bsp, so);
@@ -37,18 +37,18 @@ public class BSPMapDivider
     private void divideMap(BSPNode node, MapSO so)
     {
         // Check01 - Depth
-        if (node.depth == so.maxDepth) return;
+        if (node.depth == so.MaxDepth) return;
 
         // Check02 - Divided already
         if ((node.leftNode != null) && (node.rightNode != null)) return;
 
         // Check03 - Can't divide because of area size limit
-        if ((node.BSPArea.width < so.maxSpaceSize.x) && (node.BSPArea.height < so.maxSpaceSize.y)) return;
+        if ((node.BSPArea.width < so.MaxSpaceSize.x) && (node.BSPArea.height < so.MaxSpaceSize.y)) return;
 
         // whether width is longer than height
         node.dividedHorizontally = (node.BSPArea.width > node.BSPArea.height) ? true : false;
 
-        float slice = Random.Range(so.minDevideRate, so.maxDevideRate);
+        float slice = Random.Range(so.MinDevideRate, so.MaxDevideRate);
 
         // Step01 - Slice and Assign
         BSPNode left;
@@ -66,13 +66,13 @@ public class BSPMapDivider
         left.parNode = right.parNode = node;
         left.depth = right.depth = node.depth + 1;
 
-        if ((left.BSPArea.width > so.maxSpaceSize.x) && (left.BSPArea.height > so.maxSpaceSize.y))
+        if ((left.BSPArea.width > so.MaxSpaceSize.x) && (left.BSPArea.height > so.MaxSpaceSize.y))
         {
             node.leftNode = left;
             divideMap(node.leftNode, so);
         }
 
-        if ((left.BSPArea.width > so.maxSpaceSize.x) && (left.BSPArea.height > so.maxSpaceSize.y))
+        if ((left.BSPArea.width > so.MaxSpaceSize.x) && (left.BSPArea.height > so.MaxSpaceSize.y))
         {
             node.rightNode = right;
             divideMap(node.rightNode, so);

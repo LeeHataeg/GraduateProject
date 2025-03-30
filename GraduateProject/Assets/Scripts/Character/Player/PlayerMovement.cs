@@ -62,27 +62,20 @@ public class PlayerMovement : MonoBehaviour
                 rigid.linearVelocity = new Vector2(rigid.linearVelocity.x, jumpForce);
                 rigid.AddForce(new Vector2(rigid.linearVelocity.x, jumpForce), ForceMode2D.Impulse);
                 isGround = false;
-                Debug.Log(isGround);
             }
         }
     }
     void ContactGround(bool _isGround)
     {
         isGround = _isGround;
-        Debug.Log(isGround);
     }
     void ApplayMovement()
     {
-        // Can't Jump because ignore other physics
-        //rigid.linearVelocity = new Vector2(dir.x * speed, rigid.linearVelocity.y);
-
-        // Fuck - It Don't Work
         rigid.AddForce(dir * speed, ForceMode2D.Impulse);
         if (rigid.linearVelocity.x > maxSpeed)
             rigid.linearVelocity = new Vector2(maxSpeed, rigid.linearVelocity.y);
         if (rigid.linearVelocity.x < maxSpeed * (-1))
             rigid.linearVelocity = new Vector2(maxSpeed * (-1), rigid.linearVelocity.y);
-        Debug.Log(rigid.linearVelocity);
     }
     private void StopMovement()
     {

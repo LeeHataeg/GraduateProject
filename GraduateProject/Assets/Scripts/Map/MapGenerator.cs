@@ -17,12 +17,12 @@ public class portalInfo
 {
     public portalDir dir;
     // 'id' means Connected Room's Id
-    public int id;
+    public Node connected;
 
-    public portalInfo(portalDir dir, int id)
+    public portalInfo(portalDir dir, Node connected)
     {
         this.dir = dir;
-        this.id = id;
+        this.connected = connected;
     }
 }
 
@@ -55,6 +55,8 @@ public class MapGenerator : MonoBehaviour
 
     List<Node> leaves;
 
+    RoomGenerator roomGenerator;
+
     List<Node> result;
 
     #region ROOM_PREFABS
@@ -67,6 +69,12 @@ public class MapGenerator : MonoBehaviour
     //[SerializeField] private GameObject midbossRoom;
     #endregion  
 
+    private void Awake()
+    {
+        bsp = new BSPMapDivider();
+        mst = new MSTPathConnector();
+    }
+
     private void Start()
     {
         // 0, 0 : Position of Top-Left corner
@@ -77,6 +85,10 @@ public class MapGenerator : MonoBehaviour
         setId(leaves);
 
         result = mst.GetMSTPath(adjacent);
+
+        roomGenerator = new RoomGenerator();
+
+        roomGenerator.CreateRooms(result);
     }
 
     private void setId(List<Node> leaves)

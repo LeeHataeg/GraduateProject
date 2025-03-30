@@ -34,7 +34,6 @@ public class PlayerInputController : CharacterController
     {
         isPressed = value.Get<float>();
         CallJumpEvent(isPressed);
-        Debug.Log("CalledJump");
     }
 
     // TODO - tempcode (Need to Refactoring)
