@@ -7,11 +7,11 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Edge : IComparable<Edge>
 {
-    public Node Start { get; }
-    public Node End { get; }
+    public MapNode Start { get; }
+    public MapNode End { get; }
     public float Distance { get; }
 
-    public Edge(Node start, Node end)
+    public Edge(MapNode start, MapNode end)
     {
         Start = start;
         End = end;
@@ -72,20 +72,20 @@ public class UnionFind
 
 public class MSTPathConnector
 {
-    public List<Node> GetMSTPath(Dictionary<Node, List<Node>> adjacent)
+    public List<MapNode> GetMSTPath(Dictionary<MapNode, List<MapNode>> adjacent)
     {
         List<Edge> edges = setEdge(adjacent);
         return constructMST(edges, adjacent.Count);
     }
 
-    private List<Edge> setEdge(Dictionary<Node, List<Node>> adjacent)
+    private List<Edge> setEdge(Dictionary<MapNode, List<MapNode>> adjacent)
     {
         List<Edge> edges = new List<Edge>();
         // Step01 - MST(kruskal)
         foreach (var kv in adjacent)
         {
-            Node node = kv.Key;
-            foreach (Node neighbor in kv.Value)
+            MapNode node = kv.Key;
+            foreach (MapNode neighbor in kv.Value)
             {
                 // Defending Duplicated Connections
                 if (node.Id < neighbor.Id)
@@ -98,11 +98,11 @@ public class MSTPathConnector
         return edges;
     }
 
-    private List<Node> constructMST(List<Edge> edges, int count)
+    private List<MapNode> constructMST(List<Edge> edges, int count)
     {
         UnionFind uf = new UnionFind(count);
         List<Edge> mst = new List<Edge>();
-        List<Node> result = new List<Node>();
+        List<MapNode> result = new List<MapNode>();
 
         foreach (Edge edge in edges)
         {
@@ -122,7 +122,7 @@ public class MSTPathConnector
         // 
     }
 
-    private void updatePortals(Node start, Node end, List<Node> result)
+    private void updatePortals(MapNode start, MapNode end, List<MapNode> result)
     {
         // TODO - Change Output Structure Into Continues
         int sInd = result.IndexOf(start);

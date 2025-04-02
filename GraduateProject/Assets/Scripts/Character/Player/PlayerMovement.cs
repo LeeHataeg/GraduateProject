@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     #region PHYSICS
     [SerializeField][Range(10, 1000)] float speed;
 
-    CharacterController control;
+    CharacController control;
 
     Rigidbody2D rigid;
     Vector2 dir;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        control = gameObject.GetComponent<CharacterController>();
+        control = gameObject.GetComponent<CharacController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
     }

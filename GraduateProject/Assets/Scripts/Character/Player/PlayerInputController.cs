@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : CharacterController
+public class PlayerInputController : CharacController
 {
 
     #region MOVE_VARIABLES

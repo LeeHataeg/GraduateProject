@@ -54,11 +54,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa81aa196de90eb438bddb9b08a3ff49, type: 2}
   - {fileID: 11400000, guid: 421626d2e0c20134aab91c55b4ce632b, type: 2}
   - {fileID: 11400000, guid: 779848281c0def348a159e2d883c9fbd, type: 2}
-  mapSize: {x: 256, y: 2565}
-  minSpaceSize: {x: 10, y: 10}
+  mapSize: {x: 100, y: 100}
+  minSpaceSize: {x: 20, y: 20}
   maxSpaceSize: {x: 30, y: 20}
   minRoomSize: {x: 10, y: 10}
   maxRoomSize: {x: 30, y: 20}
-  maxDevideRate: 6
-  minDevideRate: 4
-  maxDepth: 6
+  maxDevideRate: 0.4
+  minDevideRate: 0.6
+  maxDepth: 4

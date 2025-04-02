@@ -17,16 +17,16 @@ public class portalInfo
 {
     public portalDir dir;
     // 'id' means Connected Room's Id
-    public Node connected;
+    public MapNode connected;
 
-    public portalInfo(portalDir dir, Node connected)
+    public portalInfo(portalDir dir, MapNode connected)
     {
         this.dir = dir;
         this.connected = connected;
     }
 }
 
-public class Node
+public class MapNode
 {
     // Modify Protection Level if we need
     public RectInt SpaceArea;
@@ -36,7 +36,7 @@ public class Node
 
     public List<portalInfo> Portals;
 
-    public Node()
+    public MapNode()
     {
         Portals = new List<portalInfo>();
     }
@@ -53,11 +53,11 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] MapSO mapSO;
 
-    List<Node> leaves;
+    List<MapNode> leaves;
 
     RoomGenerator roomGenerator;
 
-    List<Node> result;
+    List<MapNode> result;
 
     #region ROOM_PREFABS
     [field: Header("#Room Prefabs")]
@@ -73,6 +73,7 @@ public class MapGenerator : MonoBehaviour
     {
         bsp = new BSPMapDivider();
         mst = new MSTPathConnector();
+        roomGenerator = GetComponent<RoomGenerator>();
     }
 
     private void Start()
@@ -81,17 +82,15 @@ public class MapGenerator : MonoBehaviour
         leaves = bsp.GetLeavesByBSP(mapSO);
 
         // A practically processed map
-        Dictionary<Node, List<Node>> adjacent = getAdjacentLeaf(leaves);
+        Dictionary<MapNode, List<MapNode>> adjacent = getAdjacentLeaf(leaves);
         setId(leaves);
 
         result = mst.GetMSTPath(adjacent);
 
-        roomGenerator = new RoomGenerator();
-
-        roomGenerator.CreateRooms(result);
+        roomGenerator.CreateRooms(result, mapSO);
     }
 
-    private void setId(List<Node> leaves)
+    private void setId(List<MapNode> leaves)
     {
         for (int i = 0; i < leaves.Count; i++)
         {
@@ -100,13 +99,13 @@ public class MapGenerator : MonoBehaviour
     }
 
     // TODO - Change Return Type To Couple(Node, Node)
-    private Dictionary<Node, List<Node>> getAdjacentLeaf(List<Node> leaves)
+    private Dictionary<MapNode, List<MapNode>> getAdjacentLeaf(List<MapNode> leaves)
     {
-        Dictionary<Node, List<Node>> adjacent = new Dictionary<Node, List<Node>>();
+        Dictionary<MapNode, List<MapNode>> adjacent = new Dictionary<MapNode, List<MapNode>>();
 
         for (int i = 0; i < leaves.Count; i++)
         {
-            List<Node> values = new List<Node>();
+            List<MapNode> values = new List<MapNode>();
             for (int j = 0; j < leaves.Count; j++)
             {
                 if (i == j) continue;
@@ -120,13 +119,8 @@ public class MapGenerator : MonoBehaviour
         return adjacent;
     }
 
-    private bool isAdjacent(Node a, Node b)
+    private bool isAdjacent(MapNode a, MapNode b)
     {
-        //return (((a.spaceArea.x == (b.spaceArea.x + b.spaceArea.width)) && (a.spaceArea.y == b.spaceArea.y))
-        //    || (((a.spaceArea.x + a.spaceArea.width) == b.spaceArea.x) && (a.spaceArea.y == b.spaceArea.y))
-        //    || ((a.spaceArea.y == (b.spaceArea.y + b.spaceArea.height)) && (a.spaceArea.x == b.spaceArea.y))
-        //    || (((a.spaceArea.y + a.spaceArea.height) == b.spaceArea.y)) && (a.spaceAre  a.x == b.spaceArea.y));
-
         bool xAxis = (a.SpaceArea.yMax == b.SpaceArea.yMin || a.SpaceArea.yMin == b.SpaceArea.yMax) && (a.SpaceArea.xMin < b.SpaceArea.xMax && a.SpaceArea  .xMax > b.SpaceArea.xMin);
         bool yAxis = (a.SpaceArea.xMax == b.SpaceArea.xMin || a.SpaceArea.xMin == b.SpaceArea.xMax) && (a.SpaceArea.yMin < b.SpaceArea.yMax && a.SpaceArea.yMax > b.SpaceArea.yMin);
 

@@ -21,7 +21,7 @@ public class RoomData
     #endregion
 
     #region ROOM_IMPLEMENTATION_VARIABLES
-    public Node Node;
+    public MapNode Node;
 
     public RectInt RoomSpace;
     #endregion
@@ -33,7 +33,7 @@ public class RoomData
     public bool isCleared;
     #endregion
     
-    public RoomData(Node node)
+    public RoomData(MapNode node)
     {
         Node = node;
         isCleared = false;

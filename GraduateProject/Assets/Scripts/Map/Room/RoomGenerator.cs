@@ -8,17 +8,18 @@ using UnityEngine.UI;
 // Convert SpaceArea into Real Room
 public class RoomGenerator : MonoBehaviour
 {
-    public MapSO So;
+    MapSO so;
     [SerializeField] private Tilemap tilemap;
 
     List<RoomData> roomDatas;
 
-    Node startRoom;
-    Node bossRoom;
+    MapNode startRoom;                
+    MapNode bossRoom;
 
     // Should I Change This Func Name?
-    public void CreateRooms(List<Node> nodes)
+    public void CreateRooms(List<MapNode> nodes, MapSO so)
     {
+        this.so = so;
         roomDatas = new List<RoomData>();
 
         // Step 1: Convert Nodes Into RoomData
@@ -34,43 +35,9 @@ public class RoomGenerator : MonoBehaviour
         drawMapTiles();
     }
 
-
-    // TODO - this code is a temparary script
-    //  This will be replaced by scripts under this code.
-    private void convertToStraitLine(List<Node> nodes)  // Temp Code
+    private void convertNodesIntoRoom(List<MapNode> nodes)
     {
-        int count = 0;
-        while (count < 2)
-        {
-            foreach (Node node in nodes)
-            {
-                RoomData rd = new RoomData(node);
-                if (node.Portals.Count == 1)
-                {
-                    if (startRoom == null)
-                    {
-                        startRoom = node;
-                        rd.RoomType = RoomType.Start;
-                    }
-                    else
-                    {
-                        bossRoom = node;
-                        rd.RoomType = RoomType.Boss;
-                    }
-                    count++;
-                }
-                else
-                {
-                    rd.RoomType = RoomType.Normal;
-                }
-                roomDatas.Add(rd);
-            }
-        }
-    }
-
-    private void convertNodesIntoRoom(List<Node> nodes)
-    {
-        if (So == null)
+        if (so == null)
         {
             Debug.LogError("RoomGenerator: MapSO (So) is not assigned!");
             return;
@@ -81,7 +48,7 @@ public class RoomGenerator : MonoBehaviour
             return;
         }
 
-        Vector2Int mapSz = So.MapSize;
+        Vector2Int mapSz = so.MapSize;
         float disMin = 0;
 
         for (int i = 0; i < nodes.Count; i++)
@@ -109,7 +76,7 @@ public class RoomGenerator : MonoBehaviour
     // Solved -> So I'll use the Last Room as an Enterance To the Boss Room
     //      ex) Dungreeed or Skull Boos Room Gate
     //      Seperate Scene
-    private float findMin(Node node, Vector2Int mapSz, float min, int index)
+    private float findMin(MapNode node, Vector2Int mapSz, float min, int index)
     {
         float initX, initY;
         Vector2 initPos = node.SpaceArea.position;
@@ -134,15 +101,6 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private void findFarRoom()
-    {
-        // (X) Step 01. Find Outermost Room -> Done
-
-        // Step 02. Find Furthest From It
-
-        // Step 03. Set the Two Rooms as the Starting Room and the Boss Room
-    }
-
     private void placeSpecialRooms()
     {
         // TODO - Select Shop, SemiBoss
@@ -163,33 +121,65 @@ public class RoomGenerator : MonoBehaviour
         RectInt area = room.Node.SpaceArea;
         for (int x = area.xMin; x < area.xMax; x++)
         {
-            tilemap.SetTile(new Vector3Int(x, area.yMin, 0), GetRandomTile(So.Ground));
-            tilemap.SetTile(new Vector3Int(x, area.yMax - 1, 0), GetRandomTile(So.Ceiling));
+            tilemap.SetTile(new Vector3Int(x, area.yMin, 0), GetRandomTile(so.Ground));
+            tilemap.SetTile(new Vector3Int(x, area.yMax - 1, 0), GetRandomTile(so.Ceiling));
         }
 
         for (int y = area.yMin; y < area.yMax; y++)
         {
-            tilemap.SetTile(new Vector3Int(area.xMin, y, 0), GetRandomTile(So.LeftWall));
-            tilemap.SetTile(new Vector3Int(area.xMax - 1, y, 0), GetRandomTile(So.RightWall));
+            tilemap.SetTile(new Vector3Int(area.xMin, y, 0), GetRandomTile(so.LeftWall));
+            tilemap.SetTile(new Vector3Int(area.xMax - 1, y, 0), GetRandomTile(so.RightWall));
         }
 
-        tilemap.SetTile(new Vector3Int(area.xMin, area.yMax - 1, 0), GetRandomTile(So.TopLeftWall));
-        tilemap.SetTile(new Vector3Int(area.xMax - 1, area.yMax - 1, 0), GetRandomTile(So.TopRightWall));
-        tilemap.SetTile(new Vector3Int(area.xMin, area.yMin, 0), GetRandomTile(So.BottomLeftWall));
-        tilemap.SetTile(new Vector3Int(area.xMax - 1, area.yMin, 0), GetRandomTile(So.BottomRightWall));
+        tilemap.SetTile(new Vector3Int(area.xMin, area.yMax - 1, 0), GetRandomTile(so.TopLeftWall));
+        tilemap.SetTile(new Vector3Int(area.xMax - 1, area.yMax - 1, 0), GetRandomTile(so.TopRightWall));
+        tilemap.SetTile(new Vector3Int(area.xMin, area.yMin, 0), GetRandomTile(so.BottomLeftWall));
+        tilemap.SetTile(new Vector3Int(area.xMax - 1, area.yMin, 0), GetRandomTile(so.BottomRightWall));
     }
 
     private void GenerateRoom()
     {
+        Debug.Log("room Count : " + roomDatas.Count);
         foreach (RoomData room in roomDatas)
         {
-            // TODO - it's a temp code
-            // SpaceArea.position -> RoomData.RoomSpace.position
+            Debug.Log(room.RoomType);
+        }
+
+        foreach (RoomData room in roomDatas)
+        {
             Vector3 pos = new Vector3(room.Node.SpaceArea.position.x, room.Node.SpaceArea.position.y, 0f);
 
-            GameObject roomPrefab = Instantiate(new GameObject(), pos, Quaternion.identity);
-            RoomSetup setup = roomPrefab.GetComponent<RoomSetup>();
+            GameObject roomGO = new GameObject("Room");
+            roomGO.transform.position = pos;
+
+            RoomSetup setup = roomGO.AddComponent<RoomSetup>();
+
+            // Spawn Point 부모 생성
+            Transform enemyParent = new GameObject("EnemySpawnPoints").transform;
+            enemyParent.SetParent(roomGO.transform);
+            setup.enemySpawnPoints = enemyParent;
+
+            Transform itemParent = new GameObject("ItemSpawnPoints").transform;
+            itemParent.SetParent(roomGO.transform);
+            setup.itemSpawnPoints = itemParent;
+
+            CreateDummyPoints(enemyParent, room.Node.SpaceArea);
+            CreateDummyPoints(itemParent, room.Node.SpaceArea);
+
             setup.Setup(room);
+        }
+    }
+    private void CreateDummyPoints(Transform parent, RectInt area)
+    {
+        // 방 중심 근처의 임의 위치 몇 군데 생성
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject point = new GameObject("SpawnPoint_" + i);
+            point.transform.parent = parent;
+
+            float x = Random.Range(area.xMin + 1, area.xMax - 1);
+            float y = Random.Range(area.yMin + 1, area.yMax - 1);
+            point.transform.localPosition = new Vector3(x - area.xMin, y - area.yMin, 0);
         }
     }
     private Tile GetRandomTile(Tile[] tileArray)
@@ -199,30 +189,6 @@ public class RoomGenerator : MonoBehaviour
 
     #region TODO
     // 1. 외곽선 제외
-    // 2. 스폰될 대상 확인
-    // 2-1 몬스터
-    // 2-1-1 나는 몹 -> 공중에 배치(해당 포인트 근처에 일정 범위내에 아무것도 배치 안되도록)
-    // 2-1-2 뚜벅이 -> 발판과 가깝게 배치
-    // 2-1-3 기타
-    // 2-2 보상 (상자)
-    // 2-2-1 클리어 및 일반 보상 -> 맵 중앙 하단(바닥) 등에 출현하도록
-    // 2-2-2 퍼즐 등의 보상 -> 퍼즐 클리어 이후 퍼즐 프리팹의 지정된 위치에 스폰되도록
-    // 2-3 배경
-    //  : 상호작용 불가능하나 배경과 무관하게 맵에 배치되는 장식들(횃불, 덩굴, 해골 등등)
-    // 2-4 포탈과 출입구
-    // 2-5 단독 아이템
-    //  : 주로 몬스터 처치 보상 시 드랍(Enemy 관련 코드로?)
-    //      - 아니다 그냥 SpawnByChar 등으로 작성하고 파라미터로 객체를 넣으면,
-    //      해당 객체의 position과 collider 범위 기준으로 그 근방에 떨어뜨리도록
-    // 2-6 함정
-    // 2-6-1 덫
-    // 2-6-2 뾰족뾰족
-    // 2-6-3 화살(스컬의 화살 발사기 같은)
-    // 2-6-4 낙사 존 (피 까이고 특정 포인트에서 리스폰되도록)
-    //      -> 여유 되면 낙사 시 피까이면서 미니맵 상 멀리 아래 존재하는 다른 방으로 떨어뜨리는 것도 재밌을듯
-    // 2-7 스폰 포인트 : 맵 이동, 스테이지 진입 시 캐릭터가 등장할 위치
-    // 2-8 NPC
-    // 2-9 강화 관련 오브젝트
 
     // Step01. 외곽선 제외
     // Step02. 방 타입 확인
@@ -239,7 +205,7 @@ public class RoomGenerator : MonoBehaviour
                     room.Node.SpaceArea.y + room.Node.SpaceArea.height - 1
                 );
 
-                tilemap.SetTile((Vector3Int)platformPosition, So.MiddlePlatforms[Random.Range(0, So.MiddlePlatforms.Length)]);
+                tilemap.SetTile((Vector3Int)platformPosition, so.MiddlePlatforms[Random.Range(0, so.MiddlePlatforms.Length)]);
             }
         }
     }
@@ -258,7 +224,7 @@ public class RoomGenerator : MonoBehaviour
                     room.Node.SpaceArea.x + room.Node.SpaceArea.width / 2,
                     room.Node.SpaceArea.y + room.Node.SpaceArea.height - 1
                 );
-                tilemap.SetTile((Vector3Int)spawnPosition, So.Ground[Random.Range(0, So.Ground.Length)]);
+                tilemap.SetTile((Vector3Int)spawnPosition, so.Ground[Random.Range(0, so.Ground.Length)]);
                 return;
             }
         }
@@ -269,7 +235,7 @@ public class RoomGenerator : MonoBehaviour
                 room.Node.SpaceArea.x + room.Node.SpaceArea.width / 2,
                 room.Node.SpaceArea.y
             );
-            tilemap.SetTile((Vector3Int)spawnPosition, So.Ground[Random.Range(0, So.Ground.Length)]);
+            tilemap.SetTile((Vector3Int)spawnPosition, so.Ground[Random.Range(0, so.Ground.Length)]);
         }
     }
 }
@@ -284,6 +250,8 @@ public class RoomSetup : MonoBehaviour
 
     public void Setup(RoomData room)
     {
+        // 몬스터 스폰 기능은 아직 구현되지 않았으므로 주석 처리
+        /*
         switch (room.RoomType)
         {
             case RoomType.Start:
@@ -296,10 +264,19 @@ public class RoomSetup : MonoBehaviour
                 SpawnObjects(enemySpawnPoints, enemies, Random.Range(2, 5));
                 break;
         }
+        */
     }
 
+    // 몬스터 및 아이템 스폰 함수도 임시로 막아둠
+    /*
     void SpawnObjects(Transform parent, GameObject[] objectList, int count)
     {
+        if (objectList == null || objectList.Length == 0)
+        {
+            Debug.LogWarning("RoomSetup: objectList가 비어 있어서 아무것도 스폰되지 않음");
+            return;
+        }
+
         List<Transform> availableSpawns = new List<Transform>(parent.GetComponentsInChildren<Transform>());
         availableSpawns.Remove(parent);
 
@@ -310,4 +287,5 @@ public class RoomSetup : MonoBehaviour
             availableSpawns.RemoveAt(index);
         }
     }
+    */
 }

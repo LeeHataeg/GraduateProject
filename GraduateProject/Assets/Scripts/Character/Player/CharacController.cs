@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour
+public class CharacController : MonoBehaviour
 {
     #region EVENT_ACTION
     public event Action<Vector2> OnMoveEvent;

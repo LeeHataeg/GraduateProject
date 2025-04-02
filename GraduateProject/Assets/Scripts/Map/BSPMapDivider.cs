@@ -25,81 +25,83 @@ public class BSPNode
 
 public class BSPMapDivider
 {
-    public List<Node> GetLeavesByBSP(MapSO so)
+    public List<MapNode> GetLeavesByBSP(MapSO so)
     {
         BSPNode bsp = new BSPNode(new RectInt(0, 0, so.MapSize.x, so.MapSize.y));
         bsp.depth = 0;
 
         divideMap(bsp, so);
-        return convertBSPIntoNode(bsp);
+        List<MapNode> list = convertBSPIntoNode(bsp);
+        return list;
     }
 
     private void divideMap(BSPNode node, MapSO so)
     {
-        // Check01 - Depth
-        if (node.depth == so.MaxDepth) return;
+        // 1. 너무 작은 영역이면 종료
+        if (node.BSPArea.width < so.MinSpaceSize.x || node.BSPArea.height < so.MinSpaceSize.y)
+        {
+            return;
+        }
 
-        // Check02 - Divided already
-        if ((node.leftNode != null) && (node.rightNode != null)) return;
+        // 2. 최대 깊이에 도달하면 종료
+        if (node.depth == so.MaxDepth)
+        {
+            return;
+        }
 
-        // Check03 - Can't divide because of area size limit
-        if ((node.BSPArea.width < so.MaxSpaceSize.x) && (node.BSPArea.height < so.MaxSpaceSize.y)) return;
-
-        // whether width is longer than height
+        // 3. 가로/세로 분할 결정
         node.dividedHorizontally = (node.BSPArea.width > node.BSPArea.height) ? true : false;
-
         float slice = Random.Range(so.MinDevideRate, so.MaxDevideRate);
 
-        // Step01 - Slice and Assign
-        BSPNode left;
-        BSPNode right;
+        // 4. 노드 분할
+        BSPNode left, right;
         if (node.dividedHorizontally)
         {
-            left = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y, (int)Mathf.Round(slice * node.BSPArea.width), node.BSPArea.height));
-            right = new BSPNode(new RectInt(node.BSPArea.x + (int)Mathf.Round(slice * node.BSPArea.width), node.BSPArea.y, (int)Mathf.Round(node.BSPArea.width * (1 - slice)), node.BSPArea.height));
+            int splitWidth = (int)Mathf.Round(slice * node.BSPArea.width);
+            if (splitWidth < so.MinSpaceSize.x || node.BSPArea.width - splitWidth < so.MinSpaceSize.x) return;
+            left = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y, splitWidth, node.BSPArea.height));
+            right = new BSPNode(new RectInt(node.BSPArea.x + splitWidth, node.BSPArea.y, node.BSPArea.width - splitWidth, node.BSPArea.height));
         }
         else
         {
-            left = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y, node.BSPArea.width, (int)Mathf.Round(slice * node.BSPArea.height)));
-            right = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y + (int)Mathf.Round(slice * node.BSPArea.height), node.BSPArea.width, (int)Mathf.Round(node.BSPArea.height * (1 - slice))));
+            int splitHeight = (int)Mathf.Round(slice * node.BSPArea.height);
+            if (splitHeight < so.MinSpaceSize.y || node.BSPArea.height - splitHeight < so.MinSpaceSize.y) return;
+            left = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y, node.BSPArea.width, splitHeight));
+            right = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y + splitHeight, node.BSPArea.width, node.BSPArea.height - splitHeight));
         }
+
+        // 5. 부모 연결 및 깊이 설정
         left.parNode = right.parNode = node;
         left.depth = right.depth = node.depth + 1;
 
-        if ((left.BSPArea.width > so.MaxSpaceSize.x) && (left.BSPArea.height > so.MaxSpaceSize.y))
-        {
-            node.leftNode = left;
-            divideMap(node.leftNode, so);
-        }
+        // 6. 노드 추가 및 재귀 분할
+        node.leftNode = left;
+        node.rightNode = right;
 
-        if ((left.BSPArea.width > so.MaxSpaceSize.x) && (left.BSPArea.height > so.MaxSpaceSize.y))
-        {
-            node.rightNode = right;
-            divideMap(node.rightNode, so);
-        }
-
-        // TODO - Variety of Map Size
-        // if depth == specific value
-        //      start : if depth increase -> float StopDivideChance is increase
+        divideMap(node.leftNode, so);
+        divideMap(node.rightNode, so);
     }
 
-    private List<Node> convertBSPIntoNode(BSPNode node)
+    private List<MapNode> convertBSPIntoNode(BSPNode node)
     {
-        List<Node> leaves = new List<Node>();
-        Node leaf = new Node();
+        List<MapNode> leaves = new List<MapNode>();
 
         if (node.leftNode != null)
         {
-            leaves = convertBSPIntoNode(node.leftNode);
+            leaves.AddRange(convertBSPIntoNode(node.leftNode)); // 기존 값 유지하면서 추가
         }
         if (node.rightNode != null)
         {
-            leaves = convertBSPIntoNode(node.rightNode);
+            leaves.AddRange(convertBSPIntoNode(node.rightNode)); // 기존 값 유지하면서 추가
         }
 
-        leaf.SpaceArea = node.BSPArea;
-        leaves.Add(leaf);
-
+        // 리프 노드만 리스트에 추가
+        if (node.leftNode == null && node.rightNode == null)
+        {
+            MapNode leaf = new MapNode();
+            leaf.SpaceArea = node.BSPArea;
+            leaves.Add(leaf);
+        }
         return leaves;
     }
 }
