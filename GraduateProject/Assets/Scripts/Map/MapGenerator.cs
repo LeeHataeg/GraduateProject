@@ -59,16 +59,6 @@ public class MapGenerator : MonoBehaviour
 
     List<MapNode> result;
 
-    #region ROOM_PREFABS
-    [field: Header("#Room Prefabs")]
-    [SerializeField] private GameObject startRoom;
-    [SerializeField] private GameObject bossRoom;
-    [SerializeField] private GameObject shopRoom;
-    // TODO - Add Puzzle Maps
-    //[SerializeField] private GameObject[] puzzleRooms;
-    //[SerializeField] private GameObject midbossRoom;
-    #endregion  
-
     private void Awake()
     {
         bsp = new BSPMapDivider();
