@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 public class MapSO : ScriptableObject
 {
     #region MAP_SPRITES
-    [Header("# Map Variables")]
+    [Header("# Map Tiles")]
     [Header("## Walls")]
     [SerializeField] private Tile[] topLeftWall;
     [SerializeField] private Tile[] topRightWall;
@@ -35,6 +35,16 @@ public class MapSO : ScriptableObject
     [SerializeField] private int maxDepth;
     #endregion
 
+    #region ROOM_PREFABS
+    [field: Header("#Room Prefabs")]
+    [SerializeField] private GameObject startRoom;
+    [SerializeField] private GameObject bossRoom;
+    [SerializeField] private GameObject shopRoom;
+    // TODO - Add Puzzle Maps
+    //[SerializeField] private GameObject[] puzzleRooms;
+    //[SerializeField] private GameObject midbossRoom;
+    #endregion  
+
     #region GETTERS
     public Tile[] TopLeftWall => topLeftWall;
     public Tile[] TopRightWall => topRightWall;
@@ -57,5 +67,9 @@ public class MapSO : ScriptableObject
     public float MaxDevideRate => maxDevideRate;
     public float MinDevideRate => minDevideRate;
     public int MaxDepth => maxDepth;
+
+    public GameObject StartRoom => startRoom;
+    public GameObject BossRoom => bossRoom;
+    public GameObject ShopRoom => shopRoom;
     #endregion
 }
