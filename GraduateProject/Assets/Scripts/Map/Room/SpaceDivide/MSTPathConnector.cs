@@ -151,26 +151,26 @@ public class MSTPathConnector
         {
             if (deltaX > 0)
             {
-                start.Portals.Add(new portalInfo(portalDir.right, end));
-                end.Portals.Add(new portalInfo(portalDir.left, start));
+                start.Portals.Add(new PortalInfo(PortalDir.right, end));
+                end.Portals.Add(new PortalInfo(PortalDir.left, start));
             }
             else
             {
-                start.Portals.Add(new portalInfo(portalDir.left, end));
-                end.Portals.Add(new portalInfo(portalDir.right, start));
+                start.Portals.Add(new PortalInfo(PortalDir.left, end));
+                end.Portals.Add(new PortalInfo(PortalDir.right, start));
             }
         }
         else
         {
             if (deltaY > 0)
             {
-                start.Portals.Add(new portalInfo(portalDir.down, end));
-                end.Portals.Add(new portalInfo(portalDir.up, start));
+                start.Portals.Add(new PortalInfo(PortalDir.down, end));
+                end.Portals.Add(new PortalInfo(PortalDir.up, start));
             }
             else
             {
-                start.Portals.Add(new portalInfo(portalDir.up, end));
-                end.Portals.Add(new portalInfo(portalDir.down, start));
+                start.Portals.Add(new PortalInfo(PortalDir.up, end));
+                end.Portals.Add(new PortalInfo(PortalDir.down, start));
             }
         }
     }
