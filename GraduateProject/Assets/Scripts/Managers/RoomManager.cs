@@ -1,16 +1,22 @@
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Vector2 StartSpawnPoint;
+
+    const string objectName = "StartRoom(Clone)";
+    const string tagNameStartRoom = "Spawn";
+
+    private void Awake()
     {
-        
+        StartSpawnPoint = new Vector2();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetStartPoint(Vector2 pos)
     {
-        
+        StartSpawnPoint = pos;
+        //Debug.Log("할당 완료");
     }
 }

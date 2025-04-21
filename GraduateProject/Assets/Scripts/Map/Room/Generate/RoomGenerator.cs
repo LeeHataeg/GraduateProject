@@ -73,40 +73,6 @@ public class RoomGenerator : MonoBehaviour
     }
 
 
-    // TODO - if(SpaceArea < this.RoomData.RoomSpace)???
-    // The room size specified during the special room creation process
-    //      may be larger than the space area of ​​the automatically generated room.
-    // Solved -> So I'll use the Last Room as an Enterance To the Boss Room
-    //      ex) Dungreeed or Skull Boos Room Gate
-    //      Seperate Scene
-    //private float findMin(MapNode node, Vector2Int mapSz, float min, int index)
-    //{
-    //    // Check where the current room is located based on the center point of the map.
-    //    float initX, initY;
-    //    Vector2 initPos = node.SpaceArea.position;
-    //    bool left = initPos.x < (mapSz.x / 2);
-    //    bool bottom = initPos.y < (mapSz.y / 2);
-
-    //    RoomData roomData = new RoomData(node);
-
-    //    initX = left ? initPos.x : (mapSz.x - initPos.x);
-    //    initY = bottom ? initPos.y : (mapSz.y - initPos.y);
-
-    //    roomDatas.Add(roomData);
-
-    //    if (index == 0)
-    //    {
-    //        return Mathf.Min(initX, initY);
-    //    }
-    //    else
-    //    {
-    //        float thisMin = Mathf.Min(initX, initY);
-    //        return (thisMin < min) ? thisMin : min;
-    //    }
-    //}
-
-    //
-
     private void setRoomspace()
     {
         HashSet<RectInt> usedSpaces = new HashSet<RectInt>();
@@ -155,6 +121,13 @@ public class RoomGenerator : MonoBehaviour
                     // TODO : Need Null Check
                     GameObject startRoomObj = locateSpecificRoom(room, so.StartRoom);
                     addSpawnPointObject(startRoomObj, room);
+                    Transform spawnPoint = startRoomObj.transform.Find("SpawnPoint");
+                    if (spawnPoint != null)
+                    {
+                        //Debug.Log("진입");
+                        // RoomManager의 인스턴스를 통해 StartSpawnPoint를 할당합니다.
+                        GameManager.Instance.RoomManager.SetStartPoint(spawnPoint.position);
+                    }
                     break;
                 case RoomType.Shop:
                     // TODO : 9 String
@@ -206,8 +179,6 @@ public class RoomGenerator : MonoBehaviour
 
         prefabInstance.transform.position = new Vector2(randomX - tileOrigin.x, randomY - tileOrigin.y);
 
-        Debug.Log($"specialroom : {specific.name}, pos : {specific.transform.position} , size : {bounds.size}");
-        Debug.Log($"target: {room.RoomSpace.position}, size: {room.RoomSpace.size}");
 
         return prefabInstance;
     }
