@@ -57,10 +57,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isPressed == 1.0f)
         {
-            if (isGround)
+            //if (isGround)
             {
-                rigid.linearVelocity = new Vector2(rigid.linearVelocity.x, jumpForce);
-                rigid.AddForce(new Vector2(rigid.linearVelocity.x, jumpForce), ForceMode2D.Impulse);
+                rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 isGround = false;
             }
         }
