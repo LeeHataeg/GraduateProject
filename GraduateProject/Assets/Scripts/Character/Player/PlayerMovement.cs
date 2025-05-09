@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -17,13 +18,16 @@ public class PlayerMovement : MonoBehaviour
     Vector2 dir;
 
     //TODO - Move this Variable into scripts of 'Stat'
-    public float jumpForce = 5.0f;
-    public bool isGround;
-    public float maxSpeed = 15.0f;
+    // TODO - Hide this var to protection
+    private float jumpForce = 200.0f;
+    private Vector2 jumpVec;
+    private bool isGround = true;
+    private float maxSpeed = 15.0f;
     #endregion
 
-    void Awake()
+    private void Awake()
     {
+        jumpVec = new Vector2(0, jumpForce);
         control = gameObject.GetComponent<CharacController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -33,9 +37,12 @@ public class PlayerMovement : MonoBehaviour
         control.OnMoveEvent += Move;
         control.OnLookEvent += Look;
         control.OnJumpEvent += Jump;
-        control.OnGroundEvent += ContactGround;
+        control.OnDashEvent += Dash;
+        control.OnInteractEvent += Interact;
+        control.OnTeleportEvent += Teleport;
+
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         ApplayMovement();
     }
@@ -45,7 +52,23 @@ public class PlayerMovement : MonoBehaviour
         StopMovement();
     }
 
-    void Move(Vector2 direction)
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Ground"))
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Ground"))
+        {
+            isGround = false;
+        }
+    }
+
+    private void Move(Vector2 direction)
     {
         dir = direction;
     }
@@ -53,21 +76,32 @@ public class PlayerMovement : MonoBehaviour
     {
         sprite.flipX = (direction.x < 0);
     }
-    void Jump(float isPressed)
+    private void Jump(bool isPressed)
     {
-        if (isPressed == 1.0f)
+        if (isPressed)
         {
-            //if (isGround)
+            if (isGround)
             {
-                rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-                isGround = false;
+                rigid.AddForce(jumpVec, ForceMode2D.Impulse);
             }
         }
     }
-    void ContactGround(bool _isGround)
+
+    private void Interact(bool isInteracted)
     {
-        isGround = _isGround;
+        Debug.Log("Interact!");
     }
+
+    private void Dash(bool isDashed)
+    {
+        Debug.Log("Dash!");
+    }
+
+    private void Teleport(bool isTeleported)
+    {
+        Debug.Log("OnTeleport!");
+    }
+
     void ApplayMovement()
     {
         rigid.AddForce(dir * speed, ForceMode2D.Impulse);

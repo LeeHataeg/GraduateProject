@@ -33,16 +33,25 @@ public class PlayerInputController : CharacController
     public void OnJump(InputValue value)
     {
         isPressed = value.Get<float>();
-        CallJumpEvent(isPressed);
+        CallJumpEvent(isPressed > 0f);
+
     }
 
-    // TODO - tempcode (Need to Refactoring)
-    private void OnCollisionEnter2D(Collision2D coll)
+    public void OnInteract(InputValue value)
     {
-        if (coll.gameObject.CompareTag("Ground"))
-        {
-            isGround = true;
-            CallGroundEvent(isGround);
-        }
+        isPressed = value.Get<float>();
+        CallInteractEvent(isPressed > 0f);
+    }
+
+    public void OnDash(InputValue value)
+    {
+        isPressed = value.Get<float>();
+        CallDashEvent(isPressed > 0f);
+    }
+
+    public void OnTeleport(InputValue value)
+    {
+        isPressed = value.Get<float>();
+        CallTeleportEvent(isPressed > 0f);
     }
 }

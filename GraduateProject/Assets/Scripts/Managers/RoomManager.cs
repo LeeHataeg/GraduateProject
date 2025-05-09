@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class RoomManager : MonoBehaviour
     const string objectName = "StartRoom(Clone)";
     const string tagNameStartRoom = "Spawn";
 
+    public event Action<Vector2> OnSetStartPoint;
+
     private void Awake()
     {
         StartSpawnPoint = new Vector2();
@@ -17,6 +20,6 @@ public class RoomManager : MonoBehaviour
     public void SetStartPoint(Vector2 pos)
     {
         StartSpawnPoint = pos;
-        //Debug.Log("할당 완료");
+        OnSetStartPoint?.Invoke(pos);
     }
 }

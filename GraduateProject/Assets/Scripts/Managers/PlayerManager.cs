@@ -16,16 +16,11 @@ public class PlayerManager : MonoBehaviour
         {
             playerPositionController = gameObject.AddComponent<PlayerPositionController>();
         }
+
+        GameManager.Instance.RoomManager.OnSetStartPoint += PlayerInit;
     }
 
-    private void Start()
-    {
-        PlayerInit();
-        // RoomManager에서 제공하는 시작 스폰 포인트를 가져온다고 가정하면
-
-    }
-
-    public void PlayerInit()
+    public void PlayerInit(Vector2 pos)
     {
         // 프리팹 로딩
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Player/Player/Player");
@@ -39,11 +34,13 @@ public class PlayerManager : MonoBehaviour
 
         // 프리팹 인스턴스화
         Player = Instantiate(prefab);
-        Vector2 startSpawnPoint = GameManager.Instance.RoomManager.StartSpawnPoint;
-        if (startSpawnPoint != null)
+
+        if (pos != Vector2.zero)
         {
             // PlayerPositionController의 SetInitialPosition()을 사용해 위치 설정
-            playerPositionController.SetPosition(startSpawnPoint);
+            playerPositionController.SetPosition(pos);
+            Debug.LogWarning("StartSpawnPoint : " + pos);
+
         }
         else
         {
