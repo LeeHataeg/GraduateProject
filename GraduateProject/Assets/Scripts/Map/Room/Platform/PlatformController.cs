@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.InputSystem;   // ← Input System 사용
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Tilemap), typeof(TilemapCollider2D), typeof(PlatformEffector2D))]
+[RequireComponent(typeof(TilemapCollider2D), typeof(PlatformEffector2D))]
 public class PlatformController : MonoBehaviour
 {
     [SerializeField]
@@ -14,12 +14,14 @@ public class PlatformController : MonoBehaviour
 
     void Awake()
     {
-        // Rigidbody2D 추가·설정 (Kinematic)
-        var rb = GetComponent<Rigidbody2D>()
-                 ?? gameObject.AddComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        // Rigidbody2D 제거: 플랫폼에는 없어야 정상 작동
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            DestroyImmediate(rb);
+            Debug.LogWarning("PlatformController: Rigidbody2D가 제거되었습니다.");
+        }
 
-        // PlatformEffector2D 설정
         _collider = GetComponent<TilemapCollider2D>();
         _collider.usedByEffector = true;
 
@@ -34,17 +36,21 @@ public class PlatformController : MonoBehaviour
         if (!other.collider.CompareTag("Player"))
             return;
 
-        // Input System으로 키 입력 감지
         var kb = Keyboard.current;
         if (kb == null)
             return;
 
-        // 'S' 키 누른 상태에서 'Space'를 이번 프레임에 눌렀다면
         if (kb.sKey.isPressed && kb.spaceKey.wasPressedThisFrame)
         {
             StartCoroutine(TemporarilyDisableCollider());
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Platform collided with: " + collision.gameObject.name);
+    }
+
 
     IEnumerator TemporarilyDisableCollider()
     {

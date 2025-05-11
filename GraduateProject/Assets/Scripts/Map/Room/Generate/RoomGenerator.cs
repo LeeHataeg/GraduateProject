@@ -248,46 +248,60 @@ public class RoomGenerator : MonoBehaviour
 
     private void placePlatforms(Tilemap tilemap, RoomInitData room)
     {
+        // 1) 바운드 준비
         tilemap.CompressBounds();
         BoundsInt b = tilemap.cellBounds;
-        int centerX = (b.xMin + b.xMax - 1) / 2;  // 가운데 열
-        int floorY = b.yMin + 1;                // 바닥 바로 위
-        int ceilingY = b.yMax - 1;                // 천장 바로 아래
+        int minX = b.xMin;
+        int maxX = b.xMax;   // exclusive
+        int width = maxX - minX;
+        int centerX = (minX + maxX - 1) / 2;
+        int floorY = b.yMin + 1;
+        int ceilingY = b.yMax - 1;
 
-        // 2) 플레이어 점프 최대 높이 계산
+        // 2) 플랫폼 가로 길이: 방 폭에서 좌우 2칸씩 여유
+        int platformWidth = Mathf.Max(1, width - 4);
+        // 3) 시작 X 좌표: 가운데 정렬
+        int startX = minX + (width - platformWidth) / 2;
+
+        // 4) 플레이어 점프력 계산 (이전과 동일)
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         float stepY;
         if (player != null)
         {
-            float v0 = player.JumpForce / player.Mass;          // 초기 속도
-            float g = Mathf.Abs(Physics2D.gravity.y);         // 중력가속도
-            float maxJumpH = (v0 * v0) / (2f * g);              // 수직 최대 높이
-            stepY = maxJumpH * 0.9f;                            // 10% 여유 두기
+            float v0 = player.JumpForce / (player.Mass*1.9f);
+            float g = Mathf.Abs(Physics2D.gravity.y);
+            float maxJumpH = (v0 * v0) / (2f * g);
+            stepY = maxJumpH * 0.9f;
         }
         else
         {
-            Debug.LogWarning("PlayerMovement를 찾을 수 없어 기본 거리 2로 설정합니다.");
+            Debug.LogWarning("PlayerMovement 미발견, 기본 점프 간격 2 사용");
             stepY = 2f;
         }
 
-        // 3) 방 높이만큼 몇 번 점프가 필요한지 계산
+        // 5) 필요한 플랫폼 단계 수
         float totalH = ceilingY - floorY;
         int count = Mathf.CeilToInt(totalH / stepY);
 
-        // 4) 각 스텝마다 플랫폼 타일 설치
+        // 6) 각 단계마다 가로로 연속된 플랫폼 배치
         for (int i = 1; i <= count; i++)
         {
             float yLocal = floorY + stepY * i;
             if (yLocal >= ceilingY) break;
 
             int yCell = Mathf.FloorToInt(yLocal);
-            var tile = so.MiddlePlatforms[
+            // 플랫폼 타일 선택
+            Tile tile = so.MiddlePlatforms[
                 Random.Range(0, so.MiddlePlatforms.Length)
             ];
-            tilemap.SetTile(new Vector3Int(centerX, yCell, 0), tile);
+            // 가로로 플랫폼Width만큼 반복
+            for (int x = startX; x < startX + platformWidth; x++)
+            {
+                tilemap.SetTile(new Vector3Int(x, yCell, 0), tile);
+            }
         }
 
-        // 5) 플랫폼용 컨트롤러 붙이기 (한 번만)
+        // 7) 한 번만 PlatformController 추가
         var go = tilemap.gameObject;
         if (go.GetComponent<PlatformController>() == null)
             go.AddComponent<PlatformController>();
