@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     // PlayerPositionController는 반드시 MonoBehaviour로 붙어있는 인스턴스를 사용해야 합니다.
     private PlayerPositionController playerPositionController;
 
+
     private void Awake()
     {
         // MonoBehaviour는 new로 인스턴스화하면 안 됨.
@@ -19,7 +20,7 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.Instance.RoomManager.OnSetStartPoint += PlayerInit;
     }
-
+     
     public void PlayerInit(Vector2 pos)
     {
         // 프리팹 로딩

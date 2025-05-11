@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,17 +13,21 @@ public class RoomState : MonoBehaviour
     }
 }
 
-//Main frame Script of Ingame_Room
 public class Room : MonoBehaviour
 {
-    public RoomType Type { get; private set; }
+    public MapNode Node;
+    public RectInt RoomSpace { get; private set; }
 
+    public RoomType Type { get; private set; }
     public RoomState RoomState { get; private set; }
     public SpawnerController spawnManager { get; private set; }
     public PortalConnection PortalConnection { get; private set; }
 
     public void Initialize(RoomInitData init)
     {
+        Node = init.Node;
+        RoomSpace = init.RoomSpace;
+
         Type = init.RoomType;
 
         RoomState = gameObject.AddComponent<RoomState>();
@@ -31,5 +36,11 @@ public class Room : MonoBehaviour
 
         PortalConnection.Initialize(init.Node.Portals);
         spawnManager.Initialize(init.RoomSpace);
+    }
+    public Vector2 GetSpawnPosition()
+    {
+        Vector2 lowerLeft = (Vector2)transform.position;
+        return lowerLeft + new Vector2(RoomSpace.width * 0.5f,
+                                       RoomSpace.height * 0.5f);
     }
 }

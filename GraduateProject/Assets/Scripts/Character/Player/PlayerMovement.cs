@@ -12,23 +12,29 @@ public class PlayerMovement : MonoBehaviour
     #region PHYSICS
     [SerializeField][Range(10, 1000)] float speed;
 
-    CharacController control;
+    CharacterController control;
 
     Rigidbody2D rigid;
     Vector2 dir;
 
     //TODO - Move this Variable into scripts of 'Stat'
     // TODO - Hide this var to protection
-    private float jumpForce = 200.0f;
+    private float jumpForce = 300.0f;
     private Vector2 jumpVec;
     private bool isGround = true;
+    private bool isPlatform = false;
     private float maxSpeed = 15.0f;
     #endregion
+
+    private Portal currentPortal;
+
+    public float JumpForce => jumpForce;
+    public float Mass => rigid.mass;
 
     private void Awake()
     {
         jumpVec = new Vector2(0, jumpForce);
-        control = gameObject.GetComponent<CharacController>();
+        control = gameObject.GetComponent<CharacterController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
@@ -58,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isGround = true;
         }
+        else if(coll.gameObject.CompareTag("Platform"))
+        {
+            isPlatform = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D coll)
@@ -65,6 +75,10 @@ public class PlayerMovement : MonoBehaviour
         if (coll.gameObject.CompareTag("Ground"))
         {
             isGround = false;
+        }
+        else if (coll.gameObject.CompareTag("Platform"))
+        {
+            isPlatform = false;
         }
     }
 
@@ -80,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isPressed)
         {
-            if (isGround)
+            if (isGround || isPlatform)
             {
                 rigid.AddForce(jumpVec, ForceMode2D.Impulse);
             }
@@ -97,9 +111,32 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Dash!");
     }
 
-    private void Teleport(bool isTeleported)
+    public void Teleport(bool isTeleported)
     {
-        Debug.Log("OnTeleport!");
+        Debug.Log("Tele-PM!");
+        if (!isTeleported || currentPortal == null)
+            return;
+
+        Room dest = currentPortal.GetDestinationRoom();
+        if (dest == null)
+        {
+            Debug.LogWarning("Teleport 실패: 연결된 방이 없습니다.");
+            return;
+        }
+
+        Vector2 targetPos = dest.GetSpawnPosition();
+        transform.position = targetPos;
+    }
+
+    public void SetCurrentPortal(Portal portal)
+    {
+        currentPortal = portal;
+    }
+
+    public void ClearCurrentPortal(Portal portal)
+    {
+        if (currentPortal == portal)
+            currentPortal = null;
     }
 
     void ApplayMovement()

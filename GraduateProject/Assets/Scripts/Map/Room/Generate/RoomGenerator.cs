@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private Grid grid;
 
     List<RoomInitData> roomDatas;
+
+    public List<Room> rooms = new List<Room>();
 
     // Should I Change This Func Name?
     public void CreateRooms(List<MapNode> nodes, MapSO so)
@@ -55,12 +58,12 @@ public class RoomGenerator : MonoBehaviour
                 Debug.LogError($"RoomGenerator: Node {i} has null SpaceArea!");
                 continue;
             }
-            
+
 
             RoomInitData room = new RoomInitData(nodes[i]);
-            if (i == 0) 
+            if (i == 0)
                 room.RoomType = RoomType.Start;
-            else if(i == nodes.Count - 1) 
+            else if (i == nodes.Count - 1)
                 room.RoomType = RoomType.Boss;
             else
                 room.RoomType = RoomType.Normal;
@@ -91,20 +94,32 @@ public class RoomGenerator : MonoBehaviour
 
     private void GenerateRoom()
     {
-        Vector2Int minRoomSz = so.MinRoomSize; 
+        GameObject tileParent;
+        GameObject tilemapObj;
+        Tilemap tilemap;
+        Rigidbody2D tileRigid;
+
+        Vector2Int minRoomSz = so.MinRoomSize;
         Vector2Int maxRoomSz = so.MaxRoomSize;
+
         foreach (var room in roomDatas)
         {
+            Room viewRoom = null;
             switch (room.RoomType)
             {
                 case RoomType.Normal:
-                    GameObject tileParent = new GameObject($"RoomTilemap_{room.Node.Id}");
+                    tileParent = new GameObject($"RoomTilemap_{room.Node.Id}");
                     tileParent.transform.position = new Vector3(room.RoomSpace.position.x, room.RoomSpace.position.y);
                     tileParent.transform.parent = grid.transform;
 
-                    GameObject tilemapObj = new GameObject("Tilemap");
-                    Tilemap tilemap = tilemapObj.AddComponent<Tilemap>();
+                    tilemapObj = new GameObject("Tilemap");
+                    tilemap = tilemapObj.AddComponent<Tilemap>();
+
+                    tileRigid = tilemap.AddComponent<Rigidbody2D>();
+                    tilemap.AddComponent<TilemapCollider2D>();
+                    tileRigid.constraints = RigidbodyConstraints2D.FreezeAll;
                     tilemapObj.AddComponent<TilemapRenderer>();
+                    tilemap.tag = "Ground";
 
                     PlaceWalls(tilemap, room, minRoomSz, maxRoomSz);
                     locateRoom(tilemapObj, room);
@@ -112,35 +127,37 @@ public class RoomGenerator : MonoBehaviour
                     tilemapObj.transform.parent = tileParent.transform;
                     tilemapObj.transform.localPosition = Vector2.zero;
 
-                    Room viewRoom = tileParent.AddComponent<Room>();
+                    viewRoom = tileParent.AddComponent<Room>();
                     viewRoom.Initialize(room);
                     placePlatforms(tilemap, room);
                     addSpawnPointObject(tileParent, room);
                     break;
                 case RoomType.Start:
-                    // TODO : Need Null Check
                     GameObject startRoomObj = locateSpecificRoom(room, so.StartRoom);
+
+                    viewRoom = startRoomObj.AddComponent<Room>();
+                    viewRoom.Initialize(room);
+
                     addSpawnPointObject(startRoomObj, room);
                     Transform spawnPoint = startRoomObj.transform.Find("SpawnPoint");
                     if (spawnPoint != null)
                     {
-                        //Debug.Log("진입");
-                        // RoomManager의 인스턴스를 통해 StartSpawnPoint를 할당합니다.
                         GameManager.Instance.RoomManager.SetStartPoint(spawnPoint.position);
                     }
                     break;
-                case RoomType.Shop:
-                    // TODO : 9 String
-                    break;
                 case RoomType.Boss:
-                    // TODO : Need Null Check
                     GameObject bossRoomObj = locateSpecificRoom(room, so.BossRoom);
+
+                    viewRoom = bossRoomObj.AddComponent<Room>();
+                    viewRoom.Initialize(room);
+
                     addSpawnPointObject(bossRoomObj, room);
                     break;
-                case RoomType.SemiBoss:
-                    // TODO : 9 String
-                    break;
             }
+            if (viewRoom != null)
+                rooms.Add(viewRoom);
+            else
+                Debug.LogWarning($"RoomGenerator: RoomType `{room.RoomType}` 에서 viewRoom 생성 실패, 리스트에 추가되지 않음.");
         }
     }
 
@@ -187,7 +204,7 @@ public class RoomGenerator : MonoBehaviour
     private void PlaceWalls(Tilemap tile, RoomInitData room, Vector2Int soMinRoomSize, Vector2Int soMaxRoomSize)
     {
         RectInt spaceArea = room.Node.SpaceArea;
-        int width = Random.Range(so.MinRoomSize.x, ((spaceArea.width + 1) > (soMaxRoomSize.x + 1)? (spaceArea.width + 1): (soMaxRoomSize.x + 1)));
+        int width = Random.Range(so.MinRoomSize.x, ((spaceArea.width + 1) > (soMaxRoomSize.x + 1) ? (spaceArea.width + 1) : (soMaxRoomSize.x + 1)));
         int height = Random.Range(so.MinRoomSize.y, ((spaceArea.height + 1) > (soMaxRoomSize.y + 1) ? (spaceArea.height + 1) : (soMaxRoomSize.y + 1)));
 
         room.RoomSpace.width = width;
@@ -211,36 +228,72 @@ public class RoomGenerator : MonoBehaviour
         tile.SetTile(new Vector3Int(width, height, 0), GetRandomTile(so.TopRightWall));
     }
 
-    private void locateRoom(GameObject go, RoomInitData room)
+    private void locateRoom(GameObject tilemapObj, RoomInitData room)
     {
-        int width = room.RoomSpace.width;
-        int height = room.RoomSpace.height;
-        RectInt spaceArea = room.Node.SpaceArea;
+        // 부모인 tileParent는 이미 worldPos = room.RoomSpace.position
+        // 따라서 tilemapObj는 localPosition 만 조절
+        RectInt space = room.RoomSpace;
 
-        int posX = Random.Range(spaceArea.x, spaceArea.xMax - width + 1);
-        int posY = Random.Range(spaceArea.x, spaceArea.xMax - width + 1);
+        int width = space.width;
+        int height = space.height;
 
-        go.transform.position = new Vector3(posX, posY, 0);
+        // localOffsetX: 0 부터 (공간 폭 - 방 폭)
+        int offsetX = Random.Range(0, space.width - width + 1);
+        // localOffsetY: 0 부터 (공간 높이 - 방 높이)
+        int offsetY = Random.Range(0, space.height - height + 1);
+
+        tilemapObj.transform.SetParent(tilemapObj.transform.parent, false);
+        tilemapObj.transform.localPosition = new Vector3(offsetX, offsetY, 0);
     }
 
-    //TODO
-    private void placePlatforms(Tilemap tile, RoomInitData room)
+    private void placePlatforms(Tilemap tilemap, RoomInitData room)
     {
-        foreach (var portal in room.Node.Portals)
+        tilemap.CompressBounds();
+        BoundsInt b = tilemap.cellBounds;
+        int centerX = (b.xMin + b.xMax - 1) / 2;  // 가운데 열
+        int floorY = b.yMin + 1;                // 바닥 바로 위
+        int ceilingY = b.yMax - 1;                // 천장 바로 아래
+
+        // 2) 플레이어 점프 최대 높이 계산
+        var player = Object.FindFirstObjectByType<PlayerMovement>();
+        float stepY;
+        if (player != null)
         {
-            if (portal.dir == PortalDir.up)
-            {
-                Vector2Int platformPosition = new Vector2Int(
-                    room.Node.SpaceArea.x + room.Node.SpaceArea.width / 2,
-                    room.Node.SpaceArea.y + room.Node.SpaceArea.height - 1
-                );
-
-                tile.SetTile((Vector3Int)platformPosition, so.MiddlePlatforms[Random.Range(0, so.MiddlePlatforms.Length)]);
-            }
+            float v0 = player.JumpForce / player.Mass;          // 초기 속도
+            float g = Mathf.Abs(Physics2D.gravity.y);         // 중력가속도
+            float maxJumpH = (v0 * v0) / (2f * g);              // 수직 최대 높이
+            stepY = maxJumpH * 0.9f;                            // 10% 여유 두기
         }
+        else
+        {
+            Debug.LogWarning("PlayerMovement를 찾을 수 없어 기본 거리 2로 설정합니다.");
+            stepY = 2f;
+        }
+
+        // 3) 방 높이만큼 몇 번 점프가 필요한지 계산
+        float totalH = ceilingY - floorY;
+        int count = Mathf.CeilToInt(totalH / stepY);
+
+        // 4) 각 스텝마다 플랫폼 타일 설치
+        for (int i = 1; i <= count; i++)
+        {
+            float yLocal = floorY + stepY * i;
+            if (yLocal >= ceilingY) break;
+
+            int yCell = Mathf.FloorToInt(yLocal);
+            var tile = so.MiddlePlatforms[
+                Random.Range(0, so.MiddlePlatforms.Length)
+            ];
+            tilemap.SetTile(new Vector3Int(centerX, yCell, 0), tile);
+        }
+
+        // 5) 플랫폼용 컨트롤러 붙이기 (한 번만)
+        var go = tilemap.gameObject;
+        if (go.GetComponent<PlatformController>() == null)
+            go.AddComponent<PlatformController>();
     }
 
-   #endregion
+    #endregion
 
     #region SET_SPAWNPOINT_NORMAL_ROOM
     private void addSpawnPointObject(GameObject tileParent, RoomInitData room)
@@ -261,9 +314,9 @@ public class RoomGenerator : MonoBehaviour
 
         //setup.Setup(room);
     }
+
     private void CreateDummyPoints(Transform parent, RectInt area)
     {
-        // 방 중심 근처의 임의 위치 몇 군데 생성
         for (int i = 0; i < 3; i++)
         {
             GameObject point = new GameObject("SpawnPoint_" + i);
@@ -274,6 +327,12 @@ public class RoomGenerator : MonoBehaviour
             point.transform.localPosition = new Vector3(x - area.xMin, y - area.yMin, 0);
         }
     }
+
+    /// <summary>
+    /// 타일 맵을 채울 타일을 타일 팔레트에서 골라옴.
+    /// </summary>
+    /// <param name="GetRandomTile"></param>
+    /// <returns></returns>
     private Tile GetRandomTile(Tile[] tileArray)
     {
         return tileArray.Length > 0 ? tileArray[Random.Range(0, tileArray.Length)] : null;

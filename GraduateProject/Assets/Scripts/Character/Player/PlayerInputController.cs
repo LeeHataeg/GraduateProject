@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : CharacController
+public class PlayerInputController : CharacterController
 {
 
     #region MOVE_VARIABLES
@@ -12,7 +12,6 @@ public class PlayerInputController : CharacController
     Vector2 mousePos;
     //Jump
     float isPressed;
-    bool isGround = true;
     #endregion
 
     public void OnMove(InputValue value)
@@ -51,6 +50,7 @@ public class PlayerInputController : CharacController
 
     public void OnTeleport(InputValue value)
     {
+        Debug.Log("OnTeleport!");
         isPressed = value.Get<float>();
         CallTeleportEvent(isPressed > 0f);
     }

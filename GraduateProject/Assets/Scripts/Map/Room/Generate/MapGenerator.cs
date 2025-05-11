@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEditor.Experimental.GraphView;
@@ -12,6 +13,7 @@ public enum PortalDir
     left,
     right
 }
+
 
 public class PortalInfo
 {
@@ -59,11 +61,14 @@ public class MapGenerator : MonoBehaviour
 
     List<MapNode> result;
 
+    PortalInitializer portalInit;
+
     private void Awake()
     {
         bsp = new BSPMapDivider();
         mst = new MSTPathConnector();
         roomGenerator = GetComponent<RoomGenerator>();
+        portalInit = new PortalInitializer();
     }
 
     private void Start()
@@ -78,6 +83,9 @@ public class MapGenerator : MonoBehaviour
         result = mst.GetMSTPath(adjacent);
 
         roomGenerator.CreateRooms(result, mapSO);
+
+        portalInit.SetPortalPrefabAsync();
+        portalInit.Init(roomGenerator.rooms);
     }
 
     private void setId(List<MapNode> leaves)
