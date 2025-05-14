@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2701277149773542423}
   - component: {fileID: 8263577479496347622}
   - component: {fileID: 3177678334090672387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -151,9 +151,10 @@ GameObject:
   - component: {fileID: 4184261499924427989}
   - component: {fileID: 8374513564517266359}
   - component: {fileID: 3620898778585497280}
+  - component: {fileID: -1174363604062171502}
   - component: {fileID: 922037082439274930}
   - component: {fileID: 5933408874043054747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -262,7 +263,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.004261881, y: 0.012785375}
@@ -329,6 +330,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &-1174363604062171502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365964511392763832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b0e23146d244e479309827afa85ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropDuration: 0.5
 --- !u!114 &922037082439274930
 MonoBehaviour:
   m_ObjectHideFlags: 0

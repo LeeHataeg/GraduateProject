@@ -50,8 +50,13 @@ public class PlayerInputController : CharacterController
 
     public void OnTeleport(InputValue value)
     {
-        Debug.Log("OnTeleport!");
         isPressed = value.Get<float>();
         CallTeleportEvent(isPressed > 0f);
+    }
+
+    public void OnCrunch(InputValue value)
+    {
+        isPressed = value.Get<float>();
+        CallCrunchEvent(isPressed > 0f);
     }
 }

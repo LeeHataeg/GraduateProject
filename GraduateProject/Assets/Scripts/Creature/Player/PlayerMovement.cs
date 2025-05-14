@@ -31,11 +31,17 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce => jumpForce;
     public float Mass => rigid.mass;
 
+    private bool isCrouch = false;
+
+    private PlayerPlatformDropController plDrop;
+    private CompositeCollider2D comCol;
+
     private void Awake()
     {
         jumpVec = new Vector2(0, jumpForce);
         control = gameObject.GetComponent<CharacterController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
         sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
     private void Start()
@@ -46,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         control.OnDashEvent += Dash;
         control.OnInteractEvent += Interact;
         control.OnTeleportEvent += Teleport;
-
+        control.OnCrouchEvent += Crunch;
     }
     private void FixedUpdate()
     {
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         else if(coll.gameObject.CompareTag("Platform"))
         {
             isPlatform = true;
+            comCol = coll.gameObject.GetComponent<CompositeCollider2D>();
         }
     }
 
@@ -79,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
         else if (coll.gameObject.CompareTag("Platform"))
         {
             isPlatform = false;
+            isCrouch = false;
+            comCol = null;
         }
     }
 
@@ -92,18 +101,39 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(bool isPressed)
     {
-        if (isPressed)
+        if (!isPressed) return;
+
+        if (isGround || isPlatform)
         {
-            if (isGround || isPlatform)
+            Debug.Log("Jump 로직 진입");
+            if (!isCrouch)
             {
                 rigid.AddForce(jumpVec, ForceMode2D.Impulse);
             }
+            else
+            {
+                plDrop.DropThrough(comCol);
+                isPlatform = false;
+                isCrouch = false;
+                comCol = null;
+            }
         }
+    }
+    public void ResetPlatformFlags()
+    {
+        isPlatform = false;
+        isCrouch = false;
+    }
+    public void Crunch(bool isPressed)
+    {
+        isCrouch = isPressed;
+        
+
     }
 
     private void Interact(bool isInteracted)
     {
-        Debug.Log("Interact!");
+        Debug.Log("Interact!"); 
     }
 
     private void Dash(bool isDashed)
@@ -113,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport(bool isTeleported)
     {
-        Debug.Log("Tele-PM!");
         if (!isTeleported || currentPortal == null)
             return;
 

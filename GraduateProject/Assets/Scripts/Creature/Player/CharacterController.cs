@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     public event Action<bool> OnInteractEvent;
     public event Action<bool> OnDashEvent;
     public event Action<bool> OnTeleportEvent;
+    public event Action<bool> OnCrouchEvent;
     #endregion
 
     public void CallMoveEvent(Vector2 direction)
@@ -40,5 +41,10 @@ public class CharacterController : MonoBehaviour
     public void CallTeleportEvent(bool isTeleport)
     {
         OnTeleportEvent?.Invoke(isTeleport);
+    }
+
+    public void CallCrunchEvent(bool isCrunch)
+    {
+        OnCrouchEvent?.Invoke(isCrunch);
     }
 }

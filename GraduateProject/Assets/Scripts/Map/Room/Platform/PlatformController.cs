@@ -1,61 +1,32 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(TilemapCollider2D), typeof(PlatformEffector2D))]
+// 플랫폼 오브젝트엔
+// - TilemapCollider2D + CompositeCollider2D
+// - PlatformEffector2D (Used By Composite 체크)
+// - 이 스크립트
+[RequireComponent(typeof(Collider2D), typeof(PlatformEffector2D))]
 public class PlatformController : MonoBehaviour
 {
-    [SerializeField]
-    float dropThroughDuration = 0.5f;
+    [SerializeField] float dropDuration = 0.5f;
 
-    TilemapCollider2D _collider;
-    PlatformEffector2D _effector;
+    int originalLayer;
+    int noPlatformLayer;
 
     void Awake()
     {
-        // Rigidbody2D 제거: 플랫폼에는 없어야 정상 작동
-        var rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            DestroyImmediate(rb);
-            Debug.LogWarning("PlatformController: Rigidbody2D가 제거되었습니다.");
-        }
-
-        _collider = GetComponent<TilemapCollider2D>();
-        _collider.usedByEffector = true;
-
-        _effector = GetComponent<PlatformEffector2D>();
-        _effector.useOneWay = true;
-        _effector.surfaceArc = 180f;
-        _effector.useOneWayGrouping = true;
+        originalLayer = gameObject.layer;
+        noPlatformLayer = LayerMask.NameToLayer("Player_NoPlatform");
     }
 
-    void OnCollisionStay2D(Collision2D other)
+    public void Move()
     {
-        if (!other.collider.CompareTag("Player"))
-            return;
-
-        var kb = Keyboard.current;
-        if (kb == null)
-            return;
-
-        if (kb.sKey.isPressed && kb.spaceKey.wasPressedThisFrame)
-        {
-            StartCoroutine(TemporarilyDisableCollider());
-        }
+        // 만약 움직이는 플랫폼이라면
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Disapear()
     {
-        Debug.Log("Platform collided with: " + collision.gameObject.name);
-    }
-
-
-    IEnumerator TemporarilyDisableCollider()
-    {
-        _collider.enabled = false;
-        yield return new WaitForSeconds(dropThroughDuration);
-        _collider.enabled = true;
+        // 밟고 사라지는 플랫폼이라면
     }
 }

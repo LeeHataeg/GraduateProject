@@ -15,6 +15,24 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "9d47c46b-33ea-40a1-b258-4a5de7154790",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crunch",
+                    "type": "Button",
+                    "id": "c6032fd0-c2ea-47e8-a48b-bc57ac656ee7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "419c5523-d08d-4757-a4cb-9ba344a9e418",
@@ -54,15 +72,6 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "94bc7105-527a-47a6-93a7-9732a0942a71",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Teleport",
-                    "type": "Button",
-                    "id": "9d47c46b-33ea-40a1-b258-4a5de7154790",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -166,6 +175,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea5983f0-655d-4d21-b8af-9b5bd1a67365",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

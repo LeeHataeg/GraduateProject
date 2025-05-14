@@ -129,7 +129,7 @@ public class RoomGenerator : MonoBehaviour
 
                     viewRoom = tileParent.AddComponent<Room>();
                     viewRoom.Initialize(room);
-                    placePlatforms(tilemap, room);
+                    placePlatforms(tileParent, tilemap, room);
                     addSpawnPointObject(tileParent, room);
                     break;
                 case RoomType.Start:
@@ -246,29 +246,41 @@ public class RoomGenerator : MonoBehaviour
         tilemapObj.transform.localPosition = new Vector3(offsetX, offsetY, 0);
     }
 
-    private void placePlatforms(Tilemap tilemap, RoomInitData room)
+    private void placePlatforms(GameObject tileObj, Tilemap parentTile, RoomInitData room)
     {
-        // 1) 바운드 준비
-        tilemap.CompressBounds();
-        BoundsInt b = tilemap.cellBounds;
-        int minX = b.xMin;
-        int maxX = b.xMax;   // exclusive
-        int width = maxX - minX;
-        int centerX = (minX + maxX - 1) / 2;
-        int floorY = b.yMin + 1;
-        int ceilingY = b.yMax - 1;
+        // 1) Create a dedicated child Tilemap for platforms
+        var platformGO = new GameObject("PlatformTilemap");
+        platformGO.transform.SetParent(tileObj.transform, false);
+        var platformTM = platformGO.AddComponent<Tilemap>();
+        platformGO.AddComponent<TilemapRenderer>();
 
-        // 2) 플랫폼 가로 길이: 방 폭에서 좌우 2칸씩 여유
+        // 2) One-way collider setup
+        var tileCol = platformGO.AddComponent<TilemapCollider2D>();
+        tileCol.compositeOperation = Collider2D.CompositeOperation.Merge;
+        var comCol = platformGO.AddComponent<CompositeCollider2D>();
+        comCol.usedByEffector = true;
+        var eff = platformGO.AddComponent<PlatformEffector2D>();
+        eff.useOneWay = true;
+        eff.useOneWayGrouping = true;
+        eff.surfaceArc = 180f;
+
+        // 3) Figure out bounds from your walls-&-floor tilemap
+        parentTile.CompressBounds();
+        var b = parentTile.cellBounds;
+        int minX = b.xMin, maxX = b.xMax, width = maxX - minX;
+        int floorY = b.yMin + 1, ceilingY = b.yMax - 1;
+
+        // 4) Platform width and start X
         int platformWidth = Mathf.Max(1, width - 4);
-        // 3) 시작 X 좌표: 가운데 정렬
         int startX = minX + (width - platformWidth) / 2;
 
-        // 4) 플레이어 점프력 계산 (이전과 동일)
+        // 5) Calculate stepY exactly as before
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         float stepY;
         if (player != null)
         {
-            float v0 = player.JumpForce / (player.Mass*1.9f);
+            float v0 = player.JumpForce / player.Mass;
+            v0 /= 2.3f;
             float g = Mathf.Abs(Physics2D.gravity.y);
             float maxJumpH = (v0 * v0) / (2f * g);
             stepY = maxJumpH * 0.9f;
@@ -279,32 +291,27 @@ public class RoomGenerator : MonoBehaviour
             stepY = 2f;
         }
 
-        // 5) 필요한 플랫폼 단계 수
+        // 6) Stamp in each platform row
         float totalH = ceilingY - floorY;
         int count = Mathf.CeilToInt(totalH / stepY);
-
-        // 6) 각 단계마다 가로로 연속된 플랫폼 배치
         for (int i = 1; i <= count; i++)
         {
             float yLocal = floorY + stepY * i;
             if (yLocal >= ceilingY) break;
-
             int yCell = Mathf.FloorToInt(yLocal);
-            // 플랫폼 타일 선택
-            Tile tile = so.MiddlePlatforms[
-                Random.Range(0, so.MiddlePlatforms.Length)
-            ];
-            // 가로로 플랫폼Width만큼 반복
+
+            var tile = so.MiddlePlatforms[Random.Range(0, so.MiddlePlatforms.Length)];
             for (int x = startX; x < startX + platformWidth; x++)
-            {
-                tilemap.SetTile(new Vector3Int(x, yCell, 0), tile);
-            }
+                platformTM.SetTile(new Vector3Int(x, yCell, 0), tile);
         }
 
-        // 7) 한 번만 PlatformController 추가
-        var go = tilemap.gameObject;
-        if (go.GetComponent<PlatformController>() == null)
-            go.AddComponent<PlatformController>();
+        // 7) Finally add your drop-through script
+        platformGO.AddComponent<PlatformController>();
+
+        var rigid = platformGO.GetComponent<Rigidbody2D>();
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        platformGO.tag = "Platform";
+        platformGO.layer = 8;
     }
 
     #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PortalConnection : MonoBehaviour
 {
-    // 최종적으로 채워질, 방향 → 방 인스턴스 매핑
+    // 최종적으로 채워질, 방향  → 방 인스턴스 매핑
     public Dictionary<PortalDir, Room> ConnectedRooms { get; private set; }
         = new Dictionary<PortalDir, Room>();
 
