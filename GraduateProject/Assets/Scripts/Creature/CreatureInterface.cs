@@ -2,10 +2,11 @@
 // 스텟 제어
 using System;
 using UnityEngine;
+using static Define;
 
 public interface IStatHolder
 {
-    //StatSheet Stats { get; }
+    StatSheet Stats { get; }
 }
 
 // 체력 제어
@@ -30,10 +31,14 @@ public interface IAnimationController
     void Stop();
 }
 
-// 공격자(스킬·일반공격)
-public interface IAttacker
+// 공격 실행. 대상·위치·방향 등 컨텍스트 포함.
+public interface IAttackBehavior
 {
-    void Attack();
+    
+    void Execute(AttackContext context);
+
+    float Range { get; }
+    float Damage { get; }
 }
 
 // 보스 전용 인터페이스

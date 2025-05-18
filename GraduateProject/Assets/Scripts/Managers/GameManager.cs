@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager { get; private set; }
     public PoolManager PoolManager { get; private set; }
     public RoomManager RoomManager { get; private set; }
-    public PlayerManager PlayerManager { get; private set; }
+    public PlayerManager1 PlayerManager { get; private set; }
     #endregion
 
 
@@ -41,6 +41,6 @@ public class GameManager : MonoBehaviour
         AudioManager = Instance.gameObject.AddComponent<AudioManager>();
         UIManager = Instance.gameObject.AddComponent<UIManager>();
         RoomManager = Instance.gameObject.AddComponent<RoomManager>();
-        PlayerManager = Instance.gameObject.AddComponent<PlayerManager>();
+        PlayerManager = Instance.gameObject.AddComponent<PlayerManager1>();
     }
 }
