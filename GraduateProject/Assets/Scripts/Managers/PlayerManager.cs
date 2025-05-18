@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager1 : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public GameObject Player;
 
