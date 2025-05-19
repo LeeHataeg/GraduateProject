@@ -127,10 +127,11 @@ public class RoomGenerator : MonoBehaviour
                     tilemapObj.transform.parent = tileParent.transform;
                     tilemapObj.transform.localPosition = Vector2.zero;
 
+                    placePlatforms(tileParent, tilemap, room);
+                    addSpawnPointObject(tileParent,tilemap , room);
+
                     viewRoom = tileParent.AddComponent<Room>();
                     viewRoom.Initialize(room);
-                    placePlatforms(tileParent, tilemap, room);
-                    addSpawnPointObject(tileParent, room);
                     break;
                 case RoomType.Start:
                     GameObject startRoomObj = locateSpecificRoom(room, so.StartRoom);
@@ -138,7 +139,7 @@ public class RoomGenerator : MonoBehaviour
                     viewRoom = startRoomObj.AddComponent<Room>();
                     viewRoom.Initialize(room);
 
-                    addSpawnPointObject(startRoomObj, room);
+                    //addSpawnPointObject(startRoomObj, room);
                     Transform spawnPoint = startRoomObj.transform.Find("SpawnPoint");
                     if (spawnPoint != null)
                     {
@@ -151,7 +152,7 @@ public class RoomGenerator : MonoBehaviour
                     viewRoom = bossRoomObj.AddComponent<Room>();
                     viewRoom.Initialize(room);
 
-                    addSpawnPointObject(bossRoomObj, room);
+                    //addSpawnPointObject(bossRoomObj, room);
                     break;
             }
             if (viewRoom != null)
@@ -317,37 +318,48 @@ public class RoomGenerator : MonoBehaviour
     #endregion
 
     #region SET_SPAWNPOINT_NORMAL_ROOM
-    private void addSpawnPointObject(GameObject tileParent, RoomInitData room)
+    // RoomGenerator.cs 에서
+    private void addSpawnPointObject(GameObject tileParent, Tilemap tilemap, RoomInitData room)
     {
-        SpawnerController setup = tileParent.AddComponent<SpawnerController>();
+        // 스폰 컨트롤러 붙이고
+        var setup = tileParent.AddComponent<SpawnerController>();
 
-        // Spawn Point 부모 생성
-        Transform enemyParent = new GameObject("EnemySpawnPoints").transform;
-        enemyParent.SetParent(tileParent.transform);
-        //setup.enemySpawnPoints = enemyParent;
+        // 타일맵 경계
+        tilemap.CompressBounds();
+        var bounds = tilemap.cellBounds;
 
-        Transform itemParent = new GameObject("ItemSpawnPoints").transform;
-        itemParent.SetParent(tileParent.transform);
-        //setup.itemSpawnPoints = itemParent;
+        // 셀 단위로 2~4개 위치 랜덤 선택
+        int spawnCount = Random.Range(2, 5);
+        var cells = new List<Vector3Int>();
+        for (int i = 0; i < spawnCount; i++)
+        {
+            int x = Random.Range(bounds.xMin + 1, bounds.xMax - 1);
+            int y = bounds.yMin + 1;                // 바닥 바로 위
+            cells.Add(new Vector3Int(x, y, 0));
+        }
 
-        CreateDummyPoints(enemyParent, room.Node.SpaceArea);
-        CreateDummyPoints(itemParent, room.Node.SpaceArea);
-
-        //setup.Setup(room);
+        // 초기화 시 타일맵과 셀 목록을 넘겨준다
+        setup.Initialize(tilemap, cells);
     }
 
-    private void CreateDummyPoints(Transform parent, RectInt area)
+
+    private void CreateDummyPoints(Transform parent, BoundsInt bounds)
     {
-        for (int i = 0; i < 3; i++)
+        int spawnCount = Random.Range(2, 5); // 생성할 포인트 수
+
+        for (int i = 0; i < spawnCount; i++)
         {
-            GameObject point = new GameObject("SpawnPoint_" + i);
+            GameObject point = new GameObject($"EnemySpawnPoint_{i}");
             point.transform.parent = parent;
 
-            float x = Random.Range(area.xMin + 1, area.xMax - 1);
-            float y = Random.Range(area.yMin + 1, area.yMax - 1);
-            point.transform.localPosition = new Vector3(x - area.xMin, y - area.yMin, 0);
+            int x = Random.Range(bounds.xMin + 1, bounds.xMax - 1);
+            int y = bounds.yMin + 1;
+
+            point.transform.localPosition = new Vector3(x - bounds.xMin, y - bounds.yMin, 0);
         }
     }
+
+
 
     /// <summary>
     /// 타일 맵을 채울 타일을 타일 팔레트에서 골라옴.

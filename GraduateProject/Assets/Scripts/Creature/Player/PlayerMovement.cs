@@ -155,7 +155,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 targetPos = dest.GetSpawnPosition();
         transform.position = targetPos;
+
+        // 방 진입 시 몬스터 스폰
+        dest.OnPlayerEnter();
+
+        Debug.Log("OnTeleport!");
     }
+
 
     public void SetCurrentPortal(Portal portal)
     {

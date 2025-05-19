@@ -20,8 +20,8 @@ public class Room : MonoBehaviour
 
     public RoomType Type { get; private set; }
     public RoomState RoomState { get; private set; }
-    public SpawnerController spawnManager { get; private set; }
     public PortalConnection PortalConnection { get; private set; }
+    public SpawnerController spawnManager { get; private set; }
 
     public void Initialize(RoomInitData init)
     {
@@ -31,16 +31,23 @@ public class Room : MonoBehaviour
         Type = init.RoomType;
 
         RoomState = gameObject.AddComponent<RoomState>();
-        spawnManager = gameObject.AddComponent<SpawnerController>();
         PortalConnection = gameObject.AddComponent<PortalConnection>();
 
+        spawnManager = gameObject.GetComponent<SpawnerController>();
+
         PortalConnection.Initialize(init.Node.Portals);
-        spawnManager.Initialize(init.RoomSpace);
     }
     public Vector2 GetSpawnPosition()
     {
         Vector2 lowerLeft = (Vector2)transform.position;
         return lowerLeft + new Vector2(RoomSpace.width * 0.5f,
                                        RoomSpace.height * 0.5f);
+    }
+    public void OnPlayerEnter()
+    {
+        if (Type == RoomType.Normal && !RoomState.IsCleared)
+        {
+            spawnManager.SpawnEnemies();
+        }
     }
 }

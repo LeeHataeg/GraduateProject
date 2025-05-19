@@ -1,36 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 
 public class SpawnerController : MonoBehaviour
 {
-    public Transform EnemySpawnParent { get; private set; }
-    public Transform ItemSpawnParent { get; private set; }
-    public void Initialize(RectInt roomArea)
+    private Tilemap _tilemap;
+    private List<Vector3Int> _spawnCells;
+
+    public void Initialize(Tilemap tilemap, List<Vector3Int> spawnCells)
     {
-        EnemySpawnParent = new GameObject("EnemySpawnPoints").transform;
-        EnemySpawnParent.SetParent(transform);
-
-        ItemSpawnParent = new GameObject("ItemSpawnPoints").transform;
-        ItemSpawnParent.SetParent(transform);
-
-        GenerateSpawnPoints(roomArea);
+        _tilemap = tilemap;
+        _spawnCells = spawnCells;
     }
 
-    private void GenerateSpawnPoints(RectInt area)
+    public void SpawnEnemies()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject enemyPoint = new GameObject($"EnemySpawnPoint_{i}");
-            enemyPoint.transform.SetParent(EnemySpawnParent);
-            float x = Random.Range(area.xMin + 1, area.xMax - 1);
-            float y = Random.Range(area.yMin + 1, area.yMax - 1);
-            enemyPoint.transform.localPosition = new Vector3(x, y, 0);
+        var prefab = Resources.Load<GameObject>("Prefabs/Enemies/Enemy_Skul_Normal");
+        if (prefab == null) { Debug.LogError("Enemy 프리팹 로딩 실패"); return; }
 
-            GameObject itemPoint = new GameObject($"ItemSpawnPoint_{i}");
-            itemPoint.transform.SetParent(ItemSpawnParent);
-            x = Random.Range(area.xMin + 1, area.xMax - 1);
-            y = Random.Range(area.yMin + 1, area.yMax - 1);
-            itemPoint.transform.localPosition = new Vector3(x, y, 0);
+        foreach (var cell in _spawnCells)
+        {
+            // 셀 → 월드 변환
+            Vector3 worldPos = _tilemap.CellToWorld(cell) + _tilemap.cellSize * 0.5f;
+            Instantiate(prefab, worldPos, Quaternion.identity, transform);
         }
     }
 }
