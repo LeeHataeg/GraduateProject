@@ -5,8 +5,6 @@ using UnityEngine.Rendering;
 public class PlayerMovement : MonoBehaviour
 {
     #region APPREANCE
-    SpriteRenderer sprite;
-
     #endregion
 
     #region PHYSICS
@@ -19,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     //TODO - Move this Variable into scripts of 'Stat'
     // TODO - Hide this var to protection
-    private float jumpForce = 300.0f;
+    private float jumpForce = 10.0f;
     private Vector2 jumpVec;
     private bool isGround = true;
     private bool isPlatform = false;
@@ -35,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerPlatformDropController plDrop;
     private CompositeCollider2D comCol;
+    private PlayerAttackController playerAttackController;
 
     private void Awake()
     {
@@ -42,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
         control = gameObject.GetComponent<CharacterController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
-        sprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+        playerAttackController = gameObject.GetComponentInChildren<PlayerAttackController>();
+        
     }
     private void Start()
     {
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         control.OnInteractEvent += Interact;
         control.OnTeleportEvent += Teleport;
         control.OnCrouchEvent += Crunch;
+        control.OnHitEvent += Hit;
     }
     private void FixedUpdate()
     {
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Look(Vector2 direction)
     {
-        sprite.flipX = (direction.x < 0);
+        //
     }
     private void Jump(bool isPressed)
     {
@@ -119,6 +120,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    public void Hit(bool isHit)
+    {
+        if (isHit)
+        {
+            playerAttackController.Hit();
+        }
+    }
+
     public void ResetPlatformFlags()
     {
         isPlatform = false;

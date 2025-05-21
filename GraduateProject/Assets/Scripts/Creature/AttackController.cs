@@ -13,15 +13,15 @@ public class AttackController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //var ctx = new AttackContext
-            //{
-            //    Attacker = gameObject,
-            //    Target = Fin(""),
-            //    Direction = (FindTarget().position - transform.position).normalized
-            //};
-            //currentAttack.Execute(ctx);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    var ctx = new AttackContext
+        //    {
+        //        Attacker = gameObject,
+        //        Target = Fin(""),
+        //        Direction = (FindTarget().position - transform.position).normalized
+        //    };
+        //    currentAttack.Execute(ctx);
+        //}
     }
 }

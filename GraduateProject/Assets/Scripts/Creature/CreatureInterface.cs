@@ -21,7 +21,7 @@ public interface IHealth
 // 피격 제어
 public interface IHitReactor
 {
-    void OnHit(float damage, Vector2 hitDirection);
+    void OnAttack(float damage, Vector2 hitDirection);
 }
 
 // 애니메이션 제어

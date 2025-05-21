@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float dmg, Vector2 dir)
     {
         health.TakeDamage(dmg);
-        hitReactor.OnHit(dmg, dir);
+        hitReactor.OnAttack(dmg, dir);
         anim.Play("Hit");
     }
 }

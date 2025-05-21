@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SimpleHitReactor : MonoBehaviour, IHitReactor
 {
-    public void OnHit(float damage, Vector2 hitDirection)
+    public void OnAttack(float damage, Vector2 hitDirection)
     {
         // 무적 프레임, 넉백 등
         var rb = GetComponent<Rigidbody2D>();

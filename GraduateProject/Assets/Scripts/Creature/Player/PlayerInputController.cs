@@ -12,6 +12,7 @@ public class PlayerInputController : CharacterController
     Vector2 mousePos;
     //Jump
     float isPressed;
+    float isHit;
     #endregion
 
     public void OnMove(InputValue value)
@@ -27,6 +28,12 @@ public class PlayerInputController : CharacterController
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         lookDir = mousePos - (Vector2)transform.position;
         CallLookEvent(lookDir);
+    }
+
+    public void OnHit(InputValue value)
+    {
+        isHit = value.Get<float>();
+        CallHitEvent(isHit > 0f);
     }
 
     public void OnJump(InputValue value)

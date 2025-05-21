@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
     public event Action<bool> OnDashEvent;
     public event Action<bool> OnTeleportEvent;
     public event Action<bool> OnCrouchEvent;
+    public event Action<bool> OnHitEvent;
     #endregion
 
     public void CallMoveEvent(Vector2 direction)
@@ -21,6 +22,11 @@ public class CharacterController : MonoBehaviour
     public void CallLookEvent(Vector2 direction)
     {
         OnLookEvent?.Invoke(direction);
+    }
+
+    public void CallHitEvent(bool isHit)
+    {
+        OnHitEvent?.Invoke(isHit);
     }
 
     public void CallJumpEvent(bool isPressed)
