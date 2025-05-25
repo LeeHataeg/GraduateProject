@@ -46,6 +46,7 @@ public class CharacterController : MonoBehaviour
 
     public void CallTeleportEvent(bool isTeleport)
     {
+        Debug.Log("CallTeleport");
         OnTeleportEvent?.Invoke(isTeleport);
     }
 

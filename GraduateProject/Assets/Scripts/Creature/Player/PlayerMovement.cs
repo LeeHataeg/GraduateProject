@@ -5,6 +5,9 @@ using UnityEngine.Rendering;
 public class PlayerMovement : MonoBehaviour
 {
     #region APPREANCE
+    // flip용 벡터값
+    private Vector3 playerScale;
+    private bool alreadyFlip = true;
     #endregion
 
     #region PHYSICS
@@ -42,10 +45,11 @@ public class PlayerMovement : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
         playerAttackController = gameObject.GetComponentInChildren<PlayerAttackController>();
-        
     }
     private void Start()
     {
+        playerScale = gameObject.transform.localScale;
+
         control.OnMoveEvent += Move;
         control.OnLookEvent += Look;
         control.OnJumpEvent += Jump;
@@ -71,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGround = true;
         }
-        else if(coll.gameObject.CompareTag("Platform"))
+        else if (coll.gameObject.CompareTag("Platform"))
         {
             isPlatform = true;
             comCol = coll.gameObject.GetComponent<CompositeCollider2D>();
@@ -96,9 +100,29 @@ public class PlayerMovement : MonoBehaviour
     {
         dir = direction;
     }
+
+    // 마우스 위치에 따른 Flip
     private void Look(Vector2 direction)
     {
-        //
+        if (direction.x < 0)    // Don't-flip
+        {
+            if (!alreadyFlip)    // 이미 뒤집혀 있으면 -> 다시 뒤집음
+            {
+                playerScale.x *= -1;
+                gameObject.transform.localScale = playerScale;
+                alreadyFlip = true;
+            }
+
+        }
+        else                    // Do-flip
+        {
+            if (alreadyFlip)    // 이미 뒤집혀 있으면 -> 다시 뒤집음
+            {
+                playerScale.x *= -1;
+                gameObject.transform.localScale = playerScale;
+                alreadyFlip = false;
+            }
+        }
     }
     private void Jump(bool isPressed)
     {
@@ -113,10 +137,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                plDrop.DropThrough(comCol);
-                isPlatform = false;
-                isCrouch = false;
-                comCol = null;
+                if (isPlatform)
+                {
+                    Debug.Log("isCrouch:" + isCrouch);
+                    plDrop.DropThrough(comCol);
+                    isPlatform = false;
+                    isCrouch = false;
+                    comCol = null;
+                }
             }
         }
     }
@@ -137,13 +165,13 @@ public class PlayerMovement : MonoBehaviour
     public void Crunch(bool isPressed)
     {
         isCrouch = isPressed;
-        
+
 
     }
 
     private void Interact(bool isInteracted)
     {
-        Debug.Log("Interact!"); 
+        Debug.Log("Interact!");
     }
 
     private void Dash(bool isDashed)
@@ -153,6 +181,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport(bool isTeleported)
     {
+        Debug.Log("Move-Teleport 진입");
+        Debug.Log(isTeleported);
+        Debug.Log(currentPortal);
         if (!isTeleported || currentPortal == null)
             return;
 
@@ -169,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         // 방 진입 시 몬스터 스폰
         dest.OnPlayerEnter();
 
-        Debug.Log("OnTeleport!");
+        Debug.Log("Teleport!");
     }
 
 
@@ -194,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void StopMovement()
     {
-        if(dir.x == 0)
+        if (dir.x == 0)
         {
             rigid.linearVelocity = new Vector2(rigid.linearVelocity.normalized.x * 0.5f, rigid.linearVelocity.y);
         }

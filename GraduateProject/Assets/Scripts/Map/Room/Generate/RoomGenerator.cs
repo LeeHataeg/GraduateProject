@@ -281,10 +281,9 @@ public class RoomGenerator : MonoBehaviour
         if (player != null)
         {
             float v0 = player.JumpForce / player.Mass;
-            v0 /= 2.3f;
             float g = Mathf.Abs(Physics2D.gravity.y);
             float maxJumpH = (v0 * v0) / (2f * g);
-            stepY = maxJumpH * 0.9f;
+            stepY = maxJumpH * 0.8f;
         }
         else
         {

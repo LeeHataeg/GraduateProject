@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerPlatformDropController : MonoBehaviour
 {
-    [SerializeField] float dropDuration = 0.17f;
+    float dropDuration = 0.75f;
 
     BoxCollider2D bCol;
 
