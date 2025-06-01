@@ -35,13 +35,13 @@ public class MonsterAttackController : MonoBehaviour
 
     void DoAttack()
     {
-        var ctx = new AttackContext
-        {
-            Origin = transform.position,
-            Direction = (player.position - transform.position).normalized,
-            Attacker = GetComponent<BaseStat>(),
-            Behavior = attackBehavior
-        };
-        attackBehavior.Execute(ctx);
+        //var ctx = new AttackContext
+        //{
+        //    Origin = transform.position,
+        //    Direction = (player.position - transform.position).normalized,
+        //    Attacker = GetComponent<BaseStat>(),
+        //    Behavior = attackBehavior
+        //};
+        //attackBehavior.Execute(ctx);
     }
 }

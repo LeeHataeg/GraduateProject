@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(IStatHolder), typeof(IHealth), typeof(IAnimationController))]
+[RequireComponent(typeof(ICombatStatHolder), typeof(IHealth), typeof(IAnimationController))]
 public class PlayerController : MonoBehaviour
 {
-    IStatHolder stats;
+    ICombatStatHolder stats;
     IHealth health;
     IHitReactor hitReactor;
     IAnimationController anim;
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        stats = GetComponent<IStatHolder>();
+        stats = GetComponent<ICombatStatHolder>();
         health = GetComponent<IHealth>();
         hitReactor = GetComponent<IHitReactor>();
         anim = GetComponent<IAnimationController>();

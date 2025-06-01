@@ -1656,7 +1656,7 @@ GameObject:
   - component: {fileID: 5459514409799560177}
   - component: {fileID: 508756721053930819}
   m_Layer: 10
-  m_Name: Enemy_Skul_Normal
+  m_Name: Enemy_Skul_Normal_Orginal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5252,12 +5252,11 @@ GameObject:
   - component: {fileID: 5198215328478851377}
   - component: {fileID: 7067192955109185097}
   - component: {fileID: 7733136136245977948}
-  - component: {fileID: 7159849452461283802}
-  - component: {fileID: 2664032727416585852}
-  - component: {fileID: 630396947724340005}
-  - component: {fileID: 1889789340764248485}
-  - component: {fileID: 2036364832630384342}
-  - component: {fileID: 4182255338818810277}
+  - component: {fileID: 4760348772878915300}
+  - component: {fileID: 1042877207358963894}
+  - component: {fileID: 5895988959727725621}
+  - component: {fileID: 4528179394803763831}
+  - component: {fileID: 6126388207979303052}
   m_Layer: 10
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -5381,7 +5380,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.33}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &7159849452461283802
+--- !u!114 &4760348772878915300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5390,10 +5389,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077753527617013498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593e6db997a2b4f48be201a710388a63, type: 3}
+  m_Script: {fileID: 11500000, guid: efadbc42e356ec043a8a8bde40d0b098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2664032727416585852
+  moveSpeed: 2
+  atkRange: 1.5
+--- !u!114 &1042877207358963894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5402,10 +5403,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077753527617013498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d48c7eac1ab2e44d87cf73ef9be17c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 04bec838f7c976f49bbbce8ad9a097c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &630396947724340005
+  stats: {fileID: 5895988959727725621}
+--- !u!114 &5895988959727725621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5414,10 +5416,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077753527617013498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c57395f7f8ebe54eade307fa47cc729, type: 3}
+  m_Script: {fileID: 11500000, guid: 6725e5b145dce1545853ae5d08fda9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1889789340764248485
+  MaxHp: 100
+  Attack: 20
+  Defense: 5
+--- !u!114 &4528179394803763831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5426,10 +5431,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077753527617013498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01775a04ec8c8d44bae6b3a3f116827, type: 3}
+  m_Script: {fileID: 11500000, guid: 28b43f4cb8b4b1e43a566bc253fbd89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2036364832630384342
+  Range: 1.2
+  HitLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  AttackPoint: {fileID: 7158332687583149765}
+--- !u!114 &6126388207979303052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5438,21 +5448,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4077753527617013498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752c8d7f47813954d8c24835c8f9f508, type: 3}
+  m_Script: {fileID: 11500000, guid: 66fe5a4b5f05b084689b6519fb1f8a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4182255338818810277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4077753527617013498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c3234725091164da5289f1fbb7b8d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  attackInterval: 2
 --- !u!1 &4302621220024639954
 GameObject:
   m_ObjectHideFlags: 0

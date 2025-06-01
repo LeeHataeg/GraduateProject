@@ -24,9 +24,11 @@ public class PlayerInputController : CharacterController
 
     public void OnLook(InputValue value)
     {
+
         mousePos = value.Get<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         lookDir = mousePos - (Vector2)transform.position;
+
         CallLookEvent(lookDir);
     }
 

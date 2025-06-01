@@ -8,6 +8,8 @@ public class EnemyControllerTemp : MonoBehaviour
     private Transform player;
     private Animator animator;
     private Rigidbody2D rb;
+    private float Curhp = 5f;
+    private float atk = 2f;
 
     void Awake()
     {
@@ -16,9 +18,18 @@ public class EnemyControllerTemp : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (Curhp <= 0f)
+        {
+            Die();
+        }
+    }
+
     void FixedUpdate()
     {
         if (player == null) return;
+        if (Curhp <= 0f) return;
 
         float dist = Vector2.Distance(transform.position, player.position);
         float deltaX = player.position.x - transform.position.x;
@@ -42,4 +53,18 @@ public class EnemyControllerTemp : MonoBehaviour
         else if (deltaX < 0f)
             transform.eulerAngles = Vector3.zero;
     }
+
+    public void Damage(float damage)
+    {
+        Curhp -= damage;
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("4_Death");
+        animator.SetBool("isDeath", true);
+        Destroy(this.transform.parent.gameObject, 1.5f);
+    }
 }
+
+

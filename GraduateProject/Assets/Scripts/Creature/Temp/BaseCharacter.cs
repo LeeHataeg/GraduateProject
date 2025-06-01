@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D))]
-public class BaseCharacter : MonoBehaviour, IHealth, IHitReactor, IAnimationController
+public class BaseCharacter : MonoBehaviour, IHealth, IHitReactor/*, IAnimationController*/
 {
     [SerializeField] BaseStat stats;
     public BaseStat Stats => stats;

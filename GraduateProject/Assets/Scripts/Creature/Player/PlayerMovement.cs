@@ -38,9 +38,17 @@ public class PlayerMovement : MonoBehaviour
     private CompositeCollider2D comCol;
     private PlayerAttackController playerAttackController;
 
+    Animator animator;
+
+    //temp
+    private float curHp = 7f;
+    private float atk = 2.4f;
+    private Vector2 mouse;
+
     private void Awake()
     {
         jumpVec = new Vector2(0, jumpForce);
+        animator = GetComponent<Animator>();
         control = gameObject.GetComponent<CharacterController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
@@ -67,6 +75,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         StopMovement();
+
+        if(curHp <= 0f)
+        {
+            animator.SetBool("isDeath", true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -99,6 +112,14 @@ public class PlayerMovement : MonoBehaviour
     private void Move(Vector2 direction)
     {
         dir = direction;
+        if (dir != Vector2.zero)
+        {
+            animator.SetBool("1_Move", true);
+        }
+        else
+        {
+            animator.SetBool("1_Move", false);
+        }
     }
 
     // 마우스 위치에 따른 Flip
@@ -123,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
                 alreadyFlip = false;
             }
         }
+
+        mouse = direction;
     }
     private void Jump(bool isPressed)
     {
@@ -151,11 +174,40 @@ public class PlayerMovement : MonoBehaviour
 
     public void Hit(bool isHit)
     {
-        if (isHit)
+        if (!isHit) return;
+
+        // 1) 프리팹 로드
+        GameObject prefab = Resources.Load<GameObject>("Prefabs/Melee_Attck_Effect");
+        if (prefab == null)
         {
-            playerAttackController.Hit();
+            Debug.LogError("프리팹을 못 찾음!");
+            return;
         }
+
+        // 2) 마우스 방향(lookDir)이 이미 'mouse'에 들어있다고 가정
+        Vector2 dir = mouse.normalized;            // 방향만 추출
+        Vector3 spawnPos = transform.position      // 플레이어 위치
+                         + new Vector3(dir.x, dir.y, 0) * 1f;  // 1유닛 만큼 이동
+
+        Quaternion rot = Quaternion.AngleAxis(
+            Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg,
+            Vector3.forward
+        );
+
+        GameObject instance = Instantiate(
+            prefab,
+            spawnPos,
+            rot
+        );
+        // 5) 데미지 세팅
+        var effectCtrl = instance.GetComponent<EffectController>();
+        effectCtrl?.SetDmg(atk);
+
+        // 7) 애니메이션
+        animator.SetTrigger("2_Attack");
     }
+
+
 
     public void ResetPlatformFlags()
     {
