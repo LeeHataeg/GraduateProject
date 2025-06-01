@@ -37,7 +37,7 @@ public class SimpleHitReactor : MonoBehaviour, IHitReactor
         healthCtrl.TakeDamage(damage);
 
         // (2) 피격 애니메이션 재생
-        anim.Play("3_Damaged");
+        anim.SetTrigger("3_Damaged");
 
         // (3) 넉백
         Vector2 knockbackDir = hitDirection.normalized;
@@ -51,7 +51,7 @@ public class SimpleHitReactor : MonoBehaviour, IHitReactor
 
         // (1) 피격 반응이 끝난 뒤 사망 애니메이션 재생
         anim.SetBool("isDeath", true);
-        anim.Play("4_Death");
+        anim.SetTrigger("4_Death");
 
         // (2) Collider/Rigidbody 비활성화
         col.enabled = false;

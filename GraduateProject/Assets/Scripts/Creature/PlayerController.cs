@@ -27,6 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         health.TakeDamage(dmg);
         hitReactor.OnAttack(dmg, dir);
-        anim.Play("Hit");
+        anim.SetTrigger("3_Damaged");
     }
 }

@@ -33,7 +33,7 @@ public class MeleeAttackBehavior : MonoBehaviour
         }
 
         // 공격 애니메이션
-        GetComponent<IAnimationController>()?.Play("Attack");
+        GetComponent<IAnimationController>()?.SetTrigger("2_Attack");
     }
 
     void OnDrawGizmosSelected()

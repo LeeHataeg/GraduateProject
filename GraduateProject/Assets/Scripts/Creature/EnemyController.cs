@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     private bool isAttacking = false;
 
     // y 축 비교 오차 허용 범위
-    [SerializeField] private float yThreshold = 0.2f;
+    private float yThreshold = 0.7f;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             // 탐지 범위 밖일 때 Idle 상태(애니메이션)
-            anim.Play("Idle");
+            anim.SetBool("1_Move", false);
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
@@ -79,7 +79,11 @@ public class EnemyController : MonoBehaviour
 
     private void Chase()
     {
-        if (isDead || isAttacking) return;
+        if (isDead || isAttacking)
+        {
+            anim.SetBool("1_Move", false);
+            return;
+        }
 
         float dirX = Mathf.Sign(player.position.x - transform.position.x);
         float moveSpeed = combatStatHolder.Stats.MoveSpeed;
@@ -88,18 +92,21 @@ public class EnemyController : MonoBehaviour
         rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
 
         // (2) 이동 애니메이션
-        anim.Play("1_Move");
+        anim.SetBool("1_Move", true);
 
         // (3) 스프라이트 좌우 반전 (필요 시)
         if (dirX > 0f)
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        else if (dirX < 0f)
             transform.localScale = new Vector3(-1f, 1f, 1f);
+        else if (dirX < 0f)
+            transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private void TryAttack()
     {
-        if (isDead || isAttacking || attackBehavior == null) return;
+        if (isDead || isAttacking || attackBehavior == null)
+        {
+            return;
+        }
 
         float deltaY = Mathf.Abs(player.position.y - transform.position.y);
         float deltaX = Mathf.Abs(player.position.x - transform.position.x);
@@ -113,9 +120,11 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator PerformMeleeAttack()
     {
+        Debug.Log("PerformMeleeAttack 진입!");
+
         isAttacking = true;
         // (1) 공격 애니메이션 재생
-        anim.Play("2_Attack");
+        anim.SetTrigger("2_Attack");
 
         // (2) 공격 딜레이(애니메이션 끝나길 대기)
         float delay = combatStatHolder.Stats.AttackDelay;
@@ -140,8 +149,8 @@ public class EnemyController : MonoBehaviour
         isDead = true;
 
         // (1) 사망 애니메이션
+        anim.SetTrigger("4_Death");
         anim.SetBool("isDeath", true);
-        anim.Play("4_Death");
 
         // (2) 이동 및 물리 비활성화
         rb.linearVelocity = Vector2.zero;
