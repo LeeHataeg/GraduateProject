@@ -1,32 +1,65 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ICombatStatHolder), typeof(IHealth), typeof(IAnimationController))]
+/// <summary>
+/// �÷��̾� ��ü �帧(��� �� �Է�/�̵�/���� ����)�� �Ѱ��մϴ�.
+/// </summary>
+[RequireComponent(typeof(HealthController))]
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerAttackController))]
+[RequireComponent(typeof(IAnimationController))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    ICombatStatHolder stats;
-    IHealth health;
-    IHitReactor hitReactor;
-    IAnimationController anim;
-    IAttackBehavior attacker;
+    private HealthController healthCtrl;
+    private PlayerMovement movement;
+    private PlayerAttackController attackCtrl;
+    private IAnimationController anim;
+    private Rigidbody2D rb;
+    private bool isDead = false;
 
-    void Awake()
+    private void Awake()
     {
-        stats = GetComponent<ICombatStatHolder>();
-        health = GetComponent<IHealth>();
-        hitReactor = GetComponent<IHitReactor>();
+        healthCtrl = GetComponent<HealthController>();
+        movement = GetComponent<PlayerMovement>();
+        attackCtrl = GetComponent<PlayerAttackController>();
         anim = GetComponent<IAnimationController>();
-        attacker = GetComponent<IAttackBehavior>();
+        rb = GetComponent<Rigidbody2D>();
+
+        if (healthCtrl == null)
+            Debug.LogError($"[{nameof(PlayerController)}] HealthController�� �����ϴ�.");
+        if (movement == null)
+            Debug.LogError($"[{nameof(PlayerController)}] PlayerMovement�� �����ϴ�.");
+        if (attackCtrl == null)
+            Debug.LogError($"[{nameof(PlayerController)}] PlayerAttackController�� �����ϴ�.");
+        if (anim == null)
+            Debug.LogError($"[{nameof(PlayerController)}] IAnimationController�� �����ϴ�.");
+        if (rb == null)
+            Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D�� �����ϴ�.");
     }
 
-    void Update()
+    private void Start()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) attacker.Attack();
+        healthCtrl.OnDead += OnPlayerDead;
     }
 
-    public void TakeDamage(float dmg, Vector2 dir)
+    private void OnPlayerDead()
     {
-        health.TakeDamage(dmg);
-        hitReactor.OnAttack(dmg, dir);
-        anim.SetTrigger("3_Damaged");
+        if (isDead) return;
+        isDead = true;
+
+        // (1) �̵�/���� ��� ����
+        movement.enabled = false;
+        attackCtrl.enabled = false;
+
+        // (2) ��� �ִϸ��̼� ���
+        anim.SetBool("isDeath", true);
+        anim.Play("4_Death");
+
+        // (3) ���� ��Ȱ��ȭ
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        // (4) ���� ���� ȭ�� ȣ�� �� �߰� ����
+        // Example: GameOverManager.Instance.ShowGameOver();
     }
 }

@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class StatController : MonoBehaviour
+public class StatController : MonoBehaviour, ICombatStatHolder
 {
     [SerializeField] private CombatStatSheet stats;  // 인스펙터로 할당
+
+    public int CurHp;
 
     public CombatStatSheet Stats
     {
@@ -31,5 +33,18 @@ public class StatController : MonoBehaviour
         {
             Debug.LogError($"[{nameof(StatController)}] Awake 시점에 stats가 null입니다. 인스펙터에서 할당해주세요.");
         }
+    }
+
+    public void ModifyHp(int modify)
+    {
+        CurHp += modify;
+    }
+
+    // 아이템은 어캐 적용할거임?
+    public int GetMeleeDmg()
+    {
+        // 차후 계수를 추가하게 될 지도
+        int dmg = (int)((stats.AtkPower) * stats.CriticalDamage * stats.PhysAtk);
+        return dmg;
     }
 }
