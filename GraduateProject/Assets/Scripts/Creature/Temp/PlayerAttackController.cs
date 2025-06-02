@@ -61,7 +61,7 @@ public class PlayerAttackController : MonoBehaviour
         canAttack = false;
 
         // (1) 공격 애니메이션 재생
-        anim.Play("2_Attack");
+        anim.SetTrigger("2_Attack");
 
         // (2) 공격 딜레이(스탯에서 가져온 Delay 대기)
         float delay = statHolder.Stats.AttackDelay;

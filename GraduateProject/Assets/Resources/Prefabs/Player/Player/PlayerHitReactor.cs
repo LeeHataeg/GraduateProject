@@ -60,7 +60,7 @@ public class PlayerHitReactor : MonoBehaviour, IHitReactor
         healthCtrl.TakeDamage(damage);
 
         // (3) �ǰ� �ִϸ��̼� ���
-        anim.Play("3_Damaged");
+        anim.SetTrigger("3_Damaged");
 
         // (4) �˹�
         Vector2 kbDir = hitDirection.normalized;
@@ -82,7 +82,7 @@ public class PlayerHitReactor : MonoBehaviour, IHitReactor
 
         // (1) ��� �ִϸ��̼�
         anim.SetBool("isDeath", true);
-        anim.Play("4_Death");
+        anim.SetTrigger("4_Death");
 
         // (2) �ݶ��̴��� ���� ��Ȱ��ȭ
         col.enabled = false;

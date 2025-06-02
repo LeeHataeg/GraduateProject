@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         // (2) ��� �ִϸ��̼� ���
         anim.SetBool("isDeath", true);
-        anim.Play("4_Death");
+        anim.SetTrigger("4_Death");
 
         // (3) ���� ��Ȱ��ȭ
         rb.linearVelocity = Vector2.zero;
