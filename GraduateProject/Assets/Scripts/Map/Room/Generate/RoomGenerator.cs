@@ -305,9 +305,6 @@ public class RoomGenerator : MonoBehaviour
                 platformTM.SetTile(new Vector3Int(x, yCell, 0), tile);
         }
 
-        // 7) Finally add your drop-through script
-        platformGO.AddComponent<PlatformController>();
-
         var rigid = platformGO.GetComponent<Rigidbody2D>();
         rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         platformGO.tag = "Platform";
