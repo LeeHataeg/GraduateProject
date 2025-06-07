@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17124b55fb9fe84418e727cabe29a25c, type: 3}
   m_Name: Player01
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  PhysAtk: 0
-  MagicAtk: 0
-  AtkPower: 0
-  AttackRange: 0
-  AtkSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  dodgeChance: 0
-  physDefense: 0
-  magicDefense: 0
-  DetectionRadius: 0
-  MoveSpeed: 0
-  AttackDelay: 0
-  MeleeDamage: 0
+  MaxHp: 10
+  PhysAtk: 10
+  MagicAtk: 10
+  AtkPower: 10
+  AttackRange: 10
+  AtkSpeed: 10
+  CriticalChance: 10
+  CriticalDamage: 10
+  dodgeChance: 10
+  physDefense: 10
+  magicDefense: 10
+  DetectionRadius: 10
+  MoveSpeed: 10
+  AttackDelay: 0.8
+  MeleeDamage: 10
