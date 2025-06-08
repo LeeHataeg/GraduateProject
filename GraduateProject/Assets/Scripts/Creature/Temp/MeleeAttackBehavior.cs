@@ -8,18 +8,15 @@ public class MeleeAttackBehavior : MonoBehaviour
     public LayerMask HitLayers;
     public Transform AttackPoint;  // 빈 GameObject로 위치 찍어두세요
 
-    // IAttackBehavior
-    //public float Range => Range;
     public float Damage => GetComponent<BaseStat>().Attack;
 
-    //float IAttackBehavior.Range => throw new System.NotImplementedException();
 
-    public void Execute(AttackContext context)
+    public void Execute(Vector2 position, float dmg, float atkRange)
     {
         // 범위 내 적 검색
         Collider2D[] hits = Physics2D.OverlapCircleAll(
-            context.Origin,
-            Range,
+            position,
+            atkRange,
             HitLayers
         );
         foreach (var h in hits)
@@ -27,8 +24,8 @@ public class MeleeAttackBehavior : MonoBehaviour
             var reactor = h.GetComponent<IHitReactor>();
             if (reactor != null)
             {
-                Vector2 toTarget = (Vector2)h.transform.position - context.Origin;
-                reactor.OnAttack(Damage, toTarget.normalized);
+                Vector2 toTarget = (Vector2)h.transform.position - position;
+                reactor.OnAttacked(Damage);
             }
         }
 

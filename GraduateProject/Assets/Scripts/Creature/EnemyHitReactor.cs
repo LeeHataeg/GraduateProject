@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class SimpleHitReactor : MonoBehaviour, IHitReactor
+public class EnemyHitReactor : MonoBehaviour, IHitReactor
 {
     private HealthController healthCtrl;
     private Rigidbody2D rb;
     private IAnimationController anim;
     private Collider2D col;
-
-    [SerializeField] private float knockbackForce = 5f;
 
     private bool isDead = false;
 
@@ -20,7 +18,7 @@ public class SimpleHitReactor : MonoBehaviour, IHitReactor
 
         if (healthCtrl == null || rb == null || anim == null || col == null)
         {
-            Debug.LogError($"[{nameof(SimpleHitReactor)}] 필수 컴포넌트가 누락되었습니다.");
+            Debug.LogError($"[{nameof(EnemyHitReactor)}] 필수 컴포넌트가 누락되었습니다.");
         }
     }
 
@@ -29,7 +27,7 @@ public class SimpleHitReactor : MonoBehaviour, IHitReactor
         healthCtrl.OnDead += OnDeadHandler;
     }
 
-    public void OnAttack(float damage, Vector2 hitDirection)
+    public void OnAttacked(float damage)
     {
         if (isDead) return;
 
@@ -38,10 +36,6 @@ public class SimpleHitReactor : MonoBehaviour, IHitReactor
 
         // (2) 피격 애니메이션 재생
         anim.SetTrigger("3_Damaged");
-
-        // (3) 넉백
-        Vector2 knockbackDir = hitDirection.normalized;
-        rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
     }
 
     private void OnDeadHandler()

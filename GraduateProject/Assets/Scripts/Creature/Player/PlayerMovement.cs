@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerPlatformDropController plDrop;
     private CompositeCollider2D comCol;
-    private PlayerAttackController playerAttackController;
 
     Animator animator;
 
@@ -52,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
         control = gameObject.GetComponent<CharacterController>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
         plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
-        playerAttackController = gameObject.GetComponentInChildren<PlayerAttackController>();
     }
+
     private void Start()
     {
         playerScale = gameObject.transform.localScale;
@@ -104,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
         else if (coll.gameObject.CompareTag("Platform"))
         {
             isPlatform = false;
-            isCrouch = false;
             comCol = null;
         }
     }
@@ -153,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGround || isPlatform)
         {
-            Debug.Log("Jump 로직 진입");
             if (!isCrouch)
             {
                 rigid.AddForce(jumpVec, ForceMode2D.Impulse);
@@ -162,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isPlatform)
                 {
-                    Debug.Log("isCrouch:" + isCrouch);
                     plDrop.DropThrough(comCol);
                     isPlatform = false;
                     isCrouch = false;
@@ -214,13 +210,13 @@ public class PlayerMovement : MonoBehaviour
         isPlatform = false;
         isCrouch = false;
     }
+    // 쭈그림 - 플랫폼 뚫고 하단 점프
     public void Crunch(bool isPressed)
     {
         isCrouch = isPressed;
-
-
     }
 
+    // NPC나 기타 오브젝트와의 상호작용
     private void Interact(bool isInteracted)
     {
         Debug.Log("Interact!");

@@ -1,8 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// �÷��̾� ��ü �帧(��� �� �Է�/�̵�/���� ����)�� �Ѱ��մϴ�.
-/// </summary>
 [RequireComponent(typeof(HealthController))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerAttackController))]
@@ -26,15 +23,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         if (healthCtrl == null)
-            Debug.LogError($"[{nameof(PlayerController)}] HealthController�� �����ϴ�.");
+            Debug.LogError($"[{nameof(PlayerController)}] HealthController Null");
         if (movement == null)
-            Debug.LogError($"[{nameof(PlayerController)}] PlayerMovement�� �����ϴ�.");
+            Debug.LogError($"[{nameof(PlayerController)}] PlayerMovement Null");
         if (attackCtrl == null)
-            Debug.LogError($"[{nameof(PlayerController)}] PlayerAttackController�� �����ϴ�.");
+            Debug.LogError($"[{nameof(PlayerController)}] PlayerAttackController Null");
         if (anim == null)
-            Debug.LogError($"[{nameof(PlayerController)}] IAnimationController�� �����ϴ�.");
+            Debug.LogError($"[{nameof(PlayerController)}] IAnimationController Null");
         if (rb == null)
-            Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D�� �����ϴ�.");
+            Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D Null");
     }
 
     private void Start()
@@ -47,19 +44,16 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // (1) �̵�/���� ��� ����
         movement.enabled = false;
         attackCtrl.enabled = false;
 
-        // (2) ��� �ִϸ��̼� ���
         anim.SetBool("isDeath", true);
         anim.SetTrigger("4_Death");
 
-        // (3) ���� ��Ȱ��ȭ
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // (4) ���� ���� ȭ�� ȣ�� �� �߰� ����
+        // TODO - UI 호출
         // Example: GameOverManager.Instance.ShowGameOver();
     }
 }

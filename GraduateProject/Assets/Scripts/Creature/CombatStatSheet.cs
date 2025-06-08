@@ -4,17 +4,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Stats/StatSheet")]
 public class CombatStatSheet : ScriptableObject
 {
-    public float MaxHp;
+    public int MaxHp;
     // public float MaxMp; - MP 시스템 없을 예정
     
-    // 공격력
+    // 전사 or 법사의 공격 스텟
     public float PhysAtk;
     public float MagicAtk;
 
-    // 깡뎀과 공격 사거리, 평타 속도
-    public float AtkPower;
-    public float AttackRange;
+    // 기본 base 데미지
+    public float BaseDmg;
+
+    
     public float AtkSpeed;
+
     // 크리
     public float CriticalChance;
     public float CriticalDamage;
@@ -32,9 +34,10 @@ public class CombatStatSheet : ScriptableObject
     public float DetectionRadius;
     public float MoveSpeed;
 
-    
-    public float AttackDelay;
-    public float MeleeDamage;
+    // TEMP
+    public float AttackRange;   // 공격 사거리
+    public float AttackDelay;   // 공격 딜레이
+    public float MeleeDamage;   // 제거 예정
 }
 
 [CreateAssetMenu(menuName = "Stats/PlayerStatSheet")]

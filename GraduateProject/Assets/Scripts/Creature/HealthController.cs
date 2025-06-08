@@ -46,8 +46,11 @@ public class HealthController : MonoBehaviour, IHealth
     {
         if (stats == null) return;
         currentHp -= amount;
+        Debug.Log("데미지 : " + amount);
+
         if (currentHp <= 0f)
         {
+            Debug.Log("주금");
             currentHp = 0f;
             OnDead?.Invoke();
         }

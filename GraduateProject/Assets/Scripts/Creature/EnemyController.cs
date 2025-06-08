@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
     private Collider2D col;
+    [SerializeField] private Transform atkStartPoint;
 
     private bool isDead = false;
     private bool isAttacking = false;
@@ -130,15 +131,7 @@ public class EnemyController : MonoBehaviour
         float delay = combatStatHolder.Stats.AttackDelay;
         yield return new WaitForSeconds(delay);
 
-        // (3) 실제 데미지 판정
-        var ctx = new AttackContext
-        {
-            Origin = transform.position,
-            Direction = (player.position.x > transform.position.x) ? new Vector2(0f, 0f) : new Vector2(0f, 180f),
-            Source = this.gameObject,
-            Damage = combatStatHolder.Stats.MeleeDamage
-        };
-        attackBehavior.Execute(ctx);
+        attackBehavior.Execute(atkStartPoint.position, combatStatHolder.CalculatePhysicsDmg(), combatStatHolder.Stats.AttackRange);
 
         isAttacking = false;
     }

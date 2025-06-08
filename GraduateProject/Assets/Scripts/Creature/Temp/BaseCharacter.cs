@@ -26,7 +26,7 @@ public class BaseCharacter : MonoBehaviour, IHealth, IHitReactor/*, IAnimationCo
     public void TakeDamage(float amount)
     {
         float net = Mathf.Max(amount - stats.Defense, 1f);
-        OnAttack(net, Vector2.zero);
+        OnAttacked(net);
     }
     public void Heal(float amount)
     {
@@ -34,15 +34,12 @@ public class BaseCharacter : MonoBehaviour, IHealth, IHitReactor/*, IAnimationCo
     }
 
     // IHitReactor
-    public void OnAttack(float damage, Vector2 hitDirection)
+    public void OnAttacked(float damage)
     {
         if (isDead) return;
 
         CurrentHp -= damage;
         Play("Hit");
-
-        if (hitDirection != Vector2.zero)
-            rb.AddForce(hitDirection.normalized * damage * 50f, ForceMode2D.Impulse);
 
         if (CurrentHp <= 0f)
         {

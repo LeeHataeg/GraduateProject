@@ -35,7 +35,6 @@ public class PlayerAttackController : MonoBehaviour
 
     private void OnEnable()
     {
-        // PlayerInputController에서 OnHitEvent(bool)을 발생하도록 미리 구현되어 있어야 합니다.
         var inputController = GetComponent<PlayerInputController>();
         if (inputController != null)
             inputController.OnHitEvent += HandleAttackInput;
@@ -67,21 +66,19 @@ public class PlayerAttackController : MonoBehaviour
         float delay = statHolder.Stats.AttackDelay;
         yield return new WaitForSeconds(delay);
 
-        // (3) 공격 범위 내의 적 찾기
+        // (3) 공격 범위 내의 적 찾기 : 고쳐야할지도?
         float range = statHolder.Stats.AttackRange;
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayer);
         foreach (var hit in hits)
         {
-            // 적에게 데미지 및 넉백 전달
-            Vector2 dir = (hit.transform.position - transform.position).normalized;
             var enemyHitReactor = hit.GetComponent<IHitReactor>();
             if (enemyHitReactor != null)
             {
-                enemyHitReactor.OnAttack(statHolder.Stats.MeleeDamage, dir);
+                enemyHitReactor.OnAttacked(statHolder.CalculatePhysicsDmg());
             }
         }
 
-        // (4) 콜드타임 대기
+        // 공격 딜레이 진행
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
