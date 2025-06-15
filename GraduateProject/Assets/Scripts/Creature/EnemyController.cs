@@ -24,6 +24,13 @@ public class EnemyController : MonoBehaviour
     // y 축 비교 오차 허용 범위
     private float yThreshold = 0.7f;
 
+    private void OnEnable()
+    {
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null)
+            Debug.Log("플레이어 Tag로 못찾아연");
+    }
+
     private void Awake()
     {
         combatStatHolder = GetComponent<ICombatStatHolder>();
@@ -34,13 +41,11 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        if (combatStatHolder == null || attackBehavior == null || hitReactor == null ||
-            anim == null || healthCtrl == null || rb == null || col == null || player == null)
-        {
-            Debug.LogError($"[{nameof(EnemyController)}] 필수 컴포넌트가 누락되었거나 Player 태그를 찾을 수 없습니다.");
-        }
+        //if (combatStatHolder == null || attackBehavior == null || hitReactor == null ||
+        //    anim == null || healthCtrl == null || rb == null || col == null)
+        //{
+        //    Debug.LogError($"[{nameof(EnemyController)}] 필수 컴포넌트가 누락");
+        //}
     }
 
     private void Start()
@@ -150,16 +155,7 @@ public class EnemyController : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         col.enabled = false;
 
-        // (3) 드롭 처리 (원한다면 구체적인 아이템 드랍 로직 추가)
-        Drop();
-
         // (4) 일정 시간 뒤 오브젝트 제거 (애니메이션 길이에 맞춤)
         Destroy(gameObject, 1.5f);
-    }
-
-    private void Drop()
-    {
-        // 예) NPC 사망 시 골드 드랍, 아이템 스폰 등
-        // 구현 예시가 없다면 빈 메서드로 두어도 무방
     }
 }

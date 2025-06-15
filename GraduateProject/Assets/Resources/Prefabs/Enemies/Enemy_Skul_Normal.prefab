@@ -5258,6 +5258,7 @@ GameObject:
   - component: {fileID: 1889789340764248485}
   - component: {fileID: 4182255338818810277}
   - component: {fileID: 2281564651498865821}
+  - component: {fileID: 5610247140427892611}
   m_Layer: 10
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -5458,6 +5459,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 1fb11c8b0a5a66a4683ba91e8f6084c1, type: 2}
   curHp: 0
+--- !u!114 &5610247140427892611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077753527617013498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792aa016f668ec04480829cca7a2ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupPrefab: {fileID: 4440085480759747736, guid: cc90796f582b5fb4a855f23ead0303d1, type: 3}
+  dropTable:
+  - itemData: {fileID: 11400000, guid: f8bacb8df53064e4e9b55af4d7d8a27a, type: 2}
+    dropChance: 0.563
+    minQuantity: 1
+    maxQuantity: 1
+  - itemData: {fileID: 11400000, guid: d824ab08d434ea9488495981cff30277, type: 2}
+    dropChance: 0.773
+    minQuantity: 1
+    maxQuantity: 1
 --- !u!1 &4302621220024639954
 GameObject:
   m_ObjectHideFlags: 0
