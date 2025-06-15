@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce => jumpForce;
     public float Mass => rigid.mass;
 
-    private bool isCrouch = false;
+    private bool isCrouch;
 
     private PlayerPlatformDropController plDrop;
     private CompositeCollider2D comCol;
@@ -43,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
     private float curHp = 7f;
     private float atk = 2.4f;
     private Vector2 mouse;
+
+    [Header("UI References")]
+    private GameObject inventoryPanel;
+    // 기존에 있던…
+    private bool alreadyTurnedOnInven;
+
 
     private void Awake()
     {
@@ -63,9 +69,20 @@ public class PlayerMovement : MonoBehaviour
         control.OnDashEvent += Dash;
         control.OnInteractEvent += Interact;
         control.OnTeleportEvent += Teleport;
-        control.OnCrouchEvent += Crunch;
+        control.OnCrouchEvent += Crouch;
         control.OnHitEvent += Hit;
+        control.OnInventoryEvent += Inventory;
     }
+
+    private void Inventory(bool isTurnedOnInven)
+    {
+        // 키를 누를 때(OnPerformed)만 동작하도록 가정
+        if (!isTurnedOnInven)
+            return;
+
+        GameManager.Instance.UIManager.TurnOnorOffInven();
+    }
+
     private void FixedUpdate()
     {
         ApplayMovement();
@@ -75,10 +92,11 @@ public class PlayerMovement : MonoBehaviour
     {
         StopMovement();
 
-        if(curHp <= 0f)
+        if (curHp <= 0f)
         {
             animator.SetBool("isDeath", true);
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -147,24 +165,32 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(bool isPressed)
     {
-        if (!isPressed) return;
+        // 호출이 Crouch보다 빠름. true, false 할당 전에 불림.
+        if (!isPressed) return; 
+        if (isCrouch)
+        {
+            Debug.Log("하단 점프 - Jump에서...");
+            return;
+        }
+        else
+        {
+            Debug.Log("하단 점프 안하네요 - Jump에서...");
+        }
 
         if (isGround || isPlatform)
         {
-            if (!isCrouch)
-            {
-                rigid.AddForce(jumpVec, ForceMode2D.Impulse);
-            }
-            else
-            {
-                if (isPlatform)
-                {
-                    plDrop.DropThrough(comCol);
-                    isPlatform = false;
-                    isCrouch = false;
-                    comCol = null;
-                }
-            }
+            rigid.AddForce(jumpVec, ForceMode2D.Impulse);
+        }
+    }
+
+    public void Crouch(bool isPressing)
+    {
+        isCrouch = isPressing;
+
+        if (isPlatform && isCrouch)
+        {
+            plDrop.DropThrough(comCol);
+            isCrouch = true;
         }
     }
 
@@ -208,12 +234,6 @@ public class PlayerMovement : MonoBehaviour
     public void ResetPlatformFlags()
     {
         isPlatform = false;
-        isCrouch = false;
-    }
-    // 쭈그림 - 플랫폼 뚫고 하단 점프
-    public void Crunch(bool isPressed)
-    {
-        isCrouch = isPressed;
     }
 
     // NPC나 기타 오브젝트와의 상호작용
@@ -229,9 +249,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport(bool isTeleported)
     {
-        Debug.Log("Move-Teleport 진입");
-        Debug.Log(isTeleported);
-        Debug.Log(currentPortal);
         if (!isTeleported || currentPortal == null)
             return;
 
@@ -244,6 +261,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 targetPos = dest.GetSpawnPosition();
         transform.position = targetPos;
+        Debug.Log("스폰 포인트 : " + targetPos);
+        Debug.Log("내 위치 : " + transform.position);
 
         // 방 진입 시 몬스터 스폰
         dest.OnPlayerEnter();

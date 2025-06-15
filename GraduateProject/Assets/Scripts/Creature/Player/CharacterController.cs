@@ -12,7 +12,13 @@ public class CharacterController : MonoBehaviour
     public event Action<bool> OnTeleportEvent;
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnHitEvent;
+    public event Action<bool> OnInventoryEvent;
     #endregion
+
+    public void CallInventoryEvent(bool isTurnedOnInven)
+    {
+        OnInventoryEvent(isTurnedOnInven);
+    }
 
     public void CallMoveEvent(Vector2 direction)
     {
@@ -46,12 +52,11 @@ public class CharacterController : MonoBehaviour
 
     public void CallTeleportEvent(bool isTeleport)
     {
-        Debug.Log("CallTeleport");
         OnTeleportEvent?.Invoke(isTeleport);
     }
 
-    public void CallCrunchEvent(bool isCrunch)
+    public void CallCrouchEvent(bool isCrouch)
     {
-        OnCrouchEvent?.Invoke(isCrunch);
+        OnCrouchEvent?.Invoke(isCrouch);
     }
 }

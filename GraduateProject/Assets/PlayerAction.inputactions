@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crunch",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "c6032fd0-c2ea-47e8-a48b-bc57ac656ee7",
                     "expectedControlType": "",
@@ -72,6 +72,15 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "94bc7105-527a-47a6-93a7-9732a0942a71",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "76d9f31c-b5a7-41d6-bbbd-596909d385a9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -179,13 +188,46 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "ea5983f0-655d-4d21-b8af-9b5bd1a67365",
+                    "name": "Button With One Modifier",
+                    "id": "e21d57da-4065-4ed1-b3d0-38edb6f18b47",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "245aafc9-8f74-455b-a131-24905c9f9e9c",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crunch",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Button",
+                    "id": "ac2ab226-19b9-4b51-97ba-c3a81c7a7192",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9580309c-c50e-4190-a7c5-a31840b4806e",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -13,60 +13,79 @@ public class PlayerInputController : CharacterController
     //Jump
     float isPressed;
     float isHit;
+    float isTurnedOnInven;
     #endregion
 
-    public void OnMove(InputValue value)
+    #region InputSys_Behavior
+    private PlayerInput plInput;
+    private InputActionMap mainActionMap;
+
+    private InputAction moveAction;
+    private InputAction teleportAction;
+    private InputAction crouchAction;
+    private InputAction lookAction;
+    private InputAction hitAction;
+    private InputAction jumpAction;
+    private InputAction interactAction;
+    private InputAction dashAction;
+    private InputAction inventoryAction;
+    #endregion
+    
+    private void Awake()
     {
-        moveDir = value.Get<Vector2>();
+        plInput = GetComponent<PlayerInput>();
+        mainActionMap = plInput.actions.FindActionMap("Player");
+
+        moveAction = mainActionMap.FindAction("Move");
+        teleportAction = mainActionMap.FindAction("Teleport");
+        crouchAction = mainActionMap.FindAction("Crouch");
+        lookAction = mainActionMap.FindAction("Look");
+        hitAction = mainActionMap.FindAction("Hit");
+        jumpAction = mainActionMap.FindAction("Jump");
+        interactAction = mainActionMap.FindAction("Interaction");
+        dashAction = mainActionMap.FindAction("Dash");
+        inventoryAction = mainActionMap.FindAction("Inventory");
+
+        crouchAction.performed += ctx =>
+        {
+            jumpAction.Disable();
+            CallCrouchEvent(true);
+        };
+        crouchAction.canceled += ctx =>
+        {
+            jumpAction.Enable();
+            CallCrouchEvent(false);
+        };
+
+        moveAction.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
+        moveAction.canceled += ctx => OnMove(ctx.ReadValue<Vector2>());
+
+        lookAction.performed += ctx => OnLook(ctx.ReadValue<Vector2>());
+
+        inventoryAction.performed += ctx => CallInventoryEvent(true);
+        hitAction.performed += ctx => CallHitEvent(true);
+        jumpAction.performed += ctx => CallJumpEvent(true);
+        teleportAction.performed += ctx => CallTeleportEvent(true);
+        dashAction.performed += ctx => CallDashEvent(true);
+
+        // TODO - Fix
+        //interactAction.performed += ctx => CallInteractEvent(true);
+    }
+    public void OnMove(Vector2 vec)
+    {
+        moveDir = vec;
         moveDir = moveDir.normalized;
         CallMoveEvent(moveDir);
     }
 
-    public void OnLook(InputValue value)
+    public void OnLook(Vector2 vec)
     {
 
-        mousePos = value.Get<Vector2>();
+        mousePos = vec;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         lookDir = mousePos - (Vector2)transform.position;
 
         CallLookEvent(lookDir);
     }
 
-    public void OnHit(InputValue value)
-    {
-        isHit = value.Get<float>();
-        CallHitEvent(isHit > 0f);
-    }
-
-    public void OnJump(InputValue value)
-    {
-        isPressed = value.Get<float>();
-        CallJumpEvent(isPressed > 0f);
-
-    }
-
-    public void OnInteract(InputValue value)
-    {
-        isPressed = value.Get<float>();
-        CallInteractEvent(isPressed > 0f);
-    }
-
-    public void OnDash(InputValue value)
-    {
-        isPressed = value.Get<float>();
-        CallDashEvent(isPressed > 0f);
-    }
-
-    public void OnTeleport(InputValue value)
-    {
-        Debug.Log("OnTeleport");
-        isPressed = value.Get<float>();
-        CallTeleportEvent(isPressed > 0f);
-    }
-
-    public void OnCrunch(InputValue value)
-    {
-        isPressed = value.Get<float>();
-        CallCrunchEvent(isPressed > 0f);
-    }
 }
