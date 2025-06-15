@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public InventorySystem InventorySys;
+    [SerializeField] GameObject InventoryPanel;
+    bool isTurnedOnInven = false;
+    public void TurnOnorOffInven()
     {
-        
-    }
+        isTurnedOnInven = !isTurnedOnInven;
+        InventoryPanel.SetActive(isTurnedOnInven);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (isTurnedOnInven)
+        {
+            var ui = InventoryPanel.GetComponent<InventoryUI>();
+            ui?.RefreshUI();
+        }
     }
 }

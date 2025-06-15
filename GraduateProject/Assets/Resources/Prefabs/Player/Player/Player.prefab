@@ -3038,7 +3038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5260517418303679246}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 645ecd59db0dd5c4b982c94017f8c88a, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -3185,7 +3185,7 @@ MonoBehaviour:
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 3260144671449063976}
 --- !u!114 &4177084918224998409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3236,6 +3236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 772823942a671e24f97c0c6566ca754f, type: 2}
+  CurHp: 0
 --- !u!114 &-8082098601119123673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3272,8 +3273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a17b4fe50ba29438cefe66e22d7671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 5
-  invincibleDuration: 0.5
 --- !u!114 &-5541129921815161084
 MonoBehaviour:
   m_ObjectHideFlags: 0

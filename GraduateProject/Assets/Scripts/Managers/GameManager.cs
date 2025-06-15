@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
                 Instance = manager.AddComponent<GameManager>();
             }
 
+            Instance.allocate();
             Instance.init();
-            //DontDestroyOnLoad(instance);
         }
     }
 
@@ -35,12 +35,22 @@ public class GameManager : MonoBehaviour
     public PlayerManager PlayerManager { get; private set; }
     #endregion
 
-
+    private void allocate()
+    {
+        AudioManager = gameObject.GetComponent<AudioManager>();
+        UIManager = gameObject.GetComponent<UIManager>();
+        RoomManager = gameObject.GetComponent<RoomManager>();
+        PlayerManager = gameObject.GetComponent<PlayerManager>();
+    }
     private void init()
     {
-        AudioManager = Instance.gameObject.AddComponent<AudioManager>();
-        UIManager = Instance.gameObject.AddComponent<UIManager>();
-        RoomManager = Instance.gameObject.AddComponent<RoomManager>();
-        PlayerManager = Instance.gameObject.AddComponent<PlayerManager>();
+        if(AudioManager == null)
+            AudioManager = Instance.gameObject.AddComponent<AudioManager>();
+        if(UIManager == null)
+            UIManager = Instance.gameObject.AddComponent<UIManager>();
+        if(RoomManager == null)
+            RoomManager = Instance.gameObject.AddComponent<RoomManager>();
+        if(PlayerManager == null)
+            PlayerManager = Instance.gameObject.AddComponent<PlayerManager>();
     }
 }
