@@ -197,6 +197,7 @@ public class RoomGenerator : MonoBehaviour
 
         prefabInstance.transform.position = new Vector2(randomX - tileOrigin.x, randomY - tileOrigin.y);
 
+        room.RoomSpace = new RectInt(randomX, randomY, size.x, size.y);
 
         return prefabInstance;
     }
@@ -337,24 +338,6 @@ public class RoomGenerator : MonoBehaviour
         // 초기화 시 타일맵과 셀 목록을 넘겨준다
         setup.Initialize(tilemap, cells);
     }
-
-
-    private void CreateDummyPoints(Transform parent, BoundsInt bounds)
-    {
-        int spawnCount = Random.Range(2, 5); // 생성할 포인트 수
-
-        for (int i = 0; i < spawnCount; i++)
-        {
-            GameObject point = new GameObject($"EnemySpawnPoint_{i}");
-            point.transform.parent = parent;
-
-            int x = Random.Range(bounds.xMin + 1, bounds.xMax - 1);
-            int y = bounds.yMin + 1;
-
-            point.transform.localPosition = new Vector3(x - bounds.xMin, y - bounds.yMin, 0);
-        }
-    }
-
 
 
     /// <summary>

@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RoomState : MonoBehaviour
-{
-    public bool IsCleared { get; private set; }
-
-    public void RoomCleared()
-    {
-        IsCleared = true;
-    }
-}
-
 public class Room : MonoBehaviour
 {
     public MapNode Node;
-    public RectInt RoomSpace { get; private set; }
+
+    public RectInt RoomSpace;
+
+
 
     public RoomType Type { get; private set; }
     public RoomState RoomState { get; private set; }
@@ -40,8 +33,15 @@ public class Room : MonoBehaviour
     public Vector2 GetSpawnPosition()
     {
         Vector2 lowerLeft = (Vector2)transform.position;
-        return lowerLeft + new Vector2(RoomSpace.width * 0.5f,
+        Vector2 middle =  lowerLeft + new Vector2(RoomSpace.width * 0.5f,
                                        RoomSpace.height * 0.5f);
+        Vector2 rightTop = lowerLeft + new Vector2(RoomSpace.width,
+                                       RoomSpace.height);
+        Debug.Log("RoomName : " + gameObject.name);
+        Debug.Log("lowerLeft : " + lowerLeft);
+        Debug.Log("middle : " + middle);
+        Debug.Log("rightTop : " + rightTop);
+        return middle;
     }
     public void OnPlayerEnter()
     {

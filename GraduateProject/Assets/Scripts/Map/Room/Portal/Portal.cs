@@ -5,6 +5,12 @@ public class Portal : MonoBehaviour
 {
     public PortalDir direction { get; private set; }
     private Room parentRoom;
+    private Transform tr;
+
+    private void Awake()
+    {
+        tr = GetComponent<Transform>();
+    }
 
     /// <summary>
     /// 맵 생성 시 RoomGenerator에서 한 번만 호출
@@ -13,6 +19,11 @@ public class Portal : MonoBehaviour
     {
         parentRoom = room;
         direction = dir;
+
+        if (dir == PortalDir.up || dir == PortalDir.down)
+        {
+            tr.eulerAngles = new Vector3 (0, 0, 90f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
