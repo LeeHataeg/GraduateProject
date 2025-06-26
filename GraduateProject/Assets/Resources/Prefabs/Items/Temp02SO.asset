@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c93d0c713370804085a902824ae0904, type: 3}
   m_Name: Temp02SO
   m_EditorClassIdentifier: 
-  itemName: Temp02
+  itemName: Armor
   icon: {fileID: -4637655676411158975, guid: 5ed80003cb7f545ab87b7c0b79ad2eed, type: 3}
   itemType: 1
   maxStack: 1
-  description: 
+  description: "\uBCF4\uAE09 \uAC11\uC637"

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7188303763108976}
   - component: {fileID: 428011213817843875}
   m_Layer: 0
-  m_Name: Tilemap
+  m_Name: OutlineTilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
