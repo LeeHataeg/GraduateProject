@@ -119,16 +119,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &79166131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1523380131405762102, guid: f460b61c1ca6d88479a23c80575b7668, type: 3}
-  m_PrefabInstance: {fileID: 1306442611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &79166132 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2287401078867807282, guid: f460b61c1ca6d88479a23c80575b7668, type: 3}
   m_PrefabInstance: {fileID: 1306442611}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &79166133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 739113953237029756, guid: f460b61c1ca6d88479a23c80575b7668, type: 3}
+  m_PrefabInstance: {fileID: 1306442611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0532d3b756f7634fa2a67893800cce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &590360882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6373203671654871355, guid: f8131aac654d99745aaa84ff353e5e96, type: 3}
@@ -258,11 +264,11 @@ PrefabInstance:
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: InventorySys
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 852817164}
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: InventoryPanel
       value: 
-      objectReference: {fileID: 79166131}
+      objectReference: {fileID: 79166133}
     - target: {fileID: 9022668763829811983, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
