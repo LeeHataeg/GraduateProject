@@ -21,6 +21,10 @@ public class MapSO : ScriptableObject
     [SerializeField] private Tile[] leftPlatforms;
     [SerializeField] private Tile[] rightPlatforms;
     [SerializeField] private Tile[] middlePlatforms;
+
+    [Header("## Mask Tiles")] // °¡¸®°³
+    [SerializeField] private Tile filledTile;
+    [SerializeField] private Tile[] crackedTiles;
     #endregion
 
     #region MAP_VARIABLES
@@ -39,10 +43,6 @@ public class MapSO : ScriptableObject
     [field: Header("#Room Prefabs")]
     [SerializeField] private GameObject startRoom;
     [SerializeField] private GameObject bossRoom;
-    [SerializeField] private GameObject shopRoom;
-    // TODO - Add Puzzle Maps
-    //[SerializeField] private GameObject[] puzzleRooms;
-    //[SerializeField] private GameObject midbossRoom;
     #endregion  
 
     #region GETTERS
@@ -59,6 +59,8 @@ public class MapSO : ScriptableObject
     public Tile[] RightPlatforms => rightPlatforms;
     public Tile[] MiddlePlatforms => middlePlatforms;
 
+    public Tile FilledTile => filledTile;
+    public Tile[] CrackedTiles => crackedTiles;
     public Vector2Int MapSize => mapSize;
     public Vector2Int MinSpaceSize => minSpaceSize;
     public Vector2Int MaxSpaceSize => maxSpaceSize;
@@ -70,6 +72,5 @@ public class MapSO : ScriptableObject
 
     public GameObject StartRoom => startRoom;
     public GameObject BossRoom => bossRoom;
-    public GameObject ShopRoom => shopRoom;
     #endregion
 }

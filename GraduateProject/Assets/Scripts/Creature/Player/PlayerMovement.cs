@@ -294,7 +294,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dir.x == 0)
         {
-            rigid.linearVelocity = new Vector2(rigid.linearVelocity.normalized.x * 0.5f, rigid.linearVelocity.y);
+            rigid.linearVelocity = new Vector2(0, rigid.linearVelocity.y);
         }
     }
 }

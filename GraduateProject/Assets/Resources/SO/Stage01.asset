@@ -54,6 +54,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa81aa196de90eb438bddb9b08a3ff49, type: 2}
   - {fileID: 11400000, guid: 421626d2e0c20134aab91c55b4ce632b, type: 2}
   - {fileID: 11400000, guid: 779848281c0def348a159e2d883c9fbd, type: 2}
+  filledTile: {fileID: 11400000, guid: 2e6a403417fe9e742a8fbab3eda7214b, type: 2}
+  crackedTiles:
+  - {fileID: 11400000, guid: 68fdc2a18b5ecb14eb6ff53e297459bc, type: 2}
+  - {fileID: 11400000, guid: 79b409ead76923446bf835edb1fc03f5, type: 2}
+  - {fileID: 11400000, guid: c03d45905315e534092151f3dee26356, type: 2}
   mapSize: {x: 128, y: 128}
   minSpaceSize: {x: 20, y: 15}
   maxSpaceSize: {x: 30, y: 20}
@@ -64,4 +69,3 @@ MonoBehaviour:
   maxDepth: 4
   startRoom: {fileID: 7324910235987344611, guid: ab7f02d8fbf511f4dbcd0b7e20e715f9, type: 3}
   bossRoom: {fileID: 701798574792211494, guid: 9209b233a7cd7a847a4ca81055869ec1, type: 3}
-  shopRoom: {fileID: 2380307520758236607, guid: 70d26cf311442234fa3deb682091d42c, type: 3}
