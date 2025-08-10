@@ -3,6 +3,14 @@ using UnityEngine;
 public abstract class Define
 {
     #region Enum
+    public enum EquipmentType
+    {
+        Head,
+        Chest,
+        Legs,
+        Weapon,
+        Accessory
+    }
     #endregion
 
     #region Struct

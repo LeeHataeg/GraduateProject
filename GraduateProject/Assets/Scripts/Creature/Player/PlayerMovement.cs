@@ -246,11 +246,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Dash!");
     }
-
+        
     public void Teleport(bool isTeleported)
     {
+        Debug.Log("집 가고 싶다.");
         if (!isTeleported || currentPortal == null)
+        {
+            Debug.Log("없어용");
             return;
+        }
 
         Room dest = currentPortal.GetDestinationRoom();
         if (dest == null)

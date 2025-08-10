@@ -52,6 +52,7 @@ public class CharacterController : MonoBehaviour
 
     public void CallTeleportEvent(bool isTeleport)
     {
+        Debug.Log("텔포 감지용");
         OnTeleportEvent?.Invoke(isTeleport);
     }
 
