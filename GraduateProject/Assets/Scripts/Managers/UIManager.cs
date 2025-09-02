@@ -3,20 +3,24 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public InventorySystem InventorySys;
-    [SerializeField] InventoryUI InventoryPanel;
-    bool isTurnedOnInven = false;
+
+    [SerializeField] private InventoryUI invenPanel;
+    [SerializeField] private GameObject itemPanel;
+
+    private bool isTurnedOnInven = false;
+
     public void TurnOnorOffInven()
     {
         isTurnedOnInven = !isTurnedOnInven;
-        InventoryPanel.gameObject.SetActive(isTurnedOnInven);
+        itemPanel.gameObject.SetActive(isTurnedOnInven);
 
         if (isTurnedOnInven)
         {
-            InventoryPanel.RefreshUI();
+            invenPanel.RefreshUI();
         }
         else
         {
-            InventoryPanel.HidePopup();
+            invenPanel.HidePopup();
         }
     }
 }

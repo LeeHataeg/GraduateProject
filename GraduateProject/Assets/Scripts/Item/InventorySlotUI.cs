@@ -1,59 +1,71 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-// 슬롯 UI 하나를 담당할 컴포넌트
-public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 {
     public Image iconImage;
     public TextMeshProUGUI quantityText;
 
     private InventorySlot slotData;
-    private InventoryUI inventoryUI;// ???
+    private int slotIndex = -1;
+    private float lastClickTime = -999f;
+    private const float DOUBLE_CLICK = 0.25f;
 
-    private void Awake()
+    private InventorySystem inventory;
+    private EquipmentManager equipment;
+
+    void Awake()
     {
-        inventoryUI = gameObject.GetComponentInParent<InventoryUI>();
-        if (inventoryUI == null)
-            Debug.LogError("[InventorySlotUI] InventoryUI를 찾을 수 없습니다.");
+        inventory = FindFirstObjectByType<InventorySystem>();
+        equipment = FindFirstObjectByType<EquipmentManager>();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (slotData?.item == null) return;
-        // 화면 좌표를 넘겨서 팝업 위치를 잡도록
-        inventoryUI.ShowPopup(slotData, eventData.position);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        inventoryUI.HidePopup();
-    }
-
-    // 슬롯 데이터를 할당하고 UI 갱신
-    public void SetData(InventorySlot slot)
+    // 인덱스 포함 버전
+    public void SetData(InventorySlot slot, int index)
     {
         slotData = slot;
-        if (slotData.item != null)
+        slotIndex = index;
+
+        if (slotData?.item != null)
         {
             iconImage.sprite = slotData.item.icon;
             iconImage.enabled = true;
-            quantityText.text = slotData.quantity > 1
-                                        ? slotData.quantity.ToString()
-                                        : string.Empty;
+            quantityText.text = slotData.quantity > 1 ? slotData.quantity.ToString() : string.Empty;
         }
         else
         {
-            iconImage.enabled = false;
-            quantityText.text = string.Empty;
+            SetEmpty();
         }
     }
 
     public void SetEmpty()
     {
         slotData = null;
+        slotIndex = -1;
         iconImage.enabled = false;
         quantityText.text = string.Empty;
+    }
+
+    public void OnPointerClick(PointerEventData e)
+    {
+        if (slotData == null || slotData.item == null) return;
+
+        // 더블클릭만 처리
+        if (Time.unscaledTime - lastClickTime <= DOUBLE_CLICK)
+        {
+            // 장비 아이템만 처리
+            if (slotData.item is EquipmentItemData eqData && equipment != null)
+            {
+                if (equipment.TryEquip(eqData))
+                {
+                    // 이 슬롯에서 정확히 1개 제거
+                    inventory.RemoveAt(slotIndex, 1);
+                }
+            }
+        }
+
+        lastClickTime = Time.unscaledTime;
     }
 }

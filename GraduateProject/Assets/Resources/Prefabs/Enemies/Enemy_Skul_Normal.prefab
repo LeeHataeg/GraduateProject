@@ -5473,12 +5473,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupPrefab: {fileID: 4440085480759747736, guid: cc90796f582b5fb4a855f23ead0303d1, type: 3}
   dropTable:
-  - itemData: {fileID: 11400000, guid: f8bacb8df53064e4e9b55af4d7d8a27a, type: 2}
-    dropChance: 0.563
+  - itemData: {fileID: 11400000, guid: 2b8606b50d6db1b48b1d8eb15d618801, type: 2}
+    dropChance: 0.2
     minQuantity: 1
     maxQuantity: 1
-  - itemData: {fileID: 11400000, guid: d824ab08d434ea9488495981cff30277, type: 2}
-    dropChance: 0.773
+  - itemData: {fileID: 11400000, guid: 577fd4771e14a7449a8cac58daedcde2, type: 2}
+    dropChance: 0.2
     minQuantity: 1
     maxQuantity: 1
 --- !u!1 &4302621220024639954

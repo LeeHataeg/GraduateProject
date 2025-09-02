@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17124b55fb9fe84418e727cabe29a25c, type: 3}
   m_Name: Enemy_Normal_01
   m_EditorClassIdentifier: 
-  MaxHp: 12
+  MaxHp: 170
   PhysAtk: 3
   MagicAtk: 2
-  AtkPower: 3
-  AttackRange: 1
+  BaseDmg: 0
   AtkSpeed: 2
   CriticalChance: 7
   CriticalDamage: 20
@@ -25,5 +24,6 @@ MonoBehaviour:
   magicDefense: 10
   DetectionRadius: 10
   MoveSpeed: 2
+  AttackRange: 1
   AttackDelay: 1.7
   MeleeDamage: 10

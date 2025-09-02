@@ -157,6 +157,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -547,7 +573,24 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Purple Portal Sprite Sheet_0: -7590852279806083750
+      Purple Portal Sprite Sheet_1: -1047030333955297497
+      Purple Portal Sprite Sheet_10: 6337546947990812001
+      Purple Portal Sprite Sheet_11: -7947525485063442325
+      Purple Portal Sprite Sheet_12: -7384564523777974397
+      Purple Portal Sprite Sheet_13: -1531221548115639420
+      Purple Portal Sprite Sheet_14: 5606354496016024334
+      Purple Portal Sprite Sheet_15: 3940960551971708277
+      Purple Portal Sprite Sheet_16: -573200737274364046
+      Purple Portal Sprite Sheet_2: 7701685673204356691
+      Purple Portal Sprite Sheet_3: 7816005057387510459
+      Purple Portal Sprite Sheet_4: 1583939405589128480
+      Purple Portal Sprite Sheet_5: -1821823870314367245
+      Purple Portal Sprite Sheet_6: 3173601273203674603
+      Purple Portal Sprite Sheet_7: -4160613844151899202
+      Purple Portal Sprite Sheet_8: 4061720752601944399
+      Purple Portal Sprite Sheet_9: -5359844677740714686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

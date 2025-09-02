@@ -86,5 +86,16 @@ public class InventorySystem : MonoBehaviour
         }
         return count;
     }
+    public bool RemoveAt(int index, int quantity = 1)
+    {
+        if (index < 0 || index >= slots.Count) return false;
+
+        var s = slots[index];
+        if (quantity >= s.quantity) slots.RemoveAt(index);
+        else s.quantity -= quantity;
+
+        OnInventoryChanged?.Invoke();
+        return true;
+    }
 }
 

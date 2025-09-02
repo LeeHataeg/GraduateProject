@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static Define;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,12 +21,13 @@ public class PlayerMovement : MonoBehaviour
 
     //TODO - Move this Variable into scripts of 'Stat'
     // TODO - Hide this var to protection
-    private float jumpForce = 10.0f;
-    private Vector2 jumpVec;
+    private float jumpForce = 0.2f;
     private bool isGround = true;
     private bool isPlatform = false;
     private float maxSpeed = 15.0f;
     #endregion
+
+    private PlayerStatController stat;
 
     private Portal currentPortal;
 
@@ -52,16 +54,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        jumpVec = new Vector2(0, jumpForce);
         animator = GetComponent<Animator>();
-        control = gameObject.GetComponent<CharacterController>();
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        plDrop = gameObject.GetComponent<PlayerPlatformDropController>();
+        control = GetComponent<CharacterController>();
+        rigid = GetComponent<Rigidbody2D>();
+        plDrop = GetComponent<PlayerPlatformDropController>();
+        stat = GetComponent<PlayerStatController>();
     }
 
     private void Start()
     {
-        playerScale = gameObject.transform.localScale;
+        playerScale = transform.localScale;
 
         control.OnMoveEvent += Move;
         control.OnLookEvent += Look;
@@ -72,6 +74,18 @@ public class PlayerMovement : MonoBehaviour
         control.OnCrouchEvent += Crouch;
         control.OnHitEvent += Hit;
         control.OnInventoryEvent += Inventory;
+
+        if (stat != null)
+        {
+            // 이동속도만 스탯 반영
+            speed = stat.Get(Define.StatType.MoveSpeed);
+
+            stat.OnStatsChanged += () =>
+            {
+                speed = stat.Get(Define.StatType.MoveSpeed);
+                // 점프는 여기서 미리 계산하지 않음(중복 방지)
+            };
+        }
     }
 
     private void Inventory(bool isTurnedOnInven)
@@ -163,23 +177,23 @@ public class PlayerMovement : MonoBehaviour
 
         mouse = direction;
     }
+
     private void Jump(bool isPressed)
     {
-        // 호출이 Crouch보다 빠름. true, false 할당 전에 불림.
-        if (!isPressed) return; 
-        if (isCrouch)
-        {
-            Debug.Log("하단 점프 - Jump에서...");
-            return;
-        }
-        else
-        {
-            Debug.Log("하단 점프 안하네요 - Jump에서...");
-        }
+        if (!isPressed) return;
+        if (isCrouch) return;
 
         if (isGround || isPlatform)
         {
-            rigid.AddForce(jumpVec, ForceMode2D.Impulse);
+            // 목표 상승 속도(Stat의 JumpForce는 "원하는 Vy")
+            float targetVy = stat ? stat.Get(Define.StatType.JumpForce) : 10f;
+
+            // 현재 Vy를 고려하여 딱 필요한 만큼만 Impulse 적용(일관된 점프 높이)
+            float curVy = rigid.linearVelocity.y;
+            float impulse = (targetVy - curVy) * rigid.mass;
+            if (impulse < 0f) impulse = 0f; // 이미 위로 날아가는 중이면 0으로
+
+            rigid.AddForce(Vector2.up * impulse, ForceMode2D.Impulse);
         }
     }
 

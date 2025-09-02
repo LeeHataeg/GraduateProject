@@ -34,14 +34,12 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshUI()
     {
-        // 1) SlotContainer에 에디터에서 미리 배치해 둔 InventorySlotPrefab들 가져오기
         var slotUIs = slotContainer.GetComponentsInChildren<InventorySlotUI>(includeInactive: true);
 
         for (int i = 0; i < slotUIs.Length; i++)
         {
-            //
             if (i < inventory.slots.Count)
-                slotUIs[i].SetData(inventory.slots[i]);
+                slotUIs[i].SetData(inventory.slots[i], i); // 인덱스 전달!
             else
                 slotUIs[i].SetEmpty();
         }
