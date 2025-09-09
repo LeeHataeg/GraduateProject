@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -22,7 +22,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         equipment = FindFirstObjectByType<EquipmentManager>();
     }
 
-    // ÀÎµ¦½º Æ÷ÇÔ ¹öÀü
+    // ì¸ë±ìŠ¤ í¬í•¨ ë²„ì „
     public void SetData(InventorySlot slot, int index)
     {
         slotData = slot;
@@ -50,22 +50,37 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData e)
     {
+        // ì¢Œí´ë¦­ë§Œ ì²˜ë¦¬
+        if (e.button != PointerEventData.InputButton.Left) return;
         if (slotData == null || slotData.item == null) return;
 
-        // ´õºíÅ¬¸¯¸¸ Ã³¸®
-        if (Time.unscaledTime - lastClickTime <= DOUBLE_CLICK)
+        // ë”ë¸”í´ë¦­ íŒì •
+        float now = Time.unscaledTime;
+        bool isDouble = (now - lastClickTime) <= DOUBLE_CLICK;
+        lastClickTime = now;
+        if (!isDouble) return;
+
+        // ì¥ë¹„ ì•„ì´í…œë§Œ ì²˜ë¦¬
+        if (!(slotData.item is EquipmentItemData eqData))
         {
-            // Àåºñ ¾ÆÀÌÅÛ¸¸ Ã³¸®
-            if (slotData.item is EquipmentItemData eqData && equipment != null)
-            {
-                if (equipment.TryEquip(eqData))
-                {
-                    // ÀÌ ½½·Ô¿¡¼­ Á¤È®È÷ 1°³ Á¦°Å
-                    inventory.RemoveAt(slotIndex, 1);
-                }
-            }
+            Debug.Log($"[INV] dbl-click ignored: not equipment ({slotData.item.name})");
+            return;
         }
 
-        lastClickTime = Time.unscaledTime;
+        // ëŸ°íƒ€ì„ Playerì˜ Unit Rootì—ì„œ EquipmentManager íšë“
+        if (equipment == null)
+        {
+            var player = GameManager.Instance?.PlayerManager?.Player;
+            if (player != null)
+                equipment = player.GetComponentInChildren<EquipmentManager>(true);
+        }
+
+        Debug.Log($"[INV] dbl-click equip={slotData.item?.name}, eq={(equipment != null ? equipment.name : "NULL")}");
+
+        if (equipment == null) return;
+
+        // ì¥ì°© ì„±ê³µ ì‹œ í•´ë‹¹ ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì—ì„œ ì •í™•íˆ 1ê°œ ì œê±°
+        if (equipment.TryEquip(eqData))
+            inventory.RemoveAt(slotIndex, 1);
     }
 }

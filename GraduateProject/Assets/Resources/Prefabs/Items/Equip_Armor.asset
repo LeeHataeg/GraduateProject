@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3f3fa6b3a72f746b2331823bc7e013, type: 3}
   m_Name: Equip_Armor
   m_EditorClassIdentifier: 
-  itemName: "\uAC00\uC8FD \uAC11\uC637"
-  icon: {fileID: -4637655676411158975, guid: 5ed80003cb7f545ab87b7c0b79ad2eed, type: 3}
+  itemName: "\uCCA0 \uAC11\uC637"
+  icon: {fileID: -8707472796148539467, guid: 7c5a293137726445abd2b50a8922119b, type: 3}
   itemType: 1
   maxStack: 1
-  description: "\uAFB8\uC9D0"
+  description: "\uD558\uAE09 \uBCD1\uC0AC\uC6A9 \uCCA0 \uAC11\uC637"
   slot: 1
   modifiers:
   - stat: 0
@@ -25,3 +25,19 @@ MonoBehaviour:
   - stat: 3
     op: 0
     value: 9
+  visuals: []
+  armor:
+    enable: 1
+    chestSprite: {fileID: -8707472796148539467, guid: 7c5a293137726445abd2b50a8922119b, type: 3}
+    chestOffset: {x: 0, y: 0}
+    chestScale: {x: 1, y: 1}
+    chestSortingOffset: 0
+    shoulderLeftSprite: {fileID: -3826454378112862306, guid: 7c5a293137726445abd2b50a8922119b, type: 3}
+    shoulderLOffset: {x: 0, y: 0}
+    shoulderLScale: {x: 1, y: 1}
+    shoulderLSortingOffset: 0
+    shoulderRightSprite: {fileID: 2863081914708520366, guid: 7c5a293137726445abd2b50a8922119b, type: 3}
+    mirrorRightFromLeft: 0
+    shoulderROffset: {x: 0, y: 0}
+    shoulderRScale: {x: 1, y: 1}
+    shoulderRSortingOffset: 0

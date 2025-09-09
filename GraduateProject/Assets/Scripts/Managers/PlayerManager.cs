@@ -22,20 +22,36 @@ public class PlayerManager : MonoBehaviour
     public void PlayerInit(Vector2 pos)
     {
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Player/Player/Player");
-        if (prefab == null) { Debug.LogError("플레이어 프리팹 로딩 실패"); return; }
-
         Player = Instantiate(prefab);
 
-        // 위치 세팅
-        if (pos != Vector2.zero) playerPositionController.SetPosition(pos);
+        if (pos != Vector2.zero)
+            playerPositionController.SetPosition(pos);
 
-        // ★ 장비 매니저 확보(없으면 붙이고, 인벤토리 물려줌)
-        var eq = Player.GetComponent<EquipmentManager>();
-        if (eq == null) eq = Player.AddComponent<EquipmentManager>();
-        if (!eq.inventory) eq.inventory = FindFirstObjectByType<InventorySystem>();
+        // ★ 반드시 Unit Root 기준으로 가져오기
+        var unitRoot = Player.transform.Find("Unit Root");
+        if (unitRoot == null)
+        {
+            // 혹시 이름이 다르면, Unit Root에 항상 있는 컴포넌트로 대체 탐색
+            unitRoot = Player.GetComponentInChildren<PlayerMovement>(true)?.transform;
+        }
 
-        // 알림
-        OnPlayerSpawned?.Invoke(Player);
+        if (unitRoot == null)
+        {
+            Debug.LogError("[PlayerInit] Unit Root not found under Player(Clone).");
+            return;
+        }
+
+        // ★ ‘추가(AddComponent)’ 하지 말고, ‘자식에서 찾기’만 한다
+        var eq = unitRoot.GetComponent<EquipmentManager>();
+        var stat = unitRoot.GetComponent<PlayerStatController>();
+
+        if (eq == null || stat == null)
+        {
+            Debug.LogError($"[PlayerInit] Missing components on Unit Root. eq={eq}, stat={stat}");
+            return;
+        }
+
+        // (선택) 다른 UI/시스템에 eq 전달
         OnEquipmentReady?.Invoke(eq);
     }
 }

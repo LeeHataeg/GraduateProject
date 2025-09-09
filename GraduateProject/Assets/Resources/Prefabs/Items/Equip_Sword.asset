@@ -23,3 +23,29 @@ MonoBehaviour:
   - stat: 1
     op: 0
     value: 5
+  visuals:
+  - part: 9
+    sprite: {fileID: 21300000, guid: 621aac84b88ffbf4dba37cfe2e935691, type: 3}
+    useIconIfEmpty: 1
+    offset: {x: 0, y: 0}
+    scale: {x: 0, y: 0}
+    sortingOrderOffset: 0
+    hideRenderer: 0
+    changeMaskInteraction: 0
+    maskInteraction: 0
+    enablePartSpriteMask: 0
+  armor:
+    enable: 0
+    chestSprite: {fileID: 0}
+    chestOffset: {x: 0, y: 0}
+    chestScale: {x: 1, y: 1}
+    chestSortingOffset: 0
+    shoulderLeftSprite: {fileID: 0}
+    shoulderLOffset: {x: 0, y: 0}
+    shoulderLScale: {x: 1, y: 1}
+    shoulderLSortingOffset: 0
+    shoulderRightSprite: {fileID: 0}
+    mirrorRightFromLeft: 0
+    shoulderROffset: {x: 0, y: 0}
+    shoulderRScale: {x: 1, y: 1}
+    shoulderRSortingOffset: 0

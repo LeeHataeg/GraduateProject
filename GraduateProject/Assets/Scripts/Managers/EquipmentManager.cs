@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -6,12 +6,13 @@ using static Define;
 [RequireComponent(typeof(PlayerStatController))]
 public class EquipmentManager : MonoBehaviour
 {
-    public InventorySystem inventory; // ÀÎ½ºÆåÅÍ ÇÒ´ç ¶Ç´Â ·±Å¸ÀÓ Å½»ö
+    public InventorySystem inventory; // ì¸ìŠ¤í™í„° í• ë‹¹ ë˜ëŠ” ëŸ°íƒ€ì„ íƒìƒ‰
     private PlayerStatController stats;
 
     [SerializeField] private Dictionary<EquipmentSlot, EquipmentItemData> equipped = new();
 
-    public event Action<EquipmentSlot, EquipmentItemData> OnEquippedChanged;
+    public event Action<EquipmentSlot, EquipmentItemData> OnEquippedChanged = delegate { }; // âœ… null ë°©ì§€
+   
 
     void Awake()
     {
@@ -31,20 +32,17 @@ public class EquipmentManager : MonoBehaviour
         if (item == null) return false;
 
         var slot = item.slot;
-        EquipmentItemData prev = GetEquipped(slot);
+        var prev = GetEquipped(slot);
 
-        // ÀÎº¥Åä¸® ÀÚ¸®/¼ö·® Ã¼Å©´Â UI ÂÊ¿¡¼­ index ´ÜÀ§·Î »©ÁÙ ¿¹Á¤
-        // ¿©±â¼­´Â ¼ø¼ö ÀåÂø/½º¿Ò¸¸
         equipped[slot] = item;
         stats.Apply(item.modifiers, +1);
 
         if (prev != null)
         {
-            // ½º¿Ò: ÀÌÀü Àåºñ º¸Á¤ Á¦°Å + ÀÎº¥Åä¸®·Î º¹±Í ½Ãµµ
             stats.Apply(prev.modifiers, -1);
             if (!inventory.AddItem(prev, 1))
             {
-                // ½ÇÆĞ ½Ã ·Ñ¹é
+                // ë¡¤ë°±
                 stats.Apply(item.modifiers, -1);
                 equipped[slot] = prev;
                 stats.Apply(prev.modifiers, +1);
@@ -52,7 +50,8 @@ public class EquipmentManager : MonoBehaviour
             }
         }
 
-        OnEquippedChanged?.Invoke(slot, item);
+        Debug.Log($"[Equip] {item.name} slot={slot} (eq on {gameObject.name})");
+        OnEquippedChanged(slot, item); // âœ… í•œ ë²ˆë§Œ í˜¸ì¶œ
         return true;
     }
 
@@ -61,10 +60,19 @@ public class EquipmentManager : MonoBehaviour
         var cur = GetEquipped(slot);
         if (cur == null) return false;
 
-        if (!inventory.AddItem(cur, 1)) return false;
+        if (!inventory.AddItem(cur, 1))
+        {
+            Debug.LogWarning($"[Equip] Unequip failed: no inventory space for {cur.name} (slot={slot}) on {gameObject.name}");
+            return false;
+        }
+
         stats.Apply(cur.modifiers, -1);
-        equipped[slot] = null;
-        OnEquippedChanged?.Invoke(slot, null);
+
+        if (equipped.ContainsKey(slot))
+            equipped.Remove(slot); // âœ… null ì„¸íŒ… ëŒ€ì‹  ì œê±°ë¡œ ê¹”ë”
+
+        Debug.Log($"[Equip] Unequip {cur.name} from slot={slot} (eq on {gameObject.name})");
+        OnEquippedChanged(slot, null); // âœ… í•´ì œ ì•Œë¦¼
         return true;
     }
 }

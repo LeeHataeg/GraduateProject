@@ -12,6 +12,15 @@ public abstract class Define
     //    Weapon,
     //    Accessory
     //}
+    public enum BodyPart
+    {
+        Hair, Hat, Face,
+        Chest, ShoulderL, ShoulderR,
+        HandL, HandR,
+        WeaponL, WeaponR,
+        LegL, LegR
+    }
+
     public enum EquipmentSlot
     {
         Head, Chest, Legs, Weapon, Ring, Amulet

@@ -1031,6 +1031,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: txt
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: itemPanel
       value: 
       objectReference: {fileID: 425063983}
