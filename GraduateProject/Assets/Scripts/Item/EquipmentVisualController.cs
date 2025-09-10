@@ -9,6 +9,15 @@ using static Define;
 [DisallowMultipleComponent]
 public class EquipmentVisualController : MonoBehaviour
 {
+    // 기본 스케일이 (0,0,1) 같이 비정상일 때 곱셈 결과가 0이 되는 것을 방지하기 위한 보정
+    private static Vector3 BaseScale(Vector3 s)
+    {
+        float bx = Mathf.Approximately(s.x, 0f) ? 1f : s.x;
+        float by = Mathf.Approximately(s.y, 0f) ? 1f : s.y;
+        float bz = Mathf.Approximately(s.z, 0f) ? 1f : s.z;
+        return new Vector3(bx, by, bz);
+    }
+
     [Serializable]
     public class PartBinding
     {
@@ -30,13 +39,13 @@ public class EquipmentVisualController : MonoBehaviour
     public class SlotDefaultTargets
     {
         public EquipmentSlot slot;
-        public Define.BodyPart[] defaultParts;  // visuals가 비었을 때 icon을 뿌릴 파트들
+        public Define.BodyPart[] defaultParts;  // visuals 없을 때 icon을 꽂기 타겟들
     }
 
-    [Header("신체 파트 바인딩")]
-    public PartBinding[] parts;                 // Hair/Hat/Chest/ShoulderL/ShoulderR/... 전부 연결
+    [Header("전체 파트 바인딩")]
+    public PartBinding[] parts;
 
-    [Header("슬롯 → 기본 대상(폴백)")]
+    [Header("슬롯별 기본 아이콘 꽂기 대상")]
     public SlotDefaultTargets[] slotDefaults =
     {
         new SlotDefaultTargets{ slot=EquipmentSlot.Head,  defaultParts=new[]{ Define.BodyPart.Hat } },
@@ -51,7 +60,7 @@ public class EquipmentVisualController : MonoBehaviour
     // 슬롯별로 방금 적용해 변경한 파트 목록 추적(복원용)
     private readonly Dictionary<EquipmentSlot, List<Define.BodyPart>> modifiedBySlot = new();
 
-    // 빠른 조회용 캐시
+    // 빠른 조회를 위한 맵
     private Dictionary<Define.BodyPart, PartBinding> map;
     private Dictionary<EquipmentSlot, Define.BodyPart[]> defaultMap;
 
@@ -66,7 +75,7 @@ public class EquipmentVisualController : MonoBehaviour
 
         defaultMap = slotDefaults.ToDictionary(d => d.slot, d => d.defaultParts ?? Array.Empty<Define.BodyPart>());
 
-        // 기본값 백업
+        // 기본값 백업 (원본 그대로 백업: 해제 시 원 상태로 복원)
         foreach (var b in map.Values)
         {
             b.defaultSprite = b.renderer.sprite;
@@ -79,42 +88,12 @@ public class EquipmentVisualController : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    void OnDestroy()
     {
-        // ★ 같은 오브젝트(Unit Root)에서만 eq를 가져옴
-        eq = GetComponent<EquipmentManager>();
-
-        if (eq == null)
-        {
-            Debug.LogError("[EVC] EquipmentManager not found on this Unit Root.");
-            return;
-        }
-
-        eq.OnEquippedChanged -= OnEquippedChanged;
-        eq.OnEquippedChanged += OnEquippedChanged;
-
-        RefreshAll();
+        if (eq) eq.OnEquippedChanged -= OnEquippedChanged;
     }
 
-    void OnDisable()
-    {
-        if (eq != null) eq.OnEquippedChanged -= OnEquippedChanged;
-    }
-
-    public void RefreshAll()
-    {
-        if (eq == null) return;
-
-        // 모든 슬롯에 대해 먼저 복원
-        foreach (var slot in Enum.GetValues(typeof(EquipmentSlot)).Cast<EquipmentSlot>())
-            RestoreSlot(slot);
-
-        // 현재 착용 상태를 다시 적용
-        foreach (var slot in Enum.GetValues(typeof(EquipmentSlot)).Cast<EquipmentSlot>())
-            ApplySlot(slot, eq.GetEquipped(slot));
-    }
-
-    private void OnEquippedChanged(EquipmentSlot slot, EquipmentItemData item)
+    void OnEquippedChanged(EquipmentSlot slot, EquipmentItemData item)
     {
         Debug.Log($"[EVC] OnEquippedChanged slot={slot}, item={(item ? item.name : "null")}");
         RestoreSlot(slot);
@@ -203,8 +182,7 @@ public class EquipmentVisualController : MonoBehaviour
         }
         else if (item.armor.mirrorRightFromLeft && item.armor.shoulderLeftSprite)
         {
-            // 오른쪽을 왼쪽 미러링으로 대체
-            // scale.x에 -1을 곱해 미러링
+            // 오른쪽을 왼쪽 미러링으로 대체 (scale.x 부호 반전)
             var mirroredScale = new Vector2(-item.armor.shoulderLScale.x, item.armor.shoulderLScale.y);
             ApplySpriteToPart(Define.BodyPart.ShoulderR, item.armor.shoulderLeftSprite,
                 item.armor.shoulderROffset, mirroredScale, item.armor.shoulderRSortingOffset,
@@ -235,13 +213,14 @@ public class EquipmentVisualController : MonoBehaviour
             if (use) b.renderer.sprite = use;
         }
 
-        // 트윅
+        // 위치/스케일/소팅
         b.renderer.transform.localPosition = b.defaultLocalPos + (Vector3)v.offset;
-        b.renderer.transform.localScale = new Vector3(
-            b.defaultLocalScale.x * v.scale.x,
-            b.defaultLocalScale.y * v.scale.y,
-            b.defaultLocalScale.z
-        );
+        {
+            var baseScale = BaseScale(b.defaultLocalScale);
+            float sx = Mathf.Approximately(v.scale.x, 0f) ? 1f : v.scale.x;
+            float sy = Mathf.Approximately(v.scale.y, 0f) ? 1f : v.scale.y;
+            b.renderer.transform.localScale = new Vector3(baseScale.x * sx, baseScale.y * sy, baseScale.z);
+        }
         b.renderer.sortingOrder = b.defaultSortingOrder + v.sortingOrderOffset;
 
         if (v.changeMaskInteraction)
@@ -265,17 +244,16 @@ public class EquipmentVisualController : MonoBehaviour
         b.renderer.enabled = true;
         b.renderer.sprite = sprite;
 
+        // 위치/스케일/소팅
         b.renderer.transform.localPosition = b.defaultLocalPos + (Vector3)offset;
-        b.renderer.transform.localScale = new Vector3(
-            b.defaultLocalScale.x * scale.x,
-            b.defaultLocalScale.y * scale.y,
-            b.defaultLocalScale.z
-        );
+        {
+            var baseScale = BaseScale(b.defaultLocalScale);
+            float sx = Mathf.Approximately(scale.x, 0f) ? 1f : scale.x;
+            float sy = Mathf.Approximately(scale.y, 0f) ? 1f : scale.y;
+            b.renderer.transform.localScale = new Vector3(baseScale.x * sx, baseScale.y * sy, baseScale.z);
+        }
         b.renderer.sortingOrder = b.defaultSortingOrder + sortingOffset;
 
         if (track && !modified.Contains(part)) modified.Add(part);
-
-        b.renderer.gameObject.transform.localScale = new Vector3(1, 1, 1);
-
     }
 }
