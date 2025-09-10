@@ -260,15 +260,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Dash!");
     }
-        
+
+    // PlayerMovement.cs (Teleport 메서드 내부)
     public void Teleport(bool isTeleported)
     {
-        Debug.Log("집 가고 싶다.");
         if (!isTeleported || currentPortal == null)
-        {
-            Debug.Log("없어용");
             return;
-        }
 
         Room dest = currentPortal.GetDestinationRoom();
         if (dest == null)
@@ -279,13 +276,14 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 targetPos = dest.GetSpawnPosition();
         transform.position = targetPos;
-        Debug.Log("스폰 포인트 : " + targetPos);
-        Debug.Log("내 위치 : " + transform.position);
 
-        // 방 진입 시 몬스터 스폰
+        // ▼ 추가: 도착 방 입장 처리
         dest.OnPlayerEnter();
 
-        Debug.Log("Teleport!");
+        // ▼ 선택: 연속 텔레포트 방지
+        currentPortal = null;
+
+        Debug.Log("OnTeleport!");
     }
 
 
