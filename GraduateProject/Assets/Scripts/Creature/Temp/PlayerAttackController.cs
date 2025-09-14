@@ -59,14 +59,32 @@ public class PlayerAttackController : MonoBehaviour
     {
         canAttack = false;
 
-        // (1) 공격 애니메이션 재생
+        // (1) 공격 애니메이션
         anim.SetTrigger("2_Attack");
 
-        // (2) 공격 딜레이(스탯에서 가져온 Delay 대기)
+        // (2) 스탯 딜레이
         float delay = statHolder.Stats.AttackDelay;
         yield return new WaitForSeconds(delay);
 
-        // (3) 공격 범위 내의 적 찾기 : 고쳐야할지도?
+        // (2.5) 시각 이펙트 (선택)
+        // Resources/Prefabs/Melee_Attck_Effect 프리팹이 있으면 스폰
+        GameObject fx = Resources.Load<GameObject>("Prefabs/Melee_Attck_Effect");
+        if (fx != null && attackPoint != null)
+        {
+            // 좌우 바라보는 방향 기반으로 간단 회전 (오른쪽: 0도, 왼쪽: 180도)
+            float dirX = transform.localScale.x >= 0 ? 1f : -1f;
+            Quaternion rot = (dirX >= 0)
+                ? Quaternion.identity
+                : Quaternion.Euler(0, 0, 180f);
+
+            var inst = Instantiate(fx, attackPoint.position, rot);
+            // 이펙트가 데미지를 표시/연출용으로 쓰는 경우만 세팅
+            var fxCtrl = inst.GetComponent<EffectController>();
+            if (fxCtrl != null)
+                fxCtrl.SetDmg(statHolder.CalculatePhysicsDmg());
+        }
+
+        // (3) 판정 및 데미지 전달
         float range = statHolder.Stats.AttackRange;
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayer);
         foreach (var hit in hits)
@@ -78,10 +96,11 @@ public class PlayerAttackController : MonoBehaviour
             }
         }
 
-        // 공격 딜레이 진행
+        // (4) 쿨다운
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+
 
     private void OnDrawGizmosSelected()
     {

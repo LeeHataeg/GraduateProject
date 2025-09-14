@@ -72,7 +72,9 @@ public class PlayerMovement : MonoBehaviour
         control.OnInteractEvent += Interact;
         control.OnTeleportEvent += Teleport;
         control.OnCrouchEvent += Crouch;
-        control.OnHitEvent += Hit;
+        // ★중복 공격 방지: 아래 한 줄 삭제
+        // control.OnHitEvent += Hit;
+
         control.OnInventoryEvent += Inventory;
 
         if (stat != null)
@@ -87,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             };
         }
     }
+
 
     private void Inventory(bool isTurnedOnInven)
     {
