@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
 
         // ★ ‘추가(AddComponent)’ 하지 말고, ‘자식에서 찾기’만 한다
         var eq = unitRoot.GetComponent<EquipmentManager>();
-        var stat = unitRoot.GetComponent<PlayerStatController>();
+        var stat = unitRoot.GetComponent<StatController>();
 
         if (eq == null || stat == null)
         {

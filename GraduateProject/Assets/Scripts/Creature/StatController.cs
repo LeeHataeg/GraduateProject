@@ -69,4 +69,6 @@ public class StatController : MonoBehaviour, ICombatStatHolder
 
         return dmg;
     }
+    public void Apply(System.Collections.IEnumerable modifiers, int sign) { /* 내부에서 누적/차감 후 OnStatsChanged 발생 */ }
+
 }
