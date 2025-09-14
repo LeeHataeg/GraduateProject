@@ -35,7 +35,7 @@ public class EquipmentManager : MonoBehaviour
             inventory = GameManager.Instance?.UIManager?.InventorySys;
 
         if (inventory == null)
-            inventory = FindObjectOfType<InventorySystem>(true);
+            inventory ??= FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
 
         if (inventory == null)
             Debug.LogWarning("[EquipmentManager] InventorySystem을 찾지 못했습니다. 장착/해제가 인벤토리에 반영되지 않습니다.");

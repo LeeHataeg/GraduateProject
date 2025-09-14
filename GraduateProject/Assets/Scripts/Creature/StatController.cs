@@ -71,4 +71,18 @@ public class StatController : MonoBehaviour, ICombatStatHolder
     }
     public void Apply(System.Collections.IEnumerable modifiers, int sign) { /* 내부에서 누적/차감 후 OnStatsChanged 발생 */ }
 
+    public void ApplyStatSheet(CombatStatSheet sheet)
+    {
+        if (sheet == null)
+        {
+            Debug.LogError($"[StatController] Null sheet on {name}");
+            return;
+        }
+        // private [SerializeField]이므로 this.stats에 대입만 해주면 런타임 반영됨
+        // 만약 이 아래에서 CurHp 등 현재 HP를 세팅하려면 sheet.MaxHp로 초기화 가능
+        var f = typeof(StatController).GetField("stats", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        if (f != null) f.SetValue(this, sheet);
+        else Debug.LogWarning("[StatController] Could not set stats via reflection (field name changed?)");
+    }
+
 }

@@ -1,44 +1,38 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class MeleeAttackBehavior : MonoBehaviour, IAttackBehavior
 {
-    [Header("Attack Settings")]
-    public float Range = 1.2f;
-    public LayerMask HitLayers;
-    public Transform AttackPoint;  // ºñ¿öµÎ¸é position ÆÄ¶ó¹ÌÅÍ/º»ÀÎ transform »ç¿ë
+    [Header("Melee Settings")]
+    [SerializeField] private float range = 1.2f;
+    [SerializeField] private LayerMask hitLayers;
+    [SerializeField] private Transform attackPoint; // ë¹„ì›Œë‘ë©´ í˜„ì¬ ìœ„ì¹˜ ì‚¬ìš©
 
-    // IAttackBehavior ¸í½ÃÀû ±¸Çö
-    float IAttackBehavior.Range => Range;
+    public float Range => range;
 
-    // IAttackBehavior.Execute ±¸Çö
     public void Execute(Vector2 position, float dmg, float atkRange)
     {
-        // ½ÇÁ¦ »ç¿ëÇÒ ¹İ°æ: ÆÄ¶ó¹ÌÅÍ ¿ì¼±, ¾øÀ¸¸é ±âº» Range
-        float r = (atkRange > 0f) ? atkRange : Range;
+        float r = atkRange > 0 ? atkRange : range;
+        Vector2 center = attackPoint != null ? (Vector2)attackPoint.position : position;
 
-        // °ø°İ Áß½ÉÁ¡: AttackPoint ÀÖÀ¸¸é ±× À§Ä¡, ¾øÀ¸¸é ³Ñ¾î¿Â position(¾øÀ¸¸é transform)
-        Vector2 center = AttackPoint != null ? (Vector2)AttackPoint.position :
-                         (position != default ? position : (Vector2)transform.position);
-
-        // ¹üÀ§ ³» Å¸°İ ´ë»ó °Ë»ö
-        Collider2D[] hits = Physics2D.OverlapCircleAll(center, r, HitLayers);
-        foreach (var h in hits)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(center, r, hitLayers);
+        for (int i = 0; i < hits.Length; i++)
         {
-            var reactor = h.GetComponent<IHitReactor>();
+            var reactor = hits[i].GetComponent<IHitReactor>();
             if (reactor != null)
             {
-                reactor.OnAttacked(dmg);
+                reactor.OnAttacked(dmg); // âœ… ì „ë‹¬ë°›ì€ dmg ì‚¬ìš©
             }
         }
 
-        // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å
         GetComponent<IAnimationController>()?.SetTrigger("2_Attack");
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Vector3 center = AttackPoint != null ? AttackPoint.position : transform.position;
-        Gizmos.DrawWireSphere(center, Range);
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, range);
+        }
     }
 }

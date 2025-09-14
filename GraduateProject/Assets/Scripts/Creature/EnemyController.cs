@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(ICombatStatHolder))]
-[RequireComponent(typeof(IHealth))]
-[RequireComponent(typeof(IHitReactor))]
-[RequireComponent(typeof(IAnimationController))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyController : MonoBehaviour
 {
@@ -13,149 +9,344 @@ public class EnemyController : MonoBehaviour
     private IHitReactor hitReactor;
     private IAnimationController anim;
     private IHealth healthCtrl;
+
     private Transform player;
     private Rigidbody2D rb;
     private Collider2D col;
-    [SerializeField] private Transform atkStartPoint;
+
+    [Header("Component Root")]
+    [Tooltip("비워두면 자동으로 'UnitRoot' 또는 Stat/RB가 붙은 자식을 찾아 사용")]
+    [SerializeField] private Transform componentRoot;
+
+    [Header("Points")]
+    [SerializeField] private Transform atkStartPoint;   // 미지정이면 componentRoot.position 사용
+
+    [Header("Facing / Flip")]
+    [SerializeField] private SpriteRenderer sprite;      // 없으면 자동 획득
+    [Tooltip("스프라이트의 기본 바라보는 방향이 '오른쪽'인지 여부(SPUM 기본이 왼쪽인 경우가 많음)")]
+    private bool lookLeft = true;
+    private Vector3 flipLeft = new Vector3(1, 1, 1);
+    private Vector3 flipRight = new Vector3(-1, 1, 1);
+
+    [Header("AI Tuning")]
+    [SerializeField] private float yThreshold = 0.7f;    // 근접 공격 시 수직 오차 허용
+    [SerializeField] private float stopDistance = 0.05f; // 멈출 임계 X거리
+    [SerializeField] private float attackCooldown = 0.8f;
+    [SerializeField] private float windup = 0.12f;       // 공격 선딜
+    [SerializeField] private float recover = 0.18f;      // 후딜
+    [Tooltip("원거리 공격은 Y축 정렬 검사를 완화/무시")]
+    [SerializeField] private bool ignoreYForRanged = true;
+
+    [Header("Targeting")]
+    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private float reacquireInterval = 0.75f; // 주기적 타깃/컴포넌트 재탐색
+    private float _nextReacquireAt;
+
+    [Header("Debug")]
+    [SerializeField] private bool debugLog = false;
 
     private bool isDead = false;
     private bool isAttacking = false;
-
-    // y 축 비교 오차 허용 범위
-    private float yThreshold = 0.7f;
+    private float nextAttackTime = 0f;
+    private Vector3 baseScale;
 
     private void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        if (player == null)
-            Debug.Log("플레이어 Tag로 못찾아연");
+        TryFindPlayer(true);
+        // 컴포넌트 루트가 비었으면 지금 찾아둔다
+        if (!componentRoot) componentRoot = ResolveComponentRoot();
+        // 필요한 레퍼런스 바인딩
+        AcquireComponents(strict: false);
     }
 
     private void Awake()
     {
-        combatStatHolder = GetComponent<ICombatStatHolder>();
-        attackBehavior = GetComponent<IAttackBehavior>();
-        hitReactor = GetComponent<IHitReactor>();
-        anim = GetComponent<IAnimationController>();
-        healthCtrl = GetComponent<IHealth>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>(true);
+        baseScale = transform.localScale;
 
-        //if (combatStatHolder == null || attackBehavior == null || hitReactor == null ||
-        //    anim == null || healthCtrl == null || rb == null || col == null)
-        //{
-        //    Debug.LogError($"[{nameof(EnemyController)}] 필수 컴포넌트가 누락");
-        //}
+        if (rb)
+        {
+            rb.freezeRotation = true;
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        }
+        if (col) col.enabled = true;
     }
 
     private void Start()
     {
-        // 사망 시 HandleDeath가 호출되도록 구독
-        healthCtrl.OnDead += HandleDeath;
+        // 혹시 Awake/OnEnable 타이밍에 못 찾았을 경우 한 번 더
+        if (!componentRoot) componentRoot = ResolveComponentRoot();
+        AcquireComponents(strict: false);
+
+        if (healthCtrl != null)
+            healthCtrl.OnDead += HandleDeath;
     }
 
     private void Update()
     {
-        if (isDead || player == null || combatStatHolder.Stats == null) return;
+        if (isDead) return;
 
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        // 주기적 재탐색(프리팹 구조가 다르거나 조립 순서/지연 대비)
+        if (Time.time >= _nextReacquireAt)
+        {
+            if (!player || !player.gameObject.activeInHierarchy) TryFindPlayer(false);
+            if (attackBehavior == null || combatStatHolder?.Stats == null || anim == null || healthCtrl == null)
+                AcquireComponents(strict: false);
 
-        // (1) 탐지 반경 내인가
+            _nextReacquireAt = Time.time + reacquireInterval;
+        }
+
+        if (player == null || combatStatHolder?.Stats == null) return;
+
+        float distToPlayer = Vector2.Distance(CurrentPos, player.position);
+
         if (distToPlayer <= combatStatHolder.Stats.DetectionRadius)
         {
-            Chase();
-
-            // (2) 공격 시도
+            ChaseAndFace();
             TryAttack();
         }
         else
         {
-            // 탐지 범위 밖일 때 Idle 상태(애니메이션)
-            anim.SetBool("1_Move", false);
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            anim?.SetBool("1_Move", false);
+            Halt();
         }
     }
 
-    public void Hit()
+    // ----------------- 탐색/유틸 -----------------
+
+    private Vector2 CurrentPos => componentRoot ? (Vector2)componentRoot.position : (Vector2)transform.position;
+
+    private Transform ResolveComponentRoot()
     {
-        // 외부에서 Hit()을 호출하면 데미지를 입도록 호출
-        // 만약 적이 데미지를 처리하는 별도 로직이 필요하다면 추가 구현
-        // ex) HealthController.TakeDamage(...) 등을 직접 호출할 수 있음
+        // 1) 이름 'UnitRoot'
+        foreach (var t in GetComponentsInChildren<Transform>(true))
+            if (t.name.Equals("UnitRoot", System.StringComparison.OrdinalIgnoreCase))
+                return t;
+
+        // 2) StatHolder / StatController가 붙은 자식
+        var monos = GetComponentsInChildren<MonoBehaviour>(true);
+        foreach (var m in monos)
+        {
+            if (!m) continue;
+            if (m is ICombatStatHolder || m.GetComponent<StatController>()) return m.transform;
+        }
+
+        // 3) Rigidbody2D + Collider2D 조합 자식
+        foreach (var m in monos)
+        {
+            if (!m) continue;
+            if (m.GetComponent<Rigidbody2D>() && m.GetComponent<Collider2D>()) return m.transform;
+        }
+
+        // 4) 실패 → 자신
+        return transform;
     }
 
-    private void Chase()
+    private void AcquireComponents(bool strict)
     {
-        if (isDead || isAttacking)
+        // 루트 우선, 없으면 자식/부모까지
+        Transform root = componentRoot ? componentRoot : transform;
+
+        combatStatHolder = root.GetComponent<ICombatStatHolder>() ??
+                           root.GetComponentInChildren<ICombatStatHolder>(true) ??
+                           GetComponentInChildren<ICombatStatHolder>(true);
+
+        attackBehavior = root.GetComponent<IAttackBehavior>() ??
+                           root.GetComponentInChildren<IAttackBehavior>(true) ??
+                           GetComponentInChildren<IAttackBehavior>(true);
+
+        hitReactor = root.GetComponent<IHitReactor>() ??
+                           root.GetComponentInChildren<IHitReactor>(true) ??
+                           GetComponentInChildren<IHitReactor>(true);
+
+        anim = root.GetComponent<IAnimationController>() ??
+                           root.GetComponentInChildren<IAnimationController>(true) ??
+                           GetComponentInChildren<IAnimationController>(true);
+
+        healthCtrl = root.GetComponent<IHealth>() ??
+                           root.GetComponentInChildren<IHealth>(true) ??
+                           GetComponentInChildren<IHealth>(true);
+
+        if (strict)
         {
-            anim.SetBool("1_Move", false);
+            if (combatStatHolder == null) Debug.LogWarning($"[EnemyController] No ICombatStatHolder on {name}");
+            if (attackBehavior == null) Debug.LogWarning($"[EnemyController] No IAttackBehavior on {name}");
+            if (anim == null) Debug.LogWarning($"[EnemyController] No IAnimationController on {name}");
+            if (healthCtrl == null) Debug.LogWarning($"[EnemyController] No IHealth on {name}");
+        }
+    }
+
+    private void TryFindPlayer(bool immediate)
+    {
+        if (!immediate && Time.time < _nextReacquireAt) return;
+        GameObject p = null;
+        try { p = GameObject.FindGameObjectWithTag(playerTag); } catch { }
+        player = p ? p.transform : null;
+    }
+
+    private void Halt()
+    {
+        if (!rb) return;
+#if UNITY_6000_0_OR_NEWER
+        var v = rb.linearVelocity;
+        v.x = 0f;
+        rb.linearVelocity = v;
+#else
+        var v = rb.velocity;
+        v.x = 0f;
+        rb.velocity = v;
+#endif
+    }
+
+    // ----------------- 이동/시선 -----------------
+
+    private void ChaseAndFace()
+    {
+        if (isDead || player == null || combatStatHolder?.Stats == null) return;
+
+        float dx = player.position.x - CurrentPos.x;
+        float dirX = dx > 0.02f ? 1f : (dx < -0.02f ? -1f : 0f);
+        float moveSpeed = Mathf.Max(0f, combatStatHolder.Stats.MoveSpeed);
+
+        ApplyFacing(dirX == 0f ? (player.position.x >= CurrentPos.x ? 1f : -1f) : dirX);
+
+        if (isAttacking)
+        {
+            anim?.SetBool("1_Move", false);
+            Halt();
             return;
         }
 
-        float dirX = Mathf.Sign(player.position.x - transform.position.x);
-        float moveSpeed = combatStatHolder.Stats.MoveSpeed;
-
-        // (1) 이동
-        rb.linearVelocity = new Vector2(dirX * moveSpeed, rb.linearVelocity.y);
-
-        // (2) 이동 애니메이션
-        anim.SetBool("1_Move", true);
-
-        // (3) 스프라이트 좌우 반전 (필요 시)
-        if (dirX > 0f)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        else if (dirX < 0f)
-            transform.localScale = new Vector3(1f, 1f, 1f);
+        if (Mathf.Abs(dx) > stopDistance)
+        {
+            if (rb)
+            {
+#if UNITY_6000_0_OR_NEWER
+                var v = rb.linearVelocity;
+                v.x = dirX * moveSpeed;
+                rb.linearVelocity = v;
+#else
+                var v = rb.velocity;
+                v.x = dirX * moveSpeed;
+                rb.velocity = v;
+#endif
+            }
+            else
+            {
+                // Kinematic 폴백
+                transform.Translate(Vector2.right * (dirX * moveSpeed * Time.deltaTime));
+            }
+            anim?.SetBool("1_Move", true);
+        }
+        else
+        {
+            Halt();
+            anim?.SetBool("1_Move", false);
+        }
     }
+
+    private void ApplyFacing(float dirX)
+    {
+        bool isRight = dirX >= 0f;
+
+        if (isRight)
+        {
+            transform.localScale = flipRight;
+            lookLeft = !lookLeft;
+        }
+        else
+        {
+            transform.localScale = flipLeft;
+            lookLeft = !lookLeft;
+        }
+    }
+
+    // ----------------- 공격 -----------------
 
     private void TryAttack()
     {
-        if (isDead || isAttacking || attackBehavior == null)
+        if (isDead || isAttacking) return;
+
+        // 조립 순서/부착 위치 때문에 공격기가 아직 없을 수 있어 주기적으로 재시도
+        if (attackBehavior == null)
         {
-            return;
+            AcquireComponents(strict: false);
+            if (attackBehavior == null) return;
         }
 
-        float deltaY = Mathf.Abs(player.position.y - transform.position.y);
-        float deltaX = Mathf.Abs(player.position.x - transform.position.x);
+        if (Time.time < nextAttackTime) return;
+        if (player == null) return;
 
-        // y축이 일정 범위 내이고, x축 거리가 공격 범위 이내인지 확인
-        if (deltaY <= yThreshold && deltaX <= attackBehavior.Range)
+        float deltaY = Mathf.Abs(player.position.y - CurrentPos.y);
+        float deltaX = Mathf.Abs(player.position.x - CurrentPos.x);
+
+        float behaviorRange = Mathf.Max(0f, attackBehavior.Range);
+        float statRange = combatStatHolder?.Stats != null ? Mathf.Max(0f, combatStatHolder.Stats.AttackRange) : 0f;
+        float useRange = Mathf.Max(behaviorRange, statRange);
+
+        // 원거리면 Y축 정렬을 덜 까다롭게(혹은 무시)
+        bool isRanged = attackBehavior is RangedAttackBehavior;
+        bool yOk = isRanged && ignoreYForRanged ? true : (deltaY <= yThreshold);
+
+        if (yOk && deltaX <= useRange)
         {
-            StartCoroutine(PerformMeleeAttack());
+            StartCoroutine(AttackRoutine(useRange));
         }
     }
 
-    private IEnumerator PerformMeleeAttack()
+    private IEnumerator AttackRoutine(float useRange)
     {
-        Debug.Log("PerformMeleeAttack 진입!");
-
         isAttacking = true;
-        // (1) 공격 애니메이션 재생
-        anim.SetTrigger("2_Attack");
+        try
+        {
+            anim?.SetTrigger("2_Attack");
+            Halt();
 
-        // (2) 공격 딜레이(애니메이션 끝나길 대기)
-        float delay = combatStatHolder.Stats.AttackDelay;
-        yield return new WaitForSeconds(delay);
+            if (windup > 0f) yield return new WaitForSeconds(windup);
 
-        attackBehavior.Execute(atkStartPoint.position, combatStatHolder.CalculatePhysicsDmg(), combatStatHolder.Stats.AttackRange);
+            Vector2 pos = atkStartPoint
+                ? (Vector2)atkStartPoint.position
+                : (Vector2)(componentRoot ? componentRoot.position : transform.position);
 
-        isAttacking = false;
+            float dmg = combatStatHolder != null ? combatStatHolder.CalculatePhysicsDmg() : 1f;
+            if (TryGetComponent<DamageMultiplier>(out var mul)) dmg = mul.Apply(dmg);
+
+            // 공격 실행 (원거리/근접 공용)
+            attackBehavior.Execute(pos, dmg, useRange);
+
+            if (recover > 0f) yield return new WaitForSeconds(recover);
+        }
+        finally
+        {
+            isAttacking = false;
+            nextAttackTime = Time.time + Mathf.Max(0f, attackCooldown);
+            if (debugLog) Debug.Log($"[EnemyController] NextAttack @ {nextAttackTime:0.00} ({name})");
+        }
     }
+
+    // ----------------- 사망 -----------------
 
     private void HandleDeath()
     {
         if (isDead) return;
         isDead = true;
 
-        // (1) 사망 애니메이션
-        anim.SetTrigger("4_Death");
-        anim.SetBool("isDeath", true);
+        anim?.SetTrigger("4_Death");
+        anim?.SetBool("isDeath", true);
 
-        // (2) 이동 및 물리 비활성화
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        col.enabled = false;
+        if (rb)
+        {
+#if UNITY_6000_0_OR_NEWER
+            rb.linearVelocity = Vector2.zero;
+#else
+            rb.velocity = Vector2.zero;
+#endif
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        if (col) col.enabled = false;
 
-        // (4) 일정 시간 뒤 오브젝트 제거 (애니메이션 길이에 맞춤)
         Destroy(gameObject, 1.5f);
     }
 }

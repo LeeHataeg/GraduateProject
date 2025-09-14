@@ -1,150 +1,419 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
+[DisallowMultipleComponent]
 public class SpawnerController : MonoBehaviour
 {
-    private Tilemap _tilemap;
-    private List<Vector3Int> _spawnCells;
-
-    public event Action AllEnemiesDefeated;
-
-    private bool _hasSpawned;
-    private int _alive;
-
-    [Header("Optional Cleanup")]
-    [SerializeField] private bool cleanupRootOnDeath = true;
-
-    public void Initialize(Tilemap tilemap, List<Vector3Int> spawnCells)
+    [Serializable]
+    public class WeightedArchetype
     {
-        _tilemap = tilemap;
-        _spawnCells = spawnCells;
-        _hasSpawned = false;
-        _alive = 0;
+        public EnemyArchetypeSO archetype;
+        [Range(0f, 1f)] public float weight = 0.25f;
     }
 
+    [Header("Catalog Auto-Load")]
+    public bool autoLoadCatalogByRoomType = true;
+    [Tooltip("1ìˆœìœ„ ê²€ìƒ‰ ê²½ë¡œ (Resources ë‚´ë¶€)")]
+    public string catalogResourcesPath = "Enemies/Archetypes";
+
+    [Header("Spawn Candidates (Final)")]
+    public List<WeightedArchetype> candidates = new();
+
+    [Header("Spawn Counts")]
+    public bool autoSpawnOnStart = false;
+    public int minCount = 2;
+    public int maxCount = 5;
+
+    [Header("Behavior")]
+    public bool allowMultipleSpawns = false;
+
+    [Header("Spawn Area Detection")]
+    public LayerMask groundMask;
+    public LayerMask blockMask;
+    public float separationRadius = 0.4f;
+    public int maxSampleTry = 20;
+    public float margin = 0.5f;
+    public float groundRayDistance = 20f;
+
+    [Header("Room Clear / Portal")]
+    public bool autoTogglePortals = true;
+    public string portalTag = "Portal";
+
+    [Header("Legacy Enemies")]
+    public bool disablePreplacedEnemies = true;
+    public bool destroyPreplacedEnemies = true;
+
+    [Header("Debug")]
+    public bool debugLog = false;
+
+    private float totalWeight;
+    private readonly List<GameObject> spawned = new();
+    private readonly HashSet<IHealth> healths = new();
+    private GameObject[] portals;
+    private Bounds roomBounds;
+    private bool hasSpawned = false;
+
+    // Tilemap ê¸°ë°˜
+    private Tilemap sourceTilemap;
+    private readonly List<Vector3Int> seedCells = new();
+
+    public event Action OnAllEnemiesDefeated;
+
+    // ---- RoomGenerator í˜¸í™˜ ----
+    public void Initialize(Tilemap tilemap, IList<Vector3Int> cells)
+    {
+        sourceTilemap = tilemap;
+        seedCells.Clear();
+        if (cells != null) seedCells.AddRange(cells);
+
+        tilemap.CompressBounds();
+        var lb = tilemap.localBounds;
+        var worldCenter = tilemap.transform.TransformPoint(lb.center);
+        var worldSize = Vector3.Scale(lb.size, tilemap.transform.lossyScale);
+        roomBounds = new Bounds(worldCenter, worldSize);
+
+        if (debugLog)
+            Debug.Log($"[SpawnerController] Initialized from Tilemap. Bounds={roomBounds}, SeedCells={seedCells.Count}", this);
+    }
+
+    // ---- í›„ë³´ ì§ì ‘ ì£¼ì… ----
+    public void SetCandidates(EnemyArchetypeSO[] archetypes, float[] weights = null, float defaultW = 0.25f)
+    {
+        candidates.Clear();
+        if (archetypes != null)
+        {
+            for (int i = 0; i < archetypes.Length; i++)
+            {
+                var a = archetypes[i];
+                if (!a) continue;
+                float w = (weights != null && i < weights.Length) ? Mathf.Clamp01(weights[i]) : defaultW;
+                candidates.Add(new WeightedArchetype { archetype = a, weight = w });
+            }
+        }
+        RecalcWeight();
+    }
+
+    public void SetCatalog(EnemyArchetypeCatalog catalog)
+    {
+        if (!catalog)
+        {
+            Debug.LogWarning("[SpawnerController] SetCatalog(null) ignored.");
+            return;
+        }
+        candidates.Clear();
+        foreach (var e in catalog.entries)
+        {
+            if (!e.archetype || e.weight <= 0f) continue;
+            candidates.Add(new WeightedArchetype { archetype = e.archetype, weight = e.weight });
+        }
+        RecalcWeight();
+    }
+
+    private void Awake()
+    {
+        // 1) ì¹´íƒˆë¡œê·¸ ìë™ ë¡œë“œ(ê²½ë¡œ í´ë°± ì§€ì›)
+        if (autoLoadCatalogByRoomType && candidates.Count == 0)
+        {
+            var room = GetComponent<Room>() ?? GetComponentInParent<Room>();
+            var roomType = room ? room.Type : RoomType.Normal;
+
+            // ë‚´ê°€ ìš°ì„  ì œê³µí•œ ê²½ë¡œ + ë„¤ê°€ ì‹¤ì œ ë‘” ê²½ë¡œ + ì „ì²´ ìŠ¤ìº”ê¹Œì§€ ì „ë‹¬
+            var catalog = EnemyArchetypeRegistry.GetCatalog(
+                roomType,
+                catalogResourcesPath,
+                "SO/Stats/Enemies/Archetype",
+                "" // ì „ì²´ ìŠ¤ìº”
+            );
+
+            if (catalog)
+            {
+                SetCatalog(catalog);
+                if (debugLog) Debug.Log($"[SpawnerController] Catalog '{catalog.name}' loaded for RoomType={roomType}", this);
+            }
+            else
+            {
+                Debug.LogWarning($"[SpawnerController] No catalog found for RoomType={roomType}. " +
+                                 $"Create one under Resources (e.g. '{catalogResourcesPath}' or 'SO/Stats/Enemies/Archetype'), " +
+                                 $"or call SetCandidates()/SetCatalog().");
+            }
+        }
+
+        // 2) Bounds/Portal íƒìƒ‰
+        if (roomBounds.size == Vector3.zero) CacheRoomBounds();
+        if (autoTogglePortals) SafeFindPortals();
+    }
+
+    private void Start()
+    {
+        if (disablePreplacedEnemies) HandlePreplacedEnemies();
+        if (autoTogglePortals) SetPortalsActive(false);
+        if (autoSpawnOnStart) SpawnEnemies();
+    }
+
+    // ---- Room ê³µê°œ API ----
     public void SpawnEnemies()
     {
-        if (_hasSpawned) return;
-        _hasSpawned = true;
-
-        var prefab = Resources.Load<GameObject>("Prefabs/Enemies/Enemy_Skul_Normal");
-        if (prefab == null)
+        if (hasSpawned && !allowMultipleSpawns)
         {
-            Debug.LogError("[Spawner] Enemy ÇÁ¸®ÆÕ ·Îµå ½ÇÆĞ");
+            if (debugLog) Debug.Log($"[SpawnerController] Spawn skipped (already spawned) on {name}");
+            return;
+        }
+        if (candidates.Count == 0)
+        {
+            Debug.LogWarning("[SpawnerController] No candidates. Provide Catalog / SetCandidates() / autoLoadCatalogByRoomType.");
+            return;
+        }
+        int count = Random.Range(minCount, maxCount + 1);
+        SpawnWave(count);
+        hasSpawned = true;
+    }
+
+    public bool AllEnemiesDefeated() => hasSpawned && healths.Count == 0;
+    public int ActiveEnemyCount => healths.Count;
+
+    // ---- ë‚´ë¶€ êµ¬í˜„ ----
+    private void RecalcWeight()
+    {
+        totalWeight = 0f;
+        foreach (var c in candidates)
+            if (c.archetype && c.weight > 0f)
+                totalWeight += c.weight;
+    }
+
+    private void CacheRoomBounds()
+    {
+        var cols = GetComponentsInChildren<Collider2D>();
+        if (cols != null && cols.Length > 0)
+        {
+            var b = new Bounds(cols[0].bounds.center, Vector3.zero);
+            foreach (var c in cols) b.Encapsulate(c.bounds);
+            roomBounds = b;
             return;
         }
 
-        _alive = 0;
-
-        foreach (var cell in _spawnCells)
+        var rends = GetComponentsInChildren<Renderer>();
+        if (rends != null && rends.Length > 0)
         {
-            Vector3 worldPos = _tilemap.CellToWorld(cell) + _tilemap.cellSize * 0.5f;
-
-            var root = Instantiate(prefab, worldPos, Quaternion.identity, transform);
-
-            // *** ÇÙ½É: ½ÇÁ¦·Î DestroyµÇ´Â 'DeathCarrier'¸¦ Ã£¾Æ ±×°÷¿¡ HookÀ» ´Ü´Ù ***
-            var deathCarrier = FindDeathCarrier(root);
-            if (deathCarrier == null)
-            {
-                // ÃÖÈÄÀÇ º¸·ç: ±×·¡µµ ¸ø Ã£À¸¸é ±×³É root¿¡ ´Ü´Ù(ºñÃßÁö¸¸ µ¿ÀÛÀº ÇÏ°Ô).
-                Debug.LogWarning("[Spawner] DeathCarrier¸¦ Ã£Áö ¸øÇØ root¿¡ Hook ºÎÂø");
-                deathCarrier = root;
-            }
-
-            var hook = deathCarrier.AddComponent<SpawnedEnemyHook>();
-            hook.OnDied += OnEnemyDied;
-
-            // Á×À» ¶§ »óÀ§ ½©±îÁö Áö¿ì°í ½ÍÀ¸¸é ¿©±â¿¡ ÂüÁ¶ ³Ñ°Ü¼­ Á¤¸®
-            hook.RootToCleanup = cleanupRootOnDeath ? root : null;
-
-            _alive++;
+            var b = new Bounds(rends[0].bounds.center, Vector3.zero);
+            foreach (var r in rends) b.Encapsulate(r.bounds);
+            roomBounds = b;
+            return;
         }
 
-        Debug.Log($"[Spawner] Spawn {_alive} enemies");
+        roomBounds = new Bounds(transform.position, new Vector3(6f, 4f, 0f));
     }
 
-    // SPUM ±¸Á¶ ´ëÀÀ: ÀÌ¸§¿¡ UnitRoot°¡ ÀÖ°Å³ª ½ÇÁ¦ º»Ã¼·Î º¸ÀÌ´Â ÀÚ½Ä Ã£±â
-    private GameObject FindDeathCarrier(GameObject root)
+    private void SafeFindPortals()
     {
-        // 1) ÀÌ¸§ Á¤È®/ºÎºĞ ÀÏÄ¡ ½Ãµµ
-        var t = root.transform.Find("UnitRoot");
-        if (t != null) return t.gameObject;
-
-        // 2) ´ë¼Ò¹®ÀÚ ¹«½Ã ºÎºĞ °Ë»ö
-        foreach (var tr in root.GetComponentsInChildren<Transform>(true))
+        // 1) Portal ì»´í¬ë„ŒíŠ¸ë¥¼ ìš°ì„ ìœ¼ë¡œ (ì¶”ì²œ)
+        var comps = GetComponentsInChildren<Portal>(true);
+        if (comps != null && comps.Length > 0)
         {
-            if (tr.name.Equals("UnitRoot", StringComparison.OrdinalIgnoreCase)) return tr.gameObject;
-            if (tr.name.IndexOf("UnitRoot", StringComparison.OrdinalIgnoreCase) >= 0) return tr.gameObject;
+            var list = new List<GameObject>(comps.Length);
+            foreach (var c in comps) if (c) list.Add(c.gameObject);
+            portals = list.ToArray();
+            return;
         }
 
-        // 3) ´ë¾È: Animator°¡ ºÙÀº °¡Àå ±íÀº ÀÚ½Ä(Á¾Á¾ º»Ã¼)
-        Animator deepestAnim = null;
-        foreach (var anim in root.GetComponentsInChildren<Animator>(true))
+        // 2) íƒœê·¸ ê¸°ë°˜ ê²€ìƒ‰ì€ íƒœê·¸ ë¯¸ì •ì˜ë©´ ì˜ˆì™¸ê°€ ë‚˜ë¯€ë¡œ try/catch
+        if (!string.IsNullOrEmpty(portalTag))
         {
-            // °¡Àå ±í¾î º¸ÀÌ´Â °É·Î(ÀÚ½Ä ¼ö°¡ ¸¹°Å³ª ºÎ¸ğ¿¡¼­ ¸Ö¼ö·Ï)
-            if (deepestAnim == null || anim.transform.GetComponentsInParent<Transform>(true).Length >
-                                       deepestAnim.transform.GetComponentsInParent<Transform>(true).Length)
+            try
             {
-                deepestAnim = anim;
+                var all = GameObject.FindGameObjectsWithTag(portalTag);
+                var list = new List<GameObject>();
+                foreach (var go in all)
+                    if (go.transform.IsChildOf(transform)) list.Add(go);
+                if (list.Count > 0) { portals = list.ToArray(); return; }
+            }
+            catch (UnityException)
+            {
+                // íƒœê·¸ê°€ ì—†ìœ¼ë©´ ì¡°ìš©íˆ ë¬´ì‹œí•˜ê³  ì´ë¦„ ê²€ìƒ‰ìœ¼ë¡œ ë„˜ì–´ê°
             }
         }
-        if (deepestAnim != null) return deepestAnim.gameObject;
 
-        // 4) Á¤¸» ¾øÀ¸¸é Ã¹ ¹øÂ° È°¼º ÀÚ½Ä
-        if (root.transform.childCount > 0)
-            return root.transform.GetChild(0).gameObject;
-
-        // ½ÇÆĞ
-        return null;
-    }
-
-    private void OnEnemyDied(SpawnedEnemyHook hook)
-    {
-        if (hook != null) hook.OnDied -= OnEnemyDied;
-
-        _alive = Mathf.Max(0, _alive - 1);
-        Debug.Log($"[Spawner] Enemy died. Alive: {_alive}");
-
-        // ³²Àº ½© Á¤¸®(¼±ÅÃ)
-        if (hook != null && hook.RootToCleanup != null)
+        // 3) ì´ë¦„ ê¸°ë°˜ í´ë°±
         {
-            Destroy(hook.RootToCleanup);
-        }
-
-        if (_alive == 0)
-        {
-            Debug.Log("[Spawner] All enemies defeated!");
-            AllEnemiesDefeated?.Invoke();
+            var list = new List<GameObject>();
+            foreach (var t in GetComponentsInChildren<Transform>(true))
+                if (t.name.IndexOf("portal", StringComparison.OrdinalIgnoreCase) >= 0)
+                    list.Add(t.gameObject);
+            portals = list.ToArray();
         }
     }
-}
 
-// *** »õ/¼öÁ¤µÈ Hook: 'Á×´Â ±× ¿ÀºêÁ§Æ®'¿¡ ºÙ´Â´Ù ***
-public class SpawnedEnemyHook : MonoBehaviour
-{
-    public event Action<SpawnedEnemyHook> OnDied;
-
-    // ¼±ÅÃ: ºÎ¸ğ ½© ÄÁÅ×ÀÌ³Ê±îÁö Ä¡¿ï ¶§ »ç¿ë
-    public GameObject RootToCleanup;
-
-    private bool _fired;
-
-    private void OnDestroy()
+    private void SetPortalsActive(bool active)
     {
-        // SPUM Àû»ç¸Á: UnitRoot(È¤Àº º»Ã¼)°¡ DestroyµÉ ¶§ ¿©±â·Î µé¾î¿Â´Ù
-        if (_fired) return;
-        _fired = true;
-        OnDied?.Invoke(this);
+        if (portals == null) SafeFindPortals();
+        if (portals == null) return;
+        foreach (var p in portals) if (p) p.SetActive(active);
     }
 
-    // È¤½Ã Á×À» ¶§ Destroy ´ë½Å Disable Ã³¸®ÇÏ´Â ÀûÀÌ ÀÖ´Ù¸é ´ëºñ¿ë(¼±ÅÃ)
-    private void OnDisable()
+    private void HandlePreplacedEnemies()
     {
-        // Destroy°¡ ¾Æ´Ñ ´Ü¼ø Disable¸¸ ¾²´Â ÀûÀÌ ÀÖ´Ù¸é ÁÖ¼® ÇØÁ¦ °í·Á
-        // if (_fired) return;
-        // _fired = true;
-        // OnDied?.Invoke(this);
+        var preplaced = GetComponentsInChildren<EnemyController>(true);
+        foreach (var ec in preplaced)
+        {
+            if (ec.TryGetComponent<SpawnedEnemyTag>(out _)) continue;
+            if (destroyPreplacedEnemies) Destroy(ec.gameObject);
+            else ec.gameObject.SetActive(false);
+            if (debugLog) Debug.Log($"[SpawnerController] Preplaced Enemy removed: {ec.name}", ec);
+        }
     }
+
+    private void SpawnWave(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            var arch = Pick();
+            if (!arch || !arch.prefab)
+            {
+                Debug.LogWarning("[SpawnerController] Invalid archetype/prefab.");
+                continue;
+            }
+
+            Vector3 pos = SampleSpawnPoint();
+            var go = Instantiate(arch.prefab, pos, Quaternion.identity, transform);
+            go.name = $"{arch.kind}_{i}";
+
+            // â˜…â˜…â˜… ì»´í¬ë„ŒíŠ¸ ë£¨íŠ¸(ë³´í†µ UnitRoot) ì°¾ê¸°
+            var compRoot = FindComponentRoot(go.transform);
+            var rootGO = compRoot ? compRoot.gameObject : go;
+
+            // Spawn ë§ˆì»¤ëŠ” ë£¨íŠ¸ì—ë§Œ
+            var tag = rootGO.GetComponent<SpawnedEnemyTag>() ?? rootGO.AddComponent<SpawnedEnemyTag>();
+            tag.SourceSpawner = this;
+
+            // Assemblerë„ ë£¨íŠ¸ì—ë§Œ
+            var assembler = rootGO.GetComponent<EnemyAssembler>() ?? rootGO.AddComponent<EnemyAssembler>();
+            assembler.Setup(arch, compRoot);
+
+            spawned.Add(rootGO);
+
+            // ì²´ë ¥/ì£½ìŒ ì¶”ì : ë£¨íŠ¸ â†’ ì—†ìœ¼ë©´ ìì‹ì—ì„œ
+            IHealth hp = rootGO.GetComponent<IHealth>();
+            if (hp == null) hp = rootGO.GetComponentInChildren<IHealth>(true);
+
+            if (hp != null)
+            {
+                hp.OnDead += () => OnEnemyDead(rootGO, hp);
+                healths.Add(hp);
+            }
+            else
+            {
+                Debug.LogWarning($"[SpawnerController] Spawned enemy has no IHealth: {rootGO.name}", rootGO);
+            }
+        }
+    }
+
+    private void OnEnemyDead(GameObject go, IHealth hp)
+    {
+        healths.Remove(hp);
+        if (debugLog) Debug.Log($"[SpawnerController] Enemy died: {go.name}. Left: {healths.Count}", go);
+
+        if (healths.Count == 0)
+        {
+            if (debugLog) Debug.Log($"[SpawnerController] ROOM CLEARED! ({name})");
+            if (autoTogglePortals) SetPortalsActive(true);
+            OnAllEnemiesDefeated?.Invoke();
+        }
+    }
+
+    private EnemyArchetypeSO Pick()
+    {
+        if (totalWeight <= 0f) RecalcWeight();
+        if (totalWeight <= 0f || candidates.Count == 0) return null;
+
+        float roll = Random.value * totalWeight;
+        float acc = 0f;
+        foreach (var c in candidates)
+        {
+            if (!c.archetype || c.weight <= 0f) continue;
+            acc += c.weight;
+            if (roll <= acc) return c.archetype;
+        }
+        return candidates[^1].archetype;
+    }
+
+    private Vector3 SampleSpawnPoint()
+    {
+        // 1) RoomGeneratorê°€ ì¤€ ì…€ ìš°ì„ 
+        if (sourceTilemap && seedCells.Count > 0)
+        {
+            int idx = Random.Range(0, seedCells.Count);
+            var cell = seedCells[idx];
+            seedCells.RemoveAt(idx);
+
+            var center = (Vector2)sourceTilemap.GetCellCenterWorld(cell);
+            float topY = roomBounds.max.y + 0.5f;
+            var hit = Physics2D.Raycast(new Vector2(center.x, topY), Vector2.down, groundRayDistance, groundMask);
+            Vector2 p = hit.collider ? hit.point : center;
+
+            bool blocked = Physics2D.OverlapCircle(p, separationRadius, blockMask);
+            if (!blocked) return new Vector3(p.x, p.y + 0.01f, 0f);
+        }
+
+        // 2) ëœë¤ ìƒ˜í”ŒëŸ¬
+        var b = roomBounds;
+        float minX = b.min.x + margin;
+        float maxX = b.max.x - margin;
+        float top = b.max.y + 0.5f;
+
+        for (int i = 0; i < maxSampleTry; i++)
+        {
+            float x = Random.Range(minX, maxX);
+            var hit = Physics2D.Raycast(new Vector2(x, top), Vector2.down, groundRayDistance, groundMask);
+            if (hit.collider != null)
+            {
+                Vector2 p = hit.point;
+                bool blocked = Physics2D.OverlapCircle(p, separationRadius, blockMask);
+                if (!blocked) return new Vector3(p.x, p.y + 0.01f, 0f);
+            }
+        }
+
+        if (debugLog) Debug.LogWarning("[SpawnerController] Failed to sample spawn point. Using room center.");
+        return b.center;
+    }
+    private Transform FindComponentRoot(Transform instRoot)
+    {
+        // 1) ì´ë¦„ 'UnitRoot' ìš°ì„ (ëŒ€ì†Œë¬¸ì ë¬´ì‹œ)
+        foreach (var t in instRoot.GetComponentsInChildren<Transform>(true))
+            if (t.name.Equals("UnitRoot", System.StringComparison.OrdinalIgnoreCase))
+                return t;
+
+        // 2) StatController/ICombatStatHolder ë³´ìœ  ìì‹
+        var monos = instRoot.GetComponentsInChildren<MonoBehaviour>(true);
+        foreach (var m in monos)
+        {
+            if (!m) continue;
+            if (m is ICombatStatHolder || m.GetComponent<StatController>())
+                return m.transform;
+        }
+
+        // 3) Rigidbody2D+Collider2D ì¡°í•© ìì‹
+        foreach (var m in monos)
+        {
+            if (!m) continue;
+            if (m.GetComponent<Rigidbody2D>() && m.GetComponent<Collider2D>())
+                return m.transform;
+        }
+
+        // 4) ì‹¤íŒ¨ â†’ ì¸ìŠ¤í„´ìŠ¤ ë£¨íŠ¸
+        return instRoot;
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.25f);
+        var b = roomBounds.size == Vector3.zero ? new Bounds(transform.position, new Vector3(6f, 4f, 0f)) : roomBounds;
+        Gizmos.DrawWireCube(b.center, b.size);
+
+        Gizmos.color = new Color(1f, 0.3f, 0.3f, 0.35f);
+        Gizmos.DrawWireSphere(b.center, separationRadius);
+    }
+#endif
 }

@@ -1,17 +1,10 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
 public abstract class Define
 {
     #region Enum
-    //public enum EquipmentType
-    //{
-    //    Head,
-    //    Chest,
-    //    Legs,
-    //    Weapon,
-    //    Accessory
-    //}
     public enum BodyPart
     {
         Hair, Hat, Face,
@@ -39,6 +32,23 @@ public abstract class Define
         public StatType stat;
         public ModifierOp op;
         public float value; // Add면 절대값, Percent면 0.15f = +15%
+    }
+
+    [Description("적 종류(외형/개체군)")]
+    public enum EnemyKind
+    {
+        OrcWarrior,      // 오크 전사 (Melee)
+        OrcGreatsword,   // 오크 대검 전사 (Melee)
+        OrcArcher,       // 오크 궁수 (Ranged)
+        OrcShaman        // 오크 샤먼 (Ranged + Buffer)
+    }
+
+    [Description("전투 방식")]
+    public enum AttackMode
+    {
+        Melee,
+        Ranged,
+        RangedBuffer // 원거리 + 버프 오라
     }
     #endregion
 

@@ -29,7 +29,8 @@ public class Room : MonoBehaviour
         if (spawnManager != null)
         {
             // ▼ 전부 처치 시: 클리어 + 포탈 열기
-            spawnManager.AllEnemiesDefeated += HandleAllEnemiesDefeated;
+            // (이벤트 이름은 OnAllEnemiesDefeated 입니다!)
+            spawnManager.OnAllEnemiesDefeated += HandleAllEnemiesDefeated;
         }
 
         PortalConnection.Initialize(init.Node.Portals);
@@ -38,7 +39,7 @@ public class Room : MonoBehaviour
     private void OnDestroy()
     {
         if (spawnManager != null)
-            spawnManager.AllEnemiesDefeated -= HandleAllEnemiesDefeated;
+            spawnManager.OnAllEnemiesDefeated -= HandleAllEnemiesDefeated;
     }
 
     // ▼ 포탈 목록 캐시(PortalInitializer가 포탈 생성한 뒤 1회 호출해줄 것)

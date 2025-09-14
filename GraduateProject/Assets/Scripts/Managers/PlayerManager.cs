@@ -5,7 +5,6 @@ public class PlayerManager : MonoBehaviour
 {
     public GameObject Player;
 
-    public event Action<GameObject> OnPlayerSpawned;                // ¼±ÅÃ: ÇÊ¿ä½Ã ¾¸
     public event Action<EquipmentManager> OnEquipmentReady;         // ¡Ú ÇÙ½É
 
     private PlayerPositionController playerPositionController;
