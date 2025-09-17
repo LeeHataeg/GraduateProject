@@ -75,8 +75,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
                 equipment = player.GetComponentInChildren<EquipmentManager>(true);
         }
 
-        Debug.Log($"[INV] dbl-click equip={slotData.item?.name}, eq={(equipment != null ? equipment.name : "NULL")}");
-
         if (equipment == null) return;
 
         // 장착 성공 시 해당 인벤토리 슬롯에서 정확히 1개 제거

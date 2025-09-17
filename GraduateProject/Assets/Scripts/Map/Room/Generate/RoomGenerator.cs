@@ -47,7 +47,6 @@ public class RoomGenerator : MonoBehaviour
 
         for (int i = 0; i < nodes.Count; i++)
         {
-            // TODO : Room Type 지정 시발 오줌마려
             if (nodes[i] == null)
             {
                 Debug.LogError($"RoomGenerator: Node at index {i} is null!");
@@ -71,7 +70,7 @@ public class RoomGenerator : MonoBehaviour
         }
         if (nodes[0] == null)
         {
-            Debug.Log("ㅅㄱ");
+            Debug.Log("노드 할당 오류");
         }
     }
 

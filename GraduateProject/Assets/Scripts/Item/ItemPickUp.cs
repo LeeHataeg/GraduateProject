@@ -36,13 +36,10 @@ public class ItemPickUp : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("Player 만남 ㅋ");
 
         // 인벤토리에 담고, 성공하면 파괴
         if (inventory.AddItem(itemData, quantity))
         {
-            Debug.Log("Item 추가 ㅇㅇ");
-
             Destroy(gameObject);
         }
         else

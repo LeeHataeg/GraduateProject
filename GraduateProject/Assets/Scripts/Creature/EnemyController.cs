@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,31 +15,31 @@ public class EnemyController : MonoBehaviour
     private Collider2D col;
 
     [Header("Component Root")]
-    [Tooltip("ºñ¿öµÎ¸é ÀÚµ¿À¸·Î 'UnitRoot' ¶Ç´Â Stat/RB°¡ ºÙÀº ÀÚ½ÄÀ» Ã£¾Æ »ç¿ë")]
+    [Tooltip("ë¹„ì›Œë‘ë©´ ìë™ìœ¼ë¡œ 'UnitRoot' ë˜ëŠ” Stat/RBê°€ ë¶™ì€ ìì‹ì„ ì°¾ì•„ ì‚¬ìš©")]
     [SerializeField] private Transform componentRoot;
 
     [Header("Points")]
-    [SerializeField] private Transform atkStartPoint;   // ¹ÌÁöÁ¤ÀÌ¸é componentRoot.position »ç¿ë
+    [SerializeField] private Transform atkStartPoint;   // ë¯¸ì§€ì •ì´ë©´ componentRoot.position ì‚¬ìš©
 
     [Header("Facing / Flip")]
-    [SerializeField] private SpriteRenderer sprite;      // ¾øÀ¸¸é ÀÚµ¿ È¹µæ
-    [Tooltip("½ºÇÁ¶óÀÌÆ®ÀÇ ±âº» ¹Ù¶óº¸´Â ¹æÇâÀÌ '¿À¸¥ÂÊ'ÀÎÁö ¿©ºÎ(SPUM ±âº»ÀÌ ¿ŞÂÊÀÎ °æ¿ì°¡ ¸¹À½)")]
+    [SerializeField] private SpriteRenderer sprite;      // ì—†ìœ¼ë©´ ìë™ íšë“
+    [Tooltip("ìŠ¤í”„ë¼ì´íŠ¸ì˜ ê¸°ë³¸ ë°”ë¼ë³´ëŠ” ë°©í–¥ì´ 'ì˜¤ë¥¸ìª½'ì¸ì§€ ì—¬ë¶€(SPUM ê¸°ë³¸ì´ ì™¼ìª½ì¸ ê²½ìš°ê°€ ë§ìŒ)")]
     private bool lookLeft = true;
     private Vector3 flipLeft = new Vector3(1, 1, 1);
     private Vector3 flipRight = new Vector3(-1, 1, 1);
 
     [Header("AI Tuning")]
-    [SerializeField] private float yThreshold = 0.7f;    // ±ÙÁ¢ °ø°İ ½Ã ¼öÁ÷ ¿ÀÂ÷ Çã¿ë
-    [SerializeField] private float stopDistance = 0.05f; // ¸ØÃâ ÀÓ°è X°Å¸®
+    [SerializeField] private float yThreshold = 0.7f;    // ê·¼ì ‘ ê³µê²© ì‹œ ìˆ˜ì§ ì˜¤ì°¨ í—ˆìš©
+    [SerializeField] private float stopDistance = 0.05f; // ë©ˆì¶œ ì„ê³„ Xê±°ë¦¬
     [SerializeField] private float attackCooldown = 0.8f;
-    [SerializeField] private float windup = 0.12f;       // °ø°İ ¼±µô
-    [SerializeField] private float recover = 0.18f;      // ÈÄµô
-    [Tooltip("¿ø°Å¸® °ø°İÀº YÃà Á¤·Ä °Ë»ç¸¦ ¿ÏÈ­/¹«½Ã")]
+    [SerializeField] private float windup = 0.12f;       // ê³µê²© ì„ ë”œ
+    [SerializeField] private float recover = 0.18f;      // í›„ë”œ
+    [Tooltip("ì›ê±°ë¦¬ ê³µê²©ì€ Yì¶• ì •ë ¬ ê²€ì‚¬ë¥¼ ì™„í™”/ë¬´ì‹œ")]
     [SerializeField] private bool ignoreYForRanged = true;
 
     [Header("Targeting")]
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private float reacquireInterval = 0.75f; // ÁÖ±âÀû Å¸±ê/ÄÄÆ÷³ÍÆ® ÀçÅ½»ö
+    [SerializeField] private float reacquireInterval = 0.75f; // ì£¼ê¸°ì  íƒ€ê¹ƒ/ì»´í¬ë„ŒíŠ¸ ì¬íƒìƒ‰
     private float _nextReacquireAt;
 
     [Header("Debug")]
@@ -53,9 +53,9 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         TryFindPlayer(true);
-        // ÄÄÆ÷³ÍÆ® ·çÆ®°¡ ºñ¾úÀ¸¸é Áö±İ Ã£¾ÆµĞ´Ù
+        // ì»´í¬ë„ŒíŠ¸ ë£¨íŠ¸ê°€ ë¹„ì—ˆìœ¼ë©´ ì§€ê¸ˆ ì°¾ì•„ë‘”ë‹¤
         if (!componentRoot) componentRoot = ResolveComponentRoot();
-        // ÇÊ¿äÇÑ ·¹ÆÛ·±½º ¹ÙÀÎµù
+        // í•„ìš”í•œ ë ˆí¼ëŸ°ìŠ¤ ë°”ì¸ë”©
         AcquireComponents(strict: false);
     }
 
@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        // È¤½Ã Awake/OnEnable Å¸ÀÌ¹Ö¿¡ ¸ø Ã£¾ÒÀ» °æ¿ì ÇÑ ¹ø ´õ
+        // í˜¹ì‹œ Awake/OnEnable íƒ€ì´ë°ì— ëª» ì°¾ì•˜ì„ ê²½ìš° í•œ ë²ˆ ë”
         if (!componentRoot) componentRoot = ResolveComponentRoot();
         AcquireComponents(strict: false);
 
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
     {
         if (isDead) return;
 
-        // ÁÖ±âÀû ÀçÅ½»ö(ÇÁ¸®ÆÕ ±¸Á¶°¡ ´Ù¸£°Å³ª Á¶¸³ ¼ø¼­/Áö¿¬ ´ëºñ)
+        // ì£¼ê¸°ì  ì¬íƒìƒ‰(í”„ë¦¬íŒ¹ êµ¬ì¡°ê°€ ë‹¤ë¥´ê±°ë‚˜ ì¡°ë¦½ ìˆœì„œ/ì§€ì—° ëŒ€ë¹„)
         if (Time.time >= _nextReacquireAt)
         {
             if (!player || !player.gameObject.activeInHierarchy) TryFindPlayer(false);
@@ -114,18 +114,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // ----------------- Å½»ö/À¯Æ¿ -----------------
+    // ----------------- íƒìƒ‰/ìœ í‹¸ -----------------
 
     private Vector2 CurrentPos => componentRoot ? (Vector2)componentRoot.position : (Vector2)transform.position;
 
     private Transform ResolveComponentRoot()
     {
-        // 1) ÀÌ¸§ 'UnitRoot'
+        // 1) ì´ë¦„ 'UnitRoot'
         foreach (var t in GetComponentsInChildren<Transform>(true))
             if (t.name.Equals("UnitRoot", System.StringComparison.OrdinalIgnoreCase))
                 return t;
 
-        // 2) StatHolder / StatController°¡ ºÙÀº ÀÚ½Ä
+        // 2) StatHolder / StatControllerê°€ ë¶™ì€ ìì‹
         var monos = GetComponentsInChildren<MonoBehaviour>(true);
         foreach (var m in monos)
         {
@@ -133,20 +133,20 @@ public class EnemyController : MonoBehaviour
             if (m is ICombatStatHolder || m.GetComponent<StatController>()) return m.transform;
         }
 
-        // 3) Rigidbody2D + Collider2D Á¶ÇÕ ÀÚ½Ä
+        // 3) Rigidbody2D + Collider2D ì¡°í•© ìì‹
         foreach (var m in monos)
         {
             if (!m) continue;
             if (m.GetComponent<Rigidbody2D>() && m.GetComponent<Collider2D>()) return m.transform;
         }
 
-        // 4) ½ÇÆĞ ¡æ ÀÚ½Å
+        // 4) ì‹¤íŒ¨ â†’ ìì‹ 
         return transform;
     }
 
     private void AcquireComponents(bool strict)
     {
-        // ·çÆ® ¿ì¼±, ¾øÀ¸¸é ÀÚ½Ä/ºÎ¸ğ±îÁö
+        // ë£¨íŠ¸ ìš°ì„ , ì—†ìœ¼ë©´ ìì‹/ë¶€ëª¨ê¹Œì§€
         Transform root = componentRoot ? componentRoot : transform;
 
         combatStatHolder = root.GetComponent<ICombatStatHolder>() ??
@@ -200,7 +200,7 @@ public class EnemyController : MonoBehaviour
 #endif
     }
 
-    // ----------------- ÀÌµ¿/½Ã¼± -----------------
+    // ----------------- ì´ë™/ì‹œì„  -----------------
 
     private void ChaseAndFace()
     {
@@ -235,7 +235,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                // Kinematic Æú¹é
+                // Kinematic í´ë°±
                 transform.Translate(Vector2.right * (dirX * moveSpeed * Time.deltaTime));
             }
             anim?.SetBool("1_Move", true);
@@ -263,13 +263,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // ----------------- °ø°İ -----------------
+    // ----------------- ê³µê²© -----------------
 
     private void TryAttack()
     {
         if (isDead || isAttacking) return;
 
-        // Á¶¸³ ¼ø¼­/ºÎÂø À§Ä¡ ¶§¹®¿¡ °ø°İ±â°¡ ¾ÆÁ÷ ¾øÀ» ¼ö ÀÖ¾î ÁÖ±âÀûÀ¸·Î Àç½Ãµµ
+        // ì¡°ë¦½ ìˆœì„œ/ë¶€ì°© ìœ„ì¹˜ ë•Œë¬¸ì— ê³µê²©ê¸°ê°€ ì•„ì§ ì—†ì„ ìˆ˜ ìˆì–´ ì£¼ê¸°ì ìœ¼ë¡œ ì¬ì‹œë„
         if (attackBehavior == null)
         {
             AcquireComponents(strict: false);
@@ -279,6 +279,7 @@ public class EnemyController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
         if (player == null) return;
 
+        float originY = (atkStartPoint ? atkStartPoint.position.y : transform.position.y);
         float deltaY = Mathf.Abs(player.position.y - CurrentPos.y);
         float deltaX = Mathf.Abs(player.position.x - CurrentPos.x);
 
@@ -286,7 +287,7 @@ public class EnemyController : MonoBehaviour
         float statRange = combatStatHolder?.Stats != null ? Mathf.Max(0f, combatStatHolder.Stats.AttackRange) : 0f;
         float useRange = Mathf.Max(behaviorRange, statRange);
 
-        // ¿ø°Å¸®¸é YÃà Á¤·ÄÀ» ´ú ±î´Ù·Ó°Ô(È¤Àº ¹«½Ã)
+        // ì›ê±°ë¦¬ë©´ Yì¶• ì •ë ¬ì„ ëœ ê¹Œë‹¤ë¡­ê²Œ(í˜¹ì€ ë¬´ì‹œ)
         bool isRanged = attackBehavior is RangedAttackBehavior;
         bool yOk = isRanged && ignoreYForRanged ? true : (deltaY <= yThreshold);
 
@@ -313,7 +314,7 @@ public class EnemyController : MonoBehaviour
             float dmg = combatStatHolder != null ? combatStatHolder.CalculatePhysicsDmg() : 1f;
             if (TryGetComponent<DamageMultiplier>(out var mul)) dmg = mul.Apply(dmg);
 
-            // °ø°İ ½ÇÇà (¿ø°Å¸®/±ÙÁ¢ °ø¿ë)
+            // ê³µê²© ì‹¤í–‰ (ì›ê±°ë¦¬/ê·¼ì ‘ ê³µìš©)
             attackBehavior.Execute(pos, dmg, useRange);
 
             if (recover > 0f) yield return new WaitForSeconds(recover);
@@ -326,7 +327,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // ----------------- »ç¸Á -----------------
+    // ----------------- ì‚¬ë§ -----------------
 
     private void HandleDeath()
     {

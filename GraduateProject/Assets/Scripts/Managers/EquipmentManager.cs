@@ -77,7 +77,6 @@ public class EquipmentManager : MonoBehaviour
             stats.Apply(prev.modifiers, -1);
         }
 
-        Debug.Log($"[Equip] {item.name} slot={slot} (eq on {gameObject.name})");
         OnEquippedChanged(slot, item);
         return true;
     }
@@ -104,7 +103,6 @@ public class EquipmentManager : MonoBehaviour
         if (equipped.ContainsKey(slot))
             equipped.Remove(slot);
 
-        Debug.Log($"[Equip] Unequip {cur.name} from slot={slot} (eq on {gameObject.name})");
         OnEquippedChanged(slot, null);
         return true;
     }

@@ -95,7 +95,6 @@ public class EquipmentVisualController : MonoBehaviour
 
     void OnEquippedChanged(EquipmentSlot slot, EquipmentItemData item)
     {
-        Debug.Log($"[EVC] OnEquippedChanged slot={slot}, item={(item ? item.name : "null")}");
         RestoreSlot(slot);
         ApplySlot(slot, item);
     }
