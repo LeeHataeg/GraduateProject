@@ -4971,7 +4971,7 @@ GameObject:
   - component: {fileID: 5203356856745034772}
   - component: {fileID: 5198215328478851377}
   - component: {fileID: 7067192955109185097}
-  - component: {fileID: 7733136136245977948}
+  - component: {fileID: 1134476588274085235}
   - component: {fileID: 7159849452461283802}
   - component: {fileID: 2664032727416585852}
   - component: {fileID: 630396947724340005}
@@ -5065,8 +5065,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &7733136136245977948
-CapsuleCollider2D:
+--- !u!61 &1134476588274085235
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5099,9 +5099,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.33}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0.0014601648, y: 0.47045898}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6736224, y: 0.9161682}
+  m_EdgeRadius: 0
 --- !u!114 &7159849452461283802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5164,14 +5173,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3234725091164da5289f1fbb7b8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTag: Player
-  reacquireInterval: 0.75
+  componentRoot: {fileID: 0}
   atkStartPoint: {fileID: 5729207715632277467}
+  sprite: {fileID: 0}
   yThreshold: 0.7
   stopDistance: 0.05
   attackCooldown: 0.8
   windup: 0.12
   recover: 0.18
+  ignoreYForRanged: 1
+  playerTag: Player
+  reacquireInterval: 0.75
   debugLog: 0
 --- !u!114 &5610247140427892611
 MonoBehaviour:

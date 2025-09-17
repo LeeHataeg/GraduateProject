@@ -18,8 +18,8 @@ MonoBehaviour:
   attackMode: 1
   statSheet: {fileID: 11400000, guid: 0bddae8d31057e14cb5fcb7092e6e395, type: 2}
   projectilePrefab: {fileID: 8055380291844230648, guid: 3534c50ee44e39a439ffcb61b23deee1, type: 3}
-  projectileSpeed: 3
-  projectileLife: 3
+  projectileSpeed: 13
+  projectileLife: 1
   projectileHitMask:
     serializedVersion: 2
     m_Bits: 64

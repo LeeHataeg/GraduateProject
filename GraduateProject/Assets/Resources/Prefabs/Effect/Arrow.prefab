@@ -175,3 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70610365ededb446aa16aafe5588374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFireOnEnable: 0
+  defaultSpeed: 100
+  defaultLifeTime: 1.5
+  angleOffsetDeg: 0
