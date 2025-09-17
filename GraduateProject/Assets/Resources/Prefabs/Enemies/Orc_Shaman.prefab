@@ -5173,17 +5173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3234725091164da5289f1fbb7b8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentRoot: {fileID: 0}
+  componentRoot: {fileID: 286785281927477632}
   atkStartPoint: {fileID: 5729207715632277467}
-  sprite: {fileID: 0}
-  yThreshold: 0.7
   stopDistance: 0.05
+  yThresholdMelee: 0.7
   attackCooldown: 0.8
-  windup: 0.12
-  recover: 0.18
-  ignoreYForRanged: 1
-  playerTag: Player
-  reacquireInterval: 0.75
+  windup: 0.08
+  recover: 0.12
+  useRangedYGate: 1
+  rangedYThreshold: 2
   debugLog: 0
 --- !u!114 &5610247140427892611
 MonoBehaviour:
