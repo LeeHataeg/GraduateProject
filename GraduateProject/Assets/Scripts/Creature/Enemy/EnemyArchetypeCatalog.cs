@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static Define;
 [CreateAssetMenu(menuName = "Enemy/Archetype Catalog")]
 public class EnemyArchetypeCatalog : ScriptableObject
 {

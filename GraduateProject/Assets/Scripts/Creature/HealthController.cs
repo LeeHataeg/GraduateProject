@@ -42,17 +42,21 @@ public class HealthController : MonoBehaviour, IHealth
         currentHp = Mathf.Min(currentHp + amount, stats.MaxHp);
     }
 
+    // HealthController.cs - TakeDamage 내부
     public void TakeDamage(float amount)
     {
         if (stats == null) return;
+
+        float before = currentHp;
         currentHp -= amount;
-        Debug.Log("데미지 : " + amount);
+        Debug.Log($"[HP] {name}: {before:0} -> {currentHp:0} (hit {amount:0})");
 
         if (currentHp <= 0f)
         {
-            Debug.Log("주금");
             currentHp = 0f;
+            Debug.Log($"[{gameObject.name} - DEAD] {name} 사망 처리 (OnDead Invoke)");
             OnDead?.Invoke();
         }
     }
+
 }

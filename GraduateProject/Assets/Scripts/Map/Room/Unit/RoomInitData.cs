@@ -1,16 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-
-
-public enum RoomType
-{
-    Normal,
-    Start,
-    Boss,
-    SemiBoss,
-    Shop,
-}
+using static Define;
 
 // Room Basic Info Save Class
 // ex) tiles, passage, position of element

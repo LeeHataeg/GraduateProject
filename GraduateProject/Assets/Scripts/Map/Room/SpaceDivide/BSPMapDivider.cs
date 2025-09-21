@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using static Define;
 public class BSPNode
 {
     #region ABOUT_NODE

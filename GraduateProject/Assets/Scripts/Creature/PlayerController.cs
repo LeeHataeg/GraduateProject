@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // TODO - UI 호출
-        // Example: GameOverManager.Instance.ShowGameOver();
+        var ui = GameManager.Instance != null ? GameManager.Instance.UIManager : null;
+        if (ui != null) ui.ShowDeathPopup();
+        else Debug.LogWarning("[PlayerController] UIManager가 없어 DeathPopup을 띄울 수 없습니다.");
     }
 }

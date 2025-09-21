@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using System.Threading.Tasks;
 using System;
 using Object = UnityEngine.Object;
-
+using static Define;
 public class PortalInitializer
 {
     [Header("Addressables Key for Portal Prefab")]

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static Define;
 [RequireComponent(typeof(Collider2D))]
 public class Portal : MonoBehaviour
 {

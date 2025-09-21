@@ -1,10 +1,26 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
 public abstract class Define
 {
     #region Enum
+    public enum RoomType
+    {
+        Normal,
+        Start,
+        Boss,
+        SemiBoss,
+        Shop,
+    }
+    public enum PortalDir
+    {
+        up,
+        down,
+        left,
+        right
+    }
     public enum BodyPart
     {
         Hair, Hat, Face,
@@ -55,7 +71,102 @@ public abstract class Define
     #region Struct
     #endregion
 
+
+
+
     #region Class
+    public class Edge : IComparable<Edge>
+    {
+        public MapNode Start { get; }
+        public MapNode End { get; }
+        public float Distance { get; }
+
+        public Edge(MapNode start, MapNode end)
+        {
+            Start = start;
+            End = end;
+            Distance = Vector2.Distance(start.SpaceArea.position, end.SpaceArea.position);
+        }
+
+        public int CompareTo(Edge other)
+        {
+            return this.Distance.CompareTo(other.Distance);
+        }
+    }
+
+    public class UnionFind
+    {
+        private int[] parent;
+        private int[] rank;
+
+        public UnionFind(int size)
+        {
+            parent = new int[size];
+            rank = new int[size];
+            for (int i = 0; i < size; i++)
+            {
+                parent[i] = i;
+                rank[i] = 0;
+            }
+        }
+
+        public int Find(int u)
+        {
+            if (parent[u] != u)
+            {
+                parent[u] = Find(parent[u]);
+            }
+            return parent[u];
+        }
+
+        public bool Union(int u, int v)
+        {
+            int parentU = Find(u);
+            int parentV = Find(v);
+
+            // If Same Link? Union? Tree?
+            if (parentU == parentV) return false;
+
+            if (rank[parentU] > rank[parentV])
+                parent[parentV] = parentU;
+            else if (rank[parentU] < rank[parentV])
+                parent[parentU] = parentV;
+            else
+            {
+                parent[parentV] = parentU;
+                rank[parentU]++;
+            }
+            return true;
+        }
+    }
+    public class PortalInfo
+    {
+        public PortalDir dir;
+        // 'id' means Connected Room's Id
+        public MapNode connected;
+
+        public PortalInfo(PortalDir dir, MapNode connected)
+        {
+            this.dir = dir;
+            this.connected = connected;
+        }
+    }
+
+    public class MapNode
+    {
+        // Modify Protection Level if we need
+        public RectInt SpaceArea;
+
+        // For Defending Dupicated Connections
+        public int Id;
+
+        public List<PortalInfo> Portals;
+
+        public MapNode()
+        {
+            Portals = new List<PortalInfo>();
+        }
+    }
     public class AttackContext
     {
         /// <summary>공격을 실행하는 주체(플레이어나 몬스터 등)</summary>

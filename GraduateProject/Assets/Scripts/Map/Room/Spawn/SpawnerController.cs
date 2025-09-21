@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
-
+using static Define;
 [DisallowMultipleComponent]
 public class SpawnerController : MonoBehaviour
 {

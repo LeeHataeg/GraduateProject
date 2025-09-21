@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerPositionController : MonoBehaviour
 {
-    public void MoveToStartRoom()
-    {
-        SetPosition(GameManager.Instance.RoomManager.StartSpawnPoint);
-    }
+    private Transform _target;
 
-    public void SetPosition(Vector2 spawnPosition)
+    public void SetTarget(Transform t) => _target = t;
+
+    public void SetPosition(Vector2 worldPos)
     {
-        Vector2 vec = spawnPosition;
-        vec.y = vec.y + 1;
-        GameManager.Instance.PlayerManager.Player.transform.position = vec;
+        if (_target != null)
+            _target.position = worldPos;
+        else
+            Debug.LogWarning("[PlayerPositionController] Target 미지정. SetTarget 먼저 호출하세요.");
     }
 }

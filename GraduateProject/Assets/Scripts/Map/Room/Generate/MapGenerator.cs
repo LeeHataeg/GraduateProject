@@ -1,67 +1,21 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.Rendering.VolumeComponent;
 
+// ★ 별칭을 'MapNode'로! (메서드 시그니처와 이름까지 일치시킴)
+using MapNode = Define.MapNode;
 
-public enum PortalDir
-{
-    up,
-    down,
-    left,
-    right
-}
-
-
-public class PortalInfo
-{
-    public PortalDir dir;
-    // 'id' means Connected Room's Id
-    public MapNode connected;
-
-    public PortalInfo(PortalDir dir, MapNode connected)
-    {
-        this.dir = dir;
-        this.connected = connected;
-    }
-}
-
-public class MapNode
-{
-    // Modify Protection Level if we need
-    public RectInt SpaceArea;
-
-    // For Defending Dupicated Connections
-    public int Id;
-
-    public List<PortalInfo> Portals;
-
-    public MapNode()
-    {
-        Portals = new List<PortalInfo>();
-    }
-}
-
-// TODO - This Class is managed by Other Code
-// To Create this Objects along level
 public class MapGenerator : MonoBehaviour
 {
-    #region Instance
     BSPMapDivider bsp;
     MSTPathConnector mst;
-    #endregion
 
-    [SerializeField] MapSO mapSO;
+    [SerializeField] private MapSO mapSO;
 
-    List<MapNode> leaves;
-
-    RoomGenerator roomGenerator;
-
-    List<MapNode> result;
-
-    PortalInitializer portalInit;
+    private List<MapNode> leaves;
+    private RoomGenerator roomGenerator;
+    private List<MapNode> result;
+    private PortalInitializer portalInit;
 
     private void Awake()
     {
@@ -71,16 +25,38 @@ public class MapGenerator : MonoBehaviour
         portalInit = new PortalInitializer();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-        // 0, 0 : Position of Top-Left corner
-        leaves = bsp.GetLeavesByBSP(mapSO);
+        // GameManager/RoomManager 보장
+        if (GameManager.Instance == null)
+        {
+            var gm = new GameObject("GameManager");
+            gm.AddComponent<GameManager>();
+        }
 
-        // A practically processed map
-        Dictionary<MapNode, List<MapNode>> adjacent = getAdjacentLeaf(leaves);
+        float t = 2f;
+        while (t > 0f && (GameManager.Instance == null || GameManager.Instance.RoomManager == null))
+        {
+            t -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (GameManager.Instance == null || GameManager.Instance.RoomManager == null)
+        {
+            Debug.LogError("[MapGenerator] GameManager/RoomManager not ready. Aborting.");
+            yield break;
+        }
+
+        if (mapSO == null) { Debug.LogError("[MapGenerator] mapSO is null."); yield break; }
+        if (roomGenerator == null) { Debug.LogError("[MapGenerator] RoomGenerator missing."); yield break; }
+
+        // 0,0 기준 분할
+        leaves = bsp.GetLeavesByBSP(mapSO);      // List<MapNode>
+
+        var adjacent = getAdjacentLeaf(leaves);  // Dictionary<MapNode, List<MapNode>>
         setId(leaves);
 
-        result = mst.GetMSTPath(adjacent);
+        result = mst.GetMSTPath(adjacent);       // List<MapNode>
 
         roomGenerator.CreateRooms(result, mapSO);
 
@@ -91,19 +67,16 @@ public class MapGenerator : MonoBehaviour
     private void setId(List<MapNode> leaves)
     {
         for (int i = 0; i < leaves.Count; i++)
-        {
             leaves[i].Id = i;
-        }
     }
 
-    // TODO - Change Return Type To Couple(Node, Node)
     private Dictionary<MapNode, List<MapNode>> getAdjacentLeaf(List<MapNode> leaves)
     {
-        Dictionary<MapNode, List<MapNode>> adjacent = new Dictionary<MapNode, List<MapNode>>();
+        var adjacent = new Dictionary<MapNode, List<MapNode>>();
 
         for (int i = 0; i < leaves.Count; i++)
         {
-            List<MapNode> values = new List<MapNode>();
+            var values = new List<MapNode>();
             for (int j = 0; j < leaves.Count; j++)
             {
                 if (i == j) continue;
@@ -119,10 +92,14 @@ public class MapGenerator : MonoBehaviour
 
     private bool isAdjacent(MapNode a, MapNode b)
     {
-        bool xAxis = (a.SpaceArea.yMax == b.SpaceArea.yMin || a.SpaceArea.yMin == b.SpaceArea.yMax) && (a.SpaceArea.xMin < b.SpaceArea.xMax && a.SpaceArea  .xMax > b.SpaceArea.xMin);
-        bool yAxis = (a.SpaceArea.xMax == b.SpaceArea.xMin || a.SpaceArea.xMin == b.SpaceArea.xMax) && (a.SpaceArea.yMin < b.SpaceArea.yMax && a.SpaceArea.yMax > b.SpaceArea.yMin);
+        bool xAxis =
+            (a.SpaceArea.yMax == b.SpaceArea.yMin || a.SpaceArea.yMin == b.SpaceArea.yMax) &&
+            (a.SpaceArea.xMin < b.SpaceArea.xMax && a.SpaceArea.xMax > b.SpaceArea.xMin);
+
+        bool yAxis =
+            (a.SpaceArea.xMax == b.SpaceArea.xMin || a.SpaceArea.xMin == b.SpaceArea.xMax) &&
+            (a.SpaceArea.yMin < b.SpaceArea.yMax && a.SpaceArea.yMax > b.SpaceArea.yMin);
 
         return xAxis || yAxis;
     }
-
 }

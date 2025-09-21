@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 키를 누를 때(OnPerformed)만 동작하도록 가정
         if (!isTurnedOnInven) return;
-        GameManager.Instance.UIManager.TurnOnorOffInven();
+        GameManager.Instance.UIManager?.TurnOnorOffInven();
     }
 
     private void FixedUpdate()

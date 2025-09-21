@@ -1,6 +1,7 @@
 // PortalConnection.cs
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class PortalConnection : MonoBehaviour
 {
