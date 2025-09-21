@@ -1,0 +1,7318 @@
+fileFormatVersion: 2
+guid: 566612b5dfccbde45bec75ab5e3065a2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4379403830327509781
+    second: Bertha_Phase_2-Sheet_0
+  - first:
+      213: -4249558883374317448
+    second: Bertha_Phase_2-Sheet_1
+  - first:
+      213: -6689428927713754278
+    second: Bertha_Phase_2-Sheet_2
+  - first:
+      213: 6149251250772424899
+    second: Bertha_Phase_2-Sheet_3
+  - first:
+      213: 8717130541084324119
+    second: Bertha_Phase_2-Sheet_4
+  - first:
+      213: -3644102893252763531
+    second: Bertha_Phase_2-Sheet_5
+  - first:
+      213: -5842429100363397666
+    second: Bertha_Phase_2-Sheet_6
+  - first:
+      213: 1343299457395446107
+    second: Bertha_Phase_2-Sheet_7
+  - first:
+      213: 5976929060306310139
+    second: Bertha_Phase_2-Sheet_8
+  - first:
+      213: 4758068917788679034
+    second: Bertha_Phase_2-Sheet_9
+  - first:
+      213: -4447079246528200430
+    second: Bertha_Phase_2-Sheet_10
+  - first:
+      213: 7715179017947779422
+    second: Bertha_Phase_2-Sheet_11
+  - first:
+      213: 2657792322120002591
+    second: Bertha_Phase_2-Sheet_12
+  - first:
+      213: 2806461202740730037
+    second: Bertha_Phase_2-Sheet_13
+  - first:
+      213: -5815771256046162380
+    second: Bertha_Phase_2-Sheet_14
+  - first:
+      213: 1973567243786620921
+    second: Bertha_Phase_2-Sheet_15
+  - first:
+      213: -5380277695207313931
+    second: Bertha_Phase_2-Sheet_16
+  - first:
+      213: 1616384344706401546
+    second: Bertha_Phase_2-Sheet_17
+  - first:
+      213: -84613639472050559
+    second: Bertha_Phase_2-Sheet_18
+  - first:
+      213: -3383058502309133495
+    second: Bertha_Phase_2-Sheet_19
+  - first:
+      213: 8472542941642124268
+    second: Bertha_Phase_2-Sheet_20
+  - first:
+      213: 6669877271096882740
+    second: Bertha_Phase_2-Sheet_21
+  - first:
+      213: 6925118964639205483
+    second: Bertha_Phase_2-Sheet_22
+  - first:
+      213: 5998023916929080512
+    second: Bertha_Phase_2-Sheet_23
+  - first:
+      213: -4927489665651813180
+    second: Bertha_Phase_2-Sheet_24
+  - first:
+      213: 5643378093702672669
+    second: Bertha_Phase_2-Sheet_25
+  - first:
+      213: -6983541097086748795
+    second: Bertha_Phase_2-Sheet_26
+  - first:
+      213: 2112686883438837800
+    second: Bertha_Phase_2-Sheet_27
+  - first:
+      213: 9114382575890535028
+    second: Bertha_Phase_2-Sheet_28
+  - first:
+      213: 4677425994380992994
+    second: Bertha_Phase_2-Sheet_29
+  - first:
+      213: -5242576089736592486
+    second: Bertha_Phase_2-Sheet_30
+  - first:
+      213: 9089161874767664717
+    second: Bertha_Phase_2-Sheet_31
+  - first:
+      213: -3878914811295239711
+    second: Bertha_Phase_2-Sheet_32
+  - first:
+      213: 7239868439697865177
+    second: Bertha_Phase_2-Sheet_33
+  - first:
+      213: -9044538467260216313
+    second: Bertha_Phase_2-Sheet_34
+  - first:
+      213: 5826514314048843112
+    second: Bertha_Phase_2-Sheet_35
+  - first:
+      213: 755026426492181021
+    second: Bertha_Phase_2-Sheet_36
+  - first:
+      213: -3799990591364550153
+    second: Bertha_Phase_2-Sheet_37
+  - first:
+      213: -6798463725578323983
+    second: Bertha_Phase_2-Sheet_38
+  - first:
+      213: 6446643900269341061
+    second: Bertha_Phase_2-Sheet_39
+  - first:
+      213: -5280546815437877307
+    second: Bertha_Phase_2-Sheet_40
+  - first:
+      213: -7047524448880027196
+    second: Bertha_Phase_2-Sheet_41
+  - first:
+      213: -501308067082330205
+    second: Bertha_Phase_2-Sheet_42
+  - first:
+      213: -1772239132220756968
+    second: Bertha_Phase_2-Sheet_43
+  - first:
+      213: -2876821452086943864
+    second: Bertha_Phase_2-Sheet_44
+  - first:
+      213: -2865072178353902350
+    second: Bertha_Phase_2-Sheet_45
+  - first:
+      213: 8283779354224977192
+    second: Bertha_Phase_2-Sheet_46
+  - first:
+      213: 4091319514015858172
+    second: Bertha_Phase_2-Sheet_47
+  - first:
+      213: 5540259566828420447
+    second: Bertha_Phase_2-Sheet_48
+  - first:
+      213: 3644692075655172486
+    second: Bertha_Phase_2-Sheet_49
+  - first:
+      213: -8939659256702801656
+    second: Bertha_Phase_2-Sheet_50
+  - first:
+      213: 8402990885726478299
+    second: Bertha_Phase_2-Sheet_51
+  - first:
+      213: 1854463239196470678
+    second: Bertha_Phase_2-Sheet_52
+  - first:
+      213: -1009240423803260853
+    second: Bertha_Phase_2-Sheet_53
+  - first:
+      213: -2895748073805361553
+    second: Bertha_Phase_2-Sheet_54
+  - first:
+      213: -8868054371360571345
+    second: Bertha_Phase_2-Sheet_55
+  - first:
+      213: 6678985495902753753
+    second: Bertha_Phase_2-Sheet_56
+  - first:
+      213: 3672271715515106351
+    second: Bertha_Phase_2-Sheet_57
+  - first:
+      213: 4090226236396860347
+    second: Bertha_Phase_2-Sheet_58
+  - first:
+      213: 2629807943818611769
+    second: Bertha_Phase_2-Sheet_59
+  - first:
+      213: 7464597170131665852
+    second: Bertha_Phase_2-Sheet_60
+  - first:
+      213: -570062441161551245
+    second: Bertha_Phase_2-Sheet_61
+  - first:
+      213: -8488845094961540625
+    second: Bertha_Phase_2-Sheet_62
+  - first:
+      213: 6686802967358409158
+    second: Bertha_Phase_2-Sheet_63
+  - first:
+      213: -1542489595850857990
+    second: Bertha_Phase_2-Sheet_64
+  - first:
+      213: -6747632549902791831
+    second: Bertha_Phase_2-Sheet_65
+  - first:
+      213: 8930049028438278822
+    second: Bertha_Phase_2-Sheet_66
+  - first:
+      213: 4817104947544951133
+    second: Bertha_Phase_2-Sheet_67
+  - first:
+      213: -2042269712918440178
+    second: Bertha_Phase_2-Sheet_68
+  - first:
+      213: -5809191372812723674
+    second: Bertha_Phase_2-Sheet_69
+  - first:
+      213: -4029254998933328530
+    second: Bertha_Phase_2-Sheet_70
+  - first:
+      213: 53147536736136296
+    second: Bertha_Phase_2-Sheet_71
+  - first:
+      213: -2204294643484651345
+    second: Bertha_Phase_2-Sheet_72
+  - first:
+      213: -7103226039802594171
+    second: Bertha_Phase_2-Sheet_73
+  - first:
+      213: 8083585003438744907
+    second: Bertha_Phase_2-Sheet_74
+  - first:
+      213: 8021632758554884656
+    second: Bertha_Phase_2-Sheet_75
+  - first:
+      213: 1669283220567816340
+    second: Bertha_Phase_2-Sheet_76
+  - first:
+      213: 8417750341473279130
+    second: Bertha_Phase_2-Sheet_77
+  - first:
+      213: -2084408193624454052
+    second: Bertha_Phase_2-Sheet_78
+  - first:
+      213: 6117888596243852781
+    second: Bertha_Phase_2-Sheet_79
+  - first:
+      213: -4202197975396630389
+    second: Bertha_Phase_2-Sheet_80
+  - first:
+      213: 8487112085766946905
+    second: Bertha_Phase_2-Sheet_81
+  - first:
+      213: 1697750769113209955
+    second: Bertha_Phase_2-Sheet_82
+  - first:
+      213: -6909655568573727449
+    second: Bertha_Phase_2-Sheet_83
+  - first:
+      213: 5158580583077679869
+    second: Bertha_Phase_2-Sheet_84
+  - first:
+      213: 5185353395568258664
+    second: Bertha_Phase_2-Sheet_85
+  - first:
+      213: 1072783091290046321
+    second: Bertha_Phase_2-Sheet_86
+  - first:
+      213: -4744254011921193102
+    second: Bertha_Phase_2-Sheet_87
+  - first:
+      213: -8033495387825437216
+    second: Bertha_Phase_2-Sheet_88
+  - first:
+      213: -6980059760354335269
+    second: Bertha_Phase_2-Sheet_89
+  - first:
+      213: -8325405913745805225
+    second: Bertha_Phase_2-Sheet_90
+  - first:
+      213: 6619052043884543741
+    second: Bertha_Phase_2-Sheet_91
+  - first:
+      213: 9126211217694289928
+    second: Bertha_Phase_2-Sheet_92
+  - first:
+      213: 6094652745423034172
+    second: Bertha_Phase_2-Sheet_93
+  - first:
+      213: -9190028065890402779
+    second: Bertha_Phase_2-Sheet_94
+  - first:
+      213: -2275644521086073483
+    second: Bertha_Phase_2-Sheet_95
+  - first:
+      213: 5441925414591883123
+    second: Bertha_Phase_2-Sheet_96
+  - first:
+      213: -9187992137387227749
+    second: Bertha_Phase_2-Sheet_97
+  - first:
+      213: 8386142873855134961
+    second: Bertha_Phase_2-Sheet_98
+  - first:
+      213: 6036598759020164639
+    second: Bertha_Phase_2-Sheet_99
+  - first:
+      213: 4866036886903379294
+    second: Bertha_Phase_2-Sheet_100
+  - first:
+      213: 8877146569639025599
+    second: Bertha_Phase_2-Sheet_101
+  - first:
+      213: 987909744505451772
+    second: Bertha_Phase_2-Sheet_102
+  - first:
+      213: 397135299659088547
+    second: Bertha_Phase_2-Sheet_103
+  - first:
+      213: 765288143180924401
+    second: Bertha_Phase_2-Sheet_104
+  - first:
+      213: -3863147721566596183
+    second: Bertha_Phase_2-Sheet_105
+  - first:
+      213: -9120771403514108358
+    second: Bertha_Phase_2-Sheet_106
+  - first:
+      213: -5613254031699619291
+    second: Bertha_Phase_2-Sheet_107
+  - first:
+      213: 2958192420106719457
+    second: Bertha_Phase_2-Sheet_108
+  - first:
+      213: -2367756668975379677
+    second: Bertha_Phase_2-Sheet_109
+  - first:
+      213: -7070704265207844932
+    second: Bertha_Phase_2-Sheet_110
+  - first:
+      213: -4870490670756531032
+    second: Bertha_Phase_2-Sheet_111
+  - first:
+      213: 5722452511729374071
+    second: Bertha_Phase_2-Sheet_112
+  - first:
+      213: 4152325940368422265
+    second: Bertha_Phase_2-Sheet_113
+  - first:
+      213: -8291001204228362366
+    second: Bertha_Phase_2-Sheet_114
+  - first:
+      213: -9074247269289930570
+    second: Bertha_Phase_2-Sheet_115
+  - first:
+      213: 7537379244281168065
+    second: Bertha_Phase_2-Sheet_116
+  - first:
+      213: -4783720518394473139
+    second: Bertha_Phase_2-Sheet_117
+  - first:
+      213: 8101197382560281702
+    second: Bertha_Phase_2-Sheet_118
+  - first:
+      213: -7158284695035491050
+    second: Bertha_Phase_2-Sheet_119
+  - first:
+      213: 1197998293704041835
+    second: Bertha_Phase_2-Sheet_120
+  - first:
+      213: 7955959549288338041
+    second: Bertha_Phase_2-Sheet_121
+  - first:
+      213: -4407683154924714524
+    second: Bertha_Phase_2-Sheet_122
+  - first:
+      213: -4740614317816124694
+    second: Bertha_Phase_2-Sheet_123
+  - first:
+      213: -2482621683919451232
+    second: Bertha_Phase_2-Sheet_124
+  - first:
+      213: -2213183201426357990
+    second: Bertha_Phase_2-Sheet_125
+  - first:
+      213: 5630348945219939490
+    second: Bertha_Phase_2-Sheet_126
+  - first:
+      213: -7775286992422461695
+    second: Bertha_Phase_2-Sheet_127
+  - first:
+      213: 4774260720527878187
+    second: Bertha_Phase_2-Sheet_128
+  - first:
+      213: 4114311593449575422
+    second: Bertha_Phase_2-Sheet_129
+  - first:
+      213: -5918677695833822459
+    second: Bertha_Phase_2-Sheet_130
+  - first:
+      213: -7491933737080138237
+    second: Bertha_Phase_2-Sheet_131
+  - first:
+      213: -1579066409260696738
+    second: Bertha_Phase_2-Sheet_132
+  - first:
+      213: 7285779378312739900
+    second: Bertha_Phase_2-Sheet_133
+  - first:
+      213: 6195794383866199144
+    second: Bertha_Phase_2-Sheet_134
+  - first:
+      213: 205510254222474784
+    second: Bertha_Phase_2-Sheet_135
+  - first:
+      213: -2765190224066079895
+    second: Bertha_Phase_2-Sheet_136
+  - first:
+      213: 7415344573744907727
+    second: Bertha_Phase_2-Sheet_137
+  - first:
+      213: -456321650125671370
+    second: Bertha_Phase_2-Sheet_138
+  - first:
+      213: 3283012568329739970
+    second: Bertha_Phase_2-Sheet_139
+  - first:
+      213: 8916345376961022445
+    second: Bertha_Phase_2-Sheet_140
+  - first:
+      213: 115240985708558791
+    second: Bertha_Phase_2-Sheet_141
+  - first:
+      213: -8068880248895978855
+    second: Bertha_Phase_2-Sheet_142
+  - first:
+      213: -1838279909093967845
+    second: Bertha_Phase_2-Sheet_143
+  - first:
+      213: -4411128887683075145
+    second: Bertha_Phase_2-Sheet_144
+  - first:
+      213: -1875983425305396057
+    second: Bertha_Phase_2-Sheet_145
+  - first:
+      213: -3598316823289997307
+    second: Bertha_Phase_2-Sheet_146
+  - first:
+      213: -8221298153834635315
+    second: Bertha_Phase_2-Sheet_147
+  - first:
+      213: -6661048722209389505
+    second: Bertha_Phase_2-Sheet_148
+  - first:
+      213: -8756747668618317385
+    second: Bertha_Phase_2-Sheet_149
+  - first:
+      213: -1432951159851242655
+    second: Bertha_Phase_2-Sheet_150
+  - first:
+      213: -8432972995757738449
+    second: Bertha_Phase_2-Sheet_151
+  - first:
+      213: -2118724094124090258
+    second: Bertha_Phase_2-Sheet_152
+  - first:
+      213: -233094119188580568
+    second: Bertha_Phase_2-Sheet_153
+  - first:
+      213: -7121588194030018064
+    second: Bertha_Phase_2-Sheet_154
+  - first:
+      213: 3137461032092937078
+    second: Bertha_Phase_2-Sheet_155
+  - first:
+      213: 3045405457666354377
+    second: Bertha_Phase_2-Sheet_156
+  - first:
+      213: 8241369984298945185
+    second: Bertha_Phase_2-Sheet_157
+  - first:
+      213: 7125737787215987090
+    second: Bertha_Phase_2-Sheet_158
+  - first:
+      213: 8525000198089378505
+    second: Bertha_Phase_2-Sheet_159
+  - first:
+      213: 6863754542333818565
+    second: Bertha_Phase_2-Sheet_160
+  - first:
+      213: 6895564778711791738
+    second: Bertha_Phase_2-Sheet_161
+  - first:
+      213: 4603712989860233368
+    second: Bertha_Phase_2-Sheet_162
+  - first:
+      213: 6995845462779028653
+    second: Bertha_Phase_2-Sheet_163
+  - first:
+      213: 2245546209216801044
+    second: Bertha_Phase_2-Sheet_164
+  - first:
+      213: 4634904640037412352
+    second: Bertha_Phase_2-Sheet_165
+  - first:
+      213: 7825507937328709799
+    second: Bertha_Phase_2-Sheet_166
+  - first:
+      213: -3042363321395764446
+    second: Bertha_Phase_2-Sheet_167
+  - first:
+      213: 3078130791978003992
+    second: Bertha_Phase_2-Sheet_168
+  - first:
+      213: -6083576978614818366
+    second: Bertha_Phase_2-Sheet_169
+  - first:
+      213: 4672178934160094962
+    second: Bertha_Phase_2-Sheet_170
+  - first:
+      213: 5326932309896297754
+    second: Bertha_Phase_2-Sheet_171
+  - first:
+      213: -6477773439998955582
+    second: Bertha_Phase_2-Sheet_172
+  - first:
+      213: 1330829911325049285
+    second: Bertha_Phase_2-Sheet_173
+  - first:
+      213: 796214055449001493
+    second: Bertha_Phase_2-Sheet_174
+  - first:
+      213: 697391408290143091
+    second: Bertha_Phase_2-Sheet_175
+  - first:
+      213: 6570702788424033042
+    second: Bertha_Phase_2-Sheet_176
+  - first:
+      213: -1667898570629036107
+    second: Bertha_Phase_2-Sheet_177
+  - first:
+      213: -873001477856670402
+    second: Bertha_Phase_2-Sheet_178
+  - first:
+      213: -3584992857092005484
+    second: Bertha_Phase_2-Sheet_179
+  - first:
+      213: -3447309252272453497
+    second: Bertha_Phase_2-Sheet_180
+  - first:
+      213: 6198627765027651009
+    second: Bertha_Phase_2-Sheet_181
+  - first:
+      213: -7704300064541620328
+    second: Bertha_Phase_2-Sheet_182
+  - first:
+      213: -8799565350995071070
+    second: Bertha_Phase_2-Sheet_183
+  - first:
+      213: -3911194533200773290
+    second: Bertha_Phase_2-Sheet_184
+  - first:
+      213: -7393522566932549057
+    second: Bertha_Phase_2-Sheet_185
+  - first:
+      213: -6509415545619515634
+    second: Bertha_Phase_2-Sheet_186
+  - first:
+      213: -7401806558559249808
+    second: Bertha_Phase_2-Sheet_187
+  - first:
+      213: 3638078734182814335
+    second: Bertha_Phase_2-Sheet_188
+  - first:
+      213: 3001221463658188472
+    second: Bertha_Phase_2-Sheet_189
+  - first:
+      213: 4921686788194159998
+    second: Bertha_Phase_2-Sheet_190
+  - first:
+      213: -2354166167192763691
+    second: Bertha_Phase_2-Sheet_191
+  - first:
+      213: -8321240239545381731
+    second: Bertha_Phase_2-Sheet_192
+  - first:
+      213: -4047203686211438588
+    second: Bertha_Phase_2-Sheet_193
+  - first:
+      213: 5635921022938974054
+    second: Bertha_Phase_2-Sheet_194
+  - first:
+      213: -3509478787105849708
+    second: Bertha_Phase_2-Sheet_195
+  - first:
+      213: 6144894390951438872
+    second: Bertha_Phase_2-Sheet_196
+  - first:
+      213: 7429909200581667696
+    second: Bertha_Phase_2-Sheet_197
+  - first:
+      213: -4554555294614365718
+    second: Bertha_Phase_2-Sheet_198
+  - first:
+      213: -402074647832723155
+    second: Bertha_Phase_2-Sheet_199
+  - first:
+      213: 2246401611572863628
+    second: Bertha_Phase_2-Sheet_200
+  - first:
+      213: 7265595561077336345
+    second: Bertha_Phase_2-Sheet_201
+  - first:
+      213: -1419903885017774048
+    second: Bertha_Phase_2-Sheet_202
+  - first:
+      213: 5600274187860367839
+    second: Bertha_Phase_2-Sheet_203
+  - first:
+      213: 3059000038507908380
+    second: Bertha_Phase_2-Sheet_204
+  - first:
+      213: 8951224482384634740
+    second: Bertha_Phase_2-Sheet_205
+  - first:
+      213: -2699881323377541140
+    second: Bertha_Phase_2-Sheet_206
+  - first:
+      213: -920645158915888122
+    second: Bertha_Phase_2-Sheet_207
+  - first:
+      213: 6602154786042640212
+    second: Bertha_Phase_2-Sheet_208
+  - first:
+      213: 3967568022140104971
+    second: Bertha_Phase_2-Sheet_209
+  - first:
+      213: -322681289020117118
+    second: Bertha_Phase_2-Sheet_210
+  - first:
+      213: -888578170387607267
+    second: Bertha_Phase_2-Sheet_211
+  - first:
+      213: 794871832969231125
+    second: Bertha_Phase_2-Sheet_212
+  - first:
+      213: 8293529917868499421
+    second: Bertha_Phase_2-Sheet_213
+  - first:
+      213: 4391064486603238785
+    second: Bertha_Phase_2-Sheet_214
+  - first:
+      213: -7631990503638170800
+    second: Bertha_Phase_2-Sheet_215
+  - first:
+      213: -4970388254552836256
+    second: Bertha_Phase_2-Sheet_216
+  - first:
+      213: 6428127558667451802
+    second: Bertha_Phase_2-Sheet_217
+  - first:
+      213: 5750318829794192415
+    second: Bertha_Phase_2-Sheet_218
+  - first:
+      213: 2382420702425416827
+    second: Bertha_Phase_2-Sheet_219
+  - first:
+      213: 8065628926500012826
+    second: Bertha_Phase_2-Sheet_220
+  - first:
+      213: 282485690652049597
+    second: Bertha_Phase_2-Sheet_221
+  - first:
+      213: 4346375112381325767
+    second: Bertha_Phase_2-Sheet_222
+  - first:
+      213: 1698419095567182517
+    second: Bertha_Phase_2-Sheet_223
+  - first:
+      213: -8239263515032421801
+    second: Bertha_Phase_2-Sheet_224
+  - first:
+      213: 1673553920640630006
+    second: Bertha_Phase_2-Sheet_225
+  - first:
+      213: -8016938534804287620
+    second: Bertha_Phase_2-Sheet_226
+  - first:
+      213: -4374638287692499835
+    second: Bertha_Phase_2-Sheet_227
+  - first:
+      213: 3599045851560455707
+    second: Bertha_Phase_2-Sheet_228
+  - first:
+      213: -8959438483751290314
+    second: Bertha_Phase_2-Sheet_229
+  - first:
+      213: -4283951500569582381
+    second: Bertha_Phase_2-Sheet_230
+  - first:
+      213: 8182981762193826638
+    second: Bertha_Phase_2-Sheet_231
+  - first:
+      213: -432075143287225332
+    second: Bertha_Phase_2-Sheet_232
+  - first:
+      213: -7742928385291333229
+    second: Bertha_Phase_2-Sheet_233
+  - first:
+      213: -5426215750779743784
+    second: Bertha_Phase_2-Sheet_234
+  - first:
+      213: -5536280757922894326
+    second: Bertha_Phase_2-Sheet_235
+  - first:
+      213: -325447596467488572
+    second: Bertha_Phase_2-Sheet_236
+  - first:
+      213: 7409758102283093227
+    second: Bertha_Phase_2-Sheet_237
+  - first:
+      213: 1206773067662804499
+    second: Bertha_Phase_2-Sheet_238
+  - first:
+      213: -7727915107579963816
+    second: Bertha_Phase_2-Sheet_239
+  - first:
+      213: 1180282530092518516
+    second: Bertha_Phase_2-Sheet_240
+  - first:
+      213: -5436554278928707373
+    second: Bertha_Phase_2-Sheet_241
+  - first:
+      213: -2469267940621897473
+    second: Bertha_Phase_2-Sheet_242
+  - first:
+      213: -5733402126205920216
+    second: Bertha_Phase_2-Sheet_243
+  - first:
+      213: -277001757646171742
+    second: Bertha_Phase_2-Sheet_244
+  - first:
+      213: -8365886980830663040
+    second: Bertha_Phase_2-Sheet_245
+  - first:
+      213: 540333382063724865
+    second: Bertha_Phase_2-Sheet_246
+  - first:
+      213: -2143830142084935668
+    second: Bertha_Phase_2-Sheet_247
+  - first:
+      213: -2809924655690403808
+    second: Bertha_Phase_2-Sheet_248
+  - first:
+      213: 7679566558800665846
+    second: Bertha_Phase_2-Sheet_249
+  - first:
+      213: 6512015610711136718
+    second: Bertha_Phase_2-Sheet_250
+  - first:
+      213: -1854765826744448968
+    second: Bertha_Phase_2-Sheet_251
+  - first:
+      213: -1089584953415695647
+    second: Bertha_Phase_2-Sheet_252
+  - first:
+      213: -379151577369200190
+    second: Bertha_Phase_2-Sheet_253
+  - first:
+      213: -7228789766182578149
+    second: Bertha_Phase_2-Sheet_254
+  - first:
+      213: 1756442224709497707
+    second: Bertha_Phase_2-Sheet_255
+  - first:
+      213: 3957506484400671139
+    second: Bertha_Phase_2-Sheet_256
+  - first:
+      213: -50101097851177457
+    second: Bertha_Phase_2-Sheet_257
+  - first:
+      213: -4605132644772910843
+    second: Bertha_Phase_2-Sheet_258
+  - first:
+      213: -3739720963245604948
+    second: Bertha_Phase_2-Sheet_259
+  - first:
+      213: 256456994223983072
+    second: Bertha_Phase_2-Sheet_260
+  - first:
+      213: 1232250858490867673
+    second: Bertha_Phase_2-Sheet_261
+  - first:
+      213: 1329099415184377856
+    second: Bertha_Phase_2-Sheet_262
+  - first:
+      213: 1833747531544636914
+    second: Bertha_Phase_2-Sheet_263
+  - first:
+      213: 6009416487448636790
+    second: Bertha_Phase_2-Sheet_264
+  - first:
+      213: 5414786778533510088
+    second: Bertha_Phase_2-Sheet_265
+  - first:
+      213: 4683387579956863956
+    second: Bertha_Phase_2-Sheet_266
+  - first:
+      213: -2950016318520220020
+    second: Bertha_Phase_2-Sheet_267
+  - first:
+      213: 6265679667230169232
+    second: Bertha_Phase_2-Sheet_268
+  - first:
+      213: -2299590853487363914
+    second: Bertha_Phase_2-Sheet_269
+  - first:
+      213: -8545494902781116394
+    second: Bertha_Phase_2-Sheet_270
+  - first:
+      213: 1405965288864191186
+    second: Bertha_Phase_2-Sheet_271
+  - first:
+      213: -6838259160224105627
+    second: Bertha_Phase_2-Sheet_272
+  - first:
+      213: 645616196906942429
+    second: Bertha_Phase_2-Sheet_273
+  - first:
+      213: 2151536775499667716
+    second: Bertha_Phase_2-Sheet_274
+  - first:
+      213: 655081472442913751
+    second: Bertha_Phase_2-Sheet_275
+  - first:
+      213: -7531709405903466482
+    second: Bertha_Phase_2-Sheet_276
+  - first:
+      213: -7651960849248208106
+    second: Bertha_Phase_2-Sheet_277
+  - first:
+      213: 3321412568500667329
+    second: Bertha_Phase_2-Sheet_278
+  - first:
+      213: -2305712283274697903
+    second: Bertha_Phase_2-Sheet_279
+  - first:
+      213: 5106962594513584528
+    second: Bertha_Phase_2-Sheet_280
+  - first:
+      213: -5443881785879489162
+    second: Bertha_Phase_2-Sheet_281
+  - first:
+      213: 6200476569685535804
+    second: Bertha_Phase_2-Sheet_282
+  - first:
+      213: -7109678402353556669
+    second: Bertha_Phase_2-Sheet_283
+  - first:
+      213: -8988668276746286359
+    second: Bertha_Phase_2-Sheet_284
+  - first:
+      213: -6635151602089595138
+    second: Bertha_Phase_2-Sheet_285
+  - first:
+      213: 4459773500133543321
+    second: Bertha_Phase_2-Sheet_286
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 2071
+        width: 81
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: becf75d5b6b3933c0800000000000000
+      internalID: -4379403830327509781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 2071
+        width: 80
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8704e50f5b88605c0800000000000000
+      internalID: -4249558883374317448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 2139
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a53466515df5a23a0800000000000000
+      internalID: -6689428927713754278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 2130
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8bae4be67865550800000000000000
+      internalID: 6149251250772424899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 2071
+        width: 88
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7113a02ba0879f870800000000000000
+      internalID: 8717130541084324119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 2071
+        width: 94
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57022b2d9bb8d6dc0800000000000000
+      internalID: -3644102893252763531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 2156
+        width: 55
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed54f6f00b58beea0800000000000000
+      internalID: -5842429100363397666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 2071
+        width: 68
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b51d7094dbb54a210800000000000000
+      internalID: 1343299457395446107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 2136
+        width: 11
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf3544f205152f250800000000000000
+      internalID: 5976929060306310139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2132
+        y: 2071
+        width: 76
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b1f9da87e080240800000000000000
+      internalID: 4758068917788679034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2379
+        y: 2071
+        width: 79
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211cca6acfcc842c0800000000000000
+      internalID: -4447079246528200430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2638
+        y: 2071
+        width: 81
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e511357a072d11b60800000000000000
+      internalID: 7715179017947779422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 2071
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c29be090062e420800000000000000
+      internalID: 2657792322120002591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2071
+        width: 74
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8d649389d82f620800000000000000
+      internalID: 2806461202740730037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 2071
+        width: 85
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ee07c1bda3a4fa0800000000000000
+      internalID: -5815771256046162380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 2895
+        y: 2071
+        width: 87
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff8f3aa3f4836b10800000000000000
+      internalID: 1973567243786620921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 3131
+        y: 2069
+        width: 128
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fde53031f96555b0800000000000000
+      internalID: -5380277695207313931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 2069
+        width: 141
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a054abe5ffc8e6610800000000000000
+      internalID: 1616384344706401546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 3646
+        y: 2069
+        width: 33
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e8d1cd75463def0800000000000000
+      internalID: -84613639472050559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 3661
+        y: 2069
+        width: 104
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943cf736736fc01d0800000000000000
+      internalID: -3383058502309133495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 3747
+        y: 2070
+        width: 34
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceb62dc7ae4849570800000000000000
+      internalID: 8472542941642124268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 3889
+        y: 2070
+        width: 29
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4367e2f1a0a209c50800000000000000
+      internalID: 6669877271096882740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 3906
+        y: 2069
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6804aae107fa1060800000000000000
+      internalID: 6925118964639205483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 3915
+        y: 2069
+        width: 107
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ccdada39f24d3350800000000000000
+      internalID: 5998023916929080512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 4014
+        y: 2077
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c45a6c814a0e9bb0800000000000000
+      internalID: -4927489665651813180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 4018
+        y: 2070
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d117e50f97e415e40800000000000000
+      internalID: 5643378093702672669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 4158
+        y: 2069
+        width: 135
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5877dc16f5a751f90800000000000000
+      internalID: -6983541097086748795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 4413
+        y: 2070
+        width: 137
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820cff8e685c15d10800000000000000
+      internalID: 2112686883438837800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 4685
+        y: 2070
+        width: 81
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47217f6a9aacc7e70800000000000000
+      internalID: 9114382575890535028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 4941
+        y: 2070
+        width: 79
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e1e14ae82e89e040800000000000000
+      internalID: 4677425994380992994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 3634
+        y: 2070
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a934b4f92d0ae37b0800000000000000
+      internalID: -5242576089736592486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 1914
+        width: 81
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46dc839190332e70800000000000000
+      internalID: 9089161874767664717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1998
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1febec7835b2ac0800000000000000
+      internalID: -3878914811295239711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 2012
+        width: 37
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d9b0c8ccfd297460800000000000000
+      internalID: 7239868439697865177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 1964
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c499d1f285b7280800000000000000
+      internalID: -9044538467260216313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 1914
+        width: 77
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d2c9ff5efebd050800000000000000
+      internalID: 5826514314048843112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 1994
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a591bd8846a7a00800000000000000
+      internalID: 755026426492181021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 1914
+        width: 72
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f1b3ebb0b8b34bc0800000000000000
+      internalID: -3799990591364550153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 1914
+        width: 69
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f7768ae24107a1a0800000000000000
+      internalID: -6798463725578323983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1914
+        width: 77
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5892ef4b874177950800000000000000
+      internalID: 6446643900269341061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 1914
+        width: 109
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cf410e16aab7b6b0800000000000000
+      internalID: -5280546815437877307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 1901
+        y: 1971
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c910a66ad9223e90800000000000000
+      internalID: -7047524448880027196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 1988
+        y: 1984
+        width: 53
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3af158218fefa09f0800000000000000
+      internalID: -501308067082330205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 2375
+        y: 1915
+        width: 131
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c6fe226edb767e0800000000000000
+      internalID: -1772239132220756968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1914
+        width: 78
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f5222a12a7318d0800000000000000
+      internalID: -2876821452086943864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 1914
+        width: 107
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc6c5998083d38d0800000000000000
+      internalID: -2865072178353902350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 1969
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8256b4eee65e5f270800000000000000
+      internalID: 8283779354224977192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 2118
+        y: 1914
+        width: 97
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfdf987db6947c830800000000000000
+      internalID: 4091319514015858172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 2225
+        y: 1951
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d7444f8b4f2ec40800000000000000
+      internalID: 5540259566828420447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 2626
+        y: 1914
+        width: 130
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6819b15e12c849230800000000000000
+      internalID: 3644692075655172486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 2887
+        y: 1914
+        width: 126
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80962373543ffe380800000000000000
+      internalID: -8939659256702801656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 1914
+        width: 117
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf529a80bb6d9470800000000000000
+      internalID: 8402990885726478299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 3364
+        y: 1914
+        width: 183
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d635d9d706cb910800000000000000
+      internalID: 1854463239196470678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 3607
+        y: 1914
+        width: 221
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b40fd368e257ef1f0800000000000000
+      internalID: -1009240423803260853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 3929
+        y: 1914
+        width: 74
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e4fcd187c30d7d0800000000000000
+      internalID: -2895748073805361553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 4185
+        y: 1914
+        width: 71
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f200432c8875ee480800000000000000
+      internalID: -8868054371360571345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 4331
+        y: 1914
+        width: 267
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d31547fbe580bc50800000000000000
+      internalID: 6678985495902753753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 4687
+        y: 1914
+        width: 83
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f240ef13ba786f230800000000000000
+      internalID: 3672271715515106351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 4942
+        y: 1914
+        width: 84
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3fa6f471763c830800000000000000
+      internalID: 4090226236396860347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 5197
+        y: 1914
+        width: 79
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c0fce3464fe7420800000000000000
+      internalID: 2629807943818611769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 5453
+        y: 1914
+        width: 79
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3851db393979760800000000000000
+      internalID: 7464597170131665852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 1941
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37216c6ea3bb618f0800000000000000
+      internalID: -570062441161551245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 2215
+        y: 1922
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe11089ac50913a80800000000000000
+      internalID: -8488845094961540625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 3862
+        y: 1914
+        width: 62
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c90d60eedb4ccc50800000000000000
+      internalID: 6686802967358409158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 4003
+        y: 1914
+        width: 82
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1e29192e9f79ae0800000000000000
+      internalID: -1542489595850857990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 4117
+        y: 1918
+        width: 57
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b4e2442f79b52a0800000000000000
+      internalID: -6747632549902791831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 4167
+        y: 1924
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2c2e62748edeb70800000000000000
+      internalID: 8930049028438278822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 4279
+        y: 1924
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59813c7d6bc9d240800000000000000
+      internalID: 4817104947544951133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 4282
+        y: 1918
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0715f9348668a3e0800000000000000
+      internalID: -2042269712918440178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 1914
+        width: 20
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62adb3f893b916fa0800000000000000
+      internalID: -5809191372812723674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 2445
+        y: 1914
+        width: 20
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6dac172de53518c0800000000000000
+      internalID: -4029254998933328530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 4156
+        y: 1914
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c28df2761dcb000800000000000000
+      internalID: 53147536736136296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 4279
+        y: 1914
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa01dca53b5c861e0800000000000000
+      internalID: -2204294643484651345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1750
+        width: 94
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58cf2422d854c6d90800000000000000
+      internalID: -7103226039802594171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1753
+        width: 95
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4524a16bb9ae2070800000000000000
+      internalID: 8083585003438744907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 1750
+        width: 91
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03afc445e70925f60800000000000000
+      internalID: 8021632758554884656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 1758
+        width: 93
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498f67fae3c7a2710800000000000000
+      internalID: 1669283220567816340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1758
+        width: 94
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c107f165bd1d470800000000000000
+      internalID: 8417750341473279130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 1751
+        width: 106
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5cc914aac1b213e0800000000000000
+      internalID: -2084408193624454052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 1744
+        width: 107
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded278aa34b17e450800000000000000
+      internalID: 6117888596243852781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 1858
+        y: 1757
+        width: 147
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b804e90a43bcea5c0800000000000000
+      internalID: -4202197975396630389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 1755
+        width: 160
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9504011b97748c570800000000000000
+      internalID: 8487112085766946905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 2372
+        y: 1754
+        width: 185
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c9326545f9f8710800000000000000
+      internalID: 1697750769113209955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 2642
+        y: 1753
+        width: 141
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72dfcda8ed8fb10a0800000000000000
+      internalID: -6909655568573727449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 2785
+        y: 1762
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2929f75b5f69740800000000000000
+      internalID: 5158580583077679869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 2870
+        y: 1753
+        width: 171
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86e26b9a07316f740800000000000000
+      internalID: 5185353395568258664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 3060
+        y: 1796
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f7365a98a43ee00800000000000000
+      internalID: 1072783091290046321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 3126
+        y: 1756
+        width: 174
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 277273fbc16092eb0800000000000000
+      internalID: -4744254011921193102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 3311
+        y: 1760
+        width: 18
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e50def028a438090800000000000000
+      internalID: -8033495387825437216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 3412
+        y: 1756
+        width: 169
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5e41141a8d12f90800000000000000
+      internalID: -6980059760354335269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 3668
+        y: 1756
+        width: 142
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750be3c6e67367c80800000000000000
+      internalID: -8325405913745805225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 3924
+        y: 1756
+        width: 121
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfebf81c3c89bdb50800000000000000
+      internalID: 6619052043884543741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 4180
+        y: 1756
+        width: 121
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8007adfefb0d6ae70800000000000000
+      internalID: 9126211217694289928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 4436
+        y: 1756
+        width: 121
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c379c40916e849450800000000000000
+      internalID: 6094652745423034172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 4697
+        y: 1756
+        width: 117
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e7bb83a26767080800000000000000
+      internalID: -9190028065890402779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 4931
+        y: 1756
+        width: 141
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 575c99d6d594b60e0800000000000000
+      internalID: -2275644521086073483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 5199
+        y: 1756
+        width: 128
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3776beef45a958b40800000000000000
+      internalID: 5441925414591883123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 5454
+        y: 1756
+        width: 129
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95c3f3c4d1bd7080800000000000000
+      internalID: -9187992137387227749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 5709
+        y: 1756
+        width: 130
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc0fc71380916470800000000000000
+      internalID: 8386142873855134961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 5965
+        y: 1756
+        width: 130
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16f5fa869e46c350800000000000000
+      internalID: 6036598759020164639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 2256
+        y: 1757
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55d2db64c2a78340800000000000000
+      internalID: 4866036886903379294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 2779
+        y: 1788
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbb596e95c5f13b70800000000000000
+      internalID: 8877146569639025599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 3048
+        y: 1767
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4f46fada2c5bd00800000000000000
+      internalID: 987909744505451772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 2778
+        y: 1777
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a2c2ff6378e28500800000000000000
+      internalID: 397135299659088547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 3036
+        y: 1780
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f50e15f289de9a00800000000000000
+      internalID: 765288143180924401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_105
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1756
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3d9257d97536ac0800000000000000
+      internalID: -3863147721566596183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 2360
+        y: 1757
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3620008bb28c6180800000000000000
+      internalID: -9120771403514108358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 2615
+        y: 1756
+        width: 19
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 522d38ec237b912b0800000000000000
+      internalID: -5613254031699619291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1757
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e0d6b9355c9d0920800000000000000
+      internalID: 2958192420106719457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 3059
+        y: 1759
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b092fbad9042fd0800000000000000
+      internalID: -2367756668975379677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 1748
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf6278deefcfdd90800000000000000
+      internalID: -7070704265207844932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 1750
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a4f3b73a8a886cb0800000000000000
+      internalID: -4870490670756531032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 1739
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773dba59d3c3a6f40800000000000000
+      internalID: 5722452511729374071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1602
+        width: 68
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 975bc4b517600a930800000000000000
+      internalID: 4152325940368422265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1602
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28fe1a5155270fc80800000000000000
+      internalID: -8291001204228362366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1604
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b05aed9f2cc11280800000000000000
+      internalID: -9074247269289930570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1602
+        width: 88
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c008c8ec762a9860800000000000000
+      internalID: 7537379244281168065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 1601
+        width: 104
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d459954a88fcc9db0800000000000000
+      internalID: -4783720518394473139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1447
+        width: 103
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66474d2f81c3d6070800000000000000
+      internalID: 8101197382560281702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1453
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61d4b4ffef9a8ac90800000000000000
+      internalID: -7158284695035491050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1447
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b65e0c1d91520a010800000000000000
+      internalID: 1197998293704041835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1447
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97255bebe0f396e60800000000000000
+      internalID: 7955959549288338041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 1452
+        width: 93
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e54d340683c4d2c0800000000000000
+      internalID: -4407683154924714524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1447
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea60711564f53eb0800000000000000
+      internalID: -4740614317816124694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1451
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab8c426bb4fb8dd0800000000000000
+      internalID: -2482621683919451232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 1451
+        width: 87
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11ce10ba913941e0800000000000000
+      internalID: -2213183201426357990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 1447
+        width: 128
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac6459e884032e40800000000000000
+      internalID: 5630348945219939490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1448
+        width: 83
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f91f5fca1a81490800000000000000
+      internalID: -7775286992422461695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1447
+        width: 92
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b282a2884d4914240800000000000000
+      internalID: 4774260720527878187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 1447
+        width: 88
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef355de7898f81930800000000000000
+      internalID: 4114311593449575422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 2126
+        y: 1447
+        width: 86
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50b2ccf7ef1acdda0800000000000000
+      internalID: -5918677695833822459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 2382
+        y: 1447
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306d298c5fd470890800000000000000
+      internalID: -7491933737080138237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 1450
+        width: 84
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5bb34f8777061ae0800000000000000
+      internalID: -1579066409260696738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 2625
+        y: 1447
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c723c2eb94c1560800000000000000
+      internalID: 7285779378312739900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_134
+      rect:
+        serializedVersion: 2
+        x: 2644
+        y: 1449
+        width: 81
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c74b75a22ebf550800000000000000
+      internalID: 6195794383866199144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_135
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 1447
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02e71a4cc7e1ad200800000000000000
+      internalID: 205510254222474784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_136
+      rect:
+        serializedVersion: 2
+        x: 2873
+        y: 1451
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 963982e442210a9d0800000000000000
+      internalID: -2765190224066079895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_137
+      rect:
+        serializedVersion: 2
+        x: 2897
+        y: 1448
+        width: 85
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc58f250a9898e660800000000000000
+      internalID: 7415344573744907727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_138
+      rect:
+        serializedVersion: 2
+        x: 3112
+        y: 1447
+        width: 125
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63470fc70e1daa9f0800000000000000
+      internalID: -456321650125671370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_139
+      rect:
+        serializedVersion: 2
+        x: 3410
+        y: 1447
+        width: 82
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cedf68698a9f8d20800000000000000
+      internalID: 3283012568329739970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_140
+      rect:
+        serializedVersion: 2
+        x: 3663
+        y: 1446
+        width: 85
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9457821e83dbb70800000000000000
+      internalID: 8916345376961022445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_141
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1290
+        width: 83
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c979b0e01b699100800000000000000
+      internalID: 115240985708558791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_142
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1290
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 992c3651a24950090800000000000000
+      internalID: -8068880248895978855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_143
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1290
+        width: 77
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1877bc892e1d76e0800000000000000
+      internalID: -1838279909093967845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_144
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 1290
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b3bf27d5a588c2c0800000000000000
+      internalID: -4411128887683075145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_145
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 1290
+        width: 93
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7acb62a930b27f5e0800000000000000
+      internalID: -1875983425305396057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_146
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1290
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508dc76f9e5301ec0800000000000000
+      internalID: -3598316823289997307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_147
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 1290
+        width: 99
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcf9c1c23e418ed80800000000000000
+      internalID: -8221298153834635315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_148
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1300
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f34c3299a733f83a0800000000000000
+      internalID: -6661048722209389505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_149
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 1294
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b176400468c97680800000000000000
+      internalID: -8756747668618317385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_150
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1290
+        width: 100
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16b259023822d1ce0800000000000000
+      internalID: -1432951159851242655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_151
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 1290
+        width: 94
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f26f56b7dbf08fa80800000000000000
+      internalID: -8432972995757738449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_152
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 1290
+        width: 83
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c1ca079a7c892e0800000000000000
+      internalID: -2118724094124090258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_153
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1290
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82738823222e3ccf0800000000000000
+      internalID: -233094119188580568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_154
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1134
+        width: 75
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f1a932f4490b2d90800000000000000
+      internalID: -7121588194030018064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_155
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1134
+        width: 76
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ba78a8f208a8b20800000000000000
+      internalID: 3137461032092937078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_156
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1134
+        width: 73
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc2d35e024734a20800000000000000
+      internalID: 3045405457666354377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_157
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1134
+        width: 84
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa84b8065a3f5270800000000000000
+      internalID: 8241369984298945185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_158
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1134
+        width: 73
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291469183c4b3e260800000000000000
+      internalID: 7125737787215987090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_159
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1134
+        width: 77
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca80454382ee4670800000000000000
+      internalID: 8525000198089378505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_160
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1134
+        width: 77
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6f749f364f04f50800000000000000
+      internalID: 6863754542333818565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_161
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1134
+        width: 77
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78bfc8c1a7f1bf50800000000000000
+      internalID: 6895564778711791738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_162
+      rect:
+        serializedVersion: 2
+        x: 2138
+        y: 1112
+        width: 77
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8908870a29ca3ef30800000000000000
+      internalID: 4603712989860233368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_163
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1156
+        width: 62
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da4e870026c361160800000000000000
+      internalID: 6995845462779028653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_164
+      rect:
+        serializedVersion: 2
+        x: 2650
+        y: 1164
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 419a71f3168c92f10800000000000000
+      internalID: 2245546209216801044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_165
+      rect:
+        serializedVersion: 2
+        x: 2904
+        y: 1168
+        width: 63
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e5d3d963d725040800000000000000
+      internalID: 4634904640037412352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_166
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 1169
+        width: 59
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a04a77f10ac99c60800000000000000
+      internalID: 7825507937328709799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_167
+      rect:
+        serializedVersion: 2
+        x: 3413
+        y: 1170
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2232786adaa57c5d0800000000000000
+      internalID: -3042363321395764446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_168
+      rect:
+        serializedVersion: 2
+        x: 3670
+        y: 1172
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e6a0c85a7b7ba20800000000000000
+      internalID: 3078130791978003992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_169
+      rect:
+        serializedVersion: 2
+        x: 3923
+        y: 1173
+        width: 67
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c96be958fac29ba0800000000000000
+      internalID: -6083576978614818366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_170
+      rect:
+        serializedVersion: 2
+        x: 4197
+        y: 1132
+        width: 88
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6fca18cf9e6d040800000000000000
+      internalID: 4672178934160094962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_171
+      rect:
+        serializedVersion: 2
+        x: 2388
+        y: 1133
+        width: 92
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1d7be966b01de940800000000000000
+      internalID: 5326932309896297754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_172
+      rect:
+        serializedVersion: 2
+        x: 2638
+        y: 1133
+        width: 45
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cfe66580635a16a0800000000000000
+      internalID: -6477773439998955582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_173
+      rect:
+        serializedVersion: 2
+        x: 2683
+        y: 1135
+        width: 10
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c18ef8d0ce087210800000000000000
+      internalID: 1330829911325049285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_174
+      rect:
+        serializedVersion: 2
+        x: 2696
+        y: 1141
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ef5340778bc0b00800000000000000
+      internalID: 796214055449001493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_175
+      rect:
+        serializedVersion: 2
+        x: 2702
+        y: 1136
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b1b887ac1ada900800000000000000
+      internalID: 697391408290143091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_176
+      rect:
+        serializedVersion: 2
+        x: 2897
+        y: 1146
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213eeac7f53df2b50800000000000000
+      internalID: 6570702788424033042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_177
+      rect:
+        serializedVersion: 2
+        x: 2904
+        y: 1145
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b74640461f6ad8e0800000000000000
+      internalID: -1667898570629036107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_178
+      rect:
+        serializedVersion: 2
+        x: 2941
+        y: 1135
+        width: 8
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3d46fff7c972e3f0800000000000000
+      internalID: -873001477856670402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_179
+      rect:
+        serializedVersion: 2
+        x: 2963
+        y: 1147
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 491e7b69dfb8f3ec0800000000000000
+      internalID: -3584992857092005484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_180
+      rect:
+        serializedVersion: 2
+        x: 2977
+        y: 1133
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788026bef72b820d0800000000000000
+      internalID: -3447309252272453497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_181
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 1133
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cdb85d4c13f50650800000000000000
+      internalID: 6198627765027651009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_182
+      rect:
+        serializedVersion: 2
+        x: 2894
+        y: 1138
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8974af119e3d41590800000000000000
+      internalID: -7704300064541620328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_183
+      rect:
+        serializedVersion: 2
+        x: 2900
+        y: 1133
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af6a147fe9a1e580800000000000000
+      internalID: -8799565350995071070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_184
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 975
+        width: 91
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f3e116b45a8b9c0800000000000000
+      internalID: -3911194533200773290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_185
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 975
+        width: 91
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32b62fd56ee46990800000000000000
+      internalID: -7393522566932549057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_186
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 975
+        width: 91
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0771f3bc09e9a5a0800000000000000
+      internalID: -6509415545619515634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_187
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 822
+        width: 165
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a5be4c620874990800000000000000
+      internalID: -7401806558559249808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_188
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 819
+        width: 166
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f729ed7555d0d7230800000000000000
+      internalID: 3638078734182814335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_189
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 819
+        width: 167
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8becf91250b76a920800000000000000
+      internalID: 3001221463658188472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_190
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 819
+        width: 168
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dcb02ce085d4440800000000000000
+      internalID: 4921686788194159998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_191
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 882
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d28b360852545fd0800000000000000
+      internalID: -2354166167192763691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_192
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 882
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c06370714058c80800000000000000
+      internalID: -8321240239545381731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_193
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 892
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40837bdb0b175d7c0800000000000000
+      internalID: -4047203686211438588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_194
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 893
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6670f6a5f40d63e40800000000000000
+      internalID: 5635921022938974054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_195
+      rect:
+        serializedVersion: 2
+        x: 1777
+        y: 895
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e79cb13a3db4fc0800000000000000
+      internalID: -3509478787105849708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_196
+      rect:
+        serializedVersion: 2
+        x: 2036
+        y: 895
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a63fa34ec074550800000000000000
+      internalID: 6144894390951438872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_197
+      rect:
+        serializedVersion: 2
+        x: 2295
+        y: 893
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ba3167d075c1760800000000000000
+      internalID: 7429909200581667696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_198
+      rect:
+        serializedVersion: 2
+        x: 2643
+        y: 819
+        width: 174
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae9d2a23718fac0c0800000000000000
+      internalID: -4554555294614365718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_199
+      rect:
+        serializedVersion: 2
+        x: 2890
+        y: 819
+        width: 182
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d218db2fc3b8b6af0800000000000000
+      internalID: -402074647832723155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_200
+      rect:
+        serializedVersion: 2
+        x: 2899
+        y: 891
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c826aa02d52dc2f10800000000000000
+      internalID: 2246401611572863628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_201
+      rect:
+        serializedVersion: 2
+        x: 3146
+        y: 819
+        width: 182
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9196ba30ba494d460800000000000000
+      internalID: 7265595561077336345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_202
+      rect:
+        serializedVersion: 2
+        x: 3412
+        y: 819
+        width: 172
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028815680fc7b4ce0800000000000000
+      internalID: -1419903885017774048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_203
+      rect:
+        serializedVersion: 2
+        x: 3659
+        y: 819
+        width: 181
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd9d43cc3bb28bd40800000000000000
+      internalID: 5600274187860367839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_204
+      rect:
+        serializedVersion: 2
+        x: 3918
+        y: 819
+        width: 178
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1d8b27e350c37a20800000000000000
+      internalID: 3059000038507908380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_205
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 819
+        width: 163
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473e059bd33293c70800000000000000
+      internalID: 8951224482384634740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_206
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 872
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefbe50bd38188ad0800000000000000
+      internalID: -2699881323377541140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_207
+      rect:
+        serializedVersion: 2
+        x: 2555
+        y: 886
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60ca2a21b163933f0800000000000000
+      internalID: -920645158915888122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_208
+      rect:
+        serializedVersion: 2
+        x: 4175
+        y: 819
+        width: 177
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45777365cc09f9b50800000000000000
+      internalID: 6602154786042640212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_209
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 819
+        width: 166
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b013cd55812af0730800000000000000
+      internalID: 3967568022140104971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_210
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 876
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f6a48c31b958bf0800000000000000
+      internalID: -322681289020117118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_211
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 879
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1151e6acd22ba3f0800000000000000
+      internalID: -888578170387607267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_212
+      rect:
+        serializedVersion: 2
+        x: 2139
+        y: 819
+        width: 166
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51b381e78b3f70b00800000000000000
+      internalID: 794871832969231125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_213
+      rect:
+        serializedVersion: 2
+        x: 2285
+        y: 878
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd160a0f489881370800000000000000
+      internalID: 8293529917868499421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_214
+      rect:
+        serializedVersion: 2
+        x: 2387
+        y: 819
+        width: 174
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18da1ddb2e130fc30800000000000000
+      internalID: 4391064486603238785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_215
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 819
+        width: 173
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0530e7da219b51690800000000000000
+      internalID: -7631990503638170800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_216
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 819
+        width: 169
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 067ba9b7732a50bb0800000000000000
+      internalID: -4970388254552836256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_217
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 666
+        width: 63
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9db549f4fb453950800000000000000
+      internalID: 6428127558667451802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_218
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 666
+        width: 57
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c6f1b528c3dcf40800000000000000
+      internalID: 5750318829794192415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_219
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 666
+        width: 63
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b748a99910f001120800000000000000
+      internalID: 2382420702425416827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_220
+      rect:
+        serializedVersion: 2
+        x: 1887
+        y: 666
+        width: 85
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a13062e66cedeef60800000000000000
+      internalID: 8065628926500012826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_221
+      rect:
+        serializedVersion: 2
+        x: 1957
+        y: 687
+        width: 62
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0427d2d379be300800000000000000
+      internalID: 282485690652049597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_222
+      rect:
+        serializedVersion: 2
+        x: 2155
+        y: 666
+        width: 64
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c1661af22d615c30800000000000000
+      internalID: 4346375112381325767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_223
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 735
+        width: 35
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5baa5073b2ff19710800000000000000
+      internalID: 1698419095567182517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_224
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 725
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75af7af8c7148ad80800000000000000
+      internalID: -8239263515032421801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_225
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 666
+        width: 78
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc3f388c68a93710800000000000000
+      internalID: 1673553920640630006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_226
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 666
+        width: 71
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f89dec0ec1eb090800000000000000
+      internalID: -8016938534804287620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_227
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 666
+        width: 141
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584f349b7a92a43c0800000000000000
+      internalID: -4374638287692499835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_228
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 666
+        width: 150
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1eaa98222162f130800000000000000
+      internalID: 3599045851560455707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_229
+      rect:
+        serializedVersion: 2
+        x: 2403
+        y: 666
+        width: 72
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a3a0d0b2ea9a380800000000000000
+      internalID: -8959438483751290314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_230
+      rect:
+        serializedVersion: 2
+        x: 2656
+        y: 666
+        width: 65
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d46c8dbec85c84c0800000000000000
+      internalID: -4283951500569582381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_231
+      rect:
+        serializedVersion: 2
+        x: 2911
+        y: 666
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e432013be8acf8170800000000000000
+      internalID: 8182981762193826638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_232
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 666
+        width: 89
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c04c61842f5f00af0800000000000000
+      internalID: -432075143287225332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_233
+      rect:
+        serializedVersion: 2
+        x: 3395
+        y: 666
+        width: 100
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 391db6948a79b8490800000000000000
+      internalID: -7742928385291333229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_234
+      rect:
+        serializedVersion: 2
+        x: 3662
+        y: 666
+        width: 84
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1d424268532b4b0800000000000000
+      internalID: -5426215750779743784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_235
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 510
+        width: 62
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0eec2fabfd2b23b0800000000000000
+      internalID: -5536280757922894326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_236
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 511
+        width: 124
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8fc83a227cb7bf0800000000000000
+      internalID: -325447596467488572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_237
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 510
+        width: 114
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be408264cbfb4d660800000000000000
+      internalID: 7409758102283093227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_238
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 510
+        width: 89
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316cc8616b15fb010800000000000000
+      internalID: 1206773067662804499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_239
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 510
+        width: 83
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8565256672ee0c490800000000000000
+      internalID: -7727915107579963816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_240
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 510
+        width: 85
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c83cc25b4316010800000000000000
+      internalID: 1180282530092518516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_241
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 510
+        width: 92
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0135affaa7d84b0800000000000000
+      internalID: -5436554278928707373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_242
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 354
+        width: 85
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0b8f704e56bbdd0800000000000000
+      internalID: -2469267940621897473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_243
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 354
+        width: 86
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82cd601a42dde60b0800000000000000
+      internalID: -5733402126205920216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_244
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 355
+        width: 82
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a157597e54e72cf0800000000000000
+      internalID: -277001757646171742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_245
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 354
+        width: 137
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ee5848d1666eb80800000000000000
+      internalID: -8365886980830663040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_246
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 354
+        width: 135
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14991322956af7700800000000000000
+      internalID: 540333382063724865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_247
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 354
+        width: 114
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c00904228d59f32e0800000000000000
+      internalID: -2143830142084935668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_248
+      rect:
+        serializedVersion: 2
+        x: 1466
+        y: 360
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02036fbc9642109d0800000000000000
+      internalID: -2809924655690403808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_249
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 353
+        width: 108
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc584ed81d439a60800000000000000
+      internalID: 7679566558800665846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_250
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 354
+        width: 104
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec95c3022b35f5a50800000000000000
+      internalID: 6512015610711136718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_251
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 384
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8380d5bbe4c8246e0800000000000000
+      internalID: -1854765826744448968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_252
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 354
+        width: 92
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e20c0bf14401e0f0800000000000000
+      internalID: -1089584953415695647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_253
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 198
+        width: 66
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c931e236abfcbaf0800000000000000
+      internalID: -379151577369200190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_254
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 198
+        width: 66
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1855b6e10e2eab90800000000000000
+      internalID: -7228789766182578149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_255
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 198
+        width: 66
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b637e48b5e2206810800000000000000
+      internalID: 1756442224709497707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_256
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 198
+        width: 87
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9c1070e23ebe630800000000000000
+      internalID: 3957506484400671139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_257
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 199
+        width: 76
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0639b321510e4ff0800000000000000
+      internalID: -50101097851177457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_258
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 196
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50961c432484710c0800000000000000
+      internalID: -4605132644772910843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_259
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 198
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caff9aa0997d91cc0800000000000000
+      internalID: -3739720963245604948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_260
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 199
+        width: 73
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e982e8074e1f8300800000000000000
+      internalID: 256456994223983072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_261
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 213
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dfa48680a5d91110800000000000000
+      internalID: 1232250858490867673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_262
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 207
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0088e3150e8e17210800000000000000
+      internalID: 1329099415184377856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_263
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 198
+        width: 80
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fda7711aa7c27910800000000000000
+      internalID: 1833747531544636914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_264
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 216
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d60c1c47cb56350800000000000000
+      internalID: 6009416487448636790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_265
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 209
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbb8f4e2ef252b40800000000000000
+      internalID: 5414786778533510088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_266
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 198
+        width: 99
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d32ec8b03cbef040800000000000000
+      internalID: 4683387579956863956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_267
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 198
+        width: 80
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c862ff4c9cf6f07d0800000000000000
+      internalID: -2950016318520220020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_268
+      rect:
+        serializedVersion: 2
+        x: 2399
+        y: 198
+        width: 78
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09854a9d57a24f650800000000000000
+      internalID: 6265679667230169232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_269
+      rect:
+        serializedVersion: 2
+        x: 2649
+        y: 198
+        width: 74
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8f5217d463610e0800000000000000
+      internalID: -2299590853487363914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_270
+      rect:
+        serializedVersion: 2
+        x: 2895
+        y: 198
+        width: 87
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61002d179ad486980800000000000000
+      internalID: -8545494902781116394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_271
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 205
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d297492bfdf28310800000000000000
+      internalID: 1405965288864191186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_272
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 198
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56bf7c0468f9911a0800000000000000
+      internalID: -6838259160224105627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_273
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 198
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf70eda280b5f800800000000000000
+      internalID: 645616196906942429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_274
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 43
+        width: 81
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 409d8d84c4bcbdd10800000000000000
+      internalID: 2151536775499667716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_275
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 43
+        width: 81
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d356efd021571900800000000000000
+      internalID: 655081472442913751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_276
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 43
+        width: 78
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e00d7a5333ef97790800000000000000
+      internalID: -7531709405903466482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_277
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 43
+        width: 80
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b3d514626cec590800000000000000
+      internalID: -7651960849248208106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_278
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 43
+        width: 77
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c3000a2227081e20800000000000000
+      internalID: 3321412568500667329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_279
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 43
+        width: 78
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 153282105e67000e0800000000000000
+      internalID: -2305712283274697903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_280
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 43
+        width: 76
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 091803ffb639fd640800000000000000
+      internalID: 5106962594513584528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_281
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 43
+        width: 76
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6751f61db527374b0800000000000000
+      internalID: -5443881785879489162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_282
+      rect:
+        serializedVersion: 2
+        x: 2127
+        y: 43
+        width: 76
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c2d3ea6948c0650800000000000000
+      internalID: 6200476569685535804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_283
+      rect:
+        serializedVersion: 2
+        x: 2383
+        y: 43
+        width: 76
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34313786929555d90800000000000000
+      internalID: -7109678402353556669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_284
+      rect:
+        serializedVersion: 2
+        x: 2639
+        y: 43
+        width: 76
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea07b883d5d14380800000000000000
+      internalID: -8988668276746286359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_285
+      rect:
+        serializedVersion: 2
+        x: 2895
+        y: 43
+        width: 76
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efee59eb5c43be3a0800000000000000
+      internalID: -6635151602089595138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha_Phase_2-Sheet_286
+      rect:
+        serializedVersion: 2
+        x: 3149
+        y: 43
+        width: 79
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d09269e5c44ed30800000000000000
+      internalID: 4459773500133543321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,6668 @@
+fileFormatVersion: 2
+guid: 6098d8bc945d4c040a3d808fcd345161
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4391380115535246398
+    second: Bertha-Sheet_0
+  - first:
+      213: -2506619077694253173
+    second: Bertha-Sheet_1
+  - first:
+      213: -2841950901928970183
+    second: Bertha-Sheet_2
+  - first:
+      213: 7969010418761669828
+    second: Bertha-Sheet_3
+  - first:
+      213: 2762199323868326052
+    second: Bertha-Sheet_4
+  - first:
+      213: 985847393694798217
+    second: Bertha-Sheet_5
+  - first:
+      213: 8145211323822720204
+    second: Bertha-Sheet_6
+  - first:
+      213: 2437784268469631855
+    second: Bertha-Sheet_7
+  - first:
+      213: 6170122401050034928
+    second: Bertha-Sheet_8
+  - first:
+      213: 7619978032832525077
+    second: Bertha-Sheet_9
+  - first:
+      213: -5971464251306952503
+    second: Bertha-Sheet_10
+  - first:
+      213: 8545006052838595282
+    second: Bertha-Sheet_11
+  - first:
+      213: -3183441556236388832
+    second: Bertha-Sheet_12
+  - first:
+      213: 7564936665408988896
+    second: Bertha-Sheet_13
+  - first:
+      213: -2521825536221334975
+    second: Bertha-Sheet_14
+  - first:
+      213: 1198856123136482548
+    second: Bertha-Sheet_15
+  - first:
+      213: -1507418344383046515
+    second: Bertha-Sheet_16
+  - first:
+      213: 1284377914594575550
+    second: Bertha-Sheet_17
+  - first:
+      213: -7516551063914793781
+    second: Bertha-Sheet_18
+  - first:
+      213: 5351998143999014553
+    second: Bertha-Sheet_19
+  - first:
+      213: 4214426533660453584
+    second: Bertha-Sheet_20
+  - first:
+      213: -4881112991911841503
+    second: Bertha-Sheet_21
+  - first:
+      213: -2856367103533885464
+    second: Bertha-Sheet_22
+  - first:
+      213: 6851118549930611636
+    second: Bertha-Sheet_23
+  - first:
+      213: 4004181645681425998
+    second: Bertha-Sheet_24
+  - first:
+      213: -8358552997363835173
+    second: Bertha-Sheet_25
+  - first:
+      213: 4676663598718424810
+    second: Bertha-Sheet_26
+  - first:
+      213: -2210398710099895465
+    second: Bertha-Sheet_27
+  - first:
+      213: -5467147365899532488
+    second: Bertha-Sheet_28
+  - first:
+      213: 4929354024441551634
+    second: Bertha-Sheet_29
+  - first:
+      213: 2312998774307229716
+    second: Bertha-Sheet_30
+  - first:
+      213: -2242416207476142338
+    second: Bertha-Sheet_31
+  - first:
+      213: 6829000023805594304
+    second: Bertha-Sheet_32
+  - first:
+      213: 2551218667015049082
+    second: Bertha-Sheet_33
+  - first:
+      213: -6937260779216201531
+    second: Bertha-Sheet_34
+  - first:
+      213: 6195631462304449323
+    second: Bertha-Sheet_35
+  - first:
+      213: -5467399470592593063
+    second: Bertha-Sheet_36
+  - first:
+      213: 2843036334323311383
+    second: Bertha-Sheet_37
+  - first:
+      213: 3446231067193372428
+    second: Bertha-Sheet_38
+  - first:
+      213: 6270718897867741753
+    second: Bertha-Sheet_39
+  - first:
+      213: -3754580702272471703
+    second: Bertha-Sheet_40
+  - first:
+      213: -6937563059022488765
+    second: Bertha-Sheet_41
+  - first:
+      213: 4656020443670582764
+    second: Bertha-Sheet_42
+  - first:
+      213: 1788911854600401374
+    second: Bertha-Sheet_43
+  - first:
+      213: 1496360551879669481
+    second: Bertha-Sheet_44
+  - first:
+      213: 3482963011039618510
+    second: Bertha-Sheet_45
+  - first:
+      213: -9045451374465038883
+    second: Bertha-Sheet_46
+  - first:
+      213: 5710241184377604001
+    second: Bertha-Sheet_47
+  - first:
+      213: 5271062421823611387
+    second: Bertha-Sheet_48
+  - first:
+      213: 41209625737289572
+    second: Bertha-Sheet_49
+  - first:
+      213: 1882820509976844071
+    second: Bertha-Sheet_50
+  - first:
+      213: -7191287968606518172
+    second: Bertha-Sheet_51
+  - first:
+      213: -6685793698605983965
+    second: Bertha-Sheet_52
+  - first:
+      213: -8581827596659573388
+    second: Bertha-Sheet_53
+  - first:
+      213: -1005896282122450583
+    second: Bertha-Sheet_54
+  - first:
+      213: 8103046912448571355
+    second: Bertha-Sheet_55
+  - first:
+      213: -3859693039004975019
+    second: Bertha-Sheet_56
+  - first:
+      213: -1627551810077600181
+    second: Bertha-Sheet_57
+  - first:
+      213: 6223656793615595772
+    second: Bertha-Sheet_58
+  - first:
+      213: -396139254788200191
+    second: Bertha-Sheet_59
+  - first:
+      213: -6896727506536274280
+    second: Bertha-Sheet_60
+  - first:
+      213: 1719473338288371665
+    second: Bertha-Sheet_61
+  - first:
+      213: -4965188289201039862
+    second: Bertha-Sheet_62
+  - first:
+      213: -1146335088308492962
+    second: Bertha-Sheet_63
+  - first:
+      213: 2025106769237809873
+    second: Bertha-Sheet_64
+  - first:
+      213: 7799874014982827310
+    second: Bertha-Sheet_65
+  - first:
+      213: -6247155154479701433
+    second: Bertha-Sheet_66
+  - first:
+      213: 2292127520067783523
+    second: Bertha-Sheet_67
+  - first:
+      213: -731622065966531641
+    second: Bertha-Sheet_68
+  - first:
+      213: 5025932190880110597
+    second: Bertha-Sheet_69
+  - first:
+      213: -4719394549951331400
+    second: Bertha-Sheet_70
+  - first:
+      213: 5946658748591576066
+    second: Bertha-Sheet_71
+  - first:
+      213: 3956249880460489120
+    second: Bertha-Sheet_72
+  - first:
+      213: -4860723542892672279
+    second: Bertha-Sheet_73
+  - first:
+      213: 359584144334792621
+    second: Bertha-Sheet_74
+  - first:
+      213: -7075947008648929961
+    second: Bertha-Sheet_75
+  - first:
+      213: -3468957488442678432
+    second: Bertha-Sheet_76
+  - first:
+      213: -595800664753455603
+    second: Bertha-Sheet_77
+  - first:
+      213: -3210455888128136135
+    second: Bertha-Sheet_78
+  - first:
+      213: -8580569669681118570
+    second: Bertha-Sheet_79
+  - first:
+      213: -5304207371878956853
+    second: Bertha-Sheet_80
+  - first:
+      213: -753624539208478571
+    second: Bertha-Sheet_81
+  - first:
+      213: 3299307808366900854
+    second: Bertha-Sheet_82
+  - first:
+      213: 8006600317730323060
+    second: Bertha-Sheet_83
+  - first:
+      213: 1824446395958784374
+    second: Bertha-Sheet_84
+  - first:
+      213: -5492998857595738550
+    second: Bertha-Sheet_85
+  - first:
+      213: -6061061162528650590
+    second: Bertha-Sheet_86
+  - first:
+      213: 3470793810574315052
+    second: Bertha-Sheet_87
+  - first:
+      213: -6704296770518387332
+    second: Bertha-Sheet_88
+  - first:
+      213: 7857433807768971871
+    second: Bertha-Sheet_89
+  - first:
+      213: 2611924903839003523
+    second: Bertha-Sheet_90
+  - first:
+      213: -2553998822695072797
+    second: Bertha-Sheet_91
+  - first:
+      213: -9168628375805776498
+    second: Bertha-Sheet_92
+  - first:
+      213: -8749703206531327899
+    second: Bertha-Sheet_93
+  - first:
+      213: -3140921274804115421
+    second: Bertha-Sheet_94
+  - first:
+      213: -3939173939157743128
+    second: Bertha-Sheet_95
+  - first:
+      213: -8990611244050717270
+    second: Bertha-Sheet_96
+  - first:
+      213: -6225485222625132507
+    second: Bertha-Sheet_97
+  - first:
+      213: -3267206576706525585
+    second: Bertha-Sheet_98
+  - first:
+      213: -4991454905991657068
+    second: Bertha-Sheet_99
+  - first:
+      213: 6405414986662117168
+    second: Bertha-Sheet_100
+  - first:
+      213: -8169181390579872567
+    second: Bertha-Sheet_101
+  - first:
+      213: -8961443790780756536
+    second: Bertha-Sheet_102
+  - first:
+      213: -7988602107606854
+    second: Bertha-Sheet_103
+  - first:
+      213: -2181111224516355983
+    second: Bertha-Sheet_104
+  - first:
+      213: 7882104890307372022
+    second: Bertha-Sheet_105
+  - first:
+      213: 2474414698403189709
+    second: Bertha-Sheet_106
+  - first:
+      213: -938151797617042319
+    second: Bertha-Sheet_107
+  - first:
+      213: -8593156723739663580
+    second: Bertha-Sheet_108
+  - first:
+      213: 8383441342508323446
+    second: Bertha-Sheet_109
+  - first:
+      213: 4655609730268556318
+    second: Bertha-Sheet_110
+  - first:
+      213: 7965849539599351068
+    second: Bertha-Sheet_111
+  - first:
+      213: -555588941892947992
+    second: Bertha-Sheet_112
+  - first:
+      213: 1718229553865160920
+    second: Bertha-Sheet_113
+  - first:
+      213: -8650560059022541176
+    second: Bertha-Sheet_114
+  - first:
+      213: 8372084809245581450
+    second: Bertha-Sheet_115
+  - first:
+      213: 3350715520971745330
+    second: Bertha-Sheet_116
+  - first:
+      213: 3763450015805614138
+    second: Bertha-Sheet_117
+  - first:
+      213: 4209492784816093935
+    second: Bertha-Sheet_118
+  - first:
+      213: -26317622089181298
+    second: Bertha-Sheet_119
+  - first:
+      213: -7603627551920712496
+    second: Bertha-Sheet_120
+  - first:
+      213: -4776631642859056538
+    second: Bertha-Sheet_121
+  - first:
+      213: -8465257598858292580
+    second: Bertha-Sheet_122
+  - first:
+      213: -5475968729240018122
+    second: Bertha-Sheet_123
+  - first:
+      213: 6996523837085917648
+    second: Bertha-Sheet_124
+  - first:
+      213: -965784902233186961
+    second: Bertha-Sheet_125
+  - first:
+      213: 3223322145305635672
+    second: Bertha-Sheet_126
+  - first:
+      213: -5512516302036889807
+    second: Bertha-Sheet_127
+  - first:
+      213: 7957876025225552817
+    second: Bertha-Sheet_128
+  - first:
+      213: 6256395125023629227
+    second: Bertha-Sheet_129
+  - first:
+      213: -4719398550329627450
+    second: Bertha-Sheet_130
+  - first:
+      213: -3315236166827511629
+    second: Bertha-Sheet_131
+  - first:
+      213: -2550743671806387453
+    second: Bertha-Sheet_132
+  - first:
+      213: 5586143888939382771
+    second: Bertha-Sheet_133
+  - first:
+      213: 4845566359319155943
+    second: Bertha-Sheet_134
+  - first:
+      213: 2248093022841288295
+    second: Bertha-Sheet_135
+  - first:
+      213: -3738425031403143940
+    second: Bertha-Sheet_136
+  - first:
+      213: -1445516273835405721
+    second: Bertha-Sheet_137
+  - first:
+      213: -3209269603770642844
+    second: Bertha-Sheet_138
+  - first:
+      213: -7835772501855830948
+    second: Bertha-Sheet_139
+  - first:
+      213: 9204284559521435025
+    second: Bertha-Sheet_140
+  - first:
+      213: 483261257272571031
+    second: Bertha-Sheet_141
+  - first:
+      213: -824939442494771686
+    second: Bertha-Sheet_142
+  - first:
+      213: 2576807318455838284
+    second: Bertha-Sheet_143
+  - first:
+      213: 6144044823210082276
+    second: Bertha-Sheet_144
+  - first:
+      213: 6953989123374022958
+    second: Bertha-Sheet_145
+  - first:
+      213: 3386963706159034333
+    second: Bertha-Sheet_146
+  - first:
+      213: 8185269299376782692
+    second: Bertha-Sheet_147
+  - first:
+      213: -1609552098649010651
+    second: Bertha-Sheet_148
+  - first:
+      213: 1816176655905766110
+    second: Bertha-Sheet_149
+  - first:
+      213: -7000208028989976356
+    second: Bertha-Sheet_150
+  - first:
+      213: -5796007386206953066
+    second: Bertha-Sheet_151
+  - first:
+      213: 965542175218507632
+    second: Bertha-Sheet_152
+  - first:
+      213: -8081405814958767009
+    second: Bertha-Sheet_153
+  - first:
+      213: -4841304382923054961
+    second: Bertha-Sheet_154
+  - first:
+      213: 3910542181527633517
+    second: Bertha-Sheet_155
+  - first:
+      213: 8883784962314508030
+    second: Bertha-Sheet_156
+  - first:
+      213: -3170730887296971711
+    second: Bertha-Sheet_157
+  - first:
+      213: -2935526587400743490
+    second: Bertha-Sheet_158
+  - first:
+      213: 8311963653171953012
+    second: Bertha-Sheet_159
+  - first:
+      213: 8065604907607892077
+    second: Bertha-Sheet_160
+  - first:
+      213: -3203433776812314404
+    second: Bertha-Sheet_161
+  - first:
+      213: -1431325676467761841
+    second: Bertha-Sheet_162
+  - first:
+      213: -2264659868785669611
+    second: Bertha-Sheet_163
+  - first:
+      213: 828385624801278002
+    second: Bertha-Sheet_164
+  - first:
+      213: -3811483476913345610
+    second: Bertha-Sheet_165
+  - first:
+      213: -786692233349143369
+    second: Bertha-Sheet_166
+  - first:
+      213: -7659245120110270702
+    second: Bertha-Sheet_167
+  - first:
+      213: -7412606989416506175
+    second: Bertha-Sheet_168
+  - first:
+      213: 7682491036638548111
+    second: Bertha-Sheet_169
+  - first:
+      213: -4183951701967095712
+    second: Bertha-Sheet_170
+  - first:
+      213: -8201264101348343448
+    second: Bertha-Sheet_171
+  - first:
+      213: -849696279410680896
+    second: Bertha-Sheet_172
+  - first:
+      213: -3544824531218297400
+    second: Bertha-Sheet_173
+  - first:
+      213: -4343021479408845460
+    second: Bertha-Sheet_174
+  - first:
+      213: -7554730077496131634
+    second: Bertha-Sheet_175
+  - first:
+      213: -3421690848415165412
+    second: Bertha-Sheet_176
+  - first:
+      213: 3066856445949635639
+    second: Bertha-Sheet_177
+  - first:
+      213: -5746796850261702867
+    second: Bertha-Sheet_178
+  - first:
+      213: -6231083588282929423
+    second: Bertha-Sheet_179
+  - first:
+      213: -1876581526433585245
+    second: Bertha-Sheet_180
+  - first:
+      213: -1363728116334992833
+    second: Bertha-Sheet_181
+  - first:
+      213: -2387482397132589206
+    second: Bertha-Sheet_182
+  - first:
+      213: -6659059630289940395
+    second: Bertha-Sheet_183
+  - first:
+      213: 6598148401404215219
+    second: Bertha-Sheet_184
+  - first:
+      213: -7239498584249392075
+    second: Bertha-Sheet_185
+  - first:
+      213: 8294969833981176666
+    second: Bertha-Sheet_186
+  - first:
+      213: -4089569825981508687
+    second: Bertha-Sheet_187
+  - first:
+      213: 5507533252964619251
+    second: Bertha-Sheet_188
+  - first:
+      213: -3836407695214701868
+    second: Bertha-Sheet_189
+  - first:
+      213: -5928319068212779436
+    second: Bertha-Sheet_190
+  - first:
+      213: -2793374255665163557
+    second: Bertha-Sheet_191
+  - first:
+      213: 5162627507629515907
+    second: Bertha-Sheet_192
+  - first:
+      213: -1740824862287349202
+    second: Bertha-Sheet_193
+  - first:
+      213: 8729708472218759508
+    second: Bertha-Sheet_194
+  - first:
+      213: -9110046051906783715
+    second: Bertha-Sheet_195
+  - first:
+      213: 5406648839628140715
+    second: Bertha-Sheet_196
+  - first:
+      213: -5600505350617000998
+    second: Bertha-Sheet_197
+  - first:
+      213: 3360756267317374481
+    second: Bertha-Sheet_198
+  - first:
+      213: 1320222036923269282
+    second: Bertha-Sheet_199
+  - first:
+      213: -8814056603073138483
+    second: Bertha-Sheet_200
+  - first:
+      213: -375765061175930098
+    second: Bertha-Sheet_201
+  - first:
+      213: 9146105876619695302
+    second: Bertha-Sheet_202
+  - first:
+      213: 9143733866645311962
+    second: Bertha-Sheet_203
+  - first:
+      213: -4192784081221014999
+    second: Bertha-Sheet_204
+  - first:
+      213: 9035950951643246342
+    second: Bertha-Sheet_205
+  - first:
+      213: -7338608592989628433
+    second: Bertha-Sheet_206
+  - first:
+      213: -2098580633740593829
+    second: Bertha-Sheet_207
+  - first:
+      213: -8371379332924634851
+    second: Bertha-Sheet_208
+  - first:
+      213: 1666547144013818617
+    second: Bertha-Sheet_209
+  - first:
+      213: -3414029675712303611
+    second: Bertha-Sheet_210
+  - first:
+      213: 9064803701260703527
+    second: Bertha-Sheet_211
+  - first:
+      213: 1174922961652637357
+    second: Bertha-Sheet_212
+  - first:
+      213: -8363946969473750601
+    second: Bertha-Sheet_213
+  - first:
+      213: -3533257362604565115
+    second: Bertha-Sheet_214
+  - first:
+      213: 773837697129127154
+    second: Bertha-Sheet_215
+  - first:
+      213: -9102217226272026709
+    second: Bertha-Sheet_216
+  - first:
+      213: -4818680918110117643
+    second: Bertha-Sheet_217
+  - first:
+      213: 5600559487593719439
+    second: Bertha-Sheet_218
+  - first:
+      213: -8071800825414566221
+    second: Bertha-Sheet_219
+  - first:
+      213: -865611068690419359
+    second: Bertha-Sheet_220
+  - first:
+      213: 2021299846510512555
+    second: Bertha-Sheet_221
+  - first:
+      213: -6873442818859646160
+    second: Bertha-Sheet_222
+  - first:
+      213: 3385661252018861030
+    second: Bertha-Sheet_223
+  - first:
+      213: -7986059812163680513
+    second: Bertha-Sheet_224
+  - first:
+      213: -5459836715349961518
+    second: Bertha-Sheet_225
+  - first:
+      213: 8755465887123151817
+    second: Bertha-Sheet_226
+  - first:
+      213: -7491412857523886050
+    second: Bertha-Sheet_227
+  - first:
+      213: -3928201529791256832
+    second: Bertha-Sheet_228
+  - first:
+      213: -9221904616514190673
+    second: Bertha-Sheet_229
+  - first:
+      213: 6345704928426667755
+    second: Bertha-Sheet_230
+  - first:
+      213: 4192776245030120324
+    second: Bertha-Sheet_231
+  - first:
+      213: -4557372583807149121
+    second: Bertha-Sheet_232
+  - first:
+      213: 1515051541711240545
+    second: Bertha-Sheet_233
+  - first:
+      213: 6398449404418371371
+    second: Bertha-Sheet_234
+  - first:
+      213: -5132595111125916323
+    second: Bertha-Sheet_235
+  - first:
+      213: 194517474017627897
+    second: Bertha-Sheet_236
+  - first:
+      213: 5110215228251164525
+    second: Bertha-Sheet_237
+  - first:
+      213: 9152135296090546220
+    second: Bertha-Sheet_238
+  - first:
+      213: -5802441511229635643
+    second: Bertha-Sheet_239
+  - first:
+      213: 1165862823532206193
+    second: Bertha-Sheet_240
+  - first:
+      213: -6679466327116057027
+    second: Bertha-Sheet_241
+  - first:
+      213: -1198713851349869265
+    second: Bertha-Sheet_242
+  - first:
+      213: -2373169715849556476
+    second: Bertha-Sheet_243
+  - first:
+      213: 6798409121038265257
+    second: Bertha-Sheet_244
+  - first:
+      213: 9098271370307268118
+    second: Bertha-Sheet_245
+  - first:
+      213: -3840444907956108347
+    second: Bertha-Sheet_246
+  - first:
+      213: 2559925060399693897
+    second: Bertha-Sheet_247
+  - first:
+      213: -8197202889658561237
+    second: Bertha-Sheet_248
+  - first:
+      213: 2493244360555475246
+    second: Bertha-Sheet_249
+  - first:
+      213: 8696045555443392532
+    second: Bertha-Sheet_250
+  - first:
+      213: 7776626181574564420
+    second: Bertha-Sheet_251
+  - first:
+      213: -7766627445325532589
+    second: Bertha-Sheet_252
+  - first:
+      213: 4112725518698664350
+    second: Bertha-Sheet_253
+  - first:
+      213: 2543887839992188761
+    second: Bertha-Sheet_254
+  - first:
+      213: 8741485028782325854
+    second: Bertha-Sheet_255
+  - first:
+      213: 9190555701221179878
+    second: Bertha-Sheet_256
+  - first:
+      213: 3396563644858488297
+    second: Bertha-Sheet_257
+  - first:
+      213: -5536587198429328099
+    second: Bertha-Sheet_258
+  - first:
+      213: 2030841948665132894
+    second: Bertha-Sheet_259
+  - first:
+      213: -9108029931581950766
+    second: Bertha-Sheet_260
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bertha-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1285
+        width: 86
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e343134d2f051fc30800000000000000
+      internalID: 4391380115535246398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1285
+        width: 86
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8711deba33b63dd0800000000000000
+      internalID: -2506619077694253173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1285
+        width: 86
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9383c6546bc5f88d0800000000000000
+      internalID: -2841950901928970183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1182
+        width: 101
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc1da511cc979e60800000000000000
+      internalID: 7969010418761669828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 1153
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a8eef976ad455620800000000000000
+      internalID: 2762199323868326052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1153
+        width: 148
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9815ce73bfe6ead00800000000000000
+      internalID: 985847393694798217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 1207
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc441f83b8a990170800000000000000
+      internalID: 8145211323822720204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1152
+        width: 142
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6bfa2150efb4d120800000000000000
+      internalID: 2437784268469631855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1207
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2844f02ada0a550800000000000000
+      internalID: 6170122401050034928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1207
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 513334306a99fb960800000000000000
+      internalID: 7619978032832525077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 1228
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c8b7efc6e8112da0800000000000000
+      internalID: -5971464251306952503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1152
+        width: 114
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dad10f4bb5f59670800000000000000
+      internalID: 8545006052838595282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 1207
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 026305d65c422d3d0800000000000000
+      internalID: -3183441556236388832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 1228
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6e70201dd0cf860800000000000000
+      internalID: 7564936665408988896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1217
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142b408390da00dd0800000000000000
+      internalID: -2521825536221334975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 1152
+        width: 105
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fc1a5cca4133a010800000000000000
+      internalID: 1198856123136482548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 1217
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c142f9003941be0800000000000000
+      internalID: -1507418344383046515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1577
+        y: 1152
+        width: 142
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb444cc88e603d110800000000000000
+      internalID: 1284377914594575550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 1202
+        width: 14
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4364bb1a8dfa790800000000000000
+      internalID: -7516551063914793781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1832
+        y: 1152
+        width: 129
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9967c93b4fd164a40800000000000000
+      internalID: 5351998143999014553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1994
+        y: 1181
+        width: 17
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0daefc67a96ac7a30800000000000000
+      internalID: 4214426533660453584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 1152
+        width: 172
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 121fc88589dc24cb0800000000000000
+      internalID: -4881112991911841503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1189
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e750c5c0452c58d0800000000000000
+      internalID: -2856367103533885464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 1189
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b314bab500141f50800000000000000
+      internalID: 6851118549930611636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 1214
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4efafeddf5b19730800000000000000
+      internalID: 4004181645681425998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 1214
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bde1adb9554700c80800000000000000
+      internalID: -8358552997363835173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 3135
+        y: 1156
+        width: 94
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae69c97d3c8d6e040800000000000000
+      internalID: 4676663598718424810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 3403
+        y: 1156
+        width: 83
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b938895161351e0800000000000000
+      internalID: -2210398710099895465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 3658
+        y: 1156
+        width: 84
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83788d8df6ac024b0800000000000000
+      internalID: -5467147365899532488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 3913
+        y: 1156
+        width: 85
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b1bfe4e55986440800000000000000
+      internalID: 4929354024441551634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1203
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4101f74612c691020800000000000000
+      internalID: 2312998774307229716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1153
+        width: 51
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe4ec2175651e0e0800000000000000
+      internalID: -2242416207476142338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 1203
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca011e075b75ce50800000000000000
+      internalID: 6829000023805594304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1189
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f07c75cdfb76320800000000000000
+      internalID: 2551218667015049082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 1189
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c891949316e9bf90800000000000000
+      internalID: -6937260779216201531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 1202
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2304e53dfd4bf550800000000000000
+      internalID: 6195631462304449323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 2362
+        y: 1152
+        width: 105
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9537b262625ef14b0800000000000000
+      internalID: -5467399470592593063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 2618
+        y: 1152
+        width: 105
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 713aed6ab7e747720800000000000000
+      internalID: 2843036334323311383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 2871
+        y: 1156
+        width: 105
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0fe9fd85e873df20800000000000000
+      internalID: 3446231067193372428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 1161
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a5cb92d91160750800000000000000
+      internalID: 6270718897867741753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 1477
+        y: 1161
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d33807ebc05ebc0800000000000000
+      internalID: -3754580702272471703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 1175
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34b97149723d8bf90800000000000000
+      internalID: -6937563059022488765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 1721
+        y: 1153
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce511f3cce18d9040800000000000000
+      internalID: 4656020443670582764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 1190
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed131fb8add73d810800000000000000
+      internalID: 1788911854600401374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 1153
+        width: 13
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e6f1be6ef324c410800000000000000
+      internalID: 1496360551879669481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 1177
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec567dea768f55030800000000000000
+      internalID: 3482963011039618510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 1153
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd541f756e9187280800000000000000
+      internalID: -9045451374465038883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 1169
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a702a06a1ade3f40800000000000000
+      internalID: 5710241184377604001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1030
+        width: 71
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf1e4b96853962940800000000000000
+      internalID: 5271062421823611387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 1030
+        width: 73
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46fd56fafe7629000800000000000000
+      internalID: 41209625737289572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1030
+        width: 68
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7275df8374f112a10800000000000000
+      internalID: 1882820509976844071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1028
+        width: 73
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4640ba191b9633c90800000000000000
+      internalID: -7191287968606518172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 1028
+        width: 72
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3279b01dd0a4733a0800000000000000
+      internalID: -6685793698605983965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 1035
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47d3671f44937e880800000000000000
+      internalID: -8581827596659573388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 1028
+        width: 72
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969843f29a65a02f0800000000000000
+      internalID: -1005896282122450583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 1028
+        width: 75
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7a2de2c3ec37070800000000000000
+      internalID: 8103046912448571355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 1861
+        y: 1028
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5508f0c61ad9f6ac0800000000000000
+      internalID: -3859693039004975019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 2117
+        y: 1028
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b46d7ca7046c969e0800000000000000
+      internalID: -1627551810077600181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 2378
+        y: 1028
+        width: 71
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf8776321eede5650800000000000000
+      internalID: 6223656793615595772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 2634
+        y: 1028
+        width: 71
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 109e2c45271a08af0800000000000000
+      internalID: -396139254788200191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 2897
+        y: 1030
+        width: 68
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8966d3c8fd6e940a0800000000000000
+      internalID: -6896727506536274280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 3140
+        y: 1030
+        width: 83
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7fe6914ebccd710800000000000000
+      internalID: 1719473338288371665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 3389
+        y: 1030
+        width: 88
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a061e33ce8b181bb0800000000000000
+      internalID: -4965188289201039862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 3657
+        y: 1030
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e556ecb8f466710f0800000000000000
+      internalID: -1146335088308492962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 3910
+        y: 1030
+        width: 79
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1da98ac80ef9a1c10800000000000000
+      internalID: 2025106769237809873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 4167
+        y: 1030
+        width: 87
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2de9d35718be3c60800000000000000
+      internalID: 7799874014982827310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 4416
+        y: 1030
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 742ac706c75ad49a0800000000000000
+      internalID: -6247155154479701433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 4421
+        y: 1030
+        width: 90
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b8985d5d54fcf10800000000000000
+      internalID: 2292127520067783523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 4502
+        y: 1030
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb3a387b91c8d5f0800000000000000
+      internalID: -731622065966531641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 4666
+        y: 1030
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5081c96f2b2bfb540800000000000000
+      internalID: 5025932190880110597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 4679
+        y: 1030
+        width: 89
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b38c3749a7518eb0800000000000000
+      internalID: -4719394549951331400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 4758
+        y: 1030
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204154600a6c68250800000000000000
+      internalID: 5946658748591576066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 4921
+        y: 1030
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a1778f1e4c67e630800000000000000
+      internalID: 3956249880460489120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 4928
+        y: 1035
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea0182e0bd3b8cb0800000000000000
+      internalID: -4860723542892672279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 4943
+        y: 1030
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da720f5cfdf7df400800000000000000
+      internalID: 359584144334792621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 5020
+        y: 1030
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d1ef38faf2dcd90800000000000000
+      internalID: -7075947008648929961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 5024
+        y: 1035
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06361782b89cbdfc0800000000000000
+      internalID: -3468957488442678432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 5176
+        y: 1030
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ebd6cb37a4bb7f0800000000000000
+      internalID: -595800664753455603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 5183
+        y: 1037
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93caf05216b2273d0800000000000000
+      internalID: -3210455888128136135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 5200
+        y: 1030
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6928a24e851bbe880800000000000000
+      internalID: -8580569669681118570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 5282
+        y: 1030
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc085288f7ba366b0800000000000000
+      internalID: -5304207371878956853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 1037
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 590167679769a85f0800000000000000
+      internalID: -753624539208478571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 5432
+        y: 1030
+        width: 124
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676b162a8fe79cd20800000000000000
+      internalID: 3299307808366900854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 3680
+        y: 900
+        width: 151
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a78d471982d1f60800000000000000
+      internalID: 8006600317730323060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 3935
+        y: 899
+        width: 159
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6717ddea45cb15910800000000000000
+      internalID: 1824446395958784374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 4427
+        y: 895
+        width: 182
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46216564a2f4c3b0800000000000000
+      internalID: -5492998857595738550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 4599
+        y: 993
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa409d4cf8c2eba0800000000000000
+      internalID: -6061061162528650590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 4681
+        y: 893
+        width: 184
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2e08e7e49cba2030800000000000000
+      internalID: 3470793810574315052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 5098
+        y: 974
+        width: 20
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75f37cab9d85f2a0800000000000000
+      internalID: -6704296770518387332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 903
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ae63eea663b0d60800000000000000
+      internalID: 7857433807768971871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 902
+        width: 74
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383f1598cdb6f3420800000000000000
+      internalID: 2611924903839003523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 902
+        width: 70
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb8e783a9f5e8cd0800000000000000
+      internalID: -2553998822695072797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 902
+        width: 80
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8da786d11d72c080800000000000000
+      internalID: -9168628375805776498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 901
+        width: 132
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5689a94aa4fc29680800000000000000
+      internalID: -8749703206531327899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 901
+        width: 160
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32865dbedb43964d0800000000000000
+      internalID: -3140921274804115421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 947
+        width: 40
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e9c6084c2e3559c0800000000000000
+      internalID: -3939173939157743128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 901
+        width: 163
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa569b435beea3380800000000000000
+      internalID: -8990611244050717270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 2047
+        y: 973
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5204cfe8c22aa99a0800000000000000
+      internalID: -6225485222625132507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 2102
+        y: 901
+        width: 123
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f66669bcdec88a2d0800000000000000
+      internalID: -3267206576706525585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 2913
+        y: 906
+        width: 74
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4998cf7753acabab0800000000000000
+      internalID: -4991454905991657068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 3179
+        y: 907
+        width: 63
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f75f63efa94e850800000000000000
+      internalID: 6405414986662117168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 3436
+        y: 907
+        width: 65
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc41c4becc31ae80800000000000000
+      internalID: -8169181390579872567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 4173
+        y: 896
+        width: 180
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd02ef1a5e82a380800000000000000
+      internalID: -8961443790780756536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 4841
+        y: 972
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8cf11a86e93eff0800000000000000
+      internalID: -7988602107606854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 4946
+        y: 892
+        width: 174
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178d517b5e22bb1e0800000000000000
+      internalID: -2181111224516355983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_105
+      rect:
+        serializedVersion: 2
+        x: 5357
+        y: 975
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f3e325f2acd26d60800000000000000
+      internalID: 7882104890307372022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 5616
+        y: 975
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc3d355ee03e65220800000000000000
+      internalID: 2474414698403189709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 5875
+        y: 973
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c54ad19e30bf2f0800000000000000
+      internalID: -938151797617042319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 6222
+        y: 903
+        width: 80
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423ec3efc79feb880800000000000000
+      internalID: -8593156723739663580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 903
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 672588fcb77f75470800000000000000
+      internalID: 8383441342508323446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 6736
+        y: 902
+        width: 112
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c6289126c0c9040800000000000000
+      internalID: 4655609730268556318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 6992
+        y: 902
+        width: 110
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1d370e83f16c8e60800000000000000
+      internalID: 7965849539599351068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 901
+        width: 92
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8efe55d0dc62a48f0800000000000000
+      internalID: -555588941892947992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 900
+        width: 168
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d8f5b8fca068d710800000000000000
+      internalID: 1718229553865160920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 2648
+        y: 905
+        width: 82
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e77cd757903f780800000000000000
+      internalID: -8650560059022541176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 6135
+        y: 966
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80e68cd6ce9f2470800000000000000
+      internalID: 8372084809245581450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 6394
+        y: 955
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238a8e27302208e20800000000000000
+      internalID: 3350715520971745330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 5207
+        y: 892
+        width: 169
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38280a89d57a3430800000000000000
+      internalID: 3763450015805614138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 5605
+        y: 959
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea788b826f1b6a30800000000000000
+      internalID: 4209492784816093935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 5719
+        y: 902
+        width: 105
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e879a0c134082aff0800000000000000
+      internalID: -26317622089181298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 5865
+        y: 951
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4946bf60d7a7690800000000000000
+      internalID: -7603627551920712496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 5967
+        y: 903
+        width: 85
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662de7814def5bdb0800000000000000
+      internalID: -4776631642859056538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 6125
+        y: 954
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9210ef801d558a80800000000000000
+      internalID: -8465257598858292580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 6589
+        y: 902
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633608424737104b0800000000000000
+      internalID: -5475968729240018122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 5459
+        y: 901
+        width: 169
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d12f045c55a81160800000000000000
+      internalID: 6996523837085917648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 6385
+        y: 946
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d94f49fb7d892f0800000000000000
+      internalID: -965784902233186961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 6846
+        y: 902
+        width: 67
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85ba79bc96a8bbc20800000000000000
+      internalID: 3223322145305635672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 1797
+        y: 924
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f8a8e31ab9f73b0800000000000000
+      internalID: -5512516302036889807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 919
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3aa22151e007e60800000000000000
+      internalID: 7957876025225552817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 2050
+        y: 931
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bafd489e73e23d650800000000000000
+      internalID: 6256395125023629227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 2064
+        y: 930
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cceb1ed504518eb0800000000000000
+      internalID: -4719398550329627450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 5822
+        y: 901
+        width: 60
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b0f7b9654aedf1d0800000000000000
+      internalID: -3315236166827511629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 7101
+        y: 902
+        width: 68
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30b97e81520f99cd0800000000000000
+      internalID: -2550743671806387453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 902
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f773743548f58d40800000000000000
+      internalID: 5586143888939382771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_134
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 909
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e41dce4ee8ee3340800000000000000
+      internalID: 4845566359319155943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_135
+      rect:
+        serializedVersion: 2
+        x: 2050
+        y: 911
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7663d7081b4d23f10800000000000000
+      internalID: 2248093022841288295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_136
+      rect:
+        serializedVersion: 2
+        x: 2062
+        y: 902
+        width: 49
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc79cfad327e1cc0800000000000000
+      internalID: -3738425031403143940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_137
+      rect:
+        serializedVersion: 2
+        x: 6041
+        y: 902
+        width: 97
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e8efc8b9e70fbe0800000000000000
+      internalID: -1445516273835405721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_138
+      rect:
+        serializedVersion: 2
+        x: 6297
+        y: 902
+        width: 39
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46ecace7c426673d0800000000000000
+      internalID: -3209269603770642844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_139
+      rect:
+        serializedVersion: 2
+        x: 6334
+        y: 902
+        width: 62
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5cfb1edc6eb14390800000000000000
+      internalID: -7835772501855830948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_140
+      rect:
+        serializedVersion: 2
+        x: 6553
+        y: 902
+        width: 39
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d43ed5a003cbf70800000000000000
+      internalID: 9204284559521435025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_141
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 902
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 794b0759d83e4b600800000000000000
+      internalID: 483261257272571031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_142
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 904
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ee3e0a2f93d84f0800000000000000
+      internalID: -824939442494771686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_143
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 776
+        width: 78
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c46ef278a98a2c320800000000000000
+      internalID: 2576807318455838284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_144
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 776
+        width: 83
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4efb383d638044550800000000000000
+      internalID: 6144044823210082276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_145
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 776
+        width: 80
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2183ae8348818060800000000000000
+      internalID: 6953989123374022958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_146
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 776
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddfefbcbb89e00f20800000000000000
+      internalID: 3386963706159034333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_147
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 776
+        width: 87
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d73447f0be79170800000000000000
+      internalID: 8185269299376782692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_148
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 776
+        width: 135
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e8a80e4e8b9a9e0800000000000000
+      internalID: -1609552098649010651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_149
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 776
+        width: 129
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edabe98cb0b543910800000000000000
+      internalID: 1816176655905766110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_150
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 776
+        width: 109
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd01736e2e34ade90800000000000000
+      internalID: -7000208028989976356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_151
+      rect:
+        serializedVersion: 2
+        x: 2132
+        y: 776
+        width: 84
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6912895adf1709fa0800000000000000
+      internalID: -5796007386206953066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_152
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 776
+        width: 82
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f9e812e7b466d00800000000000000
+      internalID: 965542175218507632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_153
+      rect:
+        serializedVersion: 2
+        x: 2651
+        y: 775
+        width: 79
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f544b997a3419df80800000000000000
+      internalID: -8081405814958767009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_154
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 776
+        width: 135
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f806456605b30dcb0800000000000000
+      internalID: -4841304382923054961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_155
+      rect:
+        serializedVersion: 2
+        x: 3136
+        y: 776
+        width: 91
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6eb2292569054630800000000000000
+      internalID: 3910542181527633517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_156
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 776
+        width: 81
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef696bbda5b894b70800000000000000
+      internalID: 8883784962314508030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_157
+      rect:
+        serializedVersion: 2
+        x: 3646
+        y: 776
+        width: 93
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14c0e48ae0d4ff3d0800000000000000
+      internalID: -3170730887296971711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_158
+      rect:
+        serializedVersion: 2
+        x: 3890
+        y: 776
+        width: 106
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb593413f1ae247d0800000000000000
+      internalID: -2935526587400743490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_159
+      rect:
+        serializedVersion: 2
+        x: 4139
+        y: 774
+        width: 116
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47db54567e60a5370800000000000000
+      internalID: 8311963653171953012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_160
+      rect:
+        serializedVersion: 2
+        x: 4385
+        y: 774
+        width: 132
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60ad981ee8ceef60800000000000000
+      internalID: 8065604907607892077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_161
+      rect:
+        serializedVersion: 2
+        x: 4393
+        y: 781
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd03d97d3fd1b83d0800000000000000
+      internalID: -3203433776812314404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_162
+      rect:
+        serializedVersion: 2
+        x: 4643
+        y: 773
+        width: 132
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d4e3871e8e22ce0800000000000000
+      internalID: -1431325676467761841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_163
+      rect:
+        serializedVersion: 2
+        x: 4895
+        y: 773
+        width: 136
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51a82f719df4290e0800000000000000
+      internalID: -2264659868785669611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_164
+      rect:
+        serializedVersion: 2
+        x: 5162
+        y: 773
+        width: 121
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238f15736540f7b00800000000000000
+      internalID: 828385624801278002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_165
+      rect:
+        serializedVersion: 2
+        x: 5415
+        y: 773
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb2f4bc8f3ea1bc0800000000000000
+      internalID: -3811483476913345610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_166
+      rect:
+        serializedVersion: 2
+        x: 5422
+        y: 778
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b46aa3f49b1515f0800000000000000
+      internalID: -786692233349143369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_167
+      rect:
+        serializedVersion: 2
+        x: 5433
+        y: 783
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217ee28c425e4b590800000000000000
+      internalID: -7659245120110270702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_168
+      rect:
+        serializedVersion: 2
+        x: 5468
+        y: 770
+        width: 159
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc50408731212990800000000000000
+      internalID: -7412606989416506175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_169
+      rect:
+        serializedVersion: 2
+        x: 5669
+        y: 776
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8096fce4e0bd9a60800000000000000
+      internalID: 7682491036638548111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_170
+      rect:
+        serializedVersion: 2
+        x: 5729
+        y: 776
+        width: 106
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0683cd6381e9fe5c0800000000000000
+      internalID: -4183951701967095712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_171
+      rect:
+        serializedVersion: 2
+        x: 5771
+        y: 769
+        width: 118
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86108f180c14f2e80800000000000000
+      internalID: -8201264101348343448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_172
+      rect:
+        serializedVersion: 2
+        x: 5925
+        y: 776
+        width: 141
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb51ca5cb54534f0800000000000000
+      internalID: -849696279410680896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_173
+      rect:
+        serializedVersion: 2
+        x: 6050
+        y: 769
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd84a1ced04ecec0800000000000000
+      internalID: -3544824531218297400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_174
+      rect:
+        serializedVersion: 2
+        x: 6070
+        y: 770
+        width: 27
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6db1fb89fc7ab3c0800000000000000
+      internalID: -4343021479408845460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_175
+      rect:
+        serializedVersion: 2
+        x: 6097
+        y: 776
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf32ec6505382790800000000000000
+      internalID: -7554730077496131634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_176
+      rect:
+        serializedVersion: 2
+        x: 6221
+        y: 776
+        width: 105
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1452016d46b380d0800000000000000
+      internalID: -3421690848415165412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_177
+      rect:
+        serializedVersion: 2
+        x: 6387
+        y: 776
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73ce1fd40b9af8a20800000000000000
+      internalID: 3066856445949635639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_178
+      rect:
+        serializedVersion: 2
+        x: 6478
+        y: 776
+        width: 113
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2741d766b64f30b0800000000000000
+      internalID: -5746796850261702867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_179
+      rect:
+        serializedVersion: 2
+        x: 6748
+        y: 776
+        width: 93
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fe21aa7d7eb689a0800000000000000
+      internalID: -6231083588282929423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_180
+      rect:
+        serializedVersion: 2
+        x: 7002
+        y: 776
+        width: 90
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7add45b0b05f5e0800000000000000
+      internalID: -1876581526433585245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_181
+      rect:
+        serializedVersion: 2
+        x: 7267
+        y: 776
+        width: 79
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32e3a7e080131de0800000000000000
+      internalID: -1363728116334992833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_182
+      rect:
+        serializedVersion: 2
+        x: 7502
+        y: 776
+        width: 74
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67f963c865fdded0800000000000000
+      internalID: -2387482397132589206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_183
+      rect:
+        serializedVersion: 2
+        x: 7735
+        y: 776
+        width: 94
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5509c662c844693a0800000000000000
+      internalID: -6659059630289940395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_184
+      rect:
+        serializedVersion: 2
+        x: 8013
+        y: 776
+        width: 81
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bf72093305519b50800000000000000
+      internalID: 6598148401404215219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_185
+      rect:
+        serializedVersion: 2
+        x: 8256
+        y: 776
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5342fd5e462288b90800000000000000
+      internalID: -7239498584249392075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_186
+      rect:
+        serializedVersion: 2
+        x: 8262
+        y: 776
+        width: 89
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b67098d17ad1370800000000000000
+      internalID: 8294969833981176666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_187
+      rect:
+        serializedVersion: 2
+        x: 8342
+        y: 776
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3573629edee37c0800000000000000
+      internalID: -4089569825981508687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_188
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 649
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f39b9b3050be6c40800000000000000
+      internalID: 5507533252964619251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_189
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 649
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d21721078752cac0800000000000000
+      internalID: -3836407695214701868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_190
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 649
+        width: 77
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456a00097316abda0800000000000000
+      internalID: -5928319068212779436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_191
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 649
+        width: 77
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd25b561ae0fb39d0800000000000000
+      internalID: -2793374255665163557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_192
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 649
+        width: 77
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384eaeb8d5655a740800000000000000
+      internalID: 5162627507629515907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_193
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 649
+        width: 78
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2ab133d20957d7e0800000000000000
+      internalID: -1740824862287349202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_194
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 649
+        width: 78
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 451315f7a97262970800000000000000
+      internalID: 8729708472218759508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_195
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 649
+        width: 78
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1675a4026d929180800000000000000
+      internalID: -9110046051906783715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_196
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 649
+        width: 79
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba030575976480b40800000000000000
+      internalID: 5406648839628140715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_197
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 649
+        width: 79
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad39ccd6e020742b0800000000000000
+      internalID: -5600505350617000998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_198
+      rect:
+        serializedVersion: 2
+        x: 2641
+        y: 649
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11eae12e40ec3ae20800000000000000
+      internalID: 3360756267317374481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_199
+      rect:
+        serializedVersion: 2
+        x: 2897
+        y: 649
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a0447f92fe525210800000000000000
+      internalID: 1320222036923269282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_200
+      rect:
+        serializedVersion: 2
+        x: 3152
+        y: 649
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc0b3a7e73e2ea580800000000000000
+      internalID: -8814056603073138483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_201
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 522
+        width: 71
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e031b91faa309caf0800000000000000
+      internalID: -375765061175930098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_202
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 522
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c4970e26de7dee70800000000000000
+      internalID: 9146105876619695302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_203
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 522
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad15a12918115ee70800000000000000
+      internalID: 9143733866645311962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_204
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 522
+        width: 61
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92aa8eaa71d30d5c0800000000000000
+      internalID: -4192784081221014999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_205
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 522
+        width: 62
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f6c881485266d70800000000000000
+      internalID: 9035950951643246342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_206
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 522
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe75935cd56082a90800000000000000
+      internalID: -7338608592989628433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_207
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 522
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55b069480850e2e0800000000000000
+      internalID: -2098580633740593829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_208
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 522
+        width: 61
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d190bf4a9d2e2db80800000000000000
+      internalID: -8371379332924634851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_209
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 522
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9faa2683cc3c02710800000000000000
+      internalID: 1666547144013818617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_210
+      rect:
+        serializedVersion: 2
+        x: 2393
+        y: 522
+        width: 70
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ea686291eee90d0800000000000000
+      internalID: -3414029675712303611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_211
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 395
+        width: 88
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7275a4c50f6accd70800000000000000
+      internalID: 9064803701260703527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_212
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 393
+        width: 89
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae51c7653a2e4010800000000000000
+      internalID: 1174922961652637357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_213
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 393
+        width: 82
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b9ef4c9b8a4deb80800000000000000
+      internalID: -8363946969473750601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_214
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 400
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58ddbe1162957fec0800000000000000
+      internalID: -3533257362604565115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_215
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 393
+        width: 79
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc103b19493dba00800000000000000
+      internalID: 773837697129127154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_216
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 393
+        width: 82
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf4d9788ad6ea180800000000000000
+      internalID: -9102217226272026709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_217
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 393
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f0e7164c3b902db0800000000000000
+      internalID: -4818680918110117643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_218
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 393
+        width: 80
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86a7715e2f29bd40800000000000000
+      internalID: 5600559487593719439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_219
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3beb57f5ae33bff80800000000000000
+      internalID: -8071800825414566221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_220
+      rect:
+        serializedVersion: 2
+        x: 2125
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 161bf09b15bbcf3f0800000000000000
+      internalID: -865611068690419359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_221
+      rect:
+        serializedVersion: 2
+        x: 2381
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba98fc740891d0c10800000000000000
+      internalID: 2021299846510512555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_222
+      rect:
+        serializedVersion: 2
+        x: 2637
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03349ed5c20ac90a0800000000000000
+      internalID: -6873442818859646160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_223
+      rect:
+        serializedVersion: 2
+        x: 2893
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3736088f84cfe20800000000000000
+      internalID: 3385661252018861030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_224
+      rect:
+        serializedVersion: 2
+        x: 3149
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff606fca9e0db2190800000000000000
+      internalID: -7986059812163680513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_225
+      rect:
+        serializedVersion: 2
+        x: 3405
+        y: 394
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d41ee15f63ca34b0800000000000000
+      internalID: -5459836715349961518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_226
+      rect:
+        serializedVersion: 2
+        x: 3657
+        y: 394
+        width: 79
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cb960df5d9a18970800000000000000
+      internalID: 8755465887123151817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_227
+      rect:
+        serializedVersion: 2
+        x: 3911
+        y: 395
+        width: 87
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e18ae7182b7290890800000000000000
+      internalID: -7491412857523886050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_228
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 273
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00765aa65893c79c0800000000000000
+      internalID: -3928201529791256832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_229
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 266
+        width: 79
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2032c6c96350080800000000000000
+      internalID: -9221904616514190673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_230
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 266
+        width: 82
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee215ce209701850800000000000000
+      internalID: 6345704928426667755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_231
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 266
+        width: 104
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48b67b3d7cbbf2a30800000000000000
+      internalID: 4192776245030120324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_232
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 266
+        width: 123
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbb1211f7c5f0c0c0800000000000000
+      internalID: -4557372583807149121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_233
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 134
+        width: 131
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d3b10a95b860510800000000000000
+      internalID: 1515051541711240545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_234
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 130
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2faaa735dbdbc850800000000000000
+      internalID: 6398449404418371371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_235
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 131
+        width: 121
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d55ee69a0fb55c8b0800000000000000
+      internalID: -5132595111125916323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_236
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 128
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fe4d6dac9013b200800000000000000
+      internalID: 194517474017627897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_237
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 128
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6fc3bdcca12be640800000000000000
+      internalID: 5110215228251164525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_238
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 137
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c20aacbcf8ae20f70800000000000000
+      internalID: 9152135296090546220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_239
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 127
+        width: 126
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c34d2d2036997fa0800000000000000
+      internalID: -5802441511229635643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_240
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 133
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178987d9f0afd2010800000000000000
+      internalID: 1165862823532206193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_241
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 127
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36701bc3c4cd43a0800000000000000
+      internalID: -6679466327116057027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_242
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 126
+        width: 133
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d53fe6a105d5fe0800000000000000
+      internalID: -1198713851349869265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_243
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 127
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e821f87bec01fd0800000000000000
+      internalID: -2373169715849556476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_244
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 134
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9abe249731dc85e50800000000000000
+      internalID: 6798409121038265257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_245
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 134
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e65494b9d834e70800000000000000
+      internalID: 9098271370307268118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_246
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 128
+        width: 127
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c381d924bff3bac0800000000000000
+      internalID: -3840444907956108347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_247
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 127
+        width: 127
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9408eb4874ea68320800000000000000
+      internalID: 2559925060399693897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_248
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 134
+        width: 127
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d881a076fad3e80800000000000000
+      internalID: -8197202889658561237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_249
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 7
+        width: 127
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e21b7214988c99220800000000000000
+      internalID: 2493244360555475246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_250
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 7
+        width: 127
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41061daeb5f8ea870800000000000000
+      internalID: 8696045555443392532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_251
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 7
+        width: 155
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44a11cf4f402ceb60800000000000000
+      internalID: 7776626181574564420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_252
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 7
+        width: 186
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3527292ec75673490800000000000000
+      internalID: -7766627445325532589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_253
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 2
+        width: 184
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91d7b0b116531930800000000000000
+      internalID: 4112725518698664350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_254
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 7
+        width: 189
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f8b2b2384bd4320800000000000000
+      internalID: 2543887839992188761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_255
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 2
+        width: 189
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5047fdb15eff4970800000000000000
+      internalID: 8741485028782325854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_256
+      rect:
+        serializedVersion: 2
+        x: 1818
+        y: 2
+        width: 189
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1cab377b96b8f70800000000000000
+      internalID: 9190555701221179878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_257
+      rect:
+        serializedVersion: 2
+        x: 2074
+        y: 2
+        width: 189
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e5dbc4a3a4032f20800000000000000
+      internalID: 3396563644858488297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_258
+      rect:
+        serializedVersion: 2
+        x: 2330
+        y: 2
+        width: 189
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d05a1f6471a23b0800000000000000
+      internalID: -5536587198429328099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_259
+      rect:
+        serializedVersion: 2
+        x: 2586
+        y: 2
+        width: 189
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57b5211efffe2c10800000000000000
+      internalID: 2030841948665132894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bertha-Sheet_260
+      rect:
+        serializedVersion: 2
+        x: 2842
+        y: 2
+        width: 189
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d4be6c9807c99180800000000000000
+      internalID: -9108029931581950766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
