@@ -6,6 +6,22 @@ using UnityEngine;
 public abstract class Define
 {
     #region Enum
+    #region Boss_Orc
+    public enum BossState { Intro, Phase1, Transition, Phase2, Death }
+    public enum AnimKey
+    {
+        Idle, WalkIn, Walking, WalkOut, RunIn, Run, RunOut,
+        LightAtk, HeavyAtk, HeavyAtk2, HeavyAtk3, FrontHeavyAtk,
+        Combo1, Atk1, Atk2, Atk3,
+        DashAtk, Dashing, BackDash, BackDashing,
+        JumpAtk, JumpAtkLoop, JumpAtkLand, Falling,
+        Stomp, Tornado, TornadoLoop, Bite, ChargeJump,
+        StunIn, StunLoop, StunOut, OutStun,
+        EntryP1, EntryP2, EntryOut, Fall, Fallen, Laugh, Taunt, TauntOut,
+        Death, Fade
+    }
+    #endregion
+
     public enum RoomType
     {
         Normal,

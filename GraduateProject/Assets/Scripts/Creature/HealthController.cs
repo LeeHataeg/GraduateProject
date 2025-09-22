@@ -7,6 +7,9 @@ public class HealthController : MonoBehaviour, IHealth
     private CombatStatSheet stats;
 
     public float CurrentHp => currentHp;
+    public CombatStatSheet Stats => stats;
+    public float MaxHp => stats != null ? stats.MaxHp : 1f;
+
     public event Action OnDead;
 
     private void Awake()

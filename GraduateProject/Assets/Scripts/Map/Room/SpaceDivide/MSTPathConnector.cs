@@ -52,13 +52,6 @@ public class MSTPathConnector
 
         return result;
     }
-
-    // TODO - Later : Random Bridge
-    private void randomBridge()
-    {
-        // 
-    }
-
     private void updatePortals(MapNode start, MapNode end, List<MapNode> result)
     {
         // TODO - Change Output Structure Into Continues
@@ -110,5 +103,11 @@ public class MSTPathConnector
                 end.Portals.Add(new PortalInfo(PortalDir.down, start));
             }
         }
+    }
+
+    // TODO - Later : Random Bridge
+    private void randomBridge()
+    {
+        // 
     }
 }

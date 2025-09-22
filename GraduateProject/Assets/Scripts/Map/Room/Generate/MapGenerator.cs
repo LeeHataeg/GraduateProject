@@ -7,6 +7,7 @@ using MapNode = Define.MapNode;
 
 public class MapGenerator : MonoBehaviour
 {
+    #region Property
     BSPMapDivider bsp;
     MSTPathConnector mst;
 
@@ -16,6 +17,7 @@ public class MapGenerator : MonoBehaviour
     private RoomGenerator roomGenerator;
     private List<MapNode> result;
     private PortalInitializer portalInit;
+    #endregion
 
     private void Awake()
     {
@@ -51,12 +53,12 @@ public class MapGenerator : MonoBehaviour
         if (roomGenerator == null) { Debug.LogError("[MapGenerator] RoomGenerator missing."); yield break; }
 
         // 0,0 기준 분할
-        leaves = bsp.GetLeavesByBSP(mapSO);      // List<MapNode>
+        leaves = bsp.GetLeavesByBSP(mapSO);
 
-        var adjacent = getAdjacentLeaf(leaves);  // Dictionary<MapNode, List<MapNode>>
+        var adjacent = getAdjacentLeaf(leaves);
         setId(leaves);
 
-        result = mst.GetMSTPath(adjacent);       // List<MapNode>
+        result = mst.GetMSTPath(adjacent);
 
         roomGenerator.CreateRooms(result, mapSO);
 
