@@ -35,6 +35,7 @@ public class InventorySystem : MonoBehaviour
             if (slots.Count >= capacity)
             {
                 OnInventoryChanged?.Invoke();
+
                 return false;
             }
             int add = (item.maxStack > 1) ? Mathf.Min(item.maxStack, quantity) : 1;
@@ -45,6 +46,24 @@ public class InventorySystem : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return true;
     }
+
+    public bool CanAdd(ItemData item, int quantity = 1)
+    {
+        int free = 0;
+        // 1) 스택 여유
+        if (item.maxStack > 1)
+        {
+            foreach (var s in slots)
+            {
+                if (s.item == item) free += (item.maxStack - s.quantity);
+                if (free >= quantity) return true;
+            }
+        }
+        // 2) 빈 칸
+        int empty = capacity - slots.Count;
+        return (free + empty) >= quantity;
+    }
+
 
     /// <summary>
     /// 인벤토리에서 아이템을 제거합니다.

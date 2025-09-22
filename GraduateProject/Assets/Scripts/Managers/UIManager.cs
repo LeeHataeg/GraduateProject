@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     {
         // ✅ 자신을 GameManager에 등록(초기화 순서 안정성 ↑)
         GameManager.Instance?.RegisterUIManager(this);
+
+        if (invenPanel && InventorySys)
+            invenPanel.SetInventory(InventorySys);
     }
 
     private void OnEnable()
@@ -74,7 +77,7 @@ public class UIManager : MonoBehaviour
 
     public void TurnOnorOffInven()
     {
-        if (!itemPanel) return;
+        //if (!itemPanel) return;
 
         isTurnedOnInven = !isTurnedOnInven;
         itemPanel.gameObject.SetActive(isTurnedOnInven);

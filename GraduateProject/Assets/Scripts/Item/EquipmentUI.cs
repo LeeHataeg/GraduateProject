@@ -69,9 +69,15 @@ public class EquipmentUI : MonoBehaviour
         RefreshAll();
     }
 
+    // EquipmentUI.cs
     public void RequestUnequip(EquipmentSlot slot)
     {
-        if (eq?.TryUnequip(slot) == true)
+        if (eq != null && eq.TryUnequip(slot, out var removed) && removed != null)
+        {
+            // 인벤에 넣기 (여유칸이 없을 수 있다면 사전 체크 로직을 추가해도 됨)
+            GameManager.Instance?.UIManager?.InventorySys?.AddItem(removed, 1);
             RefreshAll();
+        }
     }
+
 }

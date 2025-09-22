@@ -123,8 +123,6 @@ public class RoomGenerator : MonoBehaviour
                         tilemapObj.AddComponent<TilemapRenderer>();
                         tilemap.tag = "Ground";
 
-                        Debug.Log($"[RoomGen] GenerateRoom: node={room.Node.Id}");
-
                         PlaceWalls(tilemap, room, minRoomSz, maxRoomSz);
                         locateRoom(tilemapObj, room);
 

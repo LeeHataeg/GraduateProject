@@ -15,13 +15,19 @@ public class ItemPickUp : MonoBehaviour
 
     private void Awake()
     {
-        // 런타임에 InventorySystem 찾기
-        inventory = Object.FindFirstObjectByType<InventorySystem>();
-        if (inventory == null)
-            Debug.LogError("ItemPickup: InventorySystem이 씬에 없습니다!");
+        inventory = GameManager.Instance?.UIManager?.InventorySys
+                 ?? Object.FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
 
-        icon = gameObject.GetComponent<SpriteRenderer>();
+        if (inventory == null)
+            Debug.LogError("[ItemPickUp] InventorySystem을 찾을 수 없습니다!");
+
+        icon = GetComponent<SpriteRenderer>();
+
+        // 충돌 세팅 체크 (필수)
+        var col = GetComponent<Collider2D>();
+        if (col) col.isTrigger = true;  // 트리거로 동작
     }
+
 
     public void SetSprite()
     {

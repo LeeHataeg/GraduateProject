@@ -44,64 +44,49 @@ public class EquipmentManager : MonoBehaviour
     public EquipmentItemData GetEquipped(EquipmentSlot slot)
         => equipped.TryGetValue(slot, out var it) ? it : null;
 
-    public bool TryEquip(EquipmentItemData item)
+    /// <summary>
+    /// 인벤토리를 절대 건드리지 않는 장착. 
+    /// 교체된 이전 장비(있다면)를 out으로 반환.
+    /// </summary>
+    public bool TryEquip(EquipmentItemData item, out EquipmentItemData prevOut)
     {
-        if (item == null || stats == null)
-            return false;
+        prevOut = null;
+        if (item == null || stats == null) return false;
 
         var slot = item.slot;
         var prev = GetEquipped(slot);
 
-        // 미리 세팅
+        // 스탯 갱신 순서: 이전꺼 빼고 → 새것 더하기
+        if (prev != null)
+            stats.Apply(prev.modifiers, -1);
+
+        stats.Apply(item.modifiers, +1);
         equipped[slot] = item;
 
-        // 신규 아이템 적용
-        // ※ StatController가 PlayerStatController와 동일한 Apply 시그니처를 갖고 있다고 가정
-        stats.Apply(item.modifiers, +1);
-
-        if (prev != null)
-        {
-            // 기존 아이템 해제(롤백 안전장치 포함)
-            if (inventory != null && !inventory.AddItem(prev, 1))
-            {
-                // 인벤이 꽉 차서 롤백
-                stats.Apply(item.modifiers, -1);
-                equipped[slot] = prev;
-                stats.Apply(prev.modifiers, +1);
-
-                Debug.LogWarning($"[Equip] Equip rollback: no inventory space for {prev.name} (slot={slot}) on {gameObject.name}");
-                return false;
-            }
-
-            // 기존 장비의 스탯 효과 제거
-            stats.Apply(prev.modifiers, -1);
-        }
+        prevOut = prev;
 
         OnEquippedChanged(slot, item);
         return true;
     }
 
-    public bool TryUnequip(EquipmentSlot slot)
+    /// <summary>
+    /// 인벤토리를 절대 건드리지 않는 해제.
+    /// 성공 시 해제된 아이템을 out 반환.
+    /// </summary>
+    public bool TryUnequip(EquipmentSlot slot, out EquipmentItemData removed)
     {
-        if (stats == null)
-            return false;
+        removed = null;
+        if (stats == null) return false;
 
         var cur = GetEquipped(slot);
         if (cur == null) return false;
-
-        // 인벤으로 반환 가능해야 해제 진행
-        if (inventory != null && !inventory.AddItem(cur, 1))
-        {
-            Debug.LogWarning($"[Equip] Unequip failed: no inventory space for {cur.name} (slot={slot}) on {gameObject.name}");
-            return false;
-        }
 
         // 스탯 제거
         stats.Apply(cur.modifiers, -1);
 
         // 맵에서 제거
-        if (equipped.ContainsKey(slot))
-            equipped.Remove(slot);
+        equipped.Remove(slot);
+        removed = cur;
 
         OnEquippedChanged(slot, null);
         return true;
