@@ -1,119 +1,162 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
+    private bool _spawned;
     public GameObject Player;
+    private PlayerPositionController playerPositionController;
     public event Action<EquipmentManager> OnEquipmentReady;
 
-    private PlayerPositionController playerPositionController;
-
     [SerializeField] private string playerPrefabPath = "Prefabs/Player/Player/Player";
-    private bool _spawned;
 
+    [Header("Scene Guard")]
+    [SerializeField] private string gameplaySceneName = "InGameScene"; // 인스펙터에서 변경 가능
+
+    private bool subscribed;           // RoomManager 이벤트 중복 구독 방지
+    private Coroutine fallbackCo;      // 폴백 스폰 코루틴 핸들
+
+    //=== Lifecycle ===//
     private void Awake()
     {
         playerPositionController = GetComponent<PlayerPositionController>();
         if (playerPositionController == null)
             playerPositionController = gameObject.AddComponent<PlayerPositionController>();
 
-        if (GameManager.Instance != null && GameManager.Instance.RoomManager != null)
-        {
-            GameManager.Instance.RoomManager.OnSetStartPoint += PlayerInit;
-            Debug.Log("[PlayerManager] Subscribed to RoomManager.OnSetStartPoint in Awake()");
-        }
-        else
-        {
-            Debug.LogWarning("[PlayerManager] RoomManager not ready in Awake. Will retry in Start().");
-        }
-    }
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
-    private void Start()
-    {
-        var rm = GameManager.Instance?.RoomManager;
-        if (rm != null)
-        {
-            rm.OnSetStartPoint -= PlayerInit; // �ߺ� ���� ����
-            rm.OnSetStartPoint += PlayerInit;
-            Debug.Log("[PlayerManager] Subscribed to RoomManager.OnSetStartPoint in Start()");
-
-            if (rm.HasStartPoint)
-            {
-                Debug.Log("[PlayerManager] RoomManager already has StartPoint. Spawning immediately.");
-                PlayerInit(rm.GetStartPoint());
-            }
-            else
-            {
-                Debug.Log("[PlayerManager] No StartPoint yet. Will wait 3s then fallback.");
-                StartCoroutine(SpawnFallbackAfterTimeout(3f));
-            }
-        }
-        else
-        {
-            StartCoroutine(WaitAndSubscribe());
-        }
+        // 현재 활성 씬에 맞춰 즉시 초기화(씬 로드시만 OnSceneLoaded가 호출되므로, 첫 진입 씬에서도 동작 보장)
+        SetupForActiveScene();
     }
 
     private void OnDestroy()
     {
-        if (GameManager.Instance != null && GameManager.Instance.RoomManager != null)
-            GameManager.Instance.RoomManager.OnSetStartPoint -= PlayerInit;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        TryUnsubscribeRoomEvent();
     }
 
-    private IEnumerator WaitAndSubscribe()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("[PlayerManager] WaitAndSubscribe...");
-        float t = 2f;
-        while (t > 0f && (GameManager.Instance == null || GameManager.Instance.RoomManager == null))
-        {
-            t -= Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        var rm = GameManager.Instance?.RoomManager;
-        if (rm == null)
-        {
-            Debug.LogError("[PlayerManager] Could not find RoomManager in scene.");
-            yield break;
-        }
-
-        rm.OnSetStartPoint -= PlayerInit;
-        rm.OnSetStartPoint += PlayerInit;
-        Debug.Log("[PlayerManager] Subscribed to RoomManager.OnSetStartPoint after wait.");
-
-        if (rm.HasStartPoint)
-            PlayerInit(rm.GetStartPoint());
-        else
-            StartCoroutine(SpawnFallbackAfterTimeout(3f));
+        SetupForScene(scene);
     }
 
+    //=== Scene Helpers ===//
+    private bool IsGameplayScene(Scene s) => s.name == gameplaySceneName;
+    private bool IsGameplayScene() => SceneManager.GetActiveScene().name == gameplaySceneName;
+
+    /// <summary>현재 활성 씬 기준으로 세팅.</summary>
+    private void SetupForActiveScene()
+    {
+        SetupForScene(SceneManager.GetActiveScene());
+    }
+
+    /// <summary>지정된 씬 기준으로 세팅.</summary>
+    private void SetupForScene(Scene scene)
+    {
+        if (IsGameplayScene(scene))
+        {
+            // 인게임 진입: 룸 이벤트 구독 보장 + 폴백 준비
+            TrySubscribeRoomEventOnce();
+
+            var rm = GameManager.Instance?.RoomManager;
+            if (rm != null && rm.HasStartPoint)
+            {
+                // 이미 StartPoint가 있으면 즉시 스폰
+                PlayerInit(rm.GetStartPoint());
+            }
+            else
+            {
+                // 폴백 코루틴이 없으면 시작
+                if (fallbackCo == null)
+                    fallbackCo = StartCoroutine(SpawnFallbackAfterTimeout(3f));
+            }
+        }
+        else
+        {
+            // 비-게임플레이 씬: 남아있는 것들 정리
+            if (fallbackCo != null) { StopCoroutine(fallbackCo); fallbackCo = null; }
+            TryUnsubscribeRoomEvent();
+
+            if (Player != null)
+            {
+                Destroy(Player);
+                Player = null;
+                _spawned = false;
+            }
+        }
+    }
+
+    private void TrySubscribeRoomEventOnce()
+    {
+        if (subscribed) return;
+        var rm = GameManager.Instance?.RoomManager;
+        if (rm == null) return;
+
+        rm.OnSetStartPoint -= PlayerInit; // 방어적 해제
+        rm.OnSetStartPoint += PlayerInit;
+        subscribed = true;
+        Debug.Log("[PlayerManager] Subscribed to RoomManager.OnSetStartPoint");
+    }
+
+    private void TryUnsubscribeRoomEvent()
+    {
+        if (!subscribed) return;
+        var rm = GameManager.Instance?.RoomManager;
+        if (rm != null) rm.OnSetStartPoint -= PlayerInit;
+        subscribed = false;
+    }
+
+    //=== Fallback Spawn ===//
     private IEnumerator SpawnFallbackAfterTimeout(float timeout)
     {
+        // 인게임 씬에서만 동작
         float t = timeout;
-        var rm = GameManager.Instance?.RoomManager;
-        while (t > 0f && rm != null && !rm.HasStartPoint)
+        while (t > 0f)
         {
+            if (!IsGameplayScene()) { fallbackCo = null; yield break; }
+
+            var rm = GameManager.Instance?.RoomManager;
+            if (rm != null && rm.HasStartPoint)
+            {
+                // 기다리는 중에 StartPoint가 도착했으면 즉시 스폰하고 종료
+                PlayerInit(rm.GetStartPoint());
+                fallbackCo = null;
+                yield break;
+            }
+
             t -= Time.unscaledDeltaTime;
             yield return null;
         }
 
+        if (!IsGameplayScene()) { fallbackCo = null; yield break; }
+
+        // 여전히 시작점이 없으면 (0,0) 등 폴백 스폰 시도
         if (!_spawned)
         {
-            Vector2 pos = (rm != null && rm.HasStartPoint) ? rm.GetStartPoint() : Vector2.zero;
-            Debug.Log($"[PlayerManager] Fallback spawn at {pos} (timeout or late startpoint)");
-            PlayerInit(pos);
+            Debug.Log("[PlayerManager] Fallback spawn (timeout, no startpoint)");
+            PlayerInit(Vector2.zero);
         }
+        fallbackCo = null;
     }
 
+    //=== Public API ===//
     public void PlayerInit(Vector2 pos)
     {
+        // ✋ 인게임 씬에서만 생성/이동 허용
+        if (!IsGameplayScene())
+        {
+            Debug.Log("[PlayerManager] Ignored PlayerInit outside gameplay scene.");
+            return;
+        }
+
         Debug.Log($"[PlayerManager] PlayerInit called with pos={pos}  spawned={_spawned}");
 
         if (_spawned && Player != null)
         {
             ApplyPosition(pos);
-            Debug.Log("[PlayerManager] Already spawned �� moved to pos.");
+            Debug.Log("[PlayerManager] Already spawned → moved to pos.");
             return;
         }
 
@@ -129,11 +172,11 @@ public class PlayerManager : MonoBehaviour
         _spawned = true;
         Debug.Log($"[PlayerManager] Player instantiated: {Player.name}");
 
-        // Target ���� �� ��ġ ����
+        // Target 연결 후 위치 적용
         playerPositionController.SetTarget(Player.transform);
         ApplyPosition(pos);
 
-        // Unit Root ã��
+        // Unit Root 찾기
         var unitRoot = Player.transform.Find("Unit Root");
         if (unitRoot == null)
             unitRoot = Player.GetComponentInChildren<PlayerMovement>(true)?.transform;
@@ -145,7 +188,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         var eq = unitRoot.GetComponent<EquipmentManager>();
-        var stat = unitRoot.GetComponent<StatController>(); // �Ǵ� PlayerStatController
+        var stat = unitRoot.GetComponent<StatController>(); // 또는 PlayerStatController
 
         if (eq == null || stat == null)
         {
@@ -165,7 +208,7 @@ public class PlayerManager : MonoBehaviour
             Player.transform.position = pos;
     }
 
-    // === �ν����Ϳ��� �ٷ� �׽�Ʈ�� �� �ִ� ���� ���� ��� ===
+    // === 인스펙터에서 바로 테스트할 수 있는 강제 스폰 기능 ===
     [ContextMenu("DEBUG: Force Spawn @ (0,0)")]
     private void DebugForceSpawn()
     {

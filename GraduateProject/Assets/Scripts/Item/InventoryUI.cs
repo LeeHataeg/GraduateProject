@@ -18,13 +18,18 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        inventory = Object.FindFirstObjectByType<InventorySystem>();
-        if (inventory == null)
-            Debug.LogError("[InventoryUI] InventorySystem 인스턴스를 찾을 수 없습니다.");
-        else
+        // 인게임씬에서만 있을 수 있으므로 null이면 그냥 대기(에러 말고 warning)
+        inventory = Object.FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
+        if (inventory != null)
+        {
             inventory.OnInventoryChanged += RefreshUI;
+        }
+        else
+        {
+            Debug.LogWarning("[InventoryUI] InventorySystem을 아직 못 찾음. 이후 SetInventory에서 연결 예상.", this);
+        }
 
-        popupPanel.gameObject.SetActive(false);
+        if (popupPanel) popupPanel.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -34,16 +39,21 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshUI()
     {
-        var slotUIs = slotContainer.GetComponentsInChildren<InventorySlotUI>(includeInactive: true);
+        if (slotContainer == null) { Debug.LogWarning("[InventoryUI] slotContainer 미할당", this); return; }
+        if (inventory == null) { /*아직 인벤 연결 전*/ return; }
 
-        for (int i = 0; i < slotUIs.Length; i++)
+        var slotUIs = slotContainer.GetComponentsInChildren<InventorySlotUI>(includeInactive: true);
+        var count = slotUIs.Length;
+
+        for (int i = 0; i < count; i++)
         {
             if (i < inventory.slots.Count)
-                slotUIs[i].SetData(inventory.slots[i], i); // 인덱스 전달!
+                slotUIs[i].SetData(inventory.slots[i], i);
             else
                 slotUIs[i].SetEmpty();
         }
     }
+
 
     // 마우스 올렸을 때 호출
     public void ShowPopup(InventorySlot slot, Vector2 screenPos)
@@ -64,4 +74,19 @@ public class InventoryUI : MonoBehaviour
     {
         popupPanel.gameObject.SetActive(false);
     }
+
+    public void SetInventory(InventorySystem sys)
+    {
+        // 이전 구독 해제
+        if (inventory != null)
+            inventory.OnInventoryChanged -= RefreshUI;
+
+        inventory = sys;
+
+        if (inventory != null)
+            inventory.OnInventoryChanged += RefreshUI;
+
+        RefreshUI();
+    }
+
 }

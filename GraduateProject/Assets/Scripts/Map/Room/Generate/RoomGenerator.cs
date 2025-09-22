@@ -160,6 +160,26 @@ public class RoomGenerator : MonoBehaviour
                         // ① 우선 프리팹에 'SpawnPoint'가 있으면 사용
                         // ...case RoomType.Start: 안쪽
                         Transform spawnPoint = startRoomObj.transform.Find("SpawnPoint");
+                        if (spawnPoint == null)
+                        {
+                            var tile = startRoomObj.GetComponentInChildren<UnityEngine.Tilemaps.Tilemap>();
+                            Vector3 worldCenter = startRoomObj.transform.position;
+                            if (tile != null)
+                            {
+                                tile.CompressBounds();
+                                var b = tile.cellBounds;
+                                var cellCenter = new Vector3Int(
+                                    Mathf.FloorToInt((b.xMin + b.xMax) * 0.5f),
+                                    Mathf.FloorToInt((b.yMin + b.yMax) * 0.5f),
+                                    0
+                                );
+                                worldCenter = tile.CellToWorld(cellCenter) + tile.tileAnchor;
+                            }
+                            var sp = new GameObject("SpawnPoint").transform;
+                            sp.SetParent(startRoomObj.transform, false);
+                            sp.position = worldCenter + new Vector3(0.5f, 1.0f, 0f);
+                            spawnPoint = sp;
+                        }
                         // (중략: 없으면 중앙으로 폴백 생성하는 로직)
                         if (GameManager.Instance && GameManager.Instance.RoomManager)
                         {

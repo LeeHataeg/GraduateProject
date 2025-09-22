@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 [RequireComponent(typeof(Collider2D))]
@@ -37,15 +38,26 @@ public class ItemPickUp : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
 
-        // 인벤토리에 담고, 성공하면 파괴
-        if (inventory.AddItem(itemData, quantity))
+        var inv = GameManager.Instance?.UIManager?.InventorySys;
+        if (inv == null)
         {
+            Debug.LogWarning("[ItemPickup] InventorySys가 아직 바인딩되지 않았습니다.");
+            return;
+        }
+
+        bool added = inv.AddItem(itemData); // ← InventorySystem의 API에 맞춰 호출명 변경
+        if (added)
+        {
+            // UI 즉시 반영 (인벤이 열려 있지 않으면 생략해도 됨)
+            GameManager.Instance.UIManager?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
+            GameManager.Instance.UIManager?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
+
             Destroy(gameObject);
         }
         else
         {
-            // (선택) 인벤토리 꽉 찼을 때 피드백
-            Debug.Log("인벤토리가 가득 찼습니다!");
+            // 꽉 찼거나 조건 불만족
+            Debug.Log("[ItemPickup] 인벤토리에 여유가 없습니다.");
         }
     }
 }

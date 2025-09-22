@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 // ★ 별칭을 'MapNode'로! (메서드 시그니처와 이름까지 일치시킴)
@@ -29,6 +30,9 @@ public class MapGenerator : MonoBehaviour
 
     private IEnumerator Start()
     {
+        if (SceneManager.GetActiveScene().name != "InGameScene")
+            yield break;
+
         // GameManager/RoomManager 보장
         if (GameManager.Instance == null)
         {
