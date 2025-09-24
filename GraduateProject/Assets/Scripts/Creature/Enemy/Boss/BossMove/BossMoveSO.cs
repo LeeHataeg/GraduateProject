@@ -1,19 +1,15 @@
-using static Define;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static Define;
 
 public abstract class BossMoveSO : ScriptableObject
 {
     [Header("Common")]
-    public AnimKey animKey = AnimKey.LightAtk;
-    [Tooltip("시작 전 선딜")]
-    public float windup = 0.05f;
-    [Tooltip("행동 종료 후 후딜")]
-    public float recover = 0.1f;
-    [Tooltip("행동 재사용 대기")]
-    public float cooldown = 1.0f;
-    [Tooltip("실행 동안 이동 잠금")]
-    public bool lockMovement = true;
+    public AnimKey animKey = AnimKey.Idle;
+    [Tooltip("시작 전 선딜")] public float windup = 0.05f;
+    [Tooltip("행동 종료 후 후딜")] public float recover = 0.1f;
+    [Tooltip("재사용 대기시간")] public float cooldown = 1.0f;
+    [Tooltip("실행 중 이동 잠금")] public bool lockMovement = true;
 
     [Header("조건")]
     public float minRange = 0f;
@@ -27,7 +23,7 @@ public abstract class BossMoveSO : ScriptableObject
         if (Time.time < _nextReadyTime) return false;
         if (ctx == null || ctx.Player == null) return false;
 
-        var dx = Mathf.Abs(ctx.Player.position.x - ctx.Self.position.x);
+        float dx = Mathf.Abs(ctx.Player.position.x - ctx.Self.position.x);
         if (dx < minRange || dx > maxRange) return false;
         if (requireGrounded && Mathf.Abs(ctx.RB.linearVelocity.y) > 0.05f) return false;
 

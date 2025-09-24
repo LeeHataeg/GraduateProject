@@ -10,6 +10,5 @@ public class BossDefinitionSO : ScriptableObject
 
     [Header("Death/Fade")]
     public AnimKey deathKey = AnimKey.Death;
-    public AnimKey fadeKey = AnimKey.Fade;
-    public float fadeDelay = 1.2f; // Death 후 Fade까지 대기
+    public float fadeDelay = 1.2f;
 }

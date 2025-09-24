@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_Orc_Anim Map SO
   m_EditorClassIdentifier: 
   pairs:
-  - key: 0
+  - key: 11
     param: 
     isBool: 0
-    defaultBoolValue: 0
+    defaultBoolValue: 1

@@ -10,15 +10,26 @@ public abstract class Define
     public enum BossState { Intro, Phase1, Transition, Phase2, Death }
     public enum AnimKey
     {
-        Idle, WalkIn, Walking, WalkOut, RunIn, Run, RunOut,
-        LightAtk, HeavyAtk, HeavyAtk2, HeavyAtk3, FrontHeavyAtk,
-        Combo1, Atk1, Atk2, Atk3,
-        DashAtk, Dashing, BackDash, BackDashing,
-        JumpAtk, JumpAtkLoop, JumpAtkLand, Falling,
-        Stomp, Tornado, TornadoLoop, Bite, ChargeJump,
-        StunIn, StunLoop, StunOut, OutStun,
-        EntryP1, EntryP2, EntryOut, Fall, Fallen, Laugh, Taunt, TauntOut,
-        Death, Fade
+        // 공통
+        Death, Fall, Fallen, Falling,
+        StunIn, StunOut, StunLoop,
+        BackDash,
+        Run, RunIn, RunOut,
+        WalkIn, WalkOut, Walking,
+
+        // 1 Phase 전용
+        Idle, Land,
+        Atk1, Atk2, Atk3, Recover,
+        DashAtk,
+        ChargeJump, JumpIn, JumpAtkLand, JumpAtkLoop,
+
+        // 2 Phase 전용
+        Idle2, Entry2, Taunt, TauntOut,
+        HeavyAtk, HeavyAtk2, HeavyAtk3,
+        LightAtk, StompAtk,
+        FrontHeavyAtk,
+        ToradoAtkIn, ToradoAtkOut, ToradoAtkLoop
+        
     }
     #endregion
 
@@ -91,6 +102,18 @@ public abstract class Define
 
 
     #region Class
+    public class BossContext
+    {
+        public Transform Self;
+        public Transform AttackOrigin;
+        public Transform Player;
+        public IAnimationController Anim;
+        public AnimMapSO Anims;
+        public HealthController Health;
+        public Rigidbody2D RB;
+        public Action<bool> LockMove;
+    }
+
     public class Edge : IComparable<Edge>
     {
         public MapNode Start { get; }

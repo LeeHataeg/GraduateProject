@@ -7,7 +7,7 @@ public class MeleeSweepMoveSO : BossMoveSO
     public float damage = 12f;
     public float hitRadius = 1.6f;
     public LayerMask hitMask;
-    public Transform hitOriginOffset; // 비워두면 ctx.AttackOrigin
+    public Transform hitOriginOffset; // 비우면 ctx.AttackOrigin
 
     protected override IEnumerator Execute(BossContext ctx)
     {

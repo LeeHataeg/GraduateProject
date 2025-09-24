@@ -9,7 +9,6 @@ public class DashStrikeMoveSO : BossMoveSO
 
     protected override IEnumerator Execute(BossContext ctx)
     {
-        // 플레이어 쪽으로 순간 가속
         float dir = Mathf.Sign(ctx.Player.position.x - ctx.Self.position.x);
         float t = 0f;
         while (t < dashTime)
@@ -20,7 +19,6 @@ public class DashStrikeMoveSO : BossMoveSO
             t += Time.deltaTime;
             yield return null;
         }
-        // 멈춤
         var stop = ctx.RB.linearVelocity; stop.x = 0; ctx.RB.linearVelocity = stop;
     }
 }

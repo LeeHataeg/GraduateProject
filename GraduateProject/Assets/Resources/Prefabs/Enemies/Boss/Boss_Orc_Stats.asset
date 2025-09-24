@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17124b55fb9fe84418e727cabe29a25c, type: 3}
   m_Name: Boss_Orc_Stats
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  PhysAtk: 0
+  MaxHp: 1600
+  PhysAtk: 22
   MagicAtk: 0
-  BaseDmg: 0
-  AtkSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  dodgeChance: 0
-  physDefense: 0
-  magicDefense: 0
-  DetectionRadius: 0
-  MoveSpeed: 0
-  AttackRange: 0
-  AttackDelay: 0
-  MeleeDamage: 0
+  BaseDmg: 14
+  AtkSpeed: 1
+  CriticalChance: 0.12
+  CriticalDamage: 1.6
+  dodgeChance: 0.03
+  physDefense: 10
+  magicDefense: 6
+  DetectionRadius: 10
+  MoveSpeed: 2.5
+  AttackRange: 2.8
+  AttackDelay: 0.35
+  MeleeDamage: 24

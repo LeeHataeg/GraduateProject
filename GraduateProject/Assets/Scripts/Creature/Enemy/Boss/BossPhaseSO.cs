@@ -14,9 +14,9 @@ public class BossPhaseSO : ScriptableObject
     }
 
     [Header("Phase Flow")]
-    public AnimKey onEnterPlay = AnimKey.EntryP1;
+    public AnimKey onEnterPlay = AnimKey.Idle;
     [Tooltip("다음 페이즈로 넘어갈 HP 비율(Phase1에서만 사용)")]
-    public float toNextPhaseHpRate = 0.6f;
+    public float toNextPhaseHpRate = 0.5f; // 반피
 
     [Header("Moves")]
     public List<Entry> moves = new();
@@ -26,6 +26,7 @@ public class BossPhaseSO : ScriptableObject
         var cand = new List<Entry>();
         foreach (var e in moves)
             if (e.move != null && e.move.CanRun(ctx)) cand.Add(e);
+
         if (cand.Count == 0) return null;
 
         float total = Mathf.Max(0.0001f, cand.Sum(e => e.weight));

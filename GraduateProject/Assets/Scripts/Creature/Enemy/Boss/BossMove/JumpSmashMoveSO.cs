@@ -5,8 +5,9 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Boss/Moves/Jump Smash")]
 public class JumpSmashMoveSO : BossMoveSO
 {
-    public AnimKey jumpKey = AnimKey.JumpAtk;
+    public AnimKey jumpKey = AnimKey.JumpIn;
     public AnimKey landKey = AnimKey.JumpAtkLand;
+    public AnimKey loopBoolKey = AnimKey.JumpAtkLoop; // Bool 루프
     public float jumpForce = 10f;
     public float smashDamage = 18f;
     public float smashRadius = 2.2f;
@@ -14,13 +15,19 @@ public class JumpSmashMoveSO : BossMoveSO
 
     protected override IEnumerator Execute(BossContext ctx)
     {
-        // 점프
+        // 점프 시작
         ctx.Anims.Play(ctx.Anim, jumpKey);
+        ctx.Anims.Play(ctx.Anim, loopBoolKey, true); // 하강 중 루프 on
+
         var v = ctx.RB.linearVelocity; v.y = jumpForce; ctx.RB.linearVelocity = v;
-        // 낙하 대기
+
+        // 정점 지나 낙하 시작되면 대기
         while (ctx.RB.linearVelocity.y > -0.01f) yield return null;
-        // 착지 순간 처리(간단 판정) — 실제 타이밍은 애니메이션 이벤트가 이상적
+
+        // 착지
         ctx.Anims.Play(ctx.Anim, landKey);
+        ctx.Anims.Play(ctx.Anim, loopBoolKey, false); // 루프 off
+
         var p = ctx.Self.position;
         foreach (var h in Physics2D.OverlapCircleAll(p, smashRadius, hitMask))
         {

@@ -9,18 +9,19 @@ public class AnimMapSO : ScriptableObject
     public struct Pair
     {
         public AnimKey key;
-        [Tooltip("Animator 파라미터 또는 Sprite-Animator 트리거명")]
+        [Tooltip("Animator 상태 이름 또는 Bool 파라미터 이름")]
         public string param;
-        [Tooltip("Bool 파라미터인지 여부(트리거면 false)")]
+        [Tooltip("Bool 파라미터면 true (루프/토글), 상태 재생이면 false")]
         public bool isBool;
-        [Tooltip("isBool=true일 때 기본으로 세팅할 값")]
+        [Tooltip("isBool일 때 기본 세팅값")]
         public bool defaultBoolValue;
     }
 
     [SerializeField] private List<Pair> pairs = new();
     private Dictionary<AnimKey, Pair> _map;
 
-    void OnEnable() { Build(); }
+    void OnEnable() => Build();
+
     public void Build()
     {
         _map = new Dictionary<AnimKey, Pair>(pairs.Count);

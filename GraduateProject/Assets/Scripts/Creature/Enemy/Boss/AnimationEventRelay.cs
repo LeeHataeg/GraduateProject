@@ -1,22 +1,32 @@
 using UnityEngine;
 
-/// 애니메이션 이벤트로부터 BossController/Move에 신호를 전달하는 얇은 리시버
+/// 애니메이션 이벤트를 단일 AttackHitbox와 BossController에 전달
 public class AnimationEventRelay : MonoBehaviour
 {
     private BossController boss;
 
-    void Awake() { boss = GetComponentInParent<BossController>(); }
+    [Header("Single Hitbox (optional but recommended)")]
+    public AttackHitbox hitbox; // 자식 Hitbox 할당
 
-    // 애니메이션에서 호출: 타격 타이밍
+    void Awake()
+    {
+        boss = GetComponentInParent<BossController>();
+        if (!hitbox) hitbox = GetComponentInChildren<AttackHitbox>();
+    }
+
+    // ---- 히트 윈도우 ----
+    public void AE_HitBegin() { hitbox?.BeginWindow(); }
+    public void AE_HitEnd() { hitbox?.EndWindow(); }
+
+    // ---- 페이로드 실시간 변경(선택) ----
+    public void AE_SetDamage(float dmg) { hitbox?.SetPayload(dmg); }
+    public void AE_SetKnockbackX(float x) { if (hitbox) hitbox.SetKnockback(x, hitbox ? hitbox.GetComponent<AttackHitbox>().knockback.y : 0f); }
+    public void AE_SetKnockback(float x, float y) { hitbox?.SetKnockback(x, y); }
+
+    // ---- 기타 신호 ----
     public void AE_Hit() { boss?.OnAE_Hit(); }
-
-    // 특정 프리팹 스폰
     public void AE_Spawn(string id) { boss?.OnAE_Spawn(id); }
-
-    // 무적 On/Off
     public void AE_InvulnOn() { boss?.OnAE_Invuln(true); }
     public void AE_InvulnOff() { boss?.OnAE_Invuln(false); }
-
-    // 페이즈 전환 게이트
     public void AE_PhaseGate() { boss?.OnAE_PhaseGate(); }
 }
