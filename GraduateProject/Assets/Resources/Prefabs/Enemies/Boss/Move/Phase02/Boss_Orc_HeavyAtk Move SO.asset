@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a81e3896716e0d49b5bfd3f484c1697, type: 3}
-  m_Name: Boss_Orc_Combo Chain Move SO
+  m_Script: {fileID: 11500000, guid: 4b1ad7ed920867c49bb007d8395475ad, type: 3}
+  m_Name: Boss_Orc_HeavyAtk Move SO
   m_EditorClassIdentifier: 
   animKey: 14
   windup: 0.05
@@ -20,14 +20,3 @@ MonoBehaviour:
   minRange: 0
   maxRange: 99
   requireGrounded: 0
-  atk1Key: 16
-  atk2Key: 17
-  atk3Key: 18
-  recoverKey: 19
-  idleKeyAfterRecover: 14
-  continueMaxDistance: 2.6
-  requireGroundedEachStep: 1
-  atk1StepTime: 0.3
-  atk2StepTime: 0.35
-  atk3StepTime: 0.4
-  recoverTime: 0.35

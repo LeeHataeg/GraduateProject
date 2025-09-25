@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0d93c05d6e23c44843f277cab93b9c, type: 3}
   m_Name: Boss_Orc_Phase02 SO
   m_EditorClassIdentifier: 
-  onEnterPlay: 33
-  toNextPhaseHpRate: 0.6
-  moves: []
+  onEnterPlay: 25
+  toNextPhaseHpRate: -0.5
+  moves:
+  - move: {fileID: 11400000, guid: fee84b217088af1479d74395ab5d3cde, type: 2}
+    weight: 0.15
+  - move: {fileID: 11400000, guid: 7ba53d0f5bacaca4cb9b216625af74c4, type: 2}
+    weight: 0.15
+  - move: {fileID: 11400000, guid: bb395e95eefe57b4abbb510d9fff2338, type: 2}
+    weight: 0.15
+  - move: {fileID: 11400000, guid: 8f02b7ea7523ada41862caf6efb99835, type: 2}
+    weight: 0.15
+  - move: {fileID: 11400000, guid: 43b62f73cb080df4aad505a73c083dcb, type: 2}
+    weight: 0.13
+  - move: {fileID: 11400000, guid: a8663391c9f73b542871061cdb32e789, type: 2}
+    weight: 0.13
+  - move: {fileID: 11400000, guid: c6fd93ef01912e5448f232187bbc2d73, type: 2}
+    weight: 0.13

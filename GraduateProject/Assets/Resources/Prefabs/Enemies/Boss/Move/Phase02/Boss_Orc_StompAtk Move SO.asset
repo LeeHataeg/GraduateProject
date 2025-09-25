@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1184cac97527514e896f9c5b045d52d, type: 3}
-  m_Name: Boss_Orc_Jump Chain Move SO
+  m_Script: {fileID: 11500000, guid: 4b1ad7ed920867c49bb007d8395475ad, type: 3}
+  m_Name: Boss_Orc_StompAtk Move SO
   m_EditorClassIdentifier: 
   animKey: 14
   windup: 0.05
@@ -20,10 +20,3 @@ MonoBehaviour:
   minRange: 0
   maxRange: 99
   requireGrounded: 0
-  chargeKey: 21
-  jumpInKey: 22
-  loopBoolKey: 24
-  landKey: 23
-  chargeTime: 0.25
-  loopMinTime: 0.1
-  jumpForce: 10

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1184cac97527514e896f9c5b045d52d, type: 3}
+  m_Name: Boss_Orc_Jump Chain Move SO
+  m_EditorClassIdentifier: 
+  animKey: 21
+  windup: 0
+  recover: 0.2
+  cooldown: 4.5
+  lockMovement: 1
+  minRange: 2
+  maxRange: 7
+  requireGrounded: 1
+  chargeKey: 21
+  jumpInKey: 22
+  loopBoolKey: 24
+  landKey: 23
+  chargeTime: 0.25
+  loopMinTime: 0.1
+  jumpForce: 10

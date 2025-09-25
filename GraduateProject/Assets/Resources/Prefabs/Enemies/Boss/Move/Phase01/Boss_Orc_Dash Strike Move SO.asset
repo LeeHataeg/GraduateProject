@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e970cd6bdbcae9745ab3314c5e320d68, type: 3}
-  m_Name: Boss_Orc_Anim Map SO
+  m_Script: {fileID: 11500000, guid: 569938709fa51f74b9e0cc6fb45de733, type: 3}
+  m_Name: Boss_Orc_Dash Strike Move SO
   m_EditorClassIdentifier: 
-  pairs:
-  - key: 18
-    param: 
-    isBool: 0
-    defaultBoolValue: 1
+  animKey: 20
+  windup: 0.07
+  recover: 0.2
+  cooldown: 3.5
+  lockMovement: 1
+  minRange: 3
+  maxRange: 8
+  requireGrounded: 1
+  dashSpeed: 9
+  dashTime: 0.35

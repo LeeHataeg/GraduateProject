@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3714e7a314578e94cad8720ea1f4817f, type: 3}
   m_Name: Boss_Orc_Torado Chain Move SO
   m_EditorClassIdentifier: 
-  animKey: 14
+  animKey: 35
   windup: 0.05
-  recover: 0.1
-  cooldown: 1
+  recover: 0.3
+  cooldown: 8
   lockMovement: 1
-  minRange: 0
-  maxRange: 99
-  requireGrounded: 0
+  minRange: 2
+  maxRange: 8
+  requireGrounded: 1
   inKey: 35
   loopKey: 37
   outKey: 36

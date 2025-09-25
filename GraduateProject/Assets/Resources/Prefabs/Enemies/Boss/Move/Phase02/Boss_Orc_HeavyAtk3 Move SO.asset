@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e970cd6bdbcae9745ab3314c5e320d68, type: 3}
-  m_Name: Boss_Orc_Anim Map SO
+  m_Script: {fileID: 11500000, guid: 4b1ad7ed920867c49bb007d8395475ad, type: 3}
+  m_Name: Boss_Orc_HeavyAtk3 Move SO
   m_EditorClassIdentifier: 
-  pairs:
-  - key: 18
-    param: 
-    isBool: 0
-    defaultBoolValue: 1
+  animKey: 14
+  windup: 0.05
+  recover: 0.1
+  cooldown: 1
+  lockMovement: 1
+  minRange: 0
+  maxRange: 99
+  requireGrounded: 0
