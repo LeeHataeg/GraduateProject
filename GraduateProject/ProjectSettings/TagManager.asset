@@ -8,6 +8,7 @@ TagManager:
   - Spawn
   - Platform
   - Item
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

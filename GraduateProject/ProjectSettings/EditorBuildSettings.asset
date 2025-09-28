@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 8e70104638e54604aa8a7644c805d108
+  - enabled: 1
+    path: Assets/Scenes/BossField_Orc.unity
+    guid: 6435ee9e767acd04389aba6b8919236b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: de6c94c9637543644b2fa415ec1447d0, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 87c0a8e7ab392804c82910fec491e0d1, type: 2}
