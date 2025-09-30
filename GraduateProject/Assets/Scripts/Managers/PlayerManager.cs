@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     private bool _spawned;
     public GameObject Player;
+    public GameObject UnitRoot;
     private PlayerPositionController playerPositionController;
     public event Action<EquipmentManager> OnEquipmentReady;
 
@@ -39,8 +40,13 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // ✅ Additive로 로드된 BossField 같은 보조 씬은 건드리지 말자
+        if (mode == LoadSceneMode.Additive && scene.name != gameplaySceneName)
+            return;
+
         SetupForScene(scene);
     }
+
 
     //=== Scene Helpers ===//
     private bool IsGameplayScene(Scene s) => s.name == gameplaySceneName;
@@ -53,40 +59,47 @@ public class PlayerManager : MonoBehaviour
     }
 
     /// <summary>지정된 씬 기준으로 세팅.</summary>
+    private bool AnyGameplaySceneLoaded()
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            var s = SceneManager.GetSceneAt(i);
+            if (s.name == gameplaySceneName) return true;
+        }
+        return false;
+    }
+
     private void SetupForScene(Scene scene)
     {
         if (IsGameplayScene(scene))
         {
-            // 인게임 진입: 룸 이벤트 구독 보장 + 폴백 준비
+            // (기존 그대로)
             TrySubscribeRoomEventOnce();
-
             var rm = GameManager.Instance?.RoomManager;
             if (rm != null && rm.HasStartPoint)
-            {
-                // 이미 StartPoint가 있으면 즉시 스폰
                 PlayerInit(rm.GetStartPoint());
-            }
-            else
-            {
-                // 폴백 코루틴이 없으면 시작
-                if (fallbackCo == null)
-                    fallbackCo = StartCoroutine(SpawnFallbackAfterTimeout(3f));
-            }
+            else if (fallbackCo == null)
+                fallbackCo = StartCoroutine(SpawnFallbackAfterTimeout(3f));
         }
         else
         {
-            // 비-게임플레이 씬: 남아있는 것들 정리
+            // ✅ 여기서 무작정 Player를 Destroy 하던 로직을 '진짜로 게임플레이 씬이 하나도 없을 때만' 실행
             if (fallbackCo != null) { StopCoroutine(fallbackCo); fallbackCo = null; }
             TryUnsubscribeRoomEvent();
 
-            if (Player != null)
+            if (!AnyGameplaySceneLoaded())
             {
-                Destroy(Player);
-                Player = null;
-                _spawned = false;
+                if (Player != null)
+                {
+                    Destroy(Player);
+                    Player = null;
+                    _spawned = false;
+                }
             }
+            // ✅ Additive로 보조 씬이 늘어난 경우엔 여기서 아무것도 파괴하지 않음
         }
     }
+
 
     private void TrySubscribeRoomEventOnce()
     {
@@ -172,23 +185,23 @@ public class PlayerManager : MonoBehaviour
         _spawned = true;
         Debug.Log($"[PlayerManager] Player instantiated: {Player.name}");
 
-        // Target 연결 후 위치 적용
-        playerPositionController.SetTarget(Player.transform);
-        ApplyPosition(pos);
-
         // Unit Root 찾기
-        var unitRoot = Player.transform.Find("Unit Root");
-        if (unitRoot == null)
-            unitRoot = Player.GetComponentInChildren<PlayerMovement>(true)?.transform;
+        UnitRoot = Player.transform.Find("UnitRoot").gameObject;
+        if (UnitRoot == null)
+            UnitRoot = Player.GetComponentInChildren<PlayerMovement>(true)?.transform.gameObject;
 
-        if (unitRoot == null)
+        if (UnitRoot == null)
         {
             Debug.LogError("[PlayerManager] Unit Root NOT FOUND. Does your prefab have 'Unit Root' child or PlayerMovement on a child?");
             return;
         }
 
-        var eq = unitRoot.GetComponent<EquipmentManager>();
-        var stat = unitRoot.GetComponent<StatController>(); // 또는 PlayerStatController
+        // Target 연결 후 위치 적용
+        playerPositionController.SetTarget(UnitRoot.transform);
+        ApplyPosition(pos);
+
+        var eq = UnitRoot.GetComponent<EquipmentManager>();
+        var stat = UnitRoot.GetComponent<StatController>(); // 또는 PlayerStatController
 
         if (eq == null || stat == null)
         {
@@ -205,7 +218,7 @@ public class PlayerManager : MonoBehaviour
         if (playerPositionController != null)
             playerPositionController.SetPosition(pos);
         else if (Player != null)
-            Player.transform.position = pos;
+            UnitRoot.transform.position = pos;
     }
 
     // === 인스펙터에서 바로 테스트할 수 있는 강제 스폰 기능 ===

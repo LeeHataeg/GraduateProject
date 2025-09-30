@@ -31,15 +31,15 @@ public class BossBattleDirector : MonoBehaviour
         SetGates(true);
 
         // 2) 보스 참조 확보 (배치 or 스폰)
-        if (!bossInstance && bossSpawner)
-            bossInstance = bossSpawner.Spawn();
+        if (!bossInstance)
+            if (bossSpawner)
+                bossInstance = bossSpawner.Spawn();
 
         if (!bossInstance)
         {
             Debug.LogError("[BossBattleDirector] BossController를 찾을 수 없습니다.");
             return;
         }
-
         // 3) HP 이벤트 구독
         bossHp = bossInstance.GetComponent<HealthController>();
         if (bossHp != null) bossHp.OnDead += OnBossDead;

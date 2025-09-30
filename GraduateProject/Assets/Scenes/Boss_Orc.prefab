@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 5703203169603949048}
   - component: {fileID: 321771939489272384}
   - component: {fileID: 2809963558506300417}
+  - component: {fileID: -7748791958468930449}
   m_Layer: 10
   m_Name: Boss_Orc
   m_TagString: Untagged
@@ -320,7 +321,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &128698982701650967
 BoxCollider2D:
@@ -422,8 +423,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   def: {fileID: 11400000, guid: e60b29d7104b5f244b9ec70b71fbe763, type: 2}
   attackOrigin: {fileID: 3383258234895856490}
-  player: {fileID: 0}
+  UnitRoot: {fileID: 0}
   autoFindPlayer: 1
+  spriteFacesRight: 1
+  sr: {fileID: 0}
+  isEndEntry1: 0
+  isEndEntry2: 0
+  deltaX: 0
 --- !u!114 &2809963558506300417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,3 +443,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitbox: {fileID: 5253153230597797214}
+--- !u!114 &-7748791958468930449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530301817057543935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8771964b985880c438d8b22b9748d0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCam: {fileID: 0}

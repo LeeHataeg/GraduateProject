@@ -13,7 +13,151 @@ MonoBehaviour:
   m_Name: Boss_Orc_Anim Map SO
   m_EditorClassIdentifier: 
   pairs:
+  - key: 14
+    param: Idle
+    kind: 0
+    defaultBoolValue: 0
+  - key: 25
+    param: 'Idle[2]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 3
+    param: Falling
+    kind: 0
+    defaultBoolValue: 0
+  - key: 15
+    param: Land
+    kind: 0
+    defaultBoolValue: 0
+  - key: 1
+    param: Fall
+    kind: 0
+    defaultBoolValue: 0
+  - key: 2
+    param: Fallen
+    kind: 0
+    defaultBoolValue: 0
+  - key: 26
+    param: 'Entry[2]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 27
+    param: Taunt
+    kind: 0
+    defaultBoolValue: 0
+  - key: 28
+    param: 'Taunt[Out]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 11
+    param: 'Walk[In]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 13
+    param: Walking
+    kind: 0
+    defaultBoolValue: 0
+  - key: 12
+    param: 'Walk[Out]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 8
+    param: Run
+    kind: 0
+    defaultBoolValue: 0
+  - key: 9
+    param: 'Run[In]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 10
+    param: 'Run[Out]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 16
+    param: Atk1
+    kind: 0
+    defaultBoolValue: 0
+  - key: 17
+    param: Atk1
+    kind: 0
+    defaultBoolValue: 0
   - key: 18
-    param: 
-    isBool: 0
+    param: Atk3
+    kind: 0
+    defaultBoolValue: 0
+  - key: 19
+    param: Recover
+    kind: 0
+    defaultBoolValue: 0
+  - key: 21
+    param: ChargeJump
+    kind: 0
+    defaultBoolValue: 0
+  - key: 22
+    param: 'Jump[in]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 23
+    param: 'JumpAtk[Land]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 24
+    param: 'JumpAtk[Loop]'
+    kind: 2
     defaultBoolValue: 1
+  - key: 4
+    param: 'Stun[In]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 6
+    param: 'Stun[Loop]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 5
+    param: 'Stun[Out]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 0
+    param: Death
+    kind: 0
+    defaultBoolValue: 0
+  - key: 35
+    param: 'TornadoAtk[in]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 37
+    param: 'TornadoAtk[Loop]'
+    kind: 0
+    defaultBoolValue: 1
+  - key: 36
+    param: 'TornadoAtk[out]'
+    kind: 0
+    defaultBoolValue: 0
+  - key: 29
+    param: HeavyAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 30
+    param: HeavyAtk2
+    kind: 0
+    defaultBoolValue: 0
+  - key: 31
+    param: HeavyAtk3
+    kind: 0
+    defaultBoolValue: 0
+  - key: 32
+    param: LightAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 33
+    param: StompAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 34
+    param: FrontHeavyAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 7
+    param: BackDash
+    kind: 0
+    defaultBoolValue: 0

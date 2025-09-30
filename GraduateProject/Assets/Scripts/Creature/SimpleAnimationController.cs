@@ -87,5 +87,20 @@ public class SimpleAnimationController : MonoBehaviour, IAnimationController
         }
         return false;
     }
+
+    public void SetFloat(string name, float value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetInt(string name, int value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetCurClipname()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

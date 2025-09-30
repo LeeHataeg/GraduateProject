@@ -1,90 +1,184 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using static Define;
 
-/// Atk1 -> Atk2 -> Atk3 ¼ø¼­ °­Á¦ ÄÞº¸
-/// * °¢ ´Ü°è »çÀÌ¿¡ ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸® Ã¼Å©
-/// * °Å¸®°¡ ÀÓ°è°ªÀ» ³ÑÀ¸¸é Recover -> Idle·Î Á¾·á
-[CreateAssetMenu(menuName = "Boss/Moves/Combo Chain (Atk1¡æAtk2¡æAtk3)")]
+[CreateAssetMenu(menuName = "Boss/Moves/Combo Chain (Atk1â†’Atk2â†’Atk3)")]
 public class ComboChainMoveSO : BossMoveSO
 {
     [Header("Anim Keys")]
-    public AnimKey atk1Key = AnimKey.Atk1;          // Run() ½ÃÀÛ ½Ã base.animKey·Îµµ Atk1ÀÌ Àç»ýµÊ
+    public AnimKey atk1Key = AnimKey.Atk1;
     public AnimKey atk2Key = AnimKey.Atk2;
     public AnimKey atk3Key = AnimKey.Atk3;
-    public AnimKey recoverKey = AnimKey.Recover;    // Áß´Ü ½Ã »ç¿ë
+    public AnimKey recoverKey = AnimKey.Recover;
     public AnimKey idleKeyAfterRecover = AnimKey.Idle;
 
     [Header("Chain Rules")]
-    [Tooltip("ÄÞº¸¸¦ ÀÌ¾î°¡·Á¸é ÇÃ·¹ÀÌ¾î±îÁöÀÇ X°Å¸®(Àý´ë°ª)°¡ ÀÌ °ª ÀÌÇÏÀÌ¾î¾ß ÇÔ")]
-    public float continueMaxDistance = 2.6f;
+    [Tooltip("ì½¤ë³´ ìœ ì§€ Xê±°ë¦¬(ì ˆëŒ€ê°’) ìµœëŒ€ì¹˜ â€” stopDistë³´ë‹¤ ë„‰ë„‰ížˆ! (ì˜ˆ: 3.0)")]
+    public float continueMaxDistance = 3.0f;
+    [Tooltip("ê° ìŠ¤í… ì¢…ë£Œ ì‹œ ì§€ë©´ì— ìžˆì–´ì•¼ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰")]
+    public bool requireGroundedEachStep = false;
 
-    [Tooltip("°øÁß ÄÞº¸ ±ÝÁö µî ÇÊ¿ä ½Ã »ç¿ë")]
-    public bool requireGroundedEachStep = true;
+    [Header("Safety")]
+    public float perStepTimeout = 1.2f;
 
-    [Header("Fallback Durations (¾Ö´Ï ÀÌº¥Æ® ¾øÀ» ¶§ »ç¿ë)")]
-    [Tooltip("Atk1 Àç»ý ÈÄ ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°¡±â±îÁö ´ë±â ½Ã°£")]
-    public float atk1StepTime = 0.30f;
-    public float atk2StepTime = 0.35f;
-    public float atk3StepTime = 0.40f;
-    public float recoverTime = 0.35f;
+    [SerializeField] private float distanceSlack = 0.15f; // ê²½ê³„ í”ë“¤ë¦¼ ì—¬ìœ 
 
-    // BossMoveSO.Run()ÀÌ ¼±µô/ÈÄµô/Äð´Ù¿î, ÀÌµ¿¶ôÀ» Ã³¸®ÇÑ´Ù.
-    // ÀÌ Execute¿¡¼­´Â ´Ü°èº° ¾Ö´Ï¸¸ Àç»ýÇÏ°í °Å¸® Ã¼Å©¸¦ ¼öÇàÇÑ´Ù.
+    // ref ëŒ€ì‹  ë‚´ë¶€ í”Œëž˜ê·¸ ì‚¬ìš©
+    private bool _brokeByDistance;
+
     protected override IEnumerator Execute(BossContext ctx)
     {
-        // 1) Atk1 (Run()¿¡¼­ ÀÌ¹Ì animKey°¡ atk1Key·Î Àç»ýµÇÁö¸¸ ¾ÈÀüÇÏ°Ô ÇÑ ¹ø ´õ)
-        ctx.Anims.Play(ctx.Anim, atk1Key);
-        yield return WaitStep(atk1StepTime, ctx);
-
-        // ¡æ °Å¸®/»óÅÂ Ã¼Å© ÈÄ ¾È µÇ¸é Recover
-        if (!CanContinueToNext(ctx))
-        {
-            yield return DoRecover(ctx);
-            yield break;
+        // 1) Atk1
+        _brokeByDistance = false;
+        yield return PlayStepWithDistanceBreak(ctx, atk1Key, continueMaxDistance, perStepTimeout);
+        if (_brokeByDistance || !CanProceedNext(ctx)) 
+        { 
+            yield return DoRecoverToIdle(ctx, "after Atk1"); 
+            yield break; 
         }
 
         // 2) Atk2
-        ctx.Anims.Play(ctx.Anim, atk2Key);
-        yield return WaitStep(atk2StepTime, ctx);
-
-        if (!CanContinueToNext(ctx))
-        {
-            yield return DoRecover(ctx);
-            yield break;
+        _brokeByDistance = false;
+        yield return PlayStepWithDistanceBreak(ctx, atk2Key, continueMaxDistance, perStepTimeout);
+        if (_brokeByDistance || !CanProceedNext(ctx)) 
+        { 
+            yield return DoRecoverToIdle(ctx, "after Atk2"); 
+            yield break; 
         }
 
         // 3) Atk3
-        ctx.Anims.Play(ctx.Anim, atk3Key);
-        yield return WaitStep(atk3StepTime, ctx);
+        yield return PlayStep_Atk3_WithEnterCheck(ctx);
+        yield return PlayRecoverThenIdle(ctx);
 
-        // ÄÞº¸ ¿ÏÁÖ ÈÄ¿¡´Â BossController°¡ ´ÙÀ½ ¹«ºê¸¦ °í¸¥´Ù(º°µµ Ã³¸® ¾øÀ½)
-        yield break;
+        yield return WaitClipEnd(ctx, perStepTimeout);
+
+        yield return PlayRecoverThenIdle(ctx);
     }
 
-    private IEnumerator DoRecover(BossContext ctx)
+    // ë””ë²„ê·¸ - í…ŒìŠ¤íŠ¸ìš©
+    private IEnumerator PlayStep_Atk3_WithEnterCheck(BossContext ctx)
     {
-        if (recoverKey != AnimKey.Idle) // È¤½Ã Recover Å°°¡ ºñ¾îÀÖÀ¸¸é Idle¸¸
+        string before = SafeCurClip(ctx);
+
+        ctx.Anims.Play(ctx.Anim, atk3Key);
+        yield return null; // í•œ í”„ë ˆìž„ ì–‘ë³´í•´ì„œ ì „ì´ ë°˜ì˜
+
+        string now = SafeCurClip(ctx);
+
+#if UNITY_EDITOR
+        if (string.IsNullOrEmpty(now))
+            Debug.LogWarning("[ComboChain] Atk3: current clip is empty just after Play.");
+#endif
+
+        // 1) í´ë¦½ì´ ë°”ë€Œì§€ ì•Šì•˜ë‹¤ â†’ Atk3ë¡œ ëª» ë“¤ì–´ê°„ ê²ƒ(ë§¤í•‘/ìƒíƒœëª… ë¬¸ì œì¼ í™•ë¥  ë†’ìŒ)
+        if (string.IsNullOrEmpty(now) || now == before)
         {
-            ctx.Anims.Play(ctx.Anim, recoverKey);
-            if (recoverTime > 0f) yield return new WaitForSeconds(recoverTime);
+#if UNITY_EDITOR
+            Debug.LogWarning($"[ComboChain] Atk3 did NOT start. before='{before}' now='{now}'. " +
+                             $"Check AnimMapSO mapping for AnimKey.Atk3 and Animator state name.");
+#endif
+            yield break; // ìƒìœ„ì—ì„œ RecoverThenIdle í˜¸ì¶œë¨
         }
+
+        // 2) ë“¤ì–´ê°€ê¸´ í–ˆì§€ë§Œ ë°”ë¡œ íŠ•ê¸¸ ìˆ˜ë„ ìžˆìœ¼ë‹ˆ, ìµœì†Œ í•œ í”„ë ˆìž„ì€ Atk3 ìœ ì§€ë˜ëŠ”ì§€ ì²´í¬(ì„ íƒ)
+        yield return null;
+        string now2 = SafeCurClip(ctx);
+        if (now2 != now)
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning($"[ComboChain] Atk3 interrupted immediately â†’ '{now2}'. " +
+                             $"Check AnyState/Atk2â†’Recover transitions & conditions.");
+#endif
+            yield break;
+        }
+
+        // 3) ì •ìƒì ìœ¼ë¡œ Atk3ê°€ ëŒê³  ìžˆìœ¼ë‹ˆ ëë‚  ë•Œê¹Œì§€ ëŒ€ê¸°
+        yield return WaitClipEnd(ctx, perStepTimeout);
+    }
+
+    private IEnumerator PlayStepWithDistanceBreak(BossContext ctx, AnimKey stepKey, float limit, float timeout)
+    {
+        ctx.Anims.Play(ctx.Anim, stepKey);
+
+        string start = SafeCurClip(ctx);
+        if (string.IsNullOrEmpty(start)) { yield return null; start = SafeCurClip(ctx); }
+
+        float elapsed = 0f;
+        while (!string.IsNullOrEmpty(start) && SameClip(ctx, start))
+        {
+            if (IsOutOfRangeSlack(ctx, limit, distanceSlack))
+            {
+#if UNITY_EDITOR
+                Debug.Log($"[ComboChain] break to Recover: dx={CurDx(ctx):0.00} > {limit}+{distanceSlack} at {stepKey}");
+#endif
+                ctx.Anims.Play(ctx.Anim, recoverKey);
+                yield return WaitClipEnd(ctx, timeout);
+                ctx.Anims.Play(ctx.Anim, idleKeyAfterRecover);
+                _brokeByDistance = true; // í”Œëž˜ê·¸ ì„¤ì •
+                yield break;
+            }
+            yield return null;
+            elapsed += Time.deltaTime;
+            if (timeout > 0f && elapsed >= timeout) break;
+        }
+    }
+
+    private IEnumerator PlayRecoverThenIdle(BossContext ctx)
+    {
+        ctx.Anims.Play(ctx.Anim, recoverKey);
+        yield return WaitClipEnd(ctx, perStepTimeout);
         ctx.Anims.Play(ctx.Anim, idleKeyAfterRecover);
     }
 
-    private bool CanContinueToNext(BossContext ctx)
+    private IEnumerator DoRecoverToIdle(BossContext ctx, string where)
     {
-        if (ctx.Player == null) return false;
-        float dx = Mathf.Abs(ctx.Player.position.x - ctx.Self.position.x);
-        if (dx > continueMaxDistance) return false;
-        if (requireGroundedEachStep && Mathf.Abs(ctx.RB.linearVelocity.y) > 0.05f) return false;
-        return true;
-        // ÇÊ¿äÇÏ¸é ¿©±â¼­ ½Ã¾ß/³ôÀÌ(YÂ÷) µî Ãß°¡ Á¶°Çµµ Ã¼Å© °¡´É
+#if UNITY_EDITOR
+        Debug.Log($"[ComboChain] Recoverâ†’Idle ({where}), groundedOK={CanProceedNext(ctx)}");
+#endif
+        yield return PlayRecoverThenIdle(ctx);
     }
 
-    private static IEnumerator WaitStep(float seconds, BossContext ctx)
+    private bool CanProceedNext(BossContext ctx)
     {
-        // ¾Ö´Ï¸ÞÀÌ¼Ç ÀÌº¥Æ®·Î Å¸ÀÌ¹ÖÀ» ²÷´Â´Ù¸é ÀÌ ´ë±â ´ë½Å AE¿¡¼­ ´ÙÀ½ ´Ü°è È£Ãâ·Î ¹Ù²ãµµ µÈ´Ù.
-        if (seconds > 0f) yield return new WaitForSeconds(seconds);
+        if (!requireGroundedEachStep || ctx.RB == null) return true;
+#if UNITY_6000_0_OR_NEWER
+        return Mathf.Abs(ctx.RB.linearVelocity.y) <= 0.05f;
+#else
+        return Mathf.Abs(ctx.RB.velocity.y) <= 0.05f;
+#endif
+    }
+
+    // === helpers ===
+    private static string SafeCurClip(BossContext ctx)
+    {
+        var n = ctx.Anim != null ? ctx.Anim.GetCurClipname() : null;
+        return string.IsNullOrEmpty(n) ? null : n;
+    }
+    private static bool SameClip(BossContext ctx, string start)
+    {
+        var now = ctx.Anim != null ? ctx.Anim.GetCurClipname() : null;
+        return !string.IsNullOrEmpty(now) && now == start;
+    }
+    private static IEnumerator WaitClipEnd(BossContext ctx, float timeout)
+    {
+        string start = SafeCurClip(ctx);
+        if (string.IsNullOrEmpty(start)) { yield return null; start = SafeCurClip(ctx); }
+
+        float elapsed = 0f;
+        while (!string.IsNullOrEmpty(start) && SameClip(ctx, start))
+        {
+            yield return null;
+            elapsed += Time.deltaTime;
+            if (timeout > 0f && elapsed >= timeout) break;
+        }
+    }
+    private static float CurDx(BossContext ctx)
+    {
+        if (!ctx.Player) return float.PositiveInfinity;
+        return Mathf.Abs(ctx.Player.position.x - ctx.Self.position.x);
+    }
+    private static bool IsOutOfRangeSlack(BossContext ctx, float limit, float slack)
+    {
+        return CurDx(ctx) > (limit + Mathf.Max(0f, slack));
     }
 }

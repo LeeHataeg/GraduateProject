@@ -15,7 +15,7 @@ MonoBehaviour:
   animKey: 16
   windup: 0.05
   recover: 0.25
-  cooldown: 2
+  cooldown: 1.2
   lockMovement: 1
   minRange: 0
   maxRange: 2.4
@@ -27,7 +27,5 @@ MonoBehaviour:
   idleKeyAfterRecover: 14
   continueMaxDistance: 2.6
   requireGroundedEachStep: 1
-  atk1StepTime: 0.3
-  atk2StepTime: 0.35
-  atk3StepTime: 0.4
-  recoverTime: 0.35
+  perStepTimeout: 1.2
+  distanceSlack: 0.15

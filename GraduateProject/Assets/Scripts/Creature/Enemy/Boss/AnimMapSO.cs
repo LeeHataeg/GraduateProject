@@ -5,15 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Boss/Anim Map")]
 public class AnimMapSO : ScriptableObject
 {
+    public enum ParamKind { State, Trigger, Bool }
+
     [System.Serializable]
     public struct Pair
     {
         public AnimKey key;
-        [Tooltip("Animator 상태 이름 또는 Bool 파라미터 이름")]
+
+        [Tooltip("Animator 상태명 / 트리거명 / Bool 파라미터명 (kind에 따라 달라짐)")]
         public string param;
-        [Tooltip("Bool 파라미터면 true (루프/토글), 상태 재생이면 false")]
-        public bool isBool;
-        [Tooltip("isBool일 때 기본 세팅값")]
+
+        [Tooltip("State, Trigger, Bool 중 무엇인지")]
+        public ParamKind kind;
+
+        [Tooltip("kind==Bool일 때 기본 세팅값")]
         public bool defaultBoolValue;
     }
 
@@ -28,13 +33,29 @@ public class AnimMapSO : ScriptableObject
         foreach (var p in pairs) _map[p.key] = p;
     }
 
+    /// <summary>
+    /// boolOverride는 Bool 파라미터일 때만 의미 있음.
+    /// </summary>
     public void Play(IAnimationController anim, AnimKey key, bool? boolOverride = null)
     {
         if (anim == null) return;
         if (_map == null || _map.Count == 0) Build();
         if (!_map.TryGetValue(key, out var p)) return;
 
-        if (p.isBool) anim.SetBool(p.param, boolOverride ?? p.defaultBoolValue);
-        else anim.SetTrigger(p.param);
+        switch (p.kind)
+        {
+            case ParamKind.Bool:
+                anim.SetBool(p.param, boolOverride ?? p.defaultBoolValue);
+                break;
+
+            case ParamKind.Trigger:
+                anim.SetTrigger(p.param);
+                break;
+
+            case ParamKind.State:
+                // IAnimationController가 상태 이름을 받아 CrossFade/Play 하도록 구현돼 있어야 함
+                anim.Play(p.param);
+                break;
+        }
     }
 }

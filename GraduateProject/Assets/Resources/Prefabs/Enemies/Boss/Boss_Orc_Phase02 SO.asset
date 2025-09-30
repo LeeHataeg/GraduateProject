@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss_Orc_Phase02 SO
   m_EditorClassIdentifier: 
   onEnterPlay: 25
-  toNextPhaseHpRate: -0.5
+  toNextPhaseHpRate: 0
   moves:
   - move: {fileID: 11400000, guid: fee84b217088af1479d74395ab5d3cde, type: 2}
     weight: 0.15

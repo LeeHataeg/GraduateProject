@@ -42,4 +42,14 @@ public class AnimatorAdapter : MonoBehaviour, IAnimationController
     {
         throw new System.NotImplementedException();
     }
+
+    public string GetCurClipname()
+    {
+        var infos = animator.GetCurrentAnimatorClipInfo(0);
+        if (infos.Length > 0)
+        {
+            return infos[0].clip.name; // 가장 가중치 높은 클립
+        }
+        return null;
+    }
 }

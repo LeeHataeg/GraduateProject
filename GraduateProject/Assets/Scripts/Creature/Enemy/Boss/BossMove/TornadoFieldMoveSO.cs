@@ -1,4 +1,3 @@
-
 using static Define;
 using UnityEngine;
 using System.Collections;

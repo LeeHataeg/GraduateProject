@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -9,11 +9,11 @@ public class BossFieldEntranceTrigger : MonoBehaviour
     public string bossFieldSceneName = "BossField_Orc";
 
     [Header("Player Spawn in Boss Scene")]
-    public string playerSpawnTagInBossScene = "BossPlayerSpawn"; // Boss ¾À¿¡ ÀÌ ÅÂ±×ÀÇ Æ®·£½ºÆûÀ» ÇÏ³ª µÖ¶ó
+    public string playerSpawnTagInBossScene = "BossPlayerSpawn"; // Boss ì”¬ì— ì´ íƒœê·¸ì˜ íŠ¸ëœìŠ¤í¼ì„ í•˜ë‚˜ ë‘¬ë¼
 
     [Header("Options")]
-    public bool oneShot = true;        // ÇÑ ¹ø¸¸ ÁøÀÔ Çã¿ë
-    public bool setActiveScene = true; // Additive ·Îµå ÈÄ È°¼º ¾ÀÀ¸·Î ÀüÈ¯
+    public bool oneShot = true;        // í•œ ë²ˆë§Œ ì§„ì… í—ˆìš©
+    public bool setActiveScene = true; // Additive ë¡œë“œ í›„ í™œì„± ì”¬ìœ¼ë¡œ ì „í™˜
 
     private bool entered;
 
@@ -34,28 +34,43 @@ public class BossFieldEntranceTrigger : MonoBehaviour
 
     private IEnumerator LoadBossFieldAndMovePlayer()
     {
-        // 1) Additive ·Îµå
-        AsyncOperation op = SceneManager.LoadSceneAsync(bossFieldSceneName, LoadSceneMode.Additive);
-        while (!op.isDone) yield return null;
+        // 1) Additive ë¡œë“œ
+        var load = SceneManager.LoadSceneAsync(bossFieldSceneName, LoadSceneMode.Additive);
+        while (!load.isDone) yield return null;
 
-        // 2) È°¼º ¾À ÀüÈ¯(¼±ÅÃ)
-        if (setActiveScene)
+        // 2) (ì„ íƒ) í™œì„± ì”¬ ì „í™˜
+        var bossScene = SceneManager.GetSceneByName(bossFieldSceneName);
+        if (setActiveScene && bossScene.IsValid())
+            SceneManager.SetActiveScene(bossScene);
+
+        // 3) í”Œë ˆì´ì–´ ë£¨íŠ¸ ì°¾ê¸° (ì¤‘ìš”: ë£¨íŠ¸ì—¬ì•¼ Move ê°€ëŠ¥)
+        var any = GameObject.FindGameObjectWithTag("Player");
+        if (any == null) yield break;
+        /*var playerRoot = any.transform.Find("UnitRoot").gameObject;*/  // â˜… ë£¨íŠ¸ ê°•ì œ
+
+        // 4) DDOL ì—¬ë¶€ í™•ì¸
+        bool isInDDOL = any.scene.name == "DontDestroyOnLoad";
+
+        // 5) ë³´ìŠ¤ ì”¬ìœ¼ë¡œ ì†Œì† ì´ë™ (DDOLì´ë©´ Move ë¶ˆê°€ â†’ ìŠ¤í‚µ)
+        if (!isInDDOL && bossScene.IsValid() && any.scene != bossScene)
         {
-            var scene = SceneManager.GetSceneByName(bossFieldSceneName);
-            if (scene.IsValid()) SceneManager.SetActiveScene(scene);
+            // ë£¨íŠ¸ê°€ ì•„ë‹ˆë©´ ë¶€ëª¨ ë¶„ë¦¬ (ì•ˆì „)
+            if (any.transform.parent != null)
+                any.transform.SetParent(null, true);
+
+            SceneManager.MoveGameObjectToScene(any, bossScene);
         }
 
-        // 3) ÇÃ·¹ÀÌ¾î ÀÌµ¿(ÀÎº¥/Àåºñ º¸Á¸: Player ¿ÀºêÁ§Æ®´Â Persist·Î À¯ÁöµÈ´Ù°í °¡Á¤)
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
+        // 6) ìŠ¤í° í¬ì¸íŠ¸ë¡œ í…”ë ˆí¬íŠ¸
+        Transform spawn = FindSpawnInScene(bossFieldSceneName, playerSpawnTagInBossScene);
+        if (spawn != null)
         {
-            Transform spawn = FindSpawnInScene(bossFieldSceneName, playerSpawnTagInBossScene);
-            if (spawn)
-            {
-                player.transform.position = spawn.position;
-            }
+            var rb = any.GetComponent<Rigidbody2D>();
+            if (rb) rb.linearVelocity = Vector2.zero;   // Unity 6 ê¶Œì¥
+            any.transform.position = spawn.position;
         }
     }
+
 
     private Transform FindSpawnInScene(string sceneName, string tag)
     {
@@ -67,7 +82,7 @@ public class BossFieldEntranceTrigger : MonoBehaviour
             var tagged = root.GetComponentInChildren<TransformWithTag>(true);
             if (tagged && tagged.CompareTag(tag)) return tagged.transform;
 
-            // ÀÏ¹İ Tag Å½»ö
+            // ì¼ë°˜ Tag íƒìƒ‰
             var tr = root.GetComponentsInChildren<Transform>(true);
             foreach (var t in tr)
                 if (t.CompareTag(tag)) return t;
@@ -75,6 +90,6 @@ public class BossFieldEntranceTrigger : MonoBehaviour
         return null;
     }
 
-    // ÅÂ±×°¡ Transform¿¡ Á÷Á¢ ¾øÀ» ¶§ ´ëºñ¿ë ´õ¹Ì
+    // íƒœê·¸ê°€ Transformì— ì§ì ‘ ì—†ì„ ë•Œ ëŒ€ë¹„ìš© ë”ë¯¸
     private class TransformWithTag : MonoBehaviour { }
 }

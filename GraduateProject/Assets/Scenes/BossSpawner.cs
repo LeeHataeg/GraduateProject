@@ -4,9 +4,13 @@ public class BossSpawner : MonoBehaviour
 {
     public BossController bossPrefab;
     public Transform spawnPoint;
-
     [Header("Optional")]
     public bool parentToThis = false;
+
+    private void Awake()
+    {
+        Debug.Log("Pos : "+ spawnPoint.position);
+    }
 
     public BossController Spawn()
     {

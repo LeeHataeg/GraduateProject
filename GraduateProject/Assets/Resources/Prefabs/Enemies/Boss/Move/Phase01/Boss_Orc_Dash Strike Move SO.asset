@@ -15,7 +15,7 @@ MonoBehaviour:
   animKey: 20
   windup: 0.07
   recover: 0.2
-  cooldown: 3.5
+  cooldown: 0.5
   lockMovement: 1
   minRange: 3
   maxRange: 8

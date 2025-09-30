@@ -44,6 +44,9 @@ public interface IAnimationController
     void Stop();
     void SetBool(string paramName, bool value);
     void SetTrigger(string paramName);
+    public void SetFloat(string name, float value);
+    public void SetInt(string name, int value);
+    public string GetCurClipname();
 }
 
 // 공격 실행. 대상·위치·방향 등 컨텍스트 포함.
