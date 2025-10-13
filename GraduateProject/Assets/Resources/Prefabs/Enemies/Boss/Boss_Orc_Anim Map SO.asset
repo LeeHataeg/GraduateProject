@@ -78,7 +78,7 @@ MonoBehaviour:
     kind: 0
     defaultBoolValue: 0
   - key: 17
-    param: Atk1
+    param: Atk2
     kind: 0
     defaultBoolValue: 0
   - key: 18

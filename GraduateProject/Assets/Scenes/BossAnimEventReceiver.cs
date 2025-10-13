@@ -6,7 +6,14 @@ public class BossAnimEventReceiver : MonoBehaviour
     [Header("Optional (비워도 됨)")]
     [SerializeField] private Camera targetCam; // Inspector에서 Player 하위 카메라를 드래그해도 OK
 
+
+
     // AnimationEvent: Taunt 클립에서 호출됨
+    public void OnShakeCam()
+    {
+        OnShakeCamLight();
+    }
+
     public void OnShakeCamLight()
     {
         if (!EnsureCamera())
@@ -15,6 +22,27 @@ public class BossAnimEventReceiver : MonoBehaviour
         // 간단 쉐이크 (원하면 Cinemachine으로 교체)
         StartCoroutine(Shake(0.12f, 0.15f));
     }
+
+    // BossAnimEventReceiver.cs
+
+    public void OnShakeCamHeavy()      // 파라미터 없는 이벤트라면 이 시그니처여야 함
+    {
+        if (!EnsureCamera()) return;
+        // 라이트보다 강하고 길게
+        StartCoroutine(Shake(0.25f, 0.30f));
+    }
+
+    // 만약 클립 이벤트에 float 인자를 넣어둔 경우(예: 0.35f),
+    // 아래처럼 float 파라미터 버전도 지원 가능. (둘 중 하나만 쓰면 됨)
+    public void OnShakeCamHeavy(float strength)
+    {
+        if (!EnsureCamera()) return;
+        // strength를 진폭/시간에 반영 (원하는 대로 매핑)
+        float amplitude = Mathf.Clamp01(strength) * 0.35f;
+        float duration = 0.20f + Mathf.Clamp01(strength) * 0.20f;
+        StartCoroutine(Shake(amplitude, duration));
+    }
+
 
     private bool EnsureCamera()
     {

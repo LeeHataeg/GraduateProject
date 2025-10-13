@@ -102,17 +102,6 @@ public abstract class Define
 
 
     #region Class
-    public class BossContext
-    {
-        public Transform Self;
-        public Transform AttackOrigin;
-        public Transform Player;
-        public IAnimationController Anim;
-        public AnimMapSO Anims;
-        public HealthController Health;
-        public Rigidbody2D RB;
-        public Action<bool> LockMove;
-    }
 
     public class Edge : IComparable<Edge>
     {

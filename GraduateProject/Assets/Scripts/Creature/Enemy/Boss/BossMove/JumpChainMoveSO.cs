@@ -1,51 +1,166 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using static Define;
 
-/// P1 Àü¿ë: ChargeJump ¡æ JumpIn ¡æ (ÇÏ°­ Áß JumpAtkLoop=true) ¡æ JumpAtkLand ¡æ Loop=false
-/// * µ¥¹ÌÁö´Â ¾Ö´Ï¸ŞÀÌ¼Ç ÀÌº¥Æ®·Î¸¸ Ã³¸®(¿¹: Land Å¬¸³¿¡ AE_HitBegin/End)
-[CreateAssetMenu(menuName = "Boss/Moves/Jump Chain (Charge¡æJumpIn¡æLoop¡æLand)")]
+/// P1 ì „ìš©: ChargeJump â†’ JumpIn â†’ (ê³µì¤‘ Loop) â†’ Land
+/// * ë°ë¯¸ì§€ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì´ë²¤íŠ¸ë¡œë§Œ ì²˜ë¦¬(ì˜ˆ: Land í´ë¦½ì— AE_HitBegin/End)
+[CreateAssetMenu(menuName = "Boss/Moves/Jump Chain (Chargeâ†’JumpInâ†’Loopâ†’Land)")]
 public class JumpChainMoveSO : BossMoveSO
 {
     [Header("Anim Keys")]
-    public AnimKey chargeKey = AnimKey.ChargeJump; // ¼±ÅÃ: ¾øÀ¸¸é ºñ¿öµÎ¼¼¿ä(=JumpInºÎÅÍ ½ÃÀÛ)
+    public AnimKey chargeKey = AnimKey.ChargeJump; // ì„ íƒ: ì—†ìœ¼ë©´ ë¹„ì›Œë‘ì„¸ìš”(=JumpInë¶€í„° ì‹œì‘)
     public AnimKey jumpInKey = AnimKey.JumpIn;
-    public AnimKey loopBoolKey = AnimKey.JumpAtkLoop; // Bool ·çÇÁ
+    public AnimKey loopBoolKey = AnimKey.JumpAtkLoop; // Bool ë£¨í”„
     public AnimKey landKey = AnimKey.JumpAtkLand;
 
     [Header("Timings")]
-    public float chargeTime = 0.25f; // ChargeJump ¸Ó¹«´Â ½Ã°£(¾øÀ¸¸é 0)
-    public float loopMinTime = 0.10f; // ÇÏ°­ ·çÇÁ ÃÖ¼Ò À¯Áö½Ã°£(ÀÌº¥Æ® ¾øÀ» ¶§ ¾ÈÀü¸Á)
+    [Tooltip("ChargeJump ë¨¸ë¬´ëŠ” ì‹œê°„(ì—†ìœ¼ë©´ 0)")]
+    public float chargeTime = 0.25f;
+
+    [Tooltip("JumpIn ì• ë‹ˆ í•œ ì‚¬ì´í´ ë™ì•ˆ ìˆ˜í‰ ì´ë™ì„ ê¸ˆì§€í•˜ëŠ” ì‹œê°„")]
+    public float jumpInHoldTime = 0.20f;
+
+    [Tooltip("ê³µì¤‘ ì²´ê³µ ì‹œê°„(ì´ ì‹œê°„ ë™ì•ˆ yì¶• ì´ë™ ê¸ˆì§€+ì¤‘ë ¥ 0)")]
+    public float hoverTime = 0.35f;
+
+    [Tooltip("Land ì—°ì¶œ/íŒì • í›„ ëŒ€ê¸° ì‹œê°„")]
+    public float landDelay = 0.80f;
 
     [Header("Jump Motion")]
+    [Tooltip("ìˆ˜ì§ ì í”„ í˜(ìƒë°©í–¥)")]
     public float jumpForce = 10f;
+
+    [Tooltip("ì²´ê³µ ì¤‘ í”Œë ˆì´ì–´ ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” ìˆ˜í‰ ì†ë„")]
+    public float hoverHorizontalSpeed = 2.0f;
+
+    [Tooltip("ì²´ê³µ ì¢…ë£Œ í›„ ì•„ë˜ë¡œ ê°•í•˜ê²Œ ë–¨ì–´ì§ˆ ë•Œì˜ í•˜ê°• ì†ë„(ì ˆëŒ€ê°’)")]
+    public float dropForce = 16f;
+
+    [Header("Exact Height (optional)")]
+    public bool useExactJumpHeight = false;
+    public float jumpHeight = 3.5f;   // ì •í™•íˆ ì˜¤ë¥¼ ë†’ì´ (ì›”ë“œ ìœ ë‹›)
+
+    // í—¬í¼
+    private static float GetGravity2D(Rigidbody2D rb)
+    {
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        return g * (rb ? rb.gravityScale : 1f);
+    }
 
     protected override IEnumerator Execute(BossContext ctx)
     {
-        // 1) Charge (¿É¼Ç)
+        var bc = ctx.Self ? ctx.Self.GetComponent<BossController>() : null;
+        if (ctx.RB == null || ctx.Anims == null || ctx.Anim == null) yield break;
+
+        // ì´ë™ ë®ì–´ì“°ê¸° ë°©ì§€(ì„ íƒ)
+        if (bc) bc.SetMoveLocked(true);
+
+        bool landed = false;
+        System.Action onGround = () => landed = true;
+        if (bc != null) bc.GroundTouched += onGround;
+
+        float originalGravity = ctx.RB.gravityScale;
+
+        // 1) Charge (ì˜µì…˜)
         if (chargeTime > 0f && chargeKey != AnimKey.Idle)
         {
             ctx.Anims.Play(ctx.Anim, chargeKey);
             yield return new WaitForSeconds(chargeTime);
         }
 
-        // 2) JumpIn & ¹ß»ç
-        ctx.Anims.Play(ctx.Anim, jumpInKey);
-        var v = ctx.RB.linearVelocity; v.y = jumpForce; ctx.RB.linearVelocity = v;
+        // ëª©í‘œ ë†’ì´ ê³„ì‚°
+        float startY = ctx.RB.position.y;
+        float targetY;
+        if (useExactJumpHeight)
+        {
+            targetY = startY + Mathf.Max(0f, jumpHeight);
+        }
+        else
+        {
+            float g = Mathf.Abs(Physics2D.gravity.y) * ctx.RB.gravityScale;
+            float estH = (jumpForce * jumpForce) / Mathf.Max(0.0001f, 2f * g);
+            targetY = startY + estH;
+        }
 
-        // 3) Loop on (ÇÏ°­ Áß)
+        // 2) JumpIn: X ê³ ì • + ëª©í‘œ ë†’ì´ë¡œ 'ì¦‰ì‹œ' ìŠ¤ëƒ… (ë¬¼ë¦¬ ìŠ¤í…ì—ì„œ ì²˜ë¦¬)
+        ctx.Anims.Play(ctx.Anim, jumpInKey);
+
+        ctx.RB.gravityScale = 0f;
+#if UNITY_6000_0_OR_NEWER
+        ctx.RB.linearVelocity = Vector2.zero;
+#else
+    ctx.RB.velocity = Vector2.zero;
+#endif
+        // ë¦¬ì§€ë“œë°”ë”” ì¢Œí‘œë¡œ ë°”ë¡œ ìŠ¤ëƒ…í•˜ê³ , ë¬¼ë¦¬ ìŠ¤í… ë™ê¸°í™”
+        var rp = ctx.RB.position; rp.y = targetY; ctx.RB.position = rp;
+        Physics2D.SyncTransforms();
+        yield return new WaitForFixedUpdate();
+
+        // JumpIn í™€ë“œ ë™ì•ˆ X=0, Y ìœ„ì¹˜/ì†ë„ ê³ ì • (ë¬¼ë¦¬ ìŠ¤í… ê¸°ì¤€)
+        float held = 0f, holdDur = Mathf.Max(0.01f, jumpInHoldTime);
+        while (held < holdDur)
+        {
+#if UNITY_6000_0_OR_NEWER
+            var lv = ctx.RB.linearVelocity; lv.x = 0f; lv.y = 0f; ctx.RB.linearVelocity = lv;
+#else
+        var lv = ctx.RB.velocity; lv.x = 0f; lv.y = 0f; ctx.RB.velocity = lv;
+#endif
+            rp = ctx.RB.position; rp.y = targetY; ctx.RB.position = rp; // ë“œë¦¬í”„íŠ¸ ë°©ì§€
+            Physics2D.SyncTransforms();
+
+            yield return new WaitForFixedUpdate();
+            held += Time.fixedDeltaTime;
+        }
+
+        // 3) Loop on: ì²´ê³µ â€” Y ì™„ì „ ê³ ì • + ì¤‘ë ¥ 0, XëŠ” ì²œì²œíˆ í”Œë ˆì´ì–´ ì¶”ì  (ë¬¼ë¦¬ ìŠ¤í…)
         ctx.Anims.Play(ctx.Anim, loopBoolKey, true);
 
-        // ÇÏ°­ ½ÃÀÛµÉ ¶§±îÁö ´ë±â
-        while (ctx.RB.linearVelocity.y > -0.01f) yield return null;
+        float hoverT = 0f;
+        while (hoverT < hoverTime && !landed)
+        {
+            float dirX = 0f;
+            if (ctx.Player)
+            {
+                float dx = ctx.Player.position.x - ctx.Self.position.x;
+                dirX = Mathf.Sign(dx);
+            }
+#if UNITY_6000_0_OR_NEWER
+            var hv = ctx.RB.linearVelocity; hv.x = dirX * hoverHorizontalSpeed; hv.y = 0f; ctx.RB.linearVelocity = hv;
+#else
+        var hv = ctx.RB.velocity; hv.x = dirX * hoverHorizontalSpeed; hv.y = 0f; ctx.RB.velocity = hv;
+#endif
+            rp = ctx.RB.position; rp.y = targetY; ctx.RB.position = rp; // Y ì ê¸ˆ
+            Physics2D.SyncTransforms();
 
-        // ÃÖ¼Ò ·çÇÁ ½Ã°£ º¸Àå
-        if (loopMinTime > 0f) yield return new WaitForSeconds(loopMinTime);
+            yield return new WaitForFixedUpdate();
+            hoverT += Time.fixedDeltaTime;
+        }
 
-        // 4) Land (¿©±â¼­ ¾Ö´Ï¸ŞÀÌ¼Ç ÀÌº¥Æ®·Î È÷Æ®¹Ú½º on/off)
+        // 4) ì²´ê³µ ì¢…ë£Œ â†’ ì¤‘ë ¥ ë³µì› + ì¦‰ì‹œ ë‚™í•˜ ì†ë„ ë¶€ì—¬ (ë¬¼ë¦¬ ìŠ¤í…)
+        ctx.RB.gravityScale = originalGravity;
+        if (!landed)
+        {
+#if UNITY_6000_0_OR_NEWER
+            var dv = ctx.RB.linearVelocity; dv.y = -Mathf.Abs(dropForce); ctx.RB.linearVelocity = dv;
+#else
+        var dv = ctx.RB.velocity; dv.y = -Mathf.Abs(dropForce); ctx.RB.velocity = dv;
+#endif
+            Physics2D.SyncTransforms();
+            yield return new WaitForFixedUpdate();
+        }
+
+        // 5) Ground ì ‘ì´‰ê¹Œì§€ ëŒ€ê¸°
+        while (!landed) yield return null;
+
+        // 6) Land 1íšŒ + ëŒ€ê¸°
         ctx.Anims.Play(ctx.Anim, landKey);
-
-        // ·çÇÁ off
         ctx.Anims.Play(ctx.Anim, loopBoolKey, false);
+        if (landDelay > 0f) yield return new WaitForSeconds(landDelay);
+
+        // ì •ë¦¬
+        if (bc != null) bc.GroundTouched -= onGround;
+        ctx.RB.gravityScale = originalGravity;
+        if (bc) bc.SetMoveLocked(false);
     }
+
 }

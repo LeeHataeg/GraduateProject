@@ -25,7 +25,8 @@ MonoBehaviour:
   atk3Key: 18
   recoverKey: 19
   idleKeyAfterRecover: 14
-  continueMaxDistance: 2.6
+  continueMaxDistance: 8
   requireGroundedEachStep: 1
   perStepTimeout: 1.2
   distanceSlack: 0.15
+  retryEnterAtk3IfBlocked: 1

@@ -1,29 +1,32 @@
 using static Define;
 using System.Collections.Generic;
 using UnityEngine;
+using static AnimMapSO;
+
+[System.Serializable]
+public struct Pair
+{
+    public AnimKey key;
+
+    [Tooltip("Animator 상태명 / 트리거명 / Bool 파라미터명 (kind에 따라 달라짐)")]
+    public string param;
+
+    [Tooltip("State, Trigger, Bool 중 무엇인지")]
+    public ParamKind kind;
+
+    [Tooltip("kind==Bool일 때 기본 세팅값")]
+    public bool defaultBoolValue;
+}
 
 [CreateAssetMenu(menuName = "Boss/Anim Map")]
 public class AnimMapSO : ScriptableObject
 {
     public enum ParamKind { State, Trigger, Bool }
 
-    [System.Serializable]
-    public struct Pair
-    {
-        public AnimKey key;
 
-        [Tooltip("Animator 상태명 / 트리거명 / Bool 파라미터명 (kind에 따라 달라짐)")]
-        public string param;
-
-        [Tooltip("State, Trigger, Bool 중 무엇인지")]
-        public ParamKind kind;
-
-        [Tooltip("kind==Bool일 때 기본 세팅값")]
-        public bool defaultBoolValue;
-    }
 
     [SerializeField] private List<Pair> pairs = new();
-    private Dictionary<AnimKey, Pair> _map;
+    public Dictionary<AnimKey, Pair> _map;  // TODO - private으로 은닉
 
     void OnEnable() => Build();
 

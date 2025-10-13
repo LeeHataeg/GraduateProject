@@ -1116,7 +1116,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &534067674
+--- !u!1001 &532511761
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1124,13 +1124,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321771939489272384, guid: e147787bf282343449c2fdbca82f7974, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 532511762}
+    - target: {fileID: 321771939489272384, guid: e147787bf282343449c2fdbca82f7974, type: 3}
+      propertyPath: UnitRoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 321771939489272384, guid: e147787bf282343449c2fdbca82f7974, type: 3}
+      propertyPath: visualRoot
+      value: 
+      objectReference: {fileID: 532511763}
     - target: {fileID: 3383258234895856490, guid: e147787bf282343449c2fdbca82f7974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.2
+      value: -15.9
       objectReference: {fileID: 0}
     - target: {fileID: 3383258234895856490, guid: e147787bf282343449c2fdbca82f7974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.11
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 3383258234895856490, guid: e147787bf282343449c2fdbca82f7974, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1173,10 +1185,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e147787bf282343449c2fdbca82f7974, type: 3}
---- !u!114 &534067675 stripped
+--- !u!212 &532511762 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1877051538736663469, guid: e147787bf282343449c2fdbca82f7974, type: 3}
+  m_PrefabInstance: {fileID: 532511761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &532511763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3383258234895856490, guid: e147787bf282343449c2fdbca82f7974, type: 3}
+  m_PrefabInstance: {fileID: 532511761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &532511764 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 321771939489272384, guid: e147787bf282343449c2fdbca82f7974, type: 3}
-  m_PrefabInstance: {fileID: 534067674}
+  m_PrefabInstance: {fileID: 532511761}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1326,7 +1348,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1409,7 +1431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4422040125092622314, guid: c76bfcef30821e349afec168ed585d18, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.624992
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 4422040125092622314, guid: c76bfcef30821e349afec168ed585d18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1467,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7df8898fb7c0d4c9faae4162eaa00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossInstance: {fileID: 534067675}
+  bossInstance: {fileID: 532511764}
   bossSpawner: {fileID: 0}
   gatesToClose: []
   clearPanel: {fileID: 910986814}
@@ -2088,4 +2110,4 @@ SceneRoots:
   - {fileID: 751823377}
   - {fileID: 920292712}
   - {fileID: 1751783008}
-  - {fileID: 534067674}
+  - {fileID: 532511761}
