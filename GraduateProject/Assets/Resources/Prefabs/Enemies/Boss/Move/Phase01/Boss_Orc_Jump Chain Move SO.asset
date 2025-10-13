@@ -24,6 +24,12 @@ MonoBehaviour:
   jumpInKey: 22
   loopBoolKey: 24
   landKey: 23
-  chargeTime: 0.25
-  loopMinTime: 0.1
+  chargeTime: 1.5
+  jumpInHoldTime: 0.2
+  hoverTime: 0.35
+  landDelay: 0.8
   jumpForce: 10
+  hoverHorizontalSpeed: 2
+  dropForce: 16
+  useExactJumpHeight: 1
+  jumpHeight: 3.5

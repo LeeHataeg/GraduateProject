@@ -15,9 +15,9 @@ MonoBehaviour:
   onEnterPlay: 14
   toNextPhaseHpRate: 0.6
   moves:
-  - move: {fileID: 11400000, guid: 4862e1a5b893cfd43a7928116bae7106, type: 2}
-    weight: 0.335
-  - move: {fileID: 11400000, guid: 14f3c03e1b5dfe541babc8c296445eb9, type: 2}
-    weight: 0.26
   - move: {fileID: 11400000, guid: 93fcb02788c77f74897778d275cdca48, type: 2}
-    weight: 0.75
+    weight: 0.333
+  - move: {fileID: 11400000, guid: 4862e1a5b893cfd43a7928116bae7106, type: 2}
+    weight: 0.333
+  - move: {fileID: 11400000, guid: 14f3c03e1b5dfe541babc8c296445eb9, type: 2}
+    weight: 0.333

@@ -18,14 +18,14 @@ MonoBehaviour:
   cooldown: 1.2
   lockMovement: 1
   minRange: 0
-  maxRange: 2.4
+  maxRange: 5
   requireGrounded: 1
   atk1Key: 16
   atk2Key: 17
   atk3Key: 18
   recoverKey: 19
   idleKeyAfterRecover: 14
-  continueMaxDistance: 8
+  continueMaxDistance: 6
   requireGroundedEachStep: 1
   perStepTimeout: 1.2
   distanceSlack: 0.15
