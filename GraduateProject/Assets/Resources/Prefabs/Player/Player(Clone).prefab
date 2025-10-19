@@ -6006,7 +6006,6 @@ GameObject:
   - component: {fileID: 5230558985337014042}
   - component: {fileID: 3560762306382092772}
   - component: {fileID: 5478454872096877155}
-  - component: {fileID: 8839993209034165812}
   - component: {fileID: 3937779538733661605}
   - component: {fileID: 507326826258117812}
   m_Layer: 6
@@ -6233,6 +6232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  maxSpeed: 15
+  defaultJumpVy: 10
 --- !u!114 &4815382927599719499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6257,8 +6258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593e6db997a2b4f48be201a710388a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 772823942a671e24f97c0c6566ca754f, type: 2}
-  CurHp: 0
+  baseSheet: {fileID: 11400000, guid: 772823942a671e24f97c0c6566ca754f, type: 2}
 --- !u!114 &8267121132554983758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6323,29 +6323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01775a04ec8c8d44bae6b3a3f116827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8839993209034165812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5367545685849668302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5aabd1cafde7f54b9f1fc486418958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats:
-    keys: 0000000001000000020000000300000004000000050000000600000007000000
-    values:
-    - 100
-    - 10
-    - 0
-    - 0
-    - 0.05
-    - 1.5
-    - 100
-    - 12
 --- !u!114 &3937779538733661605
 MonoBehaviour:
   m_ObjectHideFlags: 0

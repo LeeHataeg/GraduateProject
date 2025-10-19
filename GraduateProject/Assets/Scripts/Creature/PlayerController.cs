@@ -50,11 +50,21 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isDeath", true);
         anim.SetTrigger("4_Death");
 
+#if UNITY_6000_0_OR_NEWER
         rb.linearVelocity = Vector2.zero;
+#else
+        rb.velocity = Vector2.zero;
+#endif
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         var ui = GameManager.Instance != null ? GameManager.Instance.UIManager : null;
         if (ui != null) ui.ShowDeathPopup();
         else Debug.LogWarning("[PlayerController] UIManager가 없어 DeathPopup을 띄울 수 없습니다.");
+
+        // === [ADD] Echo Runner: 플레이어 사망 처리 ===
+        if (EchoManager.I != null)
+        {
+            EchoManager.I.EndBossBattle(playerDied: true);
+        }
     }
 }

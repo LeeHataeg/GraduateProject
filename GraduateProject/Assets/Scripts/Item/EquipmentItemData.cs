@@ -7,7 +7,7 @@ public class EquipmentItemData : ItemData
 {
     [Header("Equipment Info")]
     public EquipmentSlot slot;
-    public List<StatModifier> modifiers = new();
+    public List<StatModifier> modifiers = new List<StatModifier>();
 
     [Header("Visual Overrides (optional)")]
     public List<VisualOverride> visuals = new();  // Hat/Hair/무기 등은 기존 방식 유지

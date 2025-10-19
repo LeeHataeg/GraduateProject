@@ -40,12 +40,32 @@ public class BossBattleDirector : MonoBehaviour
             Debug.LogError("[BossBattleDirector] BossController를 찾을 수 없습니다.");
             return;
         }
+
         // 3) HP 이벤트 구독
         bossHp = bossInstance.GetComponent<HealthController>();
         if (bossHp != null) bossHp.OnDead += OnBossDead;
 
         // 4) 전투 시작
         state = BossBattleState.Fighting;
+
+        // === [ADD] Echo Runner 시작 지점 ===
+        // PlayerController는 PlayerManager의 UnitRoot에 붙어있는 구조(프로젝트 기준).
+        var pm = GameManager.Instance?.PlayerManager;
+        var playerRoot = pm != null ? pm.UnitRoot : null;
+        var playerController = playerRoot ? playerRoot.GetComponent<PlayerController>() : null;
+        if (playerController == null)
+        {
+            // 최후의 보강: 씬에서 PlayerController 직접 탐색
+            playerController = FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include);
+        }
+        if (playerController != null && EchoManager.I != null)
+        {
+            EchoManager.I.BeginBossBattle(playerController);
+        }
+        else
+        {
+            Debug.LogWarning("[BossBattleDirector] EchoManager.BeginBossBattle 실패: PlayerController 또는 EchoManager를 찾지 못함");
+        }
     }
 
     void OnDestroy()
@@ -63,6 +83,13 @@ public class BossBattleDirector : MonoBehaviour
     {
         if (state == BossBattleState.Cleared) return;
         state = BossBattleState.Cleared;
+
+        // === [ADD] Echo Runner 클리어 처리 ===
+        if (EchoManager.I != null)
+        {
+            // false = 플레이어가 죽지 않았다(클리어) 의미
+            EchoManager.I.EndBossBattle(playerDied: false);
+        }
 
         // 게이트 열기
         SetGates(false);

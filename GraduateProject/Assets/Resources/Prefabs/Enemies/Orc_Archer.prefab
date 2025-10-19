@@ -4637,8 +4637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593e6db997a2b4f48be201a710388a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 1fb11c8b0a5a66a4683ba91e8f6084c1, type: 2}
-  CurHp: 0
+  baseSheet: {fileID: 11400000, guid: 0bddae8d31057e14cb5fcb7092e6e395, type: 2}
 --- !u!114 &2664032727416585852
 MonoBehaviour:
   m_ObjectHideFlags: 0

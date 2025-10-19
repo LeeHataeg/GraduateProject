@@ -10,17 +10,22 @@ public class UIManager : MonoBehaviour
 
     [Header("Death Popup")]
     [SerializeField] private DeathPopupUI deathPopup;    // InGameScene Canvas 안의 팝업
-
     public DeathPopupUI DeathPopup => deathPopup;
-
-    private bool isTurnedOnInven = false;
 
     [SerializeField] private EquipmentUI equipmentPanel;
 
+    private bool isTurnedOnInven = false;
+
     private void Awake()
     {
-        // ✅ 자신을 GameManager에 등록(초기화 순서 안정성 ↑)
-        GameManager.Instance?.RegisterUIManager(this);
+        // 프로젝트에 따라 GameManager에 등록 메서드가 없을 수도 있으니, 예외 없이 시도만 함
+        var gm = GameManager.Instance;
+        if (gm != null)
+        {
+            // GameManager에 RegisterUIManager가 있으면 호출(없으면 무시)
+            var mi = gm.GetType().GetMethod("RegisterUIManager");
+            if (mi != null) mi.Invoke(gm, new object[] { this });
+        }
 
         if (invenPanel && InventorySys)
             invenPanel.SetInventory(InventorySys);
@@ -74,22 +79,15 @@ public class UIManager : MonoBehaviour
 #endif
     }
 
-
     public void TurnOnorOffInven()
     {
-        //if (!itemPanel) return;
-
         isTurnedOnInven = !isTurnedOnInven;
-        itemPanel.gameObject.SetActive(isTurnedOnInven);
+        if (itemPanel) itemPanel.gameObject.SetActive(isTurnedOnInven);
 
         if (isTurnedOnInven)
-        {
-            invenPanel.RefreshUI();
-        }
+            invenPanel?.RefreshUI();
         else
-        {
-            invenPanel.HidePopup();
-        }
+            invenPanel?.HidePopup();
     }
 
     public void ShowDeathPopup()
@@ -107,16 +105,39 @@ public class UIManager : MonoBehaviour
 
         if (invenPanel != null && InventorySys != null)
         {
-            // InventoryUI가 인벤 데이터(InventorySystem)를 참조하도록 연결
-            invenPanel.SetInventory(InventorySys);   // ← InventoryUI에 이 메서드가 없다면 public 필드로 직접 할당
+            invenPanel.SetInventory(InventorySys);
             invenPanel.RefreshUI();
         }
 
-        // 아이템 팝업 패널은 기본 비활성화
         if (itemPanel != null) itemPanel.SetActive(false);
 
 #if UNITY_EDITOR
         Debug.Log("[UIManager] BindSceneInventory done.", this);
+#endif
+    }
+
+    /// <summary>
+    /// 현재 표시 중인 모든 UI를 안전하게 닫는다.
+    /// - 인벤토리 패널/툴팁
+    /// - 데스 팝업
+    /// - (필요 시) 기타 패널을 여기서 추가
+    /// </summary>
+    public void HideAll()
+    {
+        // 인벤토리 패널 끄기
+        if (itemPanel != null && itemPanel.activeSelf)
+            itemPanel.SetActive(false);
+        isTurnedOnInven = false;
+
+        // 인벤 툴팁 닫기
+        invenPanel?.HidePopup();
+
+        // 데스 팝업 닫기(있을 때만)
+        if (deathPopup != null && deathPopup.gameObject.activeSelf)
+            deathPopup.Hide();
+
+#if UNITY_EDITOR
+        Debug.Log("[UIManager] HideAll called: all UI panels closed.");
 #endif
     }
 }

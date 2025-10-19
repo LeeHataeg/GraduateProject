@@ -57,7 +57,6 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
     }
 
     // InventorySlotUI.cs (OnPointerClick 내부만 교체)
-
     public void OnPointerClick(PointerEventData e)
     {
         // 좌클릭만
@@ -91,12 +90,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         // 1) 장착 시도 (인벤토리 수정 X, 교체 결과만 out)
         if (equipment.TryEquip(eqData, out var prevEquipped))
         {
+            // === [ADD] Echo Runner: 장착을 '사용'으로 기록 ===
+            var playerGO = GameManager.Instance?.PlayerManager?.UnitRoot;
+            if (playerGO != null)
+            {
+                EchoInventoryBridge.RaiseItemUsed(playerGO, eqData.name); // 또는 eqData.itemName 등 식별자
+            }
+
             // 2) 현재 클릭한 인벤 슬롯에서 정확히 1개 제거(★ 먼저 제거)
             //    이 시점에서 빈칸이 1칸 생김 → 교체품 넣어도 인덱스/용량 문제 없음
             if (!inventory.RemoveAt(slotIndex, 1))
             {
-                // 여기로 오면 이상상태: 제거 실패 → 롤백(선택)
-                // 간단히 역순으로 되돌리고 싶다면 TryUnequip 후 AddItem(eqData) 등 처리 가능.
                 Debug.LogWarning("[INV] RemoveAt failed after equip. Consider rollback logic.");
                 return;
             }
@@ -110,5 +114,4 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
             // InventorySystem이 이벤트를 쏘므로 UI는 자동 갱신됨
         }
     }
-
 }

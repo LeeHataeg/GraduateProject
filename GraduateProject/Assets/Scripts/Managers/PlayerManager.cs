@@ -1,231 +1,262 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Collections;
 
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager Instance { get; private set; }
+
+    [Header("Player Prefab & Spawn")]
+    public GameObject playerPrefab;         // 에디터에서 직결 or Resources
+    public string playerResourcesPath = "Prefabs/Player/Player/Player";
+
+    [Tooltip("인게임 씬 이름(없어도 동작하도록 보강되어 있음)")]
+    public string gameplaySceneName = "InGameScene";
+
+    [Header("Refs (Runtime)")]
+    [Tooltip("클론 프리팹 최상위(캔버스 밑 RectTransform 등)")]
+    public GameObject Player;               // RectTransform일 수 있음(움직이지 않음)
+    [Tooltip("실제 물리 이동·충돌의 루트(이 오브젝트만 움직임)")]
+    public GameObject UnitRoot;             // ★ 여기만 이동시킨다
+
+    // 내부
+    private Coroutine _fallbackCo;
     private bool _spawned;
-    public GameObject Player;
-    public GameObject UnitRoot;
-    private PlayerPositionController playerPositionController;
+
+    // 외부(UIManager 등) 연결 신호
     public event Action<EquipmentManager> OnEquipmentReady;
 
-    [SerializeField] private string playerPrefabPath = "Prefabs/Player/Player/Player";
-
-    [Header("Scene Guard")]
-    [SerializeField] private string gameplaySceneName = "InGameScene"; // 인스펙터에서 변경 가능
-
-    private bool subscribed;           // RoomManager 이벤트 중복 구독 방지
-    private Coroutine fallbackCo;      // 폴백 스폰 코루틴 핸들
-
-    //=== Lifecycle ===//
     private void Awake()
     {
-        playerPositionController = GetComponent<PlayerPositionController>();
-        if (playerPositionController == null)
-            playerPositionController = gameObject.AddComponent<PlayerPositionController>();
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // 현재 활성 씬에 맞춰 즉시 초기화(씬 로드시만 OnSceneLoaded가 호출되므로, 첫 진입 씬에서도 동작 보장)
-        SetupForActiveScene();
     }
 
     private void OnDestroy()
     {
+        if (Instance == this) Instance = null;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        TryUnsubscribeRoomEvent();
+    }
+
+    public void ResetState()
+    {
+        _spawned = false;
+        if (_fallbackCo != null) { StopCoroutine(_fallbackCo); _fallbackCo = null; }
+        Player = null;
+        UnitRoot = null;
         TryUnsubscribeRoomEvent();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ✅ Additive로 로드된 BossField 같은 보조 씬은 건드리지 말자
-        if (mode == LoadSceneMode.Additive && scene.name != gameplaySceneName)
+        if (!IsGameplayScene(scene)) return;
+
+        var rm = FindFirstObjectByType<RoomManager>(FindObjectsInactive.Include);
+        if (rm == null)
+        {
+            if (_fallbackCo != null) StopCoroutine(_fallbackCo);
+            _fallbackCo = StartCoroutine(Co_WaitAndSpawnFallback());
             return;
-
-        SetupForScene(scene);
-    }
-
-
-    //=== Scene Helpers ===//
-    private bool IsGameplayScene(Scene s) => s.name == gameplaySceneName;
-    private bool IsGameplayScene() => SceneManager.GetActiveScene().name == gameplaySceneName;
-
-    /// <summary>현재 활성 씬 기준으로 세팅.</summary>
-    private void SetupForActiveScene()
-    {
-        SetupForScene(SceneManager.GetActiveScene());
-    }
-
-    /// <summary>지정된 씬 기준으로 세팅.</summary>
-    private bool AnyGameplaySceneLoaded()
-    {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            var s = SceneManager.GetSceneAt(i);
-            if (s.name == gameplaySceneName) return true;
         }
-        return false;
-    }
 
-    private void SetupForScene(Scene scene)
-    {
-        if (IsGameplayScene(scene))
+        if (rm.HasStartPoint)
         {
-            // (기존 그대로)
-            TrySubscribeRoomEventOnce();
-            var rm = GameManager.Instance?.RoomManager;
-            if (rm != null && rm.HasStartPoint)
-                PlayerInit(rm.GetStartPoint());
-            else if (fallbackCo == null)
-                fallbackCo = StartCoroutine(SpawnFallbackAfterTimeout(3f));
+            PlayerInit(rm.GetStartPoint());
         }
         else
         {
-            // ✅ 여기서 무작정 Player를 Destroy 하던 로직을 '진짜로 게임플레이 씬이 하나도 없을 때만' 실행
-            if (fallbackCo != null) { StopCoroutine(fallbackCo); fallbackCo = null; }
-            TryUnsubscribeRoomEvent();
-
-            if (!AnyGameplaySceneLoaded())
-            {
-                if (Player != null)
-                {
-                    Destroy(Player);
-                    Player = null;
-                    _spawned = false;
-                }
-            }
-            // ✅ Additive로 보조 씬이 늘어난 경우엔 여기서 아무것도 파괴하지 않음
+            TrySubscribeRoomEvent(rm);
+            if (_fallbackCo != null) StopCoroutine(_fallbackCo);
+            _fallbackCo = StartCoroutine(Co_FallbackIfNoStartPoint(0.2f));
         }
     }
 
-
-    private void TrySubscribeRoomEventOnce()
+    private IEnumerator Co_WaitAndSpawnFallback()
     {
-        if (subscribed) return;
-        var rm = GameManager.Instance?.RoomManager;
-        if (rm == null) return;
+        yield return null; // 1프레임 대기
+        yield return null; // 2프레임 대기
 
-        rm.OnSetStartPoint -= PlayerInit; // 방어적 해제
-        rm.OnSetStartPoint += PlayerInit;
-        subscribed = true;
-        Debug.Log("[PlayerManager] Subscribed to RoomManager.OnSetStartPoint");
+        var rm = FindFirstObjectByType<RoomManager>(FindObjectsInactive.Include);
+        if (rm != null)
+        {
+            if (rm.HasStartPoint) PlayerInit(rm.GetStartPoint());
+            else
+            {
+                TrySubscribeRoomEvent(rm);
+                _fallbackCo = StartCoroutine(Co_FallbackIfNoStartPoint(0.2f));
+            }
+            yield break;
+        }
+
+        // 정말 예외적 상황: 0,0 폴백
+        PlayerInit(Vector2.zero);
+    }
+
+    private IEnumerator Co_FallbackIfNoStartPoint(float waitSeconds)
+    {
+        float t = 0f;
+        while (t < waitSeconds && !_spawned)
+        {
+            t += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        if (!_spawned) PlayerInit(Vector2.zero);
+    }
+
+    private void TrySubscribeRoomEvent(RoomManager rm)
+    {
+        TryUnsubscribeRoomEvent();
+        if (rm != null) rm.OnSetStartPoint += HandleStartPoint;
     }
 
     private void TryUnsubscribeRoomEvent()
     {
-        if (!subscribed) return;
-        var rm = GameManager.Instance?.RoomManager;
-        if (rm != null) rm.OnSetStartPoint -= PlayerInit;
-        subscribed = false;
+        var rm = FindFirstObjectByType<RoomManager>(FindObjectsInactive.Include);
+        if (rm != null) rm.OnSetStartPoint -= HandleStartPoint;
     }
 
-    //=== Fallback Spawn ===//
-    private IEnumerator SpawnFallbackAfterTimeout(float timeout)
+    private void HandleStartPoint(Vector2 pos)
     {
-        // 인게임 씬에서만 동작
-        float t = timeout;
-        while (t > 0f)
-        {
-            if (!IsGameplayScene()) { fallbackCo = null; yield break; }
-
-            var rm = GameManager.Instance?.RoomManager;
-            if (rm != null && rm.HasStartPoint)
-            {
-                // 기다리는 중에 StartPoint가 도착했으면 즉시 스폰하고 종료
-                PlayerInit(rm.GetStartPoint());
-                fallbackCo = null;
-                yield break;
-            }
-
-            t -= Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        if (!IsGameplayScene()) { fallbackCo = null; yield break; }
-
-        // 여전히 시작점이 없으면 (0,0) 등 폴백 스폰 시도
-        if (!_spawned)
-        {
-            Debug.Log("[PlayerManager] Fallback spawn (timeout, no startpoint)");
-            PlayerInit(Vector2.zero);
-        }
-        fallbackCo = null;
+        PlayerInit(pos);
     }
 
-    //=== Public API ===//
-    public void PlayerInit(Vector2 pos)
+    private bool IsGameplayScene(Scene s)
     {
-        // ✋ 인게임 씬에서만 생성/이동 허용
-        if (!IsGameplayScene())
+        if (s.name == gameplaySceneName) return true;
+        var rm = FindFirstObjectByType<RoomManager>(FindObjectsInactive.Include);
+        return rm != null && rm.gameObject.scene == s;
+    }
+
+    // === 핵심: 실제 스폰/이동은 "UnitRoot"만 조작 ===
+    public void PlayerInit(Vector2 spawnPos)
+    {
+        // 이미 한 번 스폰된 상태라면, RectTransform(Player) 건드리지 말고 UnitRoot만 이동
+        if (_spawned && UnitRoot != null)
         {
-            Debug.Log("[PlayerManager] Ignored PlayerInit outside gameplay scene.");
+            MoveUnitRoot(UnitRoot.transform, spawnPos, resetVelocity: true);
+#if UNITY_EDITOR
+            Debug.Log($"[PlayerManager] Repositioned UnitRoot -> {spawnPos}");
+#endif
+            RaiseEquipmentReadyIfPossible();
             return;
         }
 
-        Debug.Log($"[PlayerManager] PlayerInit called with pos={pos}  spawned={_spawned}");
-
-        if (_spawned && Player != null)
-        {
-            ApplyPosition(pos);
-            Debug.Log("[PlayerManager] Already spawned → moved to pos.");
-            return;
-        }
-
-        GameObject prefab = Resources.Load<GameObject>(playerPrefabPath);
+        // 최초 스폰: 프리팹 준비
+        var prefab = playerPrefab != null ? playerPrefab : Resources.Load<GameObject>(playerResourcesPath);
         if (prefab == null)
         {
-            Debug.LogError($"[PlayerManager] Resources.Load FAILED at path: {playerPrefabPath}\n" +
-                           "Check folder/case: Assets/Resources/Prefabs/Player/Player/Player.prefab");
+            Debug.LogError($"[PlayerManager] Player prefab missing. Checked field and Resources({playerResourcesPath})");
             return;
         }
 
-        Player = Instantiate(prefab);
+        // 최상위 Player(=RectTransform일 수 있음)는 원래 자리 유지
+        // 스폰 좌표는 아래에서 UnitRoot만 이동시키며 적용
+        Player = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+
+        // UnitRoot 탐색(이름/컴포넌트 기준 모두 지원)
+        var unitRootTr = FindUnitRootTransform(Player.transform);
+        if (unitRootTr == null)
+        {
+            // 못 찾으면 최후: Player 자체를 UnitRoot로 취급(레거시 호환)
+            unitRootTr = Player.transform;
+            Debug.LogWarning("[PlayerManager] 'UnitRoot' child not found. Using Player transform as UnitRoot (legacy fallback).");
+        }
+        UnitRoot = unitRootTr.gameObject;
+
+        // ★ 스폰 좌표 적용은 UnitRoot에만
+        MoveUnitRoot(unitRootTr, spawnPos, resetVelocity: true);
+
         _spawned = true;
-        Debug.Log($"[PlayerManager] Player instantiated: {Player.name}");
 
-        // Unit Root 찾기
-        UnitRoot = Player.transform.Find("UnitRoot").gameObject;
-        if (UnitRoot == null)
-            UnitRoot = Player.GetComponentInChildren<PlayerMovement>(true)?.transform.gameObject;
+#if UNITY_EDITOR
+        Debug.Log($"[PlayerManager] Spawned. UnitRoot at {spawnPos} (Player root left untouched)");
+#endif
 
-        if (UnitRoot == null)
-        {
-            Debug.LogError("[PlayerManager] Unit Root NOT FOUND. Does your prefab have 'Unit Root' child or PlayerMovement on a child?");
-            return;
-        }
-
-        // Target 연결 후 위치 적용
-        playerPositionController.SetTarget(UnitRoot.transform);
-        ApplyPosition(pos);
-
-        var eq = UnitRoot.GetComponent<EquipmentManager>();
-        var stat = UnitRoot.GetComponent<StatController>(); // 또는 PlayerStatController
-
-        if (eq == null || stat == null)
-        {
-            Debug.LogError($"[PlayerManager] Required components missing on Unit Root. eq={eq} stat={stat}");
-            return;
-        }
-
-        OnEquipmentReady?.Invoke(eq);
-        Debug.Log($"[PlayerManager] Player ready @ {Player.transform.position}");
+        RaiseEquipmentReadyIfPossible();
     }
 
-    private void ApplyPosition(Vector2 pos)
+    /// <summary>
+    /// UnitRoot만 이동시키고, Rigidbody2D가 있으면 물리 속도도 초기화.
+    /// Player(최상위 RectTransform)는 건드리지 않는다.
+    /// </summary>
+    private void MoveUnitRoot(Transform unitRoot, Vector2 worldPos, bool resetVelocity)
     {
-        if (playerPositionController != null)
-            playerPositionController.SetPosition(pos);
+        if (unitRoot == null) return;
+
+        var rb = unitRoot.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+#if UNITY_6000_0_OR_NEWER
+            rb.linearVelocity = Vector2.zero;
+#else
+            rb.velocity = Vector2.zero;
+#endif
+            rb.angularVelocity = 0f;
+            rb.position = worldPos; // Rigidbody2D는 position으로 이동
+        }
+        else
+        {
+            unitRoot.position = worldPos;     // 일반 Transform
+        }
+
+        if (resetVelocity && rb == null)
+        {
+            // Rigidbody가 없으면 자식 중 찾아서라도 초기화(필요 시)
+            var childRb = unitRoot.GetComponentInChildren<Rigidbody2D>();
+            if (childRb != null)
+            {
+#if UNITY_6000_0_OR_NEWER
+                childRb.linearVelocity = Vector2.zero;
+#else
+                childRb.velocity = Vector2.zero;
+#endif
+                childRb.angularVelocity = 0f;
+                childRb.position = worldPos;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 유연한 UnitRoot 탐색:
+    /// 1) 이름 "UnitRoot" 우선
+    /// 2) 바로 아래 자식들 중 Rigidbody2D를 가진 Transform
+    /// 3) 전체 하위 중 첫 Rigidbody2D 보유 Transform
+    /// </summary>
+    private Transform FindUnitRootTransform(Transform playerRoot)
+    {
+        // 1) 이름 기준
+        var named = playerRoot.Find("UnitRoot");
+        if (named != null) return named;
+
+        // 2) 1-depth에서 Rigidbody2D 가진 자식
+        for (int i = 0; i < playerRoot.childCount; i++)
+        {
+            var ch = playerRoot.GetChild(i);
+            if (ch.GetComponent<Rigidbody2D>() != null) return ch;
+        }
+
+        // 3) 전체 하위 탐색
+        var all = playerRoot.GetComponentsInChildren<Rigidbody2D>(true);
+        if (all != null && all.Length > 0) return all[0].transform;
+
+        return null;
+    }
+
+    private void RaiseEquipmentReadyIfPossible()
+    {
+        // 장비 매니저는 보통 UnitRoot 하위에 존재
+        EquipmentManager eq = null;
+        if (UnitRoot != null)
+            eq = UnitRoot.GetComponentInChildren<EquipmentManager>(true);
         else if (Player != null)
-            UnitRoot.transform.position = pos;
-    }
+            eq = Player.GetComponentInChildren<EquipmentManager>(true);
 
-    // === 인스펙터에서 바로 테스트할 수 있는 강제 스폰 기능 ===
-    [ContextMenu("DEBUG: Force Spawn @ (0,0)")]
-    private void DebugForceSpawn()
-    {
-        Debug.Log("[PlayerManager] DEBUG force spawn @ (0,0)");
-        PlayerInit(Vector2.zero);
+        if (eq != null)
+            OnEquipmentReady?.Invoke(eq);
     }
 }

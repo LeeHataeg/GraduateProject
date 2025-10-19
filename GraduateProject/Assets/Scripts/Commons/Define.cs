@@ -62,21 +62,19 @@ public abstract class Define
         Head, Chest, Legs, Weapon, Ring, Amulet
     }
 
-    public enum StatType
-    {
-        MaxHp, PhysAtk, MagicAtk, Defense, CritChance, CritDamage, MoveSpeed, JumpForce
-    }
+    // Define.cs 혹은 Stats 공용 파일에 넣기
+    public enum StatType { PhysAtk, MagicAtk, BaseDmg, MaxHp, CritChance, CritDamage /* 필요시 추가 */ }
+    public enum ModMethod { Flat, Percent }
 
     public enum ModifierOp { Add, Percent } // Percent = +x%
 
-    [Serializable]
+    [System.Serializable]
     public struct StatModifier
     {
         public StatType stat;
-        public ModifierOp op;
-        public float value; // Add면 절대값, Percent면 0.15f = +15%
+        public ModMethod method;
+        public int value; // 퍼센트는 10000 = +100% 같은 스케일을 쓸 거면 int로 두면 편함
     }
-
     [Description("적 종류(외형/개체군)")]
     public enum EnemyKind
     {

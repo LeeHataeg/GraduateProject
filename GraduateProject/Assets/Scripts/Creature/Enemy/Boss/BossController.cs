@@ -5,6 +5,7 @@ using BossState = Define.BossState;
 using AnimKey = Define.AnimKey;
 using System.Collections.Generic;
 using static AnimMapSO;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 [RequireComponent(typeof(HealthController))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -106,6 +107,10 @@ public class BossController : MonoBehaviour
         ConfigureRB();
     }
 
+    private void OnEnable()
+    {
+        Debug.Log("hp.CurrentHp : " + hp.CurrentHp);
+    }
     private void ConfigureRB()
     {
         if (!rb) return;

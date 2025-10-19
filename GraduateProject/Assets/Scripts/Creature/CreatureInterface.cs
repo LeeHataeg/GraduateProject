@@ -15,11 +15,7 @@ public interface ICombatStatHolder
 {
     CombatStatSheet Stats { get; }
 
-    void ModifyHp(int modify);
-
     public float CalculatePhysicsDmg();
-    public float CalculateMagicDmg();
-    public float CalculateHybridDmg();
 }
 
 // 체력 제어

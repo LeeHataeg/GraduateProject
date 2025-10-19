@@ -22,12 +22,21 @@ public class AttackHitbox : MonoBehaviour
     private Collider2D col;
     private bool windowOpen;
     private readonly Dictionary<Collider2D, float> lastHitTime = new();
-
+    public bool useColliderEnabledAsWindow = true;
     void Awake()
     {
         col = GetComponent<Collider2D>();
         col.isTrigger = true;
         col.enabled = false;      // 평소 비활성(권장)
+    }
+
+    void OnEnable()
+    {
+        if (useColliderEnabledAsWindow) windowOpen = true;
+    }
+    void OnDisable()
+    {
+        if (useColliderEnabledAsWindow) windowOpen = false;
     }
 
     /// 애니 이벤트에서 호출: 타격 유효 프레임 시작
@@ -51,6 +60,18 @@ public class AttackHitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"[Hitbox] Enter with {other.name}, tag={other.tag}, layer={LayerMask.LayerToName(other.gameObject.layer)}");
+        Debug.Log("sibal");
+        if (other.tag == "Player")
+        {
+            Debug.Log("UnitRoot 탐지");
+            var plHit = other.GetComponent<IHitReactor>();
+            if(plHit != null)
+            {
+                Debug.Log("plHit 탐지");
+                plHit.OnAttacked(baseDamage);
+            }
+        }
         TryHit(other);
     }
 
@@ -62,7 +83,8 @@ public class AttackHitbox : MonoBehaviour
 
     private void TryHit(Collider2D other)
     {
-        if (!windowOpen) return;
+        if (!windowOpen && !(useColliderEnabledAsWindow && col && col.enabled)) return;
+
         if (((1 << other.gameObject.layer) & hitMask) == 0) return;
         if (other.attachedRigidbody && other.attachedRigidbody.transform == transform.root) return;
 
@@ -72,20 +94,12 @@ public class AttackHitbox : MonoBehaviour
         lastHitTime[other] = now;
 
         // 피해 전달
-        var hr = other.GetComponent<IHitReactor>();
+        var hr = other.GetComponentInParent<IHitReactor>();
+        if (hr == null) hr = other.GetComponentInChildren<IHitReactor>();
         if (hr != null)
         {
             hr.OnAttacked(baseDamage);
             if (logHits) Debug.Log($"[Hitbox] {name} -> {other.name} dmg {baseDamage}");
-        }
-
-        // 넉백 예시(상대에 Rigidbody2D가 있고 원하면)
-        var rb = other.attachedRigidbody;
-        if (rb)
-        {
-            var v = rb.linearVelocity;
-            v += knockback;
-            rb.linearVelocity = v;
         }
     }
 }

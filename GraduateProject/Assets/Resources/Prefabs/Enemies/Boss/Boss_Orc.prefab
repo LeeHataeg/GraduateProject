@@ -407,8 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593e6db997a2b4f48be201a710388a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 59c0aaaac746b124d88a1059f4ce880b, type: 2}
-  CurHp: 0
+  baseSheet: {fileID: 11400000, guid: 59c0aaaac746b124d88a1059f4ce880b, type: 2}
 --- !u!114 &321771939489272384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +433,7 @@ MonoBehaviour:
   forceUnfreezeX: 1
   forceDynamicRB: 1
   deltaX: 0
+  introFallingSet: 0
 --- !u!114 &2809963558506300417
 MonoBehaviour:
   m_ObjectHideFlags: 0

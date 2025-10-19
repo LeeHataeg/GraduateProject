@@ -10,6 +10,7 @@ TagManager:
   - Item
   - PlayerSpawn
   - BossPlayerSpawn
+  - Room
   layers:
   - Default
   - TransparentFX
