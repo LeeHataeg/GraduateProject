@@ -9,6 +9,13 @@ public class MeleeAttackBehavior : MonoBehaviour, IAttackBehavior
 
     public float Range => range;
 
+    public void Configure(LayerMask hitLayers)
+    {
+        this.hitLayers = hitLayers;
+    }
+
+    public void SetAttackPoint(Transform t) => AttackPoint = t;
+
     public void Execute(Vector2 position, float dmg, float atkRange)
     {
         float r = atkRange > 0 ? atkRange : range;

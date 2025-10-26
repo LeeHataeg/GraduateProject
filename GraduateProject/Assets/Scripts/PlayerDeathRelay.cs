@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 public class PlayerDeathRelay : MonoBehaviour
 {
-    private HealthController health;
+    public HealthController health;
 
     private void Awake()
     {

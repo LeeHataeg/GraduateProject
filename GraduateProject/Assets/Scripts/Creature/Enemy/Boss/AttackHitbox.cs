@@ -61,17 +61,27 @@ public class AttackHitbox : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log($"[Hitbox] Enter with {other.name}, tag={other.tag}, layer={LayerMask.LayerToName(other.gameObject.layer)}");
-        Debug.Log("sibal");
-        if (other.tag == "Player")
-        {
-            Debug.Log("UnitRoot Å½Áö");
-            var plHit = other.GetComponent<IHitReactor>();
-            if(plHit != null)
-            {
-                Debug.Log("plHit Å½Áö");
-                plHit.OnAttacked(baseDamage);
-            }
-        }
+        //if (other.tag == "Player")
+        //{
+        //    Debug.Log("UnitRoot Å½Áö");
+        //    var plHit = other.GetComponent<IHitReactor>();
+        //    if(plHit != null)
+        //    {
+        //        Debug.Log("plHit Å½Áö");
+        //        plHit.OnAttacked(baseDamage);
+        //    }
+        //}
+
+
+        //if (LayerMask.NameToLayer("Player") == other.gameObject.layer){
+        //    Debug.Log("¾Æ~½Î ·¹ÀÌ¾î Å½Áö °³²ÜÀÌ°í");
+        //    var plHit = other.GetComponent<IHitReactor>();
+        //    if (plHit != null)
+        //    {
+        //        Debug.Log("plHit Å½Áö");
+        //        plHit.OnAttacked(baseDamage);
+        //    }
+        //}
         TryHit(other);
     }
 

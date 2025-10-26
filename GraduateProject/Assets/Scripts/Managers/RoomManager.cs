@@ -58,6 +58,7 @@ public class RoomManager : MonoBehaviour
     [Header("Rooms Cleanup (optional)")]
     [Tooltip("생성한 방들의 루트(없으면 태그 기반으로 정리)")]
     public Transform roomsRoot;
+
     [Tooltip("roomsRoot가 없을 때 방으로 간주할 태그")]
     public string roomTag = "Room";
 
@@ -107,6 +108,15 @@ public class RoomManager : MonoBehaviour
             }
             Debug.Log($"[RoomManager] ResetRooms: cleared {count} tagged('{roomTag}') rooms (no roomsRoot).");
         }
+    }
+
+    /// <summary>
+    /// 파라미터 없는 오버로드(DeathPopupUI/SendMessage 대비).
+    /// 기본값(destroyRooms=true)로 방까지 정리.
+    /// </summary>
+    public void ResetRooms()
+    {
+        ResetRooms(true);
     }
 
     private Transform TryFindRoomsRoot()

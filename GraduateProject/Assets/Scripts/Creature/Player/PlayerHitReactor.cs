@@ -63,6 +63,6 @@ public class PlayerHitReactor : MonoBehaviour, IHitReactor
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         // 게임오버 UI
-        // ����: GameOverManager.Instance.TriggerGameOver();
+        GameManager.Instance.UIManager.ShowDeathPopup();
     }
 }

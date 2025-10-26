@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4712458577410600890}
   - component: {fileID: 6611468482277109498}
   - component: {fileID: 5253153230597797214}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Hitbox_Atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,8 @@ MonoBehaviour:
   perTargetCooldown: 0.05
   baseDamage: 10
   knockback: {x: 0, y: 0}
-  logHits: 0
+  logHits: 1
+  useColliderEnabledAsWindow: 1
 --- !u!1 &5261040124809341252
 GameObject:
   m_ObjectHideFlags: 0

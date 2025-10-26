@@ -26,8 +26,8 @@ TagManager:
   - PlayerEffect
   - Skills
   - Projectile
-  - 
-  - 
+  - PlayerHitbox
+  - EnemyHitbox
   - 
   - 
   - 

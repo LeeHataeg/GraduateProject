@@ -91,6 +91,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         if (equipment.TryEquip(eqData, out var prevEquipped))
         {
             // === [ADD] Echo Runner: 장착을 '사용'으로 기록 ===
+            EchoInventoryBridge.RaiseItemUsed(this.gameObject, eqData.name);
+
             var playerGO = GameManager.Instance?.PlayerManager?.UnitRoot;
             if (playerGO != null)
             {

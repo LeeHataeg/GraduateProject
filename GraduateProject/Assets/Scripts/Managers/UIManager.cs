@@ -90,11 +90,21 @@ public class UIManager : MonoBehaviour
             invenPanel?.HidePopup();
     }
 
+    // UIManager.cs
     public void ShowDeathPopup()
     {
-        if (!deathPopup) return;              // ✅ 널-세이프 no-op
+        if (!deathPopup)
+            deathPopup = FindFirstObjectByType<DeathPopupUI>(FindObjectsInactive.Include);
+
+        if (!deathPopup)
+        {
+            Debug.LogWarning("[UIManager] DeathPopupUI를 찾지 못해 패널을 띄울 수 없습니다.", this);
+            return;
+        }
+
         deathPopup.Show();
     }
+
 
     // ★★ 씬 전환 후, InGameScene의 실제 UI들과 연결해주는 진입점
     public void BindSceneInventory(InventorySystem sys, InventoryUI panel, GameObject panelGO)

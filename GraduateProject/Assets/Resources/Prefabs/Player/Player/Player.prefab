@@ -8560,6 +8560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AtkPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8331551524971164822, guid: 081d6749da968cd4f95f081fd4f0b25a, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

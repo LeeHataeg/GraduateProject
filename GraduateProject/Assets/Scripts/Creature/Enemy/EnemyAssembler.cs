@@ -118,8 +118,11 @@ public class EnemyAssembler : MonoBehaviour
         switch (archetype.attackMode)
         {
             case AttackMode.Melee:
+                var x = RootGO.GetComponent<MeleeAttackBehavior>();
                 if (!RootGO.GetComponent<MeleeAttackBehavior>())
-                    RootGO.AddComponent<MeleeAttackBehavior>();
+                    x = RootGO.AddComponent<MeleeAttackBehavior>();
+
+                x.Configure(LayerMask.GetMask("Player"));
                 break;
 
             case AttackMode.Ranged:

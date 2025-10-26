@@ -19,8 +19,8 @@ public class EnemyController : MonoBehaviour
 
     // 공격기(둘 다 지원)
     private IAttackBehavior attackBehavior;              // RangedAttackBehavior는 인터페이스 구현
-    private RangedAttackBehavior ranged;                 // 명시 타입
-    private MeleeAttackBehavior melee;                   // 인터페이스 미구현 대응
+    public RangedAttackBehavior ranged;                 // 명시 타입
+    public MeleeAttackBehavior melee;                   // 인터페이스 미구현 대응
 
     private Transform player;
     private Rigidbody2D rb;
@@ -269,6 +269,9 @@ public class EnemyController : MonoBehaviour
         attackBehavior = root.GetComponent<IAttackBehavior>() ?? GetComponentInChildren<IAttackBehavior>(true);
         ranged = root.GetComponent<RangedAttackBehavior>() ?? GetComponentInChildren<RangedAttackBehavior>(true);
         melee = root.GetComponent<MeleeAttackBehavior>() ?? GetComponentInChildren<MeleeAttackBehavior>(true);
+        if(melee != null){
+            melee.SetAttackPoint(atkStartPoint);
+        }
 
         if (strict)
         {

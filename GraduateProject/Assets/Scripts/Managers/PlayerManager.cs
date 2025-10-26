@@ -52,6 +52,30 @@ public class PlayerManager : MonoBehaviour
         TryUnsubscribeRoomEvent();
     }
 
+    public void ResetState(bool destroyPlayer = true)
+    {
+        // 이 매니저에서 돌고 있을 수 있는 코루틴 전부 중단 (있으면 멈추고, 없어도 문제 없음)
+        StopAllCoroutines();
+
+        // 현재 플레이어/루트 제거(있으면)
+        if (destroyPlayer)
+        {
+            if (UnitRoot != null) Destroy(UnitRoot);
+            if (Player != null) Destroy(Player);
+        }
+
+        // 레퍼런스 및 플래그 초기화
+        Player = null;
+        UnitRoot = null;
+
+        // 다음 회차에서 PlayerInit이 새로 실행되도록 플래그 리셋
+        _spawned = false;
+
+        Debug.Log("[PlayerManager] ResetState: cleared current player. Will respawn in next gameplay scene.");
+    }
+
+
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (!IsGameplayScene(scene)) return;
