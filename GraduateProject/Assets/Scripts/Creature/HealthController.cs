@@ -4,7 +4,7 @@ using UnityEngine;
 [DefaultExecutionOrder(-50)] // StatController(-100) 다음에 실행되도록 약간 빠르게
 public class HealthController : MonoBehaviour, IHealth
 {
-    private float currentHp;
+    public float currentHp;
     private CombatStatSheet stats;
     private ICombatStatHolder holder;
 
@@ -83,5 +83,11 @@ public class HealthController : MonoBehaviour, IHealth
             Debug.Log($"[{gameObject.name} - DEAD] {name} 사망 처리 (OnDead Invoke)");
             OnDead?.Invoke();
         }
+    }
+
+    public void ResetHpToMax()
+    {
+        if (Stats != null) currentHp = Stats.MaxHp;
+        else currentHp = Mathf.Max(1f, currentHp);
     }
 }

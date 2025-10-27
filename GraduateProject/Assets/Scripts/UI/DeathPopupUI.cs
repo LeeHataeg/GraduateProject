@@ -64,7 +64,7 @@ public class DeathPopupUI : MonoBehaviour
         gm.RoomManager?.ResetRooms(); // 파라미터 없는 오버로드 이미 추가했음
 
         // 3) 플레이어 상태 리셋(핵심!)
-        gm.PlayerManager?.ResetState(); // ← 새 판에서 신규 스폰 유도
+        gm.PlayerManager?.ResetState(true); // ← 새 판에서 신규 스폰 유도
 
         // 4) 패널 닫기(선택)
         root?.SetActive(false);

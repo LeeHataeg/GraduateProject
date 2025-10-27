@@ -4491,7 +4491,6 @@ GameObject:
   - component: {fileID: 508414813952294076}
   - component: {fileID: 5273671253896448903}
   - component: {fileID: 274771417560005180}
-  - component: {fileID: 3873250947928656891}
   - component: {fileID: 6263107222740006768}
   m_Layer: 6
   m_Name: UnitRoot
@@ -4963,18 +4962,6 @@ MonoBehaviour:
     defaultParts: 0a0000000b000000
   - slot: 3
     defaultParts: 09000000
---- !u!114 &3873250947928656891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8283783329593913262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8bba6dcf33795c43a23993cbce1d045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6263107222740006768
 MonoBehaviour:
   m_ObjectHideFlags: 0

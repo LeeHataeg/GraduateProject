@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthController))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerAttackController))]
-[RequireComponent(typeof(IAnimationController))]
+[RequireComponent(typeof(SimpleAnimationController))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
@@ -75,4 +75,53 @@ public class PlayerController : MonoBehaviour
             EchoManager.I.EndBossBattle(playerDied: true);
         }
     }
+
+    // PlayerController.cs
+    public void Revive()
+    {
+        isDead = false;
+
+        // 컨트롤/충돌 복구
+        var col = GetComponent<Collider2D>();
+        if (col) col.enabled = true;
+
+        if (rb)
+        {
+#if UNITY_6000_0_OR_NEWER
+            rb.linearVelocity = Vector2.zero;
+#else
+        rb.velocity = Vector2.zero;
+#endif
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        if (movement) movement.enabled = true;
+        if (attackCtrl) attackCtrl.enabled = true;
+
+        // 애니 상태 복구
+        if (anim != null)
+        {
+            anim.SetBool("isDeath", false);
+            // (선택) 트리거 초기화 유틸이 있다면 써주고, 없다면 Idle로 Play
+            anim.Play("Idle");
+        }
+
+        // HP 만땅
+        if (healthCtrl != null)
+        {
+            // 안전하게 HP를 최대치로
+            //typeof(HealthController).GetField("currentHp",
+            //    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public)
+            //    ?.SetValue(healthCtrl, healthCtrl.MaxHp);
+
+            healthCtrl.ResetHpToMax();
+        }
+
+        //if (hitReactor != null)
+        //{
+        //    hitReactor.SetTemporaryInvincible(0.2f); // 구현되어 있다면
+        //}
+    }
+
 }

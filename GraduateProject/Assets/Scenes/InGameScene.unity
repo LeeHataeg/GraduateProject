@@ -2803,6 +2803,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 425063983}
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: deathPopup
       value: 
       objectReference: {fileID: 1991505380}
@@ -2954,6 +2958,9 @@ MonoBehaviour:
   root: {fileID: 1991505376}
   restartButton: {fileID: 1318370846}
   homeButton: {fileID: 2142923180}
+  startSceneName: StartScene
+  inGameSceneName: InGameScene
+  normalizeTimeScale: 1
 --- !u!1 &2142923178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3574,8 +3581,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1466552925}
-  - {fileID: 4847215916336903945}
   - {fileID: 1537859270}
   - {fileID: 1364477408}
+  - {fileID: 4847215916336903945}
   - {fileID: 4329416954106518780}
   - {fileID: 1983349186}
