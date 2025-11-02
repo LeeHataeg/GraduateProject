@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-/// 앱 영속 저장: (1) 사망 기록 FIFO 5, (2) 스태시 아이템
 public static class EchoPersistence
 {
     const int MaxTapes = 5;

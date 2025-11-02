@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EchoManager : MonoBehaviour
 {
+    #region 변수
     public static EchoManager I { get; private set; }
 
     [Header("Ghost")]
@@ -13,22 +14,17 @@ public class EchoManager : MonoBehaviour
     EchoRecorder recorder;
     PlayerController player;
 
-    void Awake()
-    {
-        if (I != null) { Destroy(gameObject); return; }
-        I = this; DontDestroyOnLoad(gameObject);
-    }
+    #endregion
 
-    // ── 전투 시작 ──
     public void BeginBossBattle(PlayerController playerController)
     {
         player = playerController;
 
-        // (1) 스태시 아이템 지급(있으면)
+        // 직전 클리어 보상 제공
         var stash = EchoPersistence.LoadStash();
         foreach (var id in stash) EchoInventoryBridge.TryGiveItemToPlayer(player, id);
 
-        // (2) 사망 기록 재생(최대 5)
+        // 사망 기록 재생
         var tapes = EchoPersistence.LoadTapes();
         int n = tapes.Count;
         for (int i = 0; i < n; i++)
@@ -38,20 +34,18 @@ public class EchoManager : MonoBehaviour
 
             var ghost = Instantiate(ghostPrefab, spawnPos, Quaternion.identity);
             ghost.Load(tape);
-            // ★ 플레이어의 SPUM 비주얼 복제해서 붙임 + 테이프 스냅샷을 이용해 '사망 당시' 외형 복구
             ghost.AttachVisualFrom(player);
 
             int idx = Mathf.Clamp(alphaByAge.Length - (n - i), 0, alphaByAge.Length - 1);
             ghost.SetAlpha(alphaByAge[idx]);
         }
 
-        // (3) 기록 시작(없으면 자동 부착)
+        // 기록 시작
         recorder = player.GetComponent<EchoRecorder>();
         if (!recorder) recorder = player.gameObject.AddComponent<EchoRecorder>();
         recorder.BeginRecord();
     }
 
-    // ── 전투 종료 ──
     public void EndBossBattle(bool playerDied)
     {
         var tape = recorder?.EndRecord(!playerDied);
@@ -62,11 +56,18 @@ public class EchoManager : MonoBehaviour
         }
         else
         {
-            // 클리어: 모든 사망 기록에서 아이템 1개씩 수확 → 스태시에 저장, 그 후 기록 전체 삭제
+            // 클리어 보상 수여
             EchoPersistence.HarvestItemsFromAllTapes_ThenClear();
         }
 
-        // 이번 플레이 끝났으니 스태시 비움(“다음 플레이에 지급” 규칙 충족)
+        // 클리어 보상 저장
         EchoPersistence.SaveStash(new List<string>());
     }
+
+    void Awake()
+    {
+        if (I != null) { Destroy(gameObject); return; }
+        I = this; DontDestroyOnLoad(gameObject);
+    }
+
 }

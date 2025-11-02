@@ -13,69 +13,48 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EchoPlayback : MonoBehaviour
 {
+    #region 변수
     [Header("Combat (optional)")]
-    public AttackHitbox hitbox;           // 선택(있으면 Ghost도 공격 가능)
+    public AttackHitbox hitbox;           // Ghost가 Enemy를 때리는 오브젝트
     [Range(0f, 1f)] public float damageScale = 0.5f;
 
     [Header("Visual")]
-    public Transform visualParent;        // 비워두면 this.transform
-    public Transform visualRoot;          // 프리팹 내장 Root(있으면 복제 안 함)
-    public Animator visualAnimator;       // ✔ 어디에 있든 드래그한 Animator 그대로 사용
+    public Transform visualParent;        // 최상위 부모 오브젝트
+    public Transform visualRoot;          // 각 신체 파츠를 담고 있는 오브젝트
+    public Animator visualAnimator;
     [Range(0f, 1f)] public float alpha = 0.4f;
 
-    // 내부
+
     readonly List<SpriteRenderer> _renderers = new();
     EchoTape tape;
     int fi, ei;
     float t;
 
-    // 애니 상태
+    // 애니메이션 관련 변수들...
     string _lastPlayedClip = null;
     float _lastPlayAt = -999f;
     const float PLAY_THROTTLE = 0.03f;
 
-    // 스프라이트 캐시
-    static Dictionary<string, Sprite> _spriteCache;
+    static Dictionary<string, Sprite> _spriteCache; //캐싱
 
-    // 자동 히트창 추적
     bool _autoAtkOpen;
-
-    public void Load(EchoTape t_)
-    {
-        tape = t_;
-        fi = 0; ei = 0; t = 0f;
-        _lastPlayedClip = null;
-        _autoAtkOpen = false;
-
-        if (hitbox)
-        {
-            hitbox.baseDamage *= damageScale;
-
-            // HitMask 비어 있으면 기본 Enemies로 폴백(테스트 시 0으로 두면 레이어 무시)
-            if (hitbox.hitMask == 0)
-            {
-                int enemies = LayerMask.NameToLayer("Enemies");
-                if (enemies >= 0) hitbox.hitMask = 1 << enemies;
-            }
-        }
-    }
+    #endregion
 
     public void AttachVisualFrom(PlayerController player)
     {
         if (visualParent == null) visualParent = this.transform;
 
-        // 1) 프리팹에 이미 비주얼이 있는 경우: 그걸 그대로 사용
+        // 프리팹에 이미 비주얼이 있음? 그거 쓰셈.
         if (visualRoot != null)
         {
             _renderers.Clear();
             foreach (var r in visualRoot.GetComponentsInChildren<SpriteRenderer>(true))
                 _renderers.Add(r);
 
-            // Animator가 미지정이면 이 루트 아래/또는 자기 자신에서 찾아본다
             if (!visualAnimator)
             {
                 visualAnimator = visualRoot.GetComponentInChildren<Animator>(true);
-                if (!visualAnimator) visualAnimator = GetComponent<Animator>(); // ✔ 루트에 붙은 Animator 지원
+                if (!visualAnimator) visualAnimator = GetComponent<Animator>(); 
             }
 
             ApplyAlphaToAll();
@@ -83,7 +62,7 @@ public class EchoPlayback : MonoBehaviour
             return;
         }
 
-        // 2) 프리팹에 비주얼이 없는 경우: 플레이어 UnitRoot/Root를 복제
+        // 프리팹에 비주얼이 없음? 플레이어 UnitRoot/Root를 복제하셈
         Transform sourceRoot = null;
         if (player != null)
         {
@@ -121,7 +100,7 @@ public class EchoPlayback : MonoBehaviour
             if (rb) rb.simulated = false;
 
             visualAnimator = clone.GetComponentInChildren<Animator>(true);
-            if (!visualAnimator) visualAnimator = GetComponent<Animator>(); // ✔ 백업(루트 Animator)
+            if (!visualAnimator) visualAnimator = GetComponent<Animator>();
 
             _renderers.Clear();
             foreach (var r in clone.GetComponentsInChildren<SpriteRenderer>(true))
@@ -146,41 +125,29 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
-    public void SetAlpha(float a) { alpha = Mathf.Clamp01(a); ApplyAlphaToAll(); }
-
-    void ApplyAlphaToAll()
-    {
-        if (_renderers.Count == 0) return;
-        for (int i = 0; i < _renderers.Count; i++)
-        {
-            if (_renderers[i] == null) continue;
-            var c = _renderers[i].color; c.a = alpha; _renderers[i].color = c;
-        }
-    }
-
     void Update()
     {
         if (tape == null || tape.frames.Count == 0) { Destroy(gameObject); return; }
 
         t += Time.deltaTime;
 
-        // 위치/좌우 보간
+        // 위치/좌우 설정
         while (fi + 1 < tape.frames.Count && tape.frames[fi + 1].t <= t) fi++;
         var a = tape.frames[Mathf.Clamp(fi, 0, tape.frames.Count - 1)];
         var b = tape.frames[Mathf.Clamp(fi + 1, 0, tape.frames.Count - 1)];
         float u = Mathf.Approximately(b.t, a.t) ? 0f : (t - a.t) / (b.t - a.t);
 
         transform.position = Vector2.Lerp(a.pos, b.pos, u);
-
+         
         // 좌우 반전
         var s = transform.localScale;
         s.x = (a.faceRight ? Mathf.Abs(s.x) : -Mathf.Abs(s.x));
         transform.localScale = s;
 
-        // 애니 재생
+        // 애니메이션 클립 재생 ㄱㄱ
         PlayClipIfNeeded(a.clip);
 
-        // ① 녹화 이벤트 기반 히트창
+        // 녹화 기반으로 공격 ㄱㄱ
         bool processedEvt = false;
         while (ei < tape.events.Count && tape.events[ei].t <= t)
         {
@@ -207,7 +174,7 @@ public class EchoPlayback : MonoBehaviour
             }
         }
 
-        // ② 이벤트가 하나도 없다면, "공격처럼 보이는" 클립명 동안 자동 히트창
+        // 이벤트가 하나도 없음?
         if (!processedEvt && hitbox != null && !string.IsNullOrEmpty(a.clip))
         {
             bool isAttackClip = IsAttackClipName(a.clip);
@@ -225,6 +192,41 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
+
+    public void Load(EchoTape t_)
+    {
+        tape = t_;
+        fi = 0; ei = 0; t = 0f;
+        _lastPlayedClip = null;
+        _autoAtkOpen = false;
+
+        if (hitbox)
+        {
+            hitbox.baseDamage *= damageScale;
+
+            // HitMask가 비어 있으면 'Enemies'로 적용
+            if (hitbox.hitMask == 0)
+            {
+                int enemies = LayerMask.NameToLayer("Enemies");
+                if (enemies >= 0) hitbox.hitMask = 1 << enemies;
+            }
+        }
+    }
+
+  
+    public void SetAlpha(float a) { alpha = Mathf.Clamp01(a); ApplyAlphaToAll(); }
+
+    void ApplyAlphaToAll()
+    {
+        if (_renderers.Count == 0) return;
+        for (int i = 0; i < _renderers.Count; i++)
+        {
+            if (_renderers[i] == null) continue;
+            var c = _renderers[i].color; c.a = alpha; _renderers[i].color = c;
+        }
+    }
+
+   
     void PlayClipIfNeeded(string recordedClip)
     {
         if (!visualAnimator)

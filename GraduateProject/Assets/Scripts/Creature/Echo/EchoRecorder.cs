@@ -7,12 +7,15 @@ using static Define;
 [DisallowMultipleComponent]
 public class EchoRecorder : MonoBehaviour
 {
-    public float sampleDt = 0.05f; // 20Hz
+    public float sampleDt = 0.05f;
     IAnimationController anim;
     EchoTape tape;
     float t, acc;
 
-    void Awake() => anim = GetComponent<IAnimationController>();
+    void Awake() 
+    { 
+        anim = GetComponent<IAnimationController>(); 
+    }
 
     public void BeginRecord()
     {
@@ -29,7 +32,7 @@ public class EchoRecorder : MonoBehaviour
             tape.length = t;
             tape.wasClear = wasClear;
 
-            // 사망 당시 장비 & 파트 외형 스냅샷 채우기
+            // 사망 당시 착용한 장비와 당시 플레이어의 외형 기록
             TrySnapshotEquipment(tape);
             TrySnapshotVisualsByPath(tape);
         }
@@ -55,13 +58,12 @@ public class EchoRecorder : MonoBehaviour
         }
     }
 
-    // ── 공격/스킬 윈도우 기록(애니/스킬 이벤트에서 호출) ──
     public void MarkActionBegin(string id, float factor = 1f)
         => tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkBegin", id = id, value = factor });
     public void MarkActionEnd(string id)
         => tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkEnd", id = id, value = 0f });
 
-    // ── 아이템 사용 기록(인벤토리 브리지에서 호출) ──
+
     public void MarkItemUsed(string itemId)
     {
         if (!string.IsNullOrEmpty(itemId))
