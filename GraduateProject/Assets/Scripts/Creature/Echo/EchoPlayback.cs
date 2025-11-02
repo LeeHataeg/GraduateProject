@@ -1,69 +1,170 @@
+ï»¿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ì—ì½” ì¬ìƒ ë³¸ì²´:
+/// - ìœ„ì¹˜/ì¢Œìš° ë°˜ì „/ê³µê²© ìœˆë„ìš° ì¬ìƒ
+/// - í”„ë¦¬íŒ¹ì— ë¹„ì£¼ì–¼ì´ ìˆìœ¼ë©´ ê·¸ëŒ€ë¡œ ì‚¬ìš©, ì—†ìœ¼ë©´ í”Œë ˆì´ì–´ "Root"ë¥¼ ë³µì œ
+/// - ë…¹í™” í”„ë ˆì„ì˜ clip ì´ë¦„ì„ Animatorì— ê·¸ëŒ€ë¡œ ì¬ìƒ
+/// - í…Œì´í”„ì˜ 'ê²½ë¡œ ê¸°ë°˜' ì™¸í˜• ìŠ¤ëƒ…ìƒ· ì ìš©(ì‚¬ë§ ë‹¹ì‹œ ì™¸í˜• ì¬í˜„)
+/// - (ì¤‘ìš”) ë…¹í™”ëœ ì´ë²¤íŠ¸ê°€ ì—†ì–´ë„, "ê³µê²©ìœ¼ë¡œ ë³´ì´ëŠ”" í´ë¦½ëª… ë™ì•ˆ ìë™ íˆíŠ¸ì°½ ì˜¤í”ˆ
+/// </summary>
 [DisallowMultipleComponent]
 public class EchoPlayback : MonoBehaviour
 {
-    [Header("Hitbox & Visual")]
-    public AttackHitbox hitbox;           // ¼±ÅÃ(ÀÖÀ¸¸é Ghostµµ °ø°İ °¡´É)
-    public SpriteRenderer sr;             // Åõ¸íµµ
-    public float alpha = 0.4f;            // ¿ÜÇü Åõ¸íµµ
-    [Tooltip("À¯·ÉÀº º»Ã¼ ´ëºñ ¸î %ÀÇ µ¥¹ÌÁö¸¦ ³¾Áö")]
-    public float damageScale = 0.5f;      // ¡°½ºÅÈ 50% ÀÌÇÏ¡± ¡æ µ¥¹ÌÁö¸¸ 50%·Î º¸Á¤
+    [Header("Combat (optional)")]
+    public AttackHitbox hitbox;           // ì„ íƒ(ìˆìœ¼ë©´ Ghostë„ ê³µê²© ê°€ëŠ¥)
+    [Range(0f, 1f)] public float damageScale = 0.5f;
 
-    [Header("Fallback Attack Heuristic")]
-    [Tooltip("Å×ÀÌÇÁ¿¡ Action ÀÌº¥Æ®°¡ ¾øÀ» ¶§, clip ÀÌ¸§¿¡ ÀÌ ¹®ÀÚ¿­ÀÌ Æ÷ÇÔµÇ¸é '°ø°İ Áß'À¸·Î °£ÁÖ")]
-    public string attackClipKeyword = "Attack";
-    [Tooltip("ÀÌº¥Æ®°¡ ¾ø°í clip Å°¿öµå°¡ °¨ÁöµÇ¸é ÀÚµ¿À¸·Î °ø°İ À©µµ¿ì¸¦ ¿­°í, Å°¿öµå°¡ »ç¶óÁö¸é ´İ½À´Ï´Ù.")]
-    public bool useHeuristicIfNoEvents = true;
+    [Header("Visual")]
+    public Transform visualParent;        // ë¹„ì›Œë‘ë©´ this.transform
+    public Transform visualRoot;          // í”„ë¦¬íŒ¹ ë‚´ì¥ Root(ìˆìœ¼ë©´ ë³µì œ ì•ˆ í•¨)
+    public Animator visualAnimator;       // âœ” ì–´ë””ì— ìˆë“  ë“œë˜ê·¸í•œ Animator ê·¸ëŒ€ë¡œ ì‚¬ìš©
+    [Range(0f, 1f)] public float alpha = 0.4f;
 
+    // ë‚´ë¶€
+    readonly List<SpriteRenderer> _renderers = new();
     EchoTape tape;
     int fi, ei;
     float t;
 
-    // ³»ºÎ »óÅÂ(ÈŞ¸®½ºÆ½¿ë)
-    bool windowOpenByHeuristic = false;
+    // ì• ë‹ˆ ìƒíƒœ
+    string _lastPlayedClip = null;
+    float _lastPlayAt = -999f;
+    const float PLAY_THROTTLE = 0.03f;
+
+    // ìŠ¤í”„ë¼ì´íŠ¸ ìºì‹œ
+    static Dictionary<string, Sprite> _spriteCache;
+
+    // ìë™ íˆíŠ¸ì°½ ì¶”ì 
+    bool _autoAtkOpen;
 
     public void Load(EchoTape t_)
     {
         tape = t_;
-        fi = 0;
-        ei = 0;
-        t = 0f;
+        fi = 0; ei = 0; t = 0f;
+        _lastPlayedClip = null;
+        _autoAtkOpen = false;
 
-        // ÇÁ¸®ÆÕ¿¡¼­ ±ôºıÇÑ °æ¿ì ÀÚµ¿ º¸°­
-        if (!hitbox) hitbox = GetComponentInChildren<AttackHitbox>(true);
-
-        // µ¥¹ÌÁö ½ºÄÉÀÏ º¸Á¤
-        if (hitbox) hitbox.baseDamage *= damageScale;
-        else
+        if (hitbox)
         {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-            Debug.LogWarning("[EchoPlayback] 'hitbox'°¡ ºñ¾î ÀÖ½À´Ï´Ù. À¯·ÉÀÇ °ø°İ ÆÇÁ¤ÀÌ »ı¼ºµÇÁö ¾Ê½À´Ï´Ù.");
-#endif
+            hitbox.baseDamage *= damageScale;
+
+            // HitMask ë¹„ì–´ ìˆìœ¼ë©´ ê¸°ë³¸ Enemiesë¡œ í´ë°±(í…ŒìŠ¤íŠ¸ ì‹œ 0ìœ¼ë¡œ ë‘ë©´ ë ˆì´ì–´ ë¬´ì‹œ)
+            if (hitbox.hitMask == 0)
+            {
+                int enemies = LayerMask.NameToLayer("Enemies");
+                if (enemies >= 0) hitbox.hitMask = 1 << enemies;
+            }
         }
     }
 
-    public void SetAlpha(float a)
+    public void AttachVisualFrom(PlayerController player)
     {
-        alpha = a;
-        if (sr)
+        if (visualParent == null) visualParent = this.transform;
+
+        // 1) í”„ë¦¬íŒ¹ì— ì´ë¯¸ ë¹„ì£¼ì–¼ì´ ìˆëŠ” ê²½ìš°: ê·¸ê±¸ ê·¸ëŒ€ë¡œ ì‚¬ìš©
+        if (visualRoot != null)
         {
-            var c = sr.color;
-            c.a = alpha;
-            sr.color = c;
+            _renderers.Clear();
+            foreach (var r in visualRoot.GetComponentsInChildren<SpriteRenderer>(true))
+                _renderers.Add(r);
+
+            // Animatorê°€ ë¯¸ì§€ì •ì´ë©´ ì´ ë£¨íŠ¸ ì•„ë˜/ë˜ëŠ” ìê¸° ìì‹ ì—ì„œ ì°¾ì•„ë³¸ë‹¤
+            if (!visualAnimator)
+            {
+                visualAnimator = visualRoot.GetComponentInChildren<Animator>(true);
+                if (!visualAnimator) visualAnimator = GetComponent<Animator>(); // âœ” ë£¨íŠ¸ì— ë¶™ì€ Animator ì§€ì›
+            }
+
+            ApplyAlphaToAll();
+            ApplyVisualSnapshotByPath();
+            return;
+        }
+
+        // 2) í”„ë¦¬íŒ¹ì— ë¹„ì£¼ì–¼ì´ ì—†ëŠ” ê²½ìš°: í”Œë ˆì´ì–´ UnitRoot/Rootë¥¼ ë³µì œ
+        Transform sourceRoot = null;
+        if (player != null)
+        {
+            var unitRoot = player.transform;
+            sourceRoot = unitRoot.Find("Root");
+            if (sourceRoot == null)
+            {
+                var all = unitRoot.GetComponentsInChildren<SpriteRenderer>(true);
+                if (all != null && all.Length > 0)
+                {
+                    var countMap = new Dictionary<Transform, int>();
+                    foreach (var rr in all)
+                    {
+                        var p = rr.transform.parent;
+                        if (p == null) continue;
+                        if (!countMap.ContainsKey(p)) countMap[p] = 0;
+                        countMap[p]++;
+                    }
+                    Transform best = null; int bestCount = -1;
+                    foreach (var kv in countMap)
+                        if (kv.Value > bestCount) { bestCount = kv.Value; best = kv.Key; }
+                    sourceRoot = best;
+                }
+            }
+        }
+
+        if (sourceRoot != null)
+        {
+            var clone = Instantiate(sourceRoot.gameObject, visualParent, worldPositionStays: false);
+            clone.name = "[EchoGhost_VisualRoot]";
+            visualRoot = clone.transform;
+
+            foreach (var c in clone.GetComponentsInChildren<Collider2D>(true)) c.enabled = false;
+            var rb = clone.GetComponentInChildren<Rigidbody2D>(true);
+            if (rb) rb.simulated = false;
+
+            visualAnimator = clone.GetComponentInChildren<Animator>(true);
+            if (!visualAnimator) visualAnimator = GetComponent<Animator>(); // âœ” ë°±ì—…(ë£¨íŠ¸ Animator)
+
+            _renderers.Clear();
+            foreach (var r in clone.GetComponentsInChildren<SpriteRenderer>(true))
+                _renderers.Add(r);
+
+            int layer = gameObject.layer;
+            foreach (var tt in clone.GetComponentsInChildren<Transform>(true))
+                tt.gameObject.layer = layer;
+
+            ApplyAlphaToAll();
+            ApplyVisualSnapshotByPath();
+        }
+        else
+        {
+            // ë¹„ì£¼ì–¼ì„ ëª» ì¤€ë¹„í–ˆì–´ë„ Animatorê°€ ë£¨íŠ¸ì— ë¶™ì–´ ìˆë‹¤ë©´ ê·¸ê±¸ ì‚¬ìš©
+            if (!visualAnimator) visualAnimator = GetComponent<Animator>();
+            _renderers.Clear();
+            foreach (var r in GetComponentsInChildren<SpriteRenderer>(true))
+                _renderers.Add(r);
+            ApplyAlphaToAll();
+            ApplyVisualSnapshotByPath();
+        }
+    }
+
+    public void SetAlpha(float a) { alpha = Mathf.Clamp01(a); ApplyAlphaToAll(); }
+
+    void ApplyAlphaToAll()
+    {
+        if (_renderers.Count == 0) return;
+        for (int i = 0; i < _renderers.Count; i++)
+        {
+            if (_renderers[i] == null) continue;
+            var c = _renderers[i].color; c.a = alpha; _renderers[i].color = c;
         }
     }
 
     void Update()
     {
-        if (tape == null || tape.frames.Count == 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (tape == null || tape.frames.Count == 0) { Destroy(gameObject); return; }
+
         t += Time.deltaTime;
 
-        // À§Ä¡ º¸°£
+        // ìœ„ì¹˜/ì¢Œìš° ë³´ê°„
         while (fi + 1 < tape.frames.Count && tape.frames[fi + 1].t <= t) fi++;
         var a = tape.frames[Mathf.Clamp(fi, 0, tape.frames.Count - 1)];
         var b = tape.frames[Mathf.Clamp(fi + 1, 0, tape.frames.Count - 1)];
@@ -71,50 +172,151 @@ public class EchoPlayback : MonoBehaviour
 
         transform.position = Vector2.Lerp(a.pos, b.pos, u);
 
+        // ì¢Œìš° ë°˜ì „
         var s = transform.localScale;
         s.x = (a.faceRight ? Mathf.Abs(s.x) : -Mathf.Abs(s.x));
         transform.localScale = s;
 
-        // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
-        // 1) ±â·ÏµÈ ÀÌº¥Æ® Àç»ı(Á¤¼® °æ·Î)
-        // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+        // ì• ë‹ˆ ì¬ìƒ
+        PlayClipIfNeeded(a.clip);
+
+        // â‘  ë…¹í™” ì´ë²¤íŠ¸ ê¸°ë°˜ íˆíŠ¸ì°½
+        bool processedEvt = false;
         while (ei < tape.events.Count && tape.events[ei].t <= t)
         {
+            processedEvt = true;
             var e = tape.events[ei++];
-            if (e.kind == "AtkBegin") hitbox?.BeginWindow();
-            else if (e.kind == "AtkEnd") hitbox?.EndWindow();
+            if (e.kind == "AtkBegin")
+            {
+                if (hitbox != null)
+                {
+                    hitbox.Source = this.gameObject;
+                    if (hitbox.hitMask == 0)
+                    {
+                        int enemies = LayerMask.NameToLayer("Enemies");
+                        if (enemies >= 0) hitbox.hitMask = 1 << enemies;
+                    }
+                }
+                hitbox?.BeginWindow();
+                _autoAtkOpen = false;
+            }
+            else if (e.kind == "AtkEnd")
+            {
+                hitbox?.EndWindow();
+                _autoAtkOpen = false;
+            }
         }
 
-        // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
-        // 2) ´ëÃ¼ °æ·Î(ÀÌº¥Æ®°¡ ÇÏ³ªµµ ¾øÀ» ¶§¸¸): Å¬¸³ ÀÌ¸§ ÈŞ¸®½ºÆ½
-        //    - clip¿¡ attackClipKeyword°¡ Æ÷ÇÔµÇ¸é °ø°İ ÁßÀ¸·Î °£ÁÖ ¡æ À©µµ¿ì open
-        //    - Å°¿öµå°¡ »ç¶óÁö¸é close
-        // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
-        if (useHeuristicIfNoEvents && tape.events.Count == 0 && hitbox != null)
+        // â‘¡ ì´ë²¤íŠ¸ê°€ í•˜ë‚˜ë„ ì—†ë‹¤ë©´, "ê³µê²©ì²˜ëŸ¼ ë³´ì´ëŠ”" í´ë¦½ëª… ë™ì•ˆ ìë™ íˆíŠ¸ì°½
+        if (!processedEvt && hitbox != null && !string.IsNullOrEmpty(a.clip))
         {
-            string curClip = a.clip ?? string.Empty;
-            bool looksLikeAttack = !string.IsNullOrEmpty(curClip) && curClip.IndexOf(attackClipKeyword, System.StringComparison.OrdinalIgnoreCase) >= 0;
-
-            if (looksLikeAttack && !windowOpenByHeuristic)
+            bool isAttackClip = IsAttackClipName(a.clip);
+            if (isAttackClip && !_autoAtkOpen)
             {
+                hitbox.Source = this.gameObject;
                 hitbox.BeginWindow();
-                windowOpenByHeuristic = true;
+                _autoAtkOpen = true;
             }
-            else if (!looksLikeAttack && windowOpenByHeuristic)
+            else if (!isAttackClip && _autoAtkOpen)
             {
                 hitbox.EndWindow();
-                windowOpenByHeuristic = false;
+                _autoAtkOpen = false;
             }
         }
     }
 
-    private void OnDestroy()
+    void PlayClipIfNeeded(string recordedClip)
     {
-        // ¾ÈÀüÀåÄ¡: ¿­·Á ÀÖ´ø ÈŞ¸®½ºÆ½ À©µµ¿ì ´İ±â
-        if (windowOpenByHeuristic && hitbox != null)
+        if (!visualAnimator)
         {
-            try { hitbox.EndWindow(); } catch { /* no-op */ }
-            windowOpenByHeuristic = false;
+            // í˜¹ì‹œ ë¹„ì›Œì ¸ ìˆìœ¼ë©´ ë§ˆì§€ë§‰ìœ¼ë¡œ í•œ ë²ˆ ë” ìë™ íƒìƒ‰(ë£¨íŠ¸/ìì‹)
+            visualAnimator = GetComponent<Animator>();
+            if (!visualAnimator && visualRoot) visualAnimator = visualRoot.GetComponentInChildren<Animator>(true);
+            if (!visualAnimator) return;
         }
+        if (string.IsNullOrEmpty(recordedClip)) return;
+        if (Time.time - _lastPlayAt < PLAY_THROTTLE && recordedClip == _lastPlayedClip) return;
+
+        visualAnimator.Play(recordedClip, 0, 0f);
+        _lastPlayedClip = recordedClip;
+        _lastPlayAt = Time.time;
+    }
+
+    // ê³µê²©ì²˜ëŸ¼ ë³´ì´ëŠ” ì´ë¦„ íŒ¨í„´(ë„¤ í”„ë¡œì íŠ¸ í´ë¦½ëª…ì— ë§ì¶° í™•ì¥)
+    static bool IsAttackClipName(string name)
+    {
+        // ëŒ€ì†Œë¬¸ì ë¬´ì‹œ, ë‹¤ì–‘í•œ ê´€ìš© íŒ¨í„´ ì§€ì›
+        var n = name.ToUpperInvariant();
+        return n.Contains("ATTACK") || n.Contains("ATK") || n.Contains("SLASH") || n.Contains("HIT") || n.Contains("2_ATTACK");
+    }
+
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    //           ê²½ë¡œ ê¸°ë°˜ ìŠ¤ëƒ…ìƒ· ì ìš©(ì‚¬ë§ ë‹¹ì‹œ ì™¸í˜• ì¬í˜„)
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    void ApplyVisualSnapshotByPath()
+    {
+        if (visualRoot == null && transform != null)
+        {
+            // í”„ë¦¬íŒ¹ êµ¬ì¡°ì— ë”°ë¼ Rootê°€ ë°”ë¡œ ìì‹ì¼ ìˆ˜ë„, ì•„ë‹ ìˆ˜ë„ ìˆìŒ â†’ ìµœì„  íƒìƒ‰
+            var maybe = transform.Find("Root");
+            if (maybe) visualRoot = maybe;
+        }
+
+        if (visualRoot == null || tape == null || tape.visualParts == null || tape.visualParts.Count == 0)
+            return;
+
+        if (_spriteCache == null) _spriteCache = new Dictionary<string, Sprite>(128);
+
+        foreach (var vp in tape.visualParts)
+        {
+            if (string.IsNullOrEmpty(vp.path)) continue;
+
+            var target = visualRoot.Find(vp.path);
+            if (target == null) continue;
+
+            var sr = target.GetComponent<SpriteRenderer>();
+            if (sr == null) continue;
+
+            // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
+            if (!string.IsNullOrEmpty(vp.sprite))
+            {
+                var sp = FindSpriteByNameCached(vp.sprite);
+                if (sp != null) sr.sprite = sp;
+            }
+
+            // íŠ¸ëœìŠ¤í¼/ì†ŒíŒ…/í™œì„±
+            sr.enabled = vp.enabled;
+            sr.transform.localPosition += (Vector3)vp.localPosOffset;
+            var ls = sr.transform.localScale;
+            sr.transform.localScale = new Vector3(ls.x * (Mathf.Approximately(vp.localScaleMul.x, 0f) ? 1f : vp.localScaleMul.x),
+                                                  ls.y * (Mathf.Approximately(vp.localScaleMul.y, 0f) ? 1f : vp.localScaleMul.y),
+                                                  ls.z);
+            sr.sortingOrder += vp.sortingOffset;
+
+            if (vp.changeMaskInteraction)
+                sr.maskInteraction = (SpriteMaskInteraction)vp.maskInteraction;
+
+            var mask = sr.GetComponent<SpriteMask>();
+            if (mask) mask.enabled = vp.enablePartSpriteMask;
+        }
+    }
+
+    static Sprite FindSpriteByNameCached(string name)
+    {
+        if (string.IsNullOrEmpty(name)) return null;
+        if (_spriteCache.TryGetValue(name, out var s) && s != null) return s;
+
+        var all = Resources.FindObjectsOfTypeAll<Sprite>();
+        for (int i = 0; i < all.Length; i++)
+        {
+            var sp = all[i];
+            if (sp != null && string.Equals(sp.name, name, StringComparison.OrdinalIgnoreCase))
+            {
+                _spriteCache[name] = sp;
+                return sp;
+            }
+        }
+        _spriteCache[name] = null;
+        return null;
     }
 }

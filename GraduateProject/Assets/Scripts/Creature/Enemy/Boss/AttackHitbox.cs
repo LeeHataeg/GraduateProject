@@ -1,15 +1,15 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
-/// ´ÜÀÏ Æ®¸®°Å Äİ¶óÀÌ´õ ±â¹İ º¸½º °ø°İ È÷Æ®¹Ú½º
-/// - Collider2D´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î size/offsetÀ» Å°ÇÁ·¹ÀÓ
-/// - AnimationEvent·Î BeginWindow/EndWindow È£ÃâÇÏ¿© À¯È¿ ÇÁ·¹ÀÓ Á¦¾î
+/// ë‹¨ì¼ íŠ¸ë¦¬ê±° ì½œë¼ì´ë” ê¸°ë°˜ ë³´ìŠ¤/í”Œë ˆì´ì–´/ê³ ìŠ¤íŠ¸ ê³µê²© íˆíŠ¸ë°•ìŠ¤
+/// - CircleCollider2D ë“± Trigger ì „ìš© ê¶Œì¥
+/// - AnimationEventë¡œ BeginWindow/EndWindow í˜¸ì¶œí•˜ì—¬ ìœ íš¨ í”„ë ˆì„ ì œì–´
 [RequireComponent(typeof(Collider2D))]
 public class AttackHitbox : MonoBehaviour
 {
     [Header("Who/What to hit")]
-    public LayerMask hitMask;
-    [Tooltip("À©µµ¿ì µ¿¾È °°Àº Å¸°Ù¿¡ Áßº¹Å¸°İ ±İÁö °£°İ(ÃÊ)")]
+    public LayerMask hitMask;                 // 0ì´ë©´ ë ˆì´ì–´ í•„í„° ìƒëµ(IHitReactorë§Œ ìˆìœ¼ë©´ ì ì¤‘)
+    [Tooltip("ìœˆë„ìš° ë™ì•ˆ ê°™ì€ íƒ€ê²Ÿì— ì¤‘ë³µíƒ€ê²© ê¸ˆì§€ ê°„ê²©(ì´ˆ)")]
     public float perTargetCooldown = 0.05f;
 
     [Header("Damage payload")]
@@ -19,97 +19,92 @@ public class AttackHitbox : MonoBehaviour
     [Header("Debug")]
     public bool logHits = false;
 
+    /// <summary>ì´ íˆíŠ¸ë°•ìŠ¤ë¥¼ ë°œë™í•˜ëŠ” ì£¼ì²´(ìê¸° ìì‹  í”¼ê²© ë°©ì§€ìš©)</summary>
+    public GameObject Source { get; set; }
+
     private Collider2D col;
+    private Rigidbody2D rb;
     private bool windowOpen;
     private readonly Dictionary<Collider2D, float> lastHitTime = new();
     public bool useColliderEnabledAsWindow = true;
+
     void Awake()
     {
         col = GetComponent<Collider2D>();
         col.isTrigger = true;
-        col.enabled = false;      // Æò¼Ò ºñÈ°¼º(±ÇÀå)
-    }
 
-    void OnEnable()
-    {
-        if (useColliderEnabledAsWindow) windowOpen = true;
-    }
-    void OnDisable()
-    {
-        if (useColliderEnabledAsWindow) windowOpen = false;
-    }
+        // âœ… íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸ ë³´ì¥: Rigidbody2D í•„ìš”(ì—†ìœ¼ë©´ ìë™ ì¶”ê°€)
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0f;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-    /// ¾Ö´Ï ÀÌº¥Æ®¿¡¼­ È£Ãâ: Å¸°İ À¯È¿ ÇÁ·¹ÀÓ ½ÃÀÛ
-    public void BeginWindow()
-    {
-        windowOpen = true;
-        col.enabled = true;
-        lastHitTime.Clear(); // À©µµ¿ìº° Áßº¹È÷Æ® ÃÊ±âÈ­
-    }
-
-    /// ¾Ö´Ï ÀÌº¥Æ®¿¡¼­ È£Ãâ: Å¸°İ À¯È¿ ÇÁ·¹ÀÓ Á¾·á
-    public void EndWindow()
-    {
-        windowOpen = false;
+        // í‰ì†Œ ë‹«í˜(ì• ë‹ˆ/ì½”ë“œë¡œ ì—´ê¸°)
         col.enabled = false;
     }
 
-    /// ÇÊ¿ä ½Ã ¾Ö´Ï ÀÌº¥Æ®·Î °ø°İ·Â/³Ë¹é µ¤¾î¾²±â
+    void OnEnable() { if (useColliderEnabledAsWindow) windowOpen = true; }
+    void OnDisable() { if (useColliderEnabledAsWindow) windowOpen = false; }
+
+    /// ì• ë‹ˆ ì´ë²¤íŠ¸ì—ì„œ í˜¸ì¶œ: íƒ€ê²© ìœ íš¨ í”„ë ˆì„ ì‹œì‘
+    public void BeginWindow()
+    {
+        windowOpen = true;
+        if (col) col.enabled = true;
+        lastHitTime.Clear();
+        if (logHits) Debug.Log($"[Hitbox] BeginWindow on {name}");
+    }
+
+    /// ì• ë‹ˆ ì´ë²¤íŠ¸ì—ì„œ í˜¸ì¶œ: íƒ€ê²© ìœ íš¨ í”„ë ˆì„ ì¢…ë£Œ
+    public void EndWindow()
+    {
+        windowOpen = false;
+        if (col) col.enabled = false;
+        if (logHits) Debug.Log($"[Hitbox] EndWindow on {name}");
+    }
+
     public void SetPayload(float damage) => baseDamage = damage;
     public void SetKnockback(float x, float y) => knockback = new Vector2(x, y);
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log($"[Hitbox] Enter with {other.name}, tag={other.tag}, layer={LayerMask.LayerToName(other.gameObject.layer)}");
-        //if (other.tag == "Player")
-        //{
-        //    Debug.Log("UnitRoot Å½Áö");
-        //    var plHit = other.GetComponent<IHitReactor>();
-        //    if(plHit != null)
-        //    {
-        //        Debug.Log("plHit Å½Áö");
-        //        plHit.OnAttacked(baseDamage);
-        //    }
-        //}
-
-
-        //if (LayerMask.NameToLayer("Player") == other.gameObject.layer){
-        //    Debug.Log("¾Æ~½Î ·¹ÀÌ¾î Å½Áö °³²ÜÀÌ°í");
-        //    var plHit = other.GetComponent<IHitReactor>();
-        //    if (plHit != null)
-        //    {
-        //        Debug.Log("plHit Å½Áö");
-        //        plHit.OnAttacked(baseDamage);
-        //    }
-        //}
-        TryHit(other);
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // ÇÁ·¹ÀÓ ³» Äİ¶óÀÌ´õ Å©±â º¯°æ ½Ã Enter°¡ ¾È ¶ã ¼öµµ ÀÖÀ¸¹Ç·Î º¸Á¶·Î Stay¿¡¼­µµ ½Ãµµ
-        TryHit(other);
-    }
+    void OnTriggerEnter2D(Collider2D other) => TryHit(other);
+    void OnTriggerStay2D(Collider2D other) => TryHit(other);
 
     private void TryHit(Collider2D other)
     {
+        // ìœ íš¨ í”„ë ˆì„ ì•„ë‹ˆë©´ ë¬´ì‹œ
         if (!windowOpen && !(useColliderEnabledAsWindow && col && col.enabled)) return;
 
-        if (((1 << other.gameObject.layer) & hitMask) == 0) return;
-        if (other.attachedRigidbody && other.attachedRigidbody.transform == transform.root) return;
+        // ìê¸° ìì‹ /ë™ì¼ ë£¨íŠ¸ ë¬´ì‹œ
+        if (Source != null)
+        {
+            var otherRoot = other.attachedRigidbody ? other.attachedRigidbody.transform.root : other.transform.root;
+            if (otherRoot == Source.transform) return;
+        }
+        else
+        {
+            if (other.attachedRigidbody && other.attachedRigidbody.transform == transform.root) return;
+        }
 
+        // ìš°ì„  IHitReactor ì°¾ê¸°(ë³´ìŠ¤ í—ˆíŠ¸ë°•ìŠ¤ ë ˆì´ì–´ê°€ Enemiesê°€ ì•„ë‹ ìˆ˜ë„ ìˆìŒ)
+        var reactor = other.GetComponentInParent<IHitReactor>();
+        if (reactor == null) reactor = other.GetComponentInChildren<IHitReactor>();
+        if (reactor == null) return;
+
+        // hitMaskê°€ ì„¸íŒ…ë˜ì–´ ìˆìœ¼ë©´ ë ˆì´ì–´ í•„í„° í†µê³¼ í•„ìš”
+        if (hitMask != 0)
+        {
+            int layer = other.gameObject.layer;
+            if (((1 << layer) & hitMask.value) == 0) return;
+        }
+
+        // per-target ì¿¨ë‹¤ìš´
         float now = Time.time;
         if (lastHitTime.TryGetValue(other, out float t) && (now - t) < perTargetCooldown) return;
-
         lastHitTime[other] = now;
 
-        // ÇÇÇØ Àü´Ş
-        var hr = other.GetComponentInParent<IHitReactor>();
-        if (hr == null) hr = other.GetComponentInChildren<IHitReactor>();
-        if (hr != null)
-        {
-            hr.OnAttacked(baseDamage);
-            if (logHits) Debug.Log($"[Hitbox] {name} -> {other.name} dmg {baseDamage}");
-        }
+        // í”¼í•´ ì „ë‹¬
+        reactor.OnAttacked(baseDamage);
+        if (logHits) Debug.Log($"[Hitbox] {name} -> {other.name} dmg {baseDamage}, layer={LayerMask.LayerToName(other.gameObject.layer)}");
     }
 }

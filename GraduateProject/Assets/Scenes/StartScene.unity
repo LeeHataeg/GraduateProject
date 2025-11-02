@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8091d34fefe454f8c50bdb5b83132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1348539218290983041, guid: 50d42bc33f0940b4babc9d40975f5094, type: 3}
+  ghostPrefab: {fileID: 6431095957986350408, guid: f025097e9698ef6439df8e027cc9061c, type: 3}
   alphaByAge:
   - 0.2
   - 0.28

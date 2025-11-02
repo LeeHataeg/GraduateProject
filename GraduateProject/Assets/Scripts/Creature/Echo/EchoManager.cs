@@ -15,9 +15,8 @@ public class EchoManager : MonoBehaviour
 
     void Awake()
     {
-        if (I != null && I != this) { Destroy(gameObject); return; }
-        I = this;
-        DontDestroyOnLoad(gameObject);
+        if (I != null) { Destroy(gameObject); return; }
+        I = this; DontDestroyOnLoad(gameObject);
     }
 
     // ── 전투 시작 ──
@@ -28,7 +27,6 @@ public class EchoManager : MonoBehaviour
         // (1) 스태시 아이템 지급(있으면)
         var stash = EchoPersistence.LoadStash();
         foreach (var id in stash) EchoInventoryBridge.TryGiveItemToPlayer(player, id);
-        // 지급 후에는 “이번 플레이가 끝날 때까지” 보존하므로 지금은 유지
 
         // (2) 사망 기록 재생(최대 5)
         var tapes = EchoPersistence.LoadTapes();
@@ -37,8 +35,12 @@ public class EchoManager : MonoBehaviour
         {
             var tape = tapes[i];
             var spawnPos = (tape.frames.Count > 0) ? (Vector3)tape.frames[0].pos : player.transform.position;
+
             var ghost = Instantiate(ghostPrefab, spawnPos, Quaternion.identity);
             ghost.Load(tape);
+            // ★ 플레이어의 SPUM 비주얼 복제해서 붙임 + 테이프 스냅샷을 이용해 '사망 당시' 외형 복구
+            ghost.AttachVisualFrom(player);
+
             int idx = Mathf.Clamp(alphaByAge.Length - (n - i), 0, alphaByAge.Length - 1);
             ghost.SetAlpha(alphaByAge[idx]);
         }
@@ -52,26 +54,7 @@ public class EchoManager : MonoBehaviour
     // ── 전투 종료 ──
     public void EndBossBattle(bool playerDied)
     {
-        EchoTape tape = null;
-
-        // recorder가 파괴/비활성/누락일 수 있으므로 철저히 가드
-        try
-        {
-            if (recorder != null && recorder)
-            {
-                // EndRecord 내부도 가드하지만, 여기서 한 번 더 안전 확인
-                tape = recorder.EndRecord(!playerDied);
-            }
-        }
-        catch
-        {
-            // 파괴 타이밍 경합 등 예외는 무시하고 tape == null 로 처리
-        }
-        finally
-        {
-            // 레퍼런스 정리(다음 라운드에서 오래된 참조 사용 금지)
-            recorder = null;
-        }
+        var tape = recorder?.EndRecord(!playerDied);
 
         if (playerDied)
         {

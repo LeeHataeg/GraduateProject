@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 /// 보스전 중에만 enable. Begin/End는 EchoManager가 호출.
 [DisallowMultipleComponent]
@@ -20,65 +23,35 @@ public class EchoRecorder : MonoBehaviour
 
     public EchoTape EndRecord(bool wasClear)
     {
-        // 파괴/비활성 타이밍에서도 예외 없이 종료되도록 가드
-        if (this != null)
+        enabled = false;
+        if (tape != null)
         {
-            try
-            {
-                if (isActiveAndEnabled)
-                    enabled = false;
-            }
-            catch { /* 파괴 직후 프레임 안전망 */ }
-        }
+            tape.length = t;
+            tape.wasClear = wasClear;
 
-        if (tape != null) { tape.length = t; tape.wasClear = wasClear; }
+            // 사망 당시 장비 & 파트 외형 스냅샷 채우기
+            TrySnapshotEquipment(tape);
+            TrySnapshotVisualsByPath(tape);
+        }
         return tape;
     }
 
     void FixedUpdate()
     {
         if (tape == null) return;
-
+        t += Time.fixedDeltaTime;
         acc += Time.fixedDeltaTime;
-        while (acc >= sampleDt)
+        if (acc >= sampleDt)
         {
-            acc -= sampleDt;
-            t += sampleDt;
-
-            var tr = transform;
-            var pos = (Vector2)tr.position;
-
-            // Unity 6: velocity → linearVelocity
-            Vector2 vel = Vector2.zero;
-            var rb = GetComponent<Rigidbody2D>();
-            if (rb) vel = rb.linearVelocity;
-
-            // EchoTape.Frame에는 속도가 없고, facing만 저장한다.
-            bool faceRight;
-            if (Mathf.Abs(vel.x) > 1e-4f)
-            {
-                faceRight = vel.x > 0f;
-            }
-            else
-            {
-                // 정지 시에는 스케일 기준(또는 필요하면 스프라이트 flipX 등으로 대체)
-                faceRight = tr.localScale.x >= 0f;
-            }
-
-            string clip = null;
-            if (anim != null)
-            {
-                try { clip = anim.GetCurClipname(); }
-                catch { /* 애니 컨트롤러 전환 타이밍 가드 */ }
-            }
-
-            tape.frames.Add(new EchoTape.Frame
+            acc = 0f;
+            var f = new EchoTape.Frame
             {
                 t = t,
-                pos = pos,
-                faceRight = faceRight,
-                clip = clip
-            });
+                pos = transform.position,
+                faceRight = transform.localScale.x >= 0f,
+                clip = anim?.GetCurClipname()
+            };
+            tape.frames.Add(f);
         }
     }
 
@@ -93,5 +66,81 @@ public class EchoRecorder : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(itemId))
             tape?.usedItemIds.Add(itemId);
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //                        스냅샷
+    // ─────────────────────────────────────────────────────────
+    private void TrySnapshotEquipment(EchoTape dest)
+    {
+        var eq = GetComponentInChildren<EquipmentManager>(true);
+        if (eq == null) return;
+
+        foreach (EquipmentSlot slot in (EquipmentSlot[])Enum.GetValues(typeof(EquipmentSlot)))
+        {
+            var item = eq.GetEquipped(slot);
+            if (item != null)
+            {
+                dest.equipped.Add(new EchoTape.EquipEntry
+                {
+                    slot = slot.ToString(),
+                    itemId = item.name   // ScriptableObject.name 사용
+                });
+            }
+        }
+    }
+
+    private void TrySnapshotVisualsByPath(EchoTape dest)
+    {
+        // 플레이어 구조: UnitRoot(this) / "Root"
+        var unitRoot = this.transform;
+        var root = unitRoot.Find("Root");
+        if (root == null)
+        {
+            Debug.LogWarning("[EchoRecorder] 'Root'를 찾지 못해 외형 스냅샷을 생략합니다.");
+            return;
+        }
+
+        // Root 하위 모든 SpriteRenderer 스냅샷
+        var srs = root.GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in srs)
+        {
+            var relPath = GetRelativePath(sr.transform, root);
+            if (string.IsNullOrEmpty(relPath)) continue;
+
+            // 기본값은 현재 값 자체를 기준으로 저장(고스트 적용 시 동일 상태 재현)
+            var vp = new EchoTape.VisualPart
+            {
+                path = relPath,
+                sprite = sr.sprite ? sr.sprite.name : string.Empty,
+                localPosOffset = Vector2.zero,            // 현재 위치를 그대로 쓰므로 0
+                localScaleMul = new Vector2(1f, 1f),      // 현재 스케일 그대로
+                sortingOffset = 0,                        // 현재 sorting 그대로
+                enabled = sr.enabled,
+                changeMaskInteraction = true,
+                maskInteraction = (int)sr.maskInteraction
+            };
+
+            // 선택 마스크 존재 여부
+            var mask = sr.GetComponent<SpriteMask>();
+            vp.enablePartSpriteMask = (mask ? mask.enabled : false);
+
+            dest.visualParts.Add(vp);
+        }
+    }
+
+    private static string GetRelativePath(Transform t, Transform root)
+    {
+        if (t == null || root == null) return null;
+        List<string> seg = new List<string>();
+        var cur = t;
+        while (cur != null && cur != root)
+        {
+            seg.Add(cur.name);
+            cur = cur.parent;
+        }
+        if (cur != root) return null;
+        seg.Reverse();
+        return string.Join("/", seg);
     }
 }
