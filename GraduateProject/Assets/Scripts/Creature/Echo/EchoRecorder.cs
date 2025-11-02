@@ -20,7 +20,17 @@ public class EchoRecorder : MonoBehaviour
 
     public EchoTape EndRecord(bool wasClear)
     {
-        enabled = false;
+        // 파괴/비활성 타이밍에서도 예외 없이 종료되도록 가드
+        if (this != null)
+        {
+            try
+            {
+                if (isActiveAndEnabled)
+                    enabled = false;
+            }
+            catch { /* 파괴 직후 프레임 안전망 */ }
+        }
+
         if (tape != null) { tape.length = t; tape.wasClear = wasClear; }
         return tape;
     }
@@ -28,19 +38,47 @@ public class EchoRecorder : MonoBehaviour
     void FixedUpdate()
     {
         if (tape == null) return;
-        t += Time.fixedDeltaTime;
+
         acc += Time.fixedDeltaTime;
-        if (acc >= sampleDt)
+        while (acc >= sampleDt)
         {
-            acc = 0f;
-            var f = new EchoTape.Frame
+            acc -= sampleDt;
+            t += sampleDt;
+
+            var tr = transform;
+            var pos = (Vector2)tr.position;
+
+            // Unity 6: velocity → linearVelocity
+            Vector2 vel = Vector2.zero;
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb) vel = rb.linearVelocity;
+
+            // EchoTape.Frame에는 속도가 없고, facing만 저장한다.
+            bool faceRight;
+            if (Mathf.Abs(vel.x) > 1e-4f)
+            {
+                faceRight = vel.x > 0f;
+            }
+            else
+            {
+                // 정지 시에는 스케일 기준(또는 필요하면 스프라이트 flipX 등으로 대체)
+                faceRight = tr.localScale.x >= 0f;
+            }
+
+            string clip = null;
+            if (anim != null)
+            {
+                try { clip = anim.GetCurClipname(); }
+                catch { /* 애니 컨트롤러 전환 타이밍 가드 */ }
+            }
+
+            tape.frames.Add(new EchoTape.Frame
             {
                 t = t,
-                pos = transform.position,
-                faceRight = transform.localScale.x >= 0f,
-                clip = anim?.GetCurClipname()
-            };
-            tape.frames.Add(f);
+                pos = pos,
+                faceRight = faceRight,
+                clip = clip
+            });
         }
     }
 

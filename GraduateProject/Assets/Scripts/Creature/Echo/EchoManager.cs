@@ -15,8 +15,9 @@ public class EchoManager : MonoBehaviour
 
     void Awake()
     {
-        if (I != null) { Destroy(gameObject); return; }
-        I = this; DontDestroyOnLoad(gameObject);
+        if (I != null && I != this) { Destroy(gameObject); return; }
+        I = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // ── 전투 시작 ──
@@ -51,7 +52,26 @@ public class EchoManager : MonoBehaviour
     // ── 전투 종료 ──
     public void EndBossBattle(bool playerDied)
     {
-        var tape = recorder?.EndRecord(!playerDied);
+        EchoTape tape = null;
+
+        // recorder가 파괴/비활성/누락일 수 있으므로 철저히 가드
+        try
+        {
+            if (recorder != null && recorder)
+            {
+                // EndRecord 내부도 가드하지만, 여기서 한 번 더 안전 확인
+                tape = recorder.EndRecord(!playerDied);
+            }
+        }
+        catch
+        {
+            // 파괴 타이밍 경합 등 예외는 무시하고 tape == null 로 처리
+        }
+        finally
+        {
+            // 레퍼런스 정리(다음 라운드에서 오래된 참조 사용 금지)
+            recorder = null;
+        }
 
         if (playerDied)
         {
