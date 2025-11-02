@@ -19,7 +19,7 @@ public class RoomGenerator : MonoBehaviour
     {
         // Grid 자동 탐색 (상위 → 씬 전체)
         if (!grid) grid = GetComponentInParent<Grid>();
-#if UNITY_600_0_OR_NEWER
+#if UNITY_6000_0_OR_NEWER
         if (!grid) grid = FindFirstObjectByType<Grid>();
 #else
         if (!grid) grid = FindObjectOfType<Grid>();

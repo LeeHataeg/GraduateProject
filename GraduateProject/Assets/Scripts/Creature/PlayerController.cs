@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isDead = false;
 
+
     private void Awake()
     {
         healthCtrl = GetComponent<HealthController>();

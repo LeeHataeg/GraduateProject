@@ -1,5 +1,4 @@
-﻿// DeathPopupUI.cs (핵심 부분만)
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -27,7 +26,6 @@ public class DeathPopupUI : MonoBehaviour
     public void Show()
     {
         root.SetActive(true);
-
         Time.timeScale = 0f;
     }
 
@@ -40,34 +38,33 @@ public class DeathPopupUI : MonoBehaviour
     private void OnClickRestart()
     {
         if (normalizeTimeScale) Time.timeScale = 1f;
-        TrySoftResetManagers();                      // ★ 상태 정리
+        TrySoftResetManagers();
         SceneManager.LoadScene(inGameSceneName, LoadSceneMode.Single);
     }
 
     private void OnClickHome()
     {
         if (normalizeTimeScale) Time.timeScale = 1f;
-        TrySoftResetManagers();                      // ★ 상태 정리
+        TrySoftResetManagers();
         SceneManager.LoadScene(startSceneName, LoadSceneMode.Single);
     }
 
-    // DeathPopupUI.cs 내부
     private void TrySoftResetManagers()
     {
         var gm = GameManager.Instance;
         if (gm == null) return;
 
-        // 1) 모든 UI 닫기(있다면)
+        // 1) UI 정리
         gm.UIManager?.SendMessage("HideAll", SendMessageOptions.DontRequireReceiver);
 
-        // 2) 방/시작점 리셋
-        gm.RoomManager?.ResetRooms(); // 파라미터 없는 오버로드 이미 추가했음
+        // 2) 방/시작점 리셋(파괴는 RoomManager가 알아서, Player 파괴 없음)
+        gm.RoomManager?.ResetRooms();
 
-        // 3) 플레이어 상태 리셋(핵심!)
-        gm.PlayerManager?.ResetState(true); // ← 새 판에서 신규 스폰 유도
+        // 3) 플레이어 상태만 리셋(★ 파괴 금지), 다음 씬에서 1회 스폰 요청
+        gm.PlayerManager?.ResetState(true);
+        gm.PlayerManager?.RequestFreshSpawnNextScene();
 
-        // 4) 패널 닫기(선택)
+        // 4) 패널 닫기
         root?.SetActive(false);
     }
-
 }
