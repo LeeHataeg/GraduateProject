@@ -8,19 +8,35 @@ using static Define;
 public class EchoRecorder : MonoBehaviour
 {
     public float sampleDt = 0.05f;
+
     IAnimationController anim;
     EchoTape tape;
     float t, acc;
 
-    void Awake() 
-    { 
-        anim = GetComponent<IAnimationController>(); 
+    Rigidbody2D rb;
+    HealthController hc;
+
+    // 이동/HP 변화 추적
+    bool lastMove;
+    float lastHp;
+    const float MOVE_EPS = 0.05f;
+    const float HP_EPS = 1e-4f;
+
+    void Awake()
+    {
+        anim = GetComponent<IAnimationController>();
+        rb = GetComponent<Rigidbody2D>();
+        hc = GetComponent<HealthController>();
     }
 
     public void BeginRecord()
     {
         t = 0f; acc = 0f;
         tape = new EchoTape();
+        lastMove = false;
+
+        if (hc != null) lastHp = hc.CurrentHp; // HealthController.CurrentHp 사용 (파일에 공개 프로퍼티 있음) :contentReference[oaicite:0]{index=0}
+
         enabled = true;
     }
 
@@ -32,7 +48,15 @@ public class EchoRecorder : MonoBehaviour
             tape.length = t;
             tape.wasClear = wasClear;
 
-            // 사망 당시 착용한 장비와 당시 플레이어의 외형 기록
+            // 사망: isDeath=true + 4_Death 트리거를 마지막에 1회 기록
+            if (!wasClear)
+            {
+                float tt = Mathf.Max(0f, t - 0.01f);
+                tape.animParams.Add(new EchoTape.AnimParamEvt { t = tt, type = "bool", name = "isDeath", value = 1 });
+                tape.animParams.Add(new EchoTape.AnimParamEvt { t = tt, type = "trig", name = "4_Death", value = 0 });
+            }
+
+            // 스냅샷(장비/외형)
             TrySnapshotEquipment(tape);
             TrySnapshotVisualsByPath(tape);
         }
@@ -44,9 +68,19 @@ public class EchoRecorder : MonoBehaviour
         if (tape == null) return;
         t += Time.fixedDeltaTime;
         acc += Time.fixedDeltaTime;
+
+        // 이동 Bool 추적(변화 시점만 이벤트로 남김)
+        bool moving = false;
+#if UNITY_6000_0_OR_NEWER
+        if (rb) moving = rb.linearVelocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
+#else
+        if (rb) moving = rb.velocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
+#endif
         if (acc >= sampleDt)
         {
             acc = 0f;
+
+            // 프레임(위치/좌우/클립)도 보조로 계속 저장
             var f = new EchoTape.Frame
             {
                 t = t,
@@ -55,14 +89,48 @@ public class EchoRecorder : MonoBehaviour
                 clip = anim?.GetCurClipname()
             };
             tape.frames.Add(f);
+
+            // 이동 상태 변화 감지 시 1_Move Bool 이벤트 기록
+            if (moving != lastMove)
+            {
+                tape.animParams.Add(new EchoTape.AnimParamEvt
+                {
+                    t = t,
+                    type = "bool",
+                    name = "1_Move",
+                    value = moving ? 1 : 0
+                });
+                lastMove = moving;
+            }
+
+            // 피격(HP 감소) → 3_Damaged 트리거
+            if (hc != null)
+            {
+                float cur = hc.CurrentHp;
+                if (cur < lastHp - HP_EPS)
+                {
+                    tape.animParams.Add(new EchoTape.AnimParamEvt
+                    {
+                        t = t,
+                        type = "trig",
+                        name = "3_Damaged",
+                        value = 0
+                    });
+                }
+                lastHp = cur;
+            }
         }
     }
 
+    // === 공격 이벤트와 동기화: AtkBegin에 2_Attack 트리거를 같이 남김 ===
     public void MarkActionBegin(string id, float factor = 1f)
-        => tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkBegin", id = id, value = factor });
+    {
+        tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkBegin", id = id, value = factor });
+        tape?.animParams.Add(new EchoTape.AnimParamEvt { t = t, type = "trig", name = "2_Attack", value = 0 });
+    }
+
     public void MarkActionEnd(string id)
         => tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkEnd", id = id, value = 0f });
-
 
     public void MarkItemUsed(string itemId)
     {
@@ -86,7 +154,7 @@ public class EchoRecorder : MonoBehaviour
                 dest.equipped.Add(new EchoTape.EquipEntry
                 {
                     slot = slot.ToString(),
-                    itemId = item.name   // ScriptableObject.name 사용
+                    itemId = item.name
                 });
             }
         }
@@ -94,7 +162,6 @@ public class EchoRecorder : MonoBehaviour
 
     private void TrySnapshotVisualsByPath(EchoTape dest)
     {
-        // 플레이어 구조: UnitRoot(this) / "Root"
         var unitRoot = this.transform;
         var root = unitRoot.Find("Root");
         if (root == null)
@@ -103,27 +170,24 @@ public class EchoRecorder : MonoBehaviour
             return;
         }
 
-        // Root 하위 모든 SpriteRenderer 스냅샷
         var srs = root.GetComponentsInChildren<SpriteRenderer>(true);
         foreach (var sr in srs)
         {
             var relPath = GetRelativePath(sr.transform, root);
             if (string.IsNullOrEmpty(relPath)) continue;
 
-            // 기본값은 현재 값 자체를 기준으로 저장(고스트 적용 시 동일 상태 재현)
             var vp = new EchoTape.VisualPart
             {
                 path = relPath,
                 sprite = sr.sprite ? sr.sprite.name : string.Empty,
-                localPosOffset = Vector2.zero,            // 현재 위치를 그대로 쓰므로 0
-                localScaleMul = new Vector2(1f, 1f),      // 현재 스케일 그대로
-                sortingOffset = 0,                        // 현재 sorting 그대로
+                localPosOffset = Vector2.zero,
+                localScaleMul = new Vector2(1f, 1f),
+                sortingOffset = 0,
                 enabled = sr.enabled,
                 changeMaskInteraction = true,
                 maskInteraction = (int)sr.maskInteraction
             };
 
-            // 선택 마스크 존재 여부
             var mask = sr.GetComponent<SpriteMask>();
             vp.enablePartSpriteMask = (mask ? mask.enabled : false);
 

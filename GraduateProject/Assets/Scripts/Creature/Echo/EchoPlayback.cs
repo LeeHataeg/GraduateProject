@@ -3,39 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 에코 재생 본체:
-/// - 위치/좌우 반전/공격 윈도우 재생
-/// - 프리팹에 비주얼이 있으면 그대로 사용, 없으면 플레이어 "Root"를 복제
-/// - 녹화 프레임의 clip 이름을 Animator에 그대로 재생
-/// - 테이프의 '경로 기반' 외형 스냅샷 적용(사망 당시 외형 재현)
-/// - (중요) 녹화된 이벤트가 없어도, "공격으로 보이는" 클립명 동안 자동 히트창 오픈
+/// 에코 재생 본체(업데이트):
+/// - 위치/좌우 보간은 동일
+/// - 메인: Animator Parameters 타임라인을 실행(1_Move, 2_Attack, 3_Damaged, 4_Death, isDeath)
+/// - 보조: 녹화된 이벤트가 없으면 공격 클립명을 추정해 히트창 자동 오픈
+/// - (옵션) 클립 이름 직접 Play는 비활성화(필요 시 토글)
 /// </summary>
 [DisallowMultipleComponent]
 public class EchoPlayback : MonoBehaviour
 {
     #region 변수
     [Header("Combat (optional)")]
-    public AttackHitbox hitbox;           // Ghost가 Enemy를 때리는 오브젝트
+    public AttackHitbox hitbox;
     [Range(0f, 1f)] public float damageScale = 0.5f;
 
     [Header("Visual")]
-    public Transform visualParent;        // 최상위 부모 오브젝트
-    public Transform visualRoot;          // 각 신체 파츠를 담고 있는 오브젝트
+    public Transform visualParent;
+    public Transform visualRoot;
     public Animator visualAnimator;
     [Range(0f, 1f)] public float alpha = 0.4f;
 
+    // NEW: 클립 직접 Play를 끄고, 파라미터 기반만 사용(필요시 true)
+    [Header("Animation Mode")]
+    public bool playRecordedClipsDirectly = false;
 
     readonly List<SpriteRenderer> _renderers = new();
     EchoTape tape;
-    int fi, ei;
+    int fi, ei, pi; // frame / action-event / anim-param indices
     float t;
 
-    // 애니메이션 관련 변수들...
+    // 애니메이션 관련
     string _lastPlayedClip = null;
     float _lastPlayAt = -999f;
     const float PLAY_THROTTLE = 0.03f;
 
-    static Dictionary<string, Sprite> _spriteCache; //캐싱
+    // Trigger 디바운스(같은 트리거를 너무 자주 누르지 않도록)
+    readonly Dictionary<string, float> _triggerCooldown = new();
+    const float TRIGGER_EPS = 0.05f;
+
+    static Dictionary<string, Sprite> _spriteCache;
 
     bool _autoAtkOpen;
     #endregion
@@ -44,7 +50,6 @@ public class EchoPlayback : MonoBehaviour
     {
         if (visualParent == null) visualParent = this.transform;
 
-        // 프리팹에 이미 비주얼이 있음? 그거 쓰셈.
         if (visualRoot != null)
         {
             _renderers.Clear();
@@ -54,7 +59,7 @@ public class EchoPlayback : MonoBehaviour
             if (!visualAnimator)
             {
                 visualAnimator = visualRoot.GetComponentInChildren<Animator>(true);
-                if (!visualAnimator) visualAnimator = GetComponent<Animator>(); 
+                if (!visualAnimator) visualAnimator = GetComponent<Animator>();
             }
 
             ApplyAlphaToAll();
@@ -62,7 +67,6 @@ public class EchoPlayback : MonoBehaviour
             return;
         }
 
-        // 프리팹에 비주얼이 없음? 플레이어 UnitRoot/Root를 복제하셈
         Transform sourceRoot = null;
         if (player != null)
         {
@@ -115,7 +119,6 @@ public class EchoPlayback : MonoBehaviour
         }
         else
         {
-            // 비주얼을 못 준비했어도 Animator가 루트에 붙어 있다면 그걸 사용
             if (!visualAnimator) visualAnimator = GetComponent<Animator>();
             _renderers.Clear();
             foreach (var r in GetComponentsInChildren<SpriteRenderer>(true))
@@ -131,23 +134,25 @@ public class EchoPlayback : MonoBehaviour
 
         t += Time.deltaTime;
 
-        // 위치/좌우 설정
+        // 위치/좌우 보간
         while (fi + 1 < tape.frames.Count && tape.frames[fi + 1].t <= t) fi++;
         var a = tape.frames[Mathf.Clamp(fi, 0, tape.frames.Count - 1)];
         var b = tape.frames[Mathf.Clamp(fi + 1, 0, tape.frames.Count - 1)];
         float u = Mathf.Approximately(b.t, a.t) ? 0f : (t - a.t) / (b.t - a.t);
-
         transform.position = Vector2.Lerp(a.pos, b.pos, u);
-         
-        // 좌우 반전
+
         var s = transform.localScale;
         s.x = (a.faceRight ? Mathf.Abs(s.x) : -Mathf.Abs(s.x));
         transform.localScale = s;
 
-        // 애니메이션 클립 재생 ㄱㄱ
-        PlayClipIfNeeded(a.clip);
+        // (옵션) 예전처럼 클립 직접 Play → 기본은 OFF
+        if (playRecordedClipsDirectly)
+            PlayClipIfNeeded(a.clip);
 
-        // 녹화 기반으로 공격 ㄱㄱ
+        // Animator Parameter 이벤트 처리
+        ProcessAnimParams();
+
+        // 공격 Begin/End 이벤트 처리(히트박스 열고 닫기)
         bool processedEvt = false;
         while (ei < tape.events.Count && tape.events[ei].t <= t)
         {
@@ -174,7 +179,7 @@ public class EchoPlayback : MonoBehaviour
             }
         }
 
-        // 이벤트가 하나도 없음?
+        // (백업) 이벤트 전혀 없으면 공격스러운 클립명 동안 자동 히트창
         if (!processedEvt && hitbox != null && !string.IsNullOrEmpty(a.clip))
         {
             bool isAttackClip = IsAttackClipName(a.clip);
@@ -192,19 +197,17 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
-
     public void Load(EchoTape t_)
     {
         tape = t_;
-        fi = 0; ei = 0; t = 0f;
+        fi = 0; ei = 0; pi = 0; t = 0f;
         _lastPlayedClip = null;
         _autoAtkOpen = false;
+        _triggerCooldown.Clear();
 
         if (hitbox)
         {
             hitbox.baseDamage *= damageScale;
-
-            // HitMask가 비어 있으면 'Enemies'로 적용
             if (hitbox.hitMask == 0)
             {
                 int enemies = LayerMask.NameToLayer("Enemies");
@@ -213,7 +216,6 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
-  
     public void SetAlpha(float a) { alpha = Mathf.Clamp01(a); ApplyAlphaToAll(); }
 
     void ApplyAlphaToAll()
@@ -226,16 +228,45 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
-   
+    // === Animator Parameter 타임라인 실행 ===
+    void ProcessAnimParams()
+    {
+        if (visualAnimator == null) return;
+        if (tape.animParams == null || tape.animParams.Count == 0) return;
+
+        while (pi < tape.animParams.Count && tape.animParams[pi].t <= t)
+        {
+            var p = tape.animParams[pi++];
+            if (p.type == "bool")
+            {
+                if (p.name == "isDeath")
+                    visualAnimator.SetBool("isDeath", p.value != 0);
+                else if (p.name == "1_Move")
+                    visualAnimator.SetBool("1_Move", p.value != 0);
+                else
+                    visualAnimator.SetBool(p.name, p.value != 0);
+            }
+            else if (p.type == "trig")
+            {
+                if (CanFireTrigger(p.name))
+                    visualAnimator.SetTrigger(p.name);
+            }
+        }
+    }
+
+    bool CanFireTrigger(string trig)
+    {
+        float now = Time.time;
+        if (_triggerCooldown.TryGetValue(trig, out var last) && (now - last) < TRIGGER_EPS)
+            return false;
+        _triggerCooldown[trig] = now;
+        return true;
+    }
+
+    // (옵션) 레거시: 녹화된 클립 이름을 직접 재생
     void PlayClipIfNeeded(string recordedClip)
     {
-        if (!visualAnimator)
-        {
-            // 혹시 비워져 있으면 마지막으로 한 번 더 자동 탐색(루트/자식)
-            visualAnimator = GetComponent<Animator>();
-            if (!visualAnimator && visualRoot) visualAnimator = visualRoot.GetComponentInChildren<Animator>(true);
-            if (!visualAnimator) return;
-        }
+        if (!visualAnimator) return;
         if (string.IsNullOrEmpty(recordedClip)) return;
         if (Time.time - _lastPlayAt < PLAY_THROTTLE && recordedClip == _lastPlayedClip) return;
 
@@ -244,22 +275,16 @@ public class EchoPlayback : MonoBehaviour
         _lastPlayAt = Time.time;
     }
 
-    // 공격처럼 보이는 이름 패턴(네 프로젝트 클립명에 맞춰 확장)
     static bool IsAttackClipName(string name)
     {
-        // 대소문자 무시, 다양한 관용 패턴 지원
         var n = name.ToUpperInvariant();
         return n.Contains("ATTACK") || n.Contains("ATK") || n.Contains("SLASH") || n.Contains("HIT") || n.Contains("2_ATTACK");
     }
 
-    // ─────────────────────────────────────────────────────────
-    //           경로 기반 스냅샷 적용(사망 당시 외형 재현)
-    // ─────────────────────────────────────────────────────────
     void ApplyVisualSnapshotByPath()
     {
         if (visualRoot == null && transform != null)
         {
-            // 프리팹 구조에 따라 Root가 바로 자식일 수도, 아닐 수도 있음 → 최선 탐색
             var maybe = transform.Find("Root");
             if (maybe) visualRoot = maybe;
         }
@@ -279,14 +304,12 @@ public class EchoPlayback : MonoBehaviour
             var sr = target.GetComponent<SpriteRenderer>();
             if (sr == null) continue;
 
-            // 스프라이트 적용
             if (!string.IsNullOrEmpty(vp.sprite))
             {
                 var sp = FindSpriteByNameCached(vp.sprite);
                 if (sp != null) sr.sprite = sp;
             }
 
-            // 트랜스폼/소팅/활성
             sr.enabled = vp.enabled;
             sr.transform.localPosition += (Vector3)vp.localPosOffset;
             var ls = sr.transform.localScale;

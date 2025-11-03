@@ -9,8 +9,32 @@ public class EchoTape
     [Serializable] public struct ActionEvt { public float t; public string kind; public string id; public float value; }
 
     // ─────────────────────────────────────────────
-    // 사망 당시 장비/외형 스냅샷
+    // Animator Parameters 이벤트 (녹화→재생)
+    // type: "bool" | "trig"
+    // name: "1_Move", "2_Attack", "3_Damaged", "4_Death", "isDeath"
+    // value: bool은 0/1, trigger는 무시
     // ─────────────────────────────────────────────
+    [Serializable]
+    public struct AnimParamEvt
+    {
+        public float t;
+        public string type;
+        public string name;
+        public int value;
+    }
+
+    public List<Frame> frames = new();
+    public List<ActionEvt> events = new();
+
+    // NEW: Animator 파라미터 이벤트 타임라인
+    public List<AnimParamEvt> animParams = new();
+
+    // 사용 아이템 기록(기존)
+    public HashSet<string> usedItemIds = new();
+    public float length;
+    public bool wasClear;                         // 클리어/사망 메타
+
+    // 사망 당시 장비/외형
     [Serializable]
     public struct EquipEntry
     {
@@ -21,30 +45,17 @@ public class EchoTape
     [Serializable]
     public struct VisualPart
     {
-        // ★ Root 하위 상대 경로(예: "Torso/Chest/ChestSprite")
         public string path;
-
-        public string sprite;   // Sprite.name
-        public Vector2 localPosOffset; // 기본값 대비 오프셋(없다면 0)
-        public Vector2 localScaleMul;  // 기본값 대비 스케일 비율(없다면 1)
-        public int sortingOffset;      // 기본 sortingOrder 대비 오프셋
+        public string sprite;
+        public Vector2 localPosOffset;
+        public Vector2 localScaleMul;
+        public int sortingOffset;
         public bool enabled;
-
-        // 마스크 관련(있으면 반영)
         public bool changeMaskInteraction;
-        public int maskInteraction;  // (int)SpriteMaskInteraction
+        public int maskInteraction;
         public bool enablePartSpriteMask;
     }
 
-    public List<Frame> frames = new();
-    public List<ActionEvt> events = new();
-
-    // 사용 아이템 기록(기존)
-    public HashSet<string> usedItemIds = new();
-    public float length;
-    public bool wasClear;                         // 클리어/사망 메타
-
-    // 사망 당시 장비/외형
     public List<EquipEntry> equipped = new();
     public List<VisualPart> visualParts = new();
 }
