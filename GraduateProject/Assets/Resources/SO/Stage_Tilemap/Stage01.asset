@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a40fdf8ee94cd94b9dcda2aae6dcc4b, type: 3}
+  m_Name: Stage01
+  m_EditorClassIdentifier: 
+  topLeftWall:
+  - {fileID: 11400000, guid: 0214669be7ecad74f935191905d7c710, type: 2}
+  topRightWall:
+  - {fileID: 11400000, guid: 6aa74009a9aaf7847af9bd2397b6f12c, type: 2}
+  bottomLeftWall:
+  - {fileID: 11400000, guid: a9b01d90558ca3f4c9c55f99e1ba3823, type: 2}
+  bottomRightWall:
+  - {fileID: 11400000, guid: 2b4ada3cafaad234f877451f72cbb1ed, type: 2}
+  leftSideWall:
+  - {fileID: 11400000, guid: 14c9304af85fb8f4faded3501361540d, type: 2}
+  - {fileID: 11400000, guid: 18621d5f2e7dd9f40a6b3ff7144bfb40, type: 2}
+  - {fileID: 11400000, guid: 353a0b156fe73de469380888dd256861, type: 2}
+  - {fileID: 11400000, guid: 85f0b35a03b6ee641ac635aa6047368b, type: 2}
+  - {fileID: 11400000, guid: a6aaa221bc572fc4a99c685ecf168736, type: 2}
+  rightSideWall:
+  - {fileID: 11400000, guid: 48df1e5b33c72684eb04a70a766536b1, type: 2}
+  - {fileID: 11400000, guid: a737142d6ab483944a9ea8a41f243e74, type: 2}
+  - {fileID: 11400000, guid: 53bbac623d6fb354bb2daa5ff71738af, type: 2}
+  - {fileID: 11400000, guid: dfbc00b987ae9974ca271ef98fe33ebf, type: 2}
+  - {fileID: 11400000, guid: 521645e0533d9a5478c152f551a8e602, type: 2}
+  - {fileID: 11400000, guid: 8c67e6b1953265a4ebe46b4f12397ae9, type: 2}
+  ground:
+  - {fileID: 11400000, guid: 8f501751f9353ea45b6c366ef0319a44, type: 2}
+  - {fileID: 11400000, guid: b961cde69f25bdd4ba64c7b8ee9e3369, type: 2}
+  - {fileID: 11400000, guid: 7e7aa2225c707434bba3bef9281ec2b7, type: 2}
+  - {fileID: 11400000, guid: 56df6f70ca9c4904da19643598f3a378, type: 2}
+  - {fileID: 11400000, guid: 93936b7377c94eb428868d0af80de988, type: 2}
+  - {fileID: 11400000, guid: 65b42ec99666c994b87296f96fc026d1, type: 2}
+  - {fileID: 11400000, guid: 096192df9739d894788616e2bfd84b89, type: 2}
+  ceiling:
+  - {fileID: 11400000, guid: b3c55ab24bd9e0c44933ba88dda194e4, type: 2}
+  - {fileID: 11400000, guid: 412d8ac32aa6af14989a99eb2fc7651b, type: 2}
+  - {fileID: 11400000, guid: 70a6604a9128bbd4d8bb205019684cca, type: 2}
+  - {fileID: 11400000, guid: b189f220f0f6fbb4691a0d2df8535111, type: 2}
+  - {fileID: 11400000, guid: b3b4b58e8f6ea784f8af4f7b93bc5760, type: 2}
+  - {fileID: 11400000, guid: 2ccf28ff277661247a9d0a9a3fa15bf7, type: 2}
+  leftPlatforms:
+  - {fileID: 11400000, guid: 8945e3338d05e42409e294b9a8a5e2a8, type: 2}
+  rightPlatforms:
+  - {fileID: 11400000, guid: eb51aa6018191aa42af0683b3c200a46, type: 2}
+  middlePlatforms:
+  - {fileID: 11400000, guid: d5bced31598fd1d46a9748f676c32e93, type: 2}
+  filledTile: {fileID: 11400000, guid: 6f3f772ce76032845996ef17e9e6659d, type: 2}
+  crackedTiles:
+  - {fileID: 11400000, guid: 5d7ab5f4f64363d408ab22a8330ea8e0, type: 2}
+  - {fileID: 11400000, guid: f1905b6b57fa8a84381085497e474247, type: 2}
+  - {fileID: 11400000, guid: 7e7e7d7c392b47c4cae0861e3324faf0, type: 2}
+  - {fileID: 11400000, guid: 513e794e29ac0ab46b577337af768629, type: 2}
+  - {fileID: 11400000, guid: 004cf3c98be722945bb908e1dfb8d261, type: 2}
+  mapSize: {x: 128, y: 128}
+  minSpaceSize: {x: 20, y: 15}
+  maxSpaceSize: {x: 30, y: 20}
+  minRoomSize: {x: 13, y: 8}
+  maxRoomSize: {x: 25, y: 18}
+  maxDevideRate: 0.4
+  minDevideRate: 0.6
+  maxDepth: 4
+  startRoom: {fileID: 324240946524686293, guid: df075dc5dc574c44ba0cc1891f0c895a, type: 3}
+  bossRoom: {fileID: 1789389795430802268, guid: c5b5e624c012f4641a59c8143725d766, type: 3}
