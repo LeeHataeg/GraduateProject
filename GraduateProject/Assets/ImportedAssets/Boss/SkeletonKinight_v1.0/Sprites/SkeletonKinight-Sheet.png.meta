@@ -1,0 +1,4268 @@
+fileFormatVersion: 2
+guid: 95a92af57d138504ebe6c313a01bd72d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5146330378038209639
+    second: SkeletonKinight-Sheet_0
+  - first:
+      213: 3809340101261813736
+    second: SkeletonKinight-Sheet_1
+  - first:
+      213: -2389534974147771300
+    second: SkeletonKinight-Sheet_2
+  - first:
+      213: -5435669186554524877
+    second: SkeletonKinight-Sheet_3
+  - first:
+      213: -8266857690991323946
+    second: SkeletonKinight-Sheet_4
+  - first:
+      213: -5576272784998401206
+    second: SkeletonKinight-Sheet_5
+  - first:
+      213: 3286869911395657535
+    second: SkeletonKinight-Sheet_6
+  - first:
+      213: 1236994096630643266
+    second: SkeletonKinight-Sheet_7
+  - first:
+      213: -1196166751673383488
+    second: SkeletonKinight-Sheet_8
+  - first:
+      213: -335152145921673094
+    second: SkeletonKinight-Sheet_9
+  - first:
+      213: 5706135159671102283
+    second: SkeletonKinight-Sheet_10
+  - first:
+      213: -1922471829347235024
+    second: SkeletonKinight-Sheet_11
+  - first:
+      213: -5998608286795694034
+    second: SkeletonKinight-Sheet_12
+  - first:
+      213: -7196864222172886109
+    second: SkeletonKinight-Sheet_13
+  - first:
+      213: -8350710596552870329
+    second: SkeletonKinight-Sheet_14
+  - first:
+      213: 5200210153765930527
+    second: SkeletonKinight-Sheet_15
+  - first:
+      213: -2689593555448020051
+    second: SkeletonKinight-Sheet_16
+  - first:
+      213: -1379585658181689230
+    second: SkeletonKinight-Sheet_17
+  - first:
+      213: 4747942242275283572
+    second: SkeletonKinight-Sheet_18
+  - first:
+      213: -6122749734478016507
+    second: SkeletonKinight-Sheet_19
+  - first:
+      213: -2060636054781605028
+    second: SkeletonKinight-Sheet_20
+  - first:
+      213: -30871340825057881
+    second: SkeletonKinight-Sheet_21
+  - first:
+      213: -9197648403116119575
+    second: SkeletonKinight-Sheet_22
+  - first:
+      213: 5696321472669579964
+    second: SkeletonKinight-Sheet_23
+  - first:
+      213: -5268878804930781833
+    second: SkeletonKinight-Sheet_24
+  - first:
+      213: 8123971871888615535
+    second: SkeletonKinight-Sheet_25
+  - first:
+      213: -1973267521563108135
+    second: SkeletonKinight-Sheet_26
+  - first:
+      213: 5894179635667810648
+    second: SkeletonKinight-Sheet_27
+  - first:
+      213: -8224645682084887127
+    second: SkeletonKinight-Sheet_28
+  - first:
+      213: -6576052930147410599
+    second: SkeletonKinight-Sheet_29
+  - first:
+      213: -5183297117327279900
+    second: SkeletonKinight-Sheet_30
+  - first:
+      213: -5229841699586219580
+    second: SkeletonKinight-Sheet_31
+  - first:
+      213: 4978232579513014162
+    second: SkeletonKinight-Sheet_32
+  - first:
+      213: 3159881491640205398
+    second: SkeletonKinight-Sheet_33
+  - first:
+      213: 3925598506856033772
+    second: SkeletonKinight-Sheet_34
+  - first:
+      213: -6401301724630033716
+    second: SkeletonKinight-Sheet_35
+  - first:
+      213: 8890364245922387461
+    second: SkeletonKinight-Sheet_36
+  - first:
+      213: -3942003761439374101
+    second: SkeletonKinight-Sheet_37
+  - first:
+      213: 5239851079721697836
+    second: SkeletonKinight-Sheet_38
+  - first:
+      213: 7487964452476749236
+    second: SkeletonKinight-Sheet_39
+  - first:
+      213: -6534451433674326192
+    second: SkeletonKinight-Sheet_40
+  - first:
+      213: 2585755012862941355
+    second: SkeletonKinight-Sheet_41
+  - first:
+      213: 6903522817698483429
+    second: SkeletonKinight-Sheet_42
+  - first:
+      213: -4860500103670015256
+    second: SkeletonKinight-Sheet_43
+  - first:
+      213: -3392449419867669780
+    second: SkeletonKinight-Sheet_44
+  - first:
+      213: -9086765996729475735
+    second: SkeletonKinight-Sheet_45
+  - first:
+      213: 1107371083564427487
+    second: SkeletonKinight-Sheet_46
+  - first:
+      213: 8958381633974418925
+    second: SkeletonKinight-Sheet_47
+  - first:
+      213: -4210786887366839303
+    second: SkeletonKinight-Sheet_48
+  - first:
+      213: 964216047807804935
+    second: SkeletonKinight-Sheet_49
+  - first:
+      213: -3446746391705437325
+    second: SkeletonKinight-Sheet_50
+  - first:
+      213: -7960218765786786490
+    second: SkeletonKinight-Sheet_51
+  - first:
+      213: -8319032180941496961
+    second: SkeletonKinight-Sheet_52
+  - first:
+      213: 7808206511582868858
+    second: SkeletonKinight-Sheet_53
+  - first:
+      213: 6568405175483421558
+    second: SkeletonKinight-Sheet_54
+  - first:
+      213: -2619369923345383928
+    second: SkeletonKinight-Sheet_55
+  - first:
+      213: 6139677789586477670
+    second: SkeletonKinight-Sheet_56
+  - first:
+      213: -4467271472435839822
+    second: SkeletonKinight-Sheet_57
+  - first:
+      213: 8530752339216980071
+    second: SkeletonKinight-Sheet_58
+  - first:
+      213: 1067394271426976152
+    second: SkeletonKinight-Sheet_59
+  - first:
+      213: -537173416320550172
+    second: SkeletonKinight-Sheet_60
+  - first:
+      213: -1751196358933736337
+    second: SkeletonKinight-Sheet_61
+  - first:
+      213: -2415150116659280069
+    second: SkeletonKinight-Sheet_62
+  - first:
+      213: -8872832804401083081
+    second: SkeletonKinight-Sheet_63
+  - first:
+      213: -7321443379169793625
+    second: SkeletonKinight-Sheet_64
+  - first:
+      213: 2628014481252924155
+    second: SkeletonKinight-Sheet_65
+  - first:
+      213: -8297668560689477607
+    second: SkeletonKinight-Sheet_66
+  - first:
+      213: 4978271689207195972
+    second: SkeletonKinight-Sheet_67
+  - first:
+      213: -4352241797178625486
+    second: SkeletonKinight-Sheet_68
+  - first:
+      213: -5790915786378091455
+    second: SkeletonKinight-Sheet_69
+  - first:
+      213: -7989399274879809915
+    second: SkeletonKinight-Sheet_70
+  - first:
+      213: -8534596084867101362
+    second: SkeletonKinight-Sheet_71
+  - first:
+      213: -922775485437879198
+    second: SkeletonKinight-Sheet_72
+  - first:
+      213: 3801981553833062647
+    second: SkeletonKinight-Sheet_73
+  - first:
+      213: 547938937679515504
+    second: SkeletonKinight-Sheet_74
+  - first:
+      213: -6297265679558584801
+    second: SkeletonKinight-Sheet_75
+  - first:
+      213: -6186929725190062098
+    second: SkeletonKinight-Sheet_76
+  - first:
+      213: 1191976361908965608
+    second: SkeletonKinight-Sheet_77
+  - first:
+      213: 4915273538520350628
+    second: SkeletonKinight-Sheet_78
+  - first:
+      213: 7714133960920616572
+    second: SkeletonKinight-Sheet_79
+  - first:
+      213: 5923099657054825744
+    second: SkeletonKinight-Sheet_80
+  - first:
+      213: 598049620812237346
+    second: SkeletonKinight-Sheet_81
+  - first:
+      213: 4363096109927929170
+    second: SkeletonKinight-Sheet_82
+  - first:
+      213: -7436334874491822616
+    second: SkeletonKinight-Sheet_83
+  - first:
+      213: -8675847287688703571
+    second: SkeletonKinight-Sheet_84
+  - first:
+      213: 7366290480541342167
+    second: SkeletonKinight-Sheet_85
+  - first:
+      213: 6886373212261147292
+    second: SkeletonKinight-Sheet_86
+  - first:
+      213: -8086925362208609606
+    second: SkeletonKinight-Sheet_87
+  - first:
+      213: -1275850011733658413
+    second: SkeletonKinight-Sheet_88
+  - first:
+      213: -4167205093146169097
+    second: SkeletonKinight-Sheet_89
+  - first:
+      213: 5384403957332578382
+    second: SkeletonKinight-Sheet_90
+  - first:
+      213: -194039863227771330
+    second: SkeletonKinight-Sheet_91
+  - first:
+      213: 8851600468385394442
+    second: SkeletonKinight-Sheet_92
+  - first:
+      213: 2052272253665117554
+    second: SkeletonKinight-Sheet_93
+  - first:
+      213: 3120567785691259140
+    second: SkeletonKinight-Sheet_94
+  - first:
+      213: -1880794521318604436
+    second: SkeletonKinight-Sheet_95
+  - first:
+      213: -5224766899643487528
+    second: SkeletonKinight-Sheet_96
+  - first:
+      213: 153976420511058826
+    second: SkeletonKinight-Sheet_97
+  - first:
+      213: -2729398179331843842
+    second: SkeletonKinight-Sheet_98
+  - first:
+      213: -1513819170472636623
+    second: SkeletonKinight-Sheet_99
+  - first:
+      213: -2856313843029852218
+    second: SkeletonKinight-Sheet_100
+  - first:
+      213: -180006038209632162
+    second: SkeletonKinight-Sheet_101
+  - first:
+      213: 3611832210741922358
+    second: SkeletonKinight-Sheet_102
+  - first:
+      213: -9091118620810555118
+    second: SkeletonKinight-Sheet_103
+  - first:
+      213: 5573080149950379678
+    second: SkeletonKinight-Sheet_104
+  - first:
+      213: -3951797272719390966
+    second: SkeletonKinight-Sheet_105
+  - first:
+      213: 8420669188624812239
+    second: SkeletonKinight-Sheet_106
+  - first:
+      213: -3182283241496602945
+    second: SkeletonKinight-Sheet_107
+  - first:
+      213: 228850282550961936
+    second: SkeletonKinight-Sheet_108
+  - first:
+      213: 7216631313528816004
+    second: SkeletonKinight-Sheet_109
+  - first:
+      213: -450943425333791824
+    second: SkeletonKinight-Sheet_110
+  - first:
+      213: 8054724235132255174
+    second: SkeletonKinight-Sheet_111
+  - first:
+      213: -1589420780128620154
+    second: SkeletonKinight-Sheet_112
+  - first:
+      213: 1696841656183800256
+    second: SkeletonKinight-Sheet_113
+  - first:
+      213: 5077482255123808645
+    second: SkeletonKinight-Sheet_114
+  - first:
+      213: -5697453426067036567
+    second: SkeletonKinight-Sheet_115
+  - first:
+      213: -3114567275973514195
+    second: SkeletonKinight-Sheet_116
+  - first:
+      213: 5577171574759987125
+    second: SkeletonKinight-Sheet_117
+  - first:
+      213: -9092436644779370466
+    second: SkeletonKinight-Sheet_118
+  - first:
+      213: -8500400453832788406
+    second: SkeletonKinight-Sheet_119
+  - first:
+      213: -1021471770643775263
+    second: SkeletonKinight-Sheet_120
+  - first:
+      213: -7398236284275540293
+    second: SkeletonKinight-Sheet_121
+  - first:
+      213: 5684825218708213903
+    second: SkeletonKinight-Sheet_122
+  - first:
+      213: -1247426196848930322
+    second: SkeletonKinight-Sheet_123
+  - first:
+      213: -2050727662611133130
+    second: SkeletonKinight-Sheet_124
+  - first:
+      213: 5274905900086535202
+    second: SkeletonKinight-Sheet_125
+  - first:
+      213: 403256840535533975
+    second: SkeletonKinight-Sheet_126
+  - first:
+      213: 7709462936905409803
+    second: SkeletonKinight-Sheet_127
+  - first:
+      213: 2040611404547877259
+    second: SkeletonKinight-Sheet_128
+  - first:
+      213: -8212008492929074195
+    second: SkeletonKinight-Sheet_129
+  - first:
+      213: -7540099535363496093
+    second: SkeletonKinight-Sheet_130
+  - first:
+      213: -8098894217123374840
+    second: SkeletonKinight-Sheet_131
+  - first:
+      213: 2511859769108783382
+    second: SkeletonKinight-Sheet_132
+  - first:
+      213: -6491221871357039177
+    second: SkeletonKinight-Sheet_133
+  - first:
+      213: 8218754659569254564
+    second: SkeletonKinight-Sheet_134
+  - first:
+      213: 1812535951423896579
+    second: SkeletonKinight-Sheet_135
+  - first:
+      213: 3260290333809058749
+    second: SkeletonKinight-Sheet_136
+  - first:
+      213: 8848325037141946665
+    second: SkeletonKinight-Sheet_137
+  - first:
+      213: 9172051085387931082
+    second: SkeletonKinight-Sheet_138
+  - first:
+      213: 2946088224806982367
+    second: SkeletonKinight-Sheet_139
+  - first:
+      213: 9100427606179173838
+    second: SkeletonKinight-Sheet_140
+  - first:
+      213: -544258176457816252
+    second: SkeletonKinight-Sheet_141
+  - first:
+      213: -7886470091296189536
+    second: SkeletonKinight-Sheet_142
+  - first:
+      213: 672028113666466761
+    second: SkeletonKinight-Sheet_143
+  - first:
+      213: -2527467810425896686
+    second: SkeletonKinight-Sheet_144
+  - first:
+      213: 8499010410100504452
+    second: SkeletonKinight-Sheet_145
+  - first:
+      213: 2650946648966250958
+    second: SkeletonKinight-Sheet_146
+  - first:
+      213: -819263071894683162
+    second: SkeletonKinight-Sheet_147
+  - first:
+      213: -7843387063867888732
+    second: SkeletonKinight-Sheet_148
+  - first:
+      213: 8053906482066707385
+    second: SkeletonKinight-Sheet_149
+  - first:
+      213: 8455050108758802631
+    second: SkeletonKinight-Sheet_150
+  - first:
+      213: -8937941291431123670
+    second: SkeletonKinight-Sheet_151
+  - first:
+      213: -5047352087027448142
+    second: SkeletonKinight-Sheet_152
+  - first:
+      213: 3455739399033164833
+    second: SkeletonKinight-Sheet_153
+  - first:
+      213: 9147509469124235555
+    second: SkeletonKinight-Sheet_154
+  - first:
+      213: 2398357393257680719
+    second: SkeletonKinight-Sheet_155
+  - first:
+      213: 5812843906431470786
+    second: SkeletonKinight-Sheet_156
+  - first:
+      213: 9107234069026614719
+    second: SkeletonKinight-Sheet_157
+  - first:
+      213: -2241238721641289420
+    second: SkeletonKinight-Sheet_158
+  - first:
+      213: 1425216388239717952
+    second: SkeletonKinight-Sheet_159
+  - first:
+      213: -709723002280908855
+    second: SkeletonKinight-Sheet_160
+  - first:
+      213: -4553228659258279937
+    second: SkeletonKinight-Sheet_161
+  - first:
+      213: -6219425506940283919
+    second: SkeletonKinight-Sheet_162
+  - first:
+      213: 2356587073591710517
+    second: SkeletonKinight-Sheet_163
+  - first:
+      213: -7865856701332991946
+    second: SkeletonKinight-Sheet_164
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1527
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9931b30a9cf8498b0800000000000000
+      internalID: -5146330378038209639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 1527
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e76c5ca3ae7dd430800000000000000
+      internalID: 3809340101261813736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1527
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c54cc8fe99aa6ded0800000000000000
+      internalID: -2389534974147771300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1527
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b81ea9caf9094b0800000000000000
+      internalID: -5435669186554524877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1527
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d491cfcab8364d80800000000000000
+      internalID: -8266857690991323946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1527
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4bfd7742791d92b0800000000000000
+      internalID: -5576272784998401206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1527
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3768a315ce4d9d20800000000000000
+      internalID: 3286869911395657535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 1527
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24abce6b39faa2110800000000000000
+      internalID: 1236994096630643266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 1527
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c5006a4dac566fe0800000000000000
+      internalID: -1196166751673383488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 1527
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78f0a426ec495bf0800000000000000
+      internalID: -335152145921673094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1527
+        width: 31
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4b109002b3403f40800000000000000
+      internalID: 5706135159671102283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1527
+        width: 42
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03b00119e020255e0800000000000000
+      internalID: -1922471829347235024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 1526
+        width: 42
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2004de8b89a0cca0800000000000000
+      internalID: -5998608286795694034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1527
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3abcaacde1a9f1c90800000000000000
+      internalID: -7196864222172886109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 1526
+        width: 34
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7463066d4f05c1c80800000000000000
+      internalID: -8350710596552870329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 1524
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16099c359bda2840800000000000000
+      internalID: 5200210153765930527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 1524
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3475159e4acaad0800000000000000
+      internalID: -2689593555448020051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 1524
+        width: 29
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2706bda372abadce0800000000000000
+      internalID: -1379585658181689230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 1524
+        width: 29
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 472d3ec405414e140800000000000000
+      internalID: 4747942242275283572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 1527
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50012d36e8f970ba0800000000000000
+      internalID: -6122749734478016507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 1527
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b41670d662763e0800000000000000
+      internalID: -2060636054781605028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 2090
+        y: 1527
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a5e168dda2529ff0800000000000000
+      internalID: -30871340825057881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 2213
+        y: 1526
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e9235332836b5080800000000000000
+      internalID: -9197648403116119575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 1527
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba76e0f2366d0f40800000000000000
+      internalID: 5696321472669579964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 2462
+        y: 1527
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d148384ae21e6b0800000000000000
+      internalID: -5268878804930781833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 2590
+        y: 1527
+        width: 55
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68af25ff552eb070800000000000000
+      internalID: 8123971871888615535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 2717
+        y: 1527
+        width: 59
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dc5a6ad4ab8d94e0800000000000000
+      internalID: -1973267521563108135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 2845
+        y: 1527
+        width: 60
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859325266255cc150800000000000000
+      internalID: 5894179635667810648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 2973
+        y: 1527
+        width: 60
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a541e304503cdd80800000000000000
+      internalID: -8224645682084887127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 3101
+        y: 1527
+        width: 60
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d956293ba2db4a0800000000000000
+      internalID: -6576052930147410599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 3229
+        y: 1527
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e8b66cebba3118b0800000000000000
+      internalID: -5183297117327279900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 3357
+        y: 1527
+        width: 57
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c163a0eeaedb67b0800000000000000
+      internalID: -5229841699586219580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 3485
+        y: 1527
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297562fb72c361540800000000000000
+      internalID: 4978232579513014162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 3614
+        y: 1527
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 650cb8199772adb20800000000000000
+      internalID: 3159881491640205398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 3742
+        y: 1527
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced25f31b078a7630800000000000000
+      internalID: 3925598506856033772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1447
+        width: 56
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccad45b3ff10a27a0800000000000000
+      internalID: -6401301724630033716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1447
+        width: 56
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5069902bd2be06b70800000000000000
+      internalID: 8890364245922387461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 1447
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be40720f6703b49c0800000000000000
+      internalID: -3942003761439374101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 1447
+        width: 52
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2242ca8bc0b7b840800000000000000
+      internalID: 5239851079721697836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 1447
+        width: 53
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b501a02ff79ae760800000000000000
+      internalID: 7487964452476749236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 1447
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05fbcc5ca07f055a0800000000000000
+      internalID: -6534451433674326192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 1367
+        width: 61
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba891e9fb7272e320800000000000000
+      internalID: 2585755012862941355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1287
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecc8bf1d6d3ecf50800000000000000
+      internalID: 6903522817698483429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1287
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eadff168e80c8cb0800000000000000
+      internalID: -4860500103670015256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 1287
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceabe420a399be0d0800000000000000
+      internalID: -3392449419867669780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1287
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d57df387255e180800000000000000
+      internalID: -9086765996729475735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 1287
+        width: 66
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd8a566222c2e5f00800000000000000
+      internalID: 1107371083564427487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1287
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dedbd6fe1a0925c70800000000000000
+      internalID: 8958381633974418925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 1287
+        width: 65
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f370a9b2a74095c0800000000000000
+      internalID: -4210786887366839303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 1287
+        width: 67
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 706b0580365916d00800000000000000
+      internalID: 964216047807804935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1287
+        width: 69
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37bb98b1b62ba20d0800000000000000
+      internalID: -3446746391705437325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1207
+        width: 77
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64551e2253f978190800000000000000
+      internalID: -7960218765786786490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 1207
+        width: 68
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d50fbbe4cdc8c80800000000000000
+      internalID: -8319032180941496961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1126
+        width: 52
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75f9cfd3725c5c60800000000000000
+      internalID: 7808206511582868858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1126
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673d689c4b9a72b50800000000000000
+      internalID: 6568405175483421558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1043
+        width: 43
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ef7a7cee026abd0800000000000000
+      internalID: -2619369923345383928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1043
+        width: 44
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66258a39b64843550800000000000000
+      internalID: 6139677789586477670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 1043
+        width: 42
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bcb932b3401102c0800000000000000
+      internalID: -4467271472435839822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 963
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7685cddfd02536670800000000000000
+      internalID: 8530752339216980071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 964
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89911bf3f6520de00800000000000000
+      internalID: 1067394271426976152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 883
+        width: 41
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea3e69bf939b88f0800000000000000
+      internalID: -537173416320550172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 883
+        width: 41
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f641cc5903082b7e0800000000000000
+      internalID: -1751196358933736337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 884
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b37c741d3c9ab7ed0800000000000000
+      internalID: -2415150116659280069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 806
+        width: 65
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d8d3e139d5dd480800000000000000
+      internalID: -8872832804401083081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 833
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9e27d8902056a90800000000000000
+      internalID: -7321443379169793625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 807
+        width: 65
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfab9a33f35987420800000000000000
+      internalID: 2628014481252924155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 806
+        width: 63
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9184d203862c8dc80800000000000000
+      internalID: -8297668560689477607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 807
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449249ea9bf561540800000000000000
+      internalID: 4978271689207195972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 807
+        width: 61
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2327f86052bb993c0800000000000000
+      internalID: -4352241797178625486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 727
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1446bbc16c882afa0800000000000000
+      internalID: -5790915786378091455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 727
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 586860c60b3ff1190800000000000000
+      internalID: -7989399274879809915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 727
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4d8e0c34160f8980800000000000000
+      internalID: -8534596084867101362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 727
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c5907c594a133f0800000000000000
+      internalID: -922775485437879198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 727
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f0bec6541a53c430800000000000000
+      internalID: 3801981553833062647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 647
+        width: 57
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f0efa8f8baa9700800000000000000
+      internalID: 547938937679515504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 647
+        width: 57
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16d6a19a3e9b98a0800000000000000
+      internalID: -6297265679558584801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 647
+        width: 59
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefbdb7d13c932aa0800000000000000
+      internalID: -6186929725190062098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 647
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e01f309f20ca8010800000000000000
+      internalID: 1191976361908965608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 647
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aff165bd3f863440800000000000000
+      internalID: 4915273538520350628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 567
+        width: 55
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e437a57fb1e0b60800000000000000
+      internalID: 7714133960920616572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 567
+        width: 55
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01dadf391c3133250800000000000000
+      internalID: 5923099657054825744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 567
+        width: 57
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a029626f2bc4800800000000000000
+      internalID: 598049620812237346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 567
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25594299bc4dc8c30800000000000000
+      internalID: 4363096109927929170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 567
+        width: 64
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8edd01fb4d4dcc890800000000000000
+      internalID: -7436334874491822616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 567
+        width: 65
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da157c3cbd2399780800000000000000
+      internalID: -8675847287688703571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 567
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9120de9225a3660800000000000000
+      internalID: 7366290480541342167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 567
+        width: 63
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c92679373ff419f50800000000000000
+      internalID: 6886373212261147292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 487
+        width: 59
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aba657cba3875cf80800000000000000
+      internalID: -8086925362208609606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 487
+        width: 63
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d4ffef8c254b4ee0800000000000000
+      internalID: -1275850011733658413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 517
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f0f2dceb0d1b26c0800000000000000
+      internalID: -4167205093146169097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 487
+        width: 70
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4014041fde39ba40800000000000000
+      internalID: 5384403957332578382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 487
+        width: 63
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e361b00c5c1ae4df0800000000000000
+      internalID: -194039863227771330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 487
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0feacb6ab337da70800000000000000
+      internalID: 8851600468385394442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 407
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2758916cdb22b7c10800000000000000
+      internalID: 2052272253665117554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 407
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401a7ab1edb7e4b20800000000000000
+      internalID: 3120567785691259140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 407
+        width: 53
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c61cd45095316e5e0800000000000000
+      internalID: -1880794521318604436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 327
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dae780df26ed77b0800000000000000
+      internalID: -5224766899643487528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 327
+        width: 63
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8b09581db8032200800000000000000
+      internalID: 153976420511058826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 327
+        width: 66
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef8d35e11da3f1ad0800000000000000
+      internalID: -2729398179331843842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 327
+        width: 66
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f4dc92c75ddfae0800000000000000
+      internalID: -1513819170472636623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 327
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cfbc2371b55c58d0800000000000000
+      internalID: -2856313843029852218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 327
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58e613467d708df0800000000000000
+      internalID: -180006038209632162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 327
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a0695624ecf1230800000000000000
+      internalID: 3611832210741922358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 327
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211d5abf7cbd5d180800000000000000
+      internalID: -9091118620810555118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 327
+        width: 66
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e96b2927ede875d40800000000000000
+      internalID: 5573080149950379678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_105
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 247
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07043761556829c0800000000000000
+      internalID: -3951797272719390966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 262
+        width: 46
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc80f0f230a3cd470800000000000000
+      internalID: 8420669188624812239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 247
+        width: 86
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb69ae7904246d3d0800000000000000
+      internalID: -3182283241496602945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 247
+        width: 89
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017a2369e1a0d2300800000000000000
+      internalID: 228850282550961936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 247
+        width: 55
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48188ddb1ff962460800000000000000
+      internalID: 7216631313528816004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 292
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b37e27085dedb9f0800000000000000
+      internalID: -450943425333791824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 247
+        width: 53
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cbb9ce140128cf60800000000000000
+      internalID: 8054724235132255174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 247
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6813fc9b83e31f9e0800000000000000
+      internalID: -1589420780128620154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 247
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1cbecfe746c8710800000000000000
+      internalID: 1696841656183800256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 247
+        width: 45
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581010a9537d67640800000000000000
+      internalID: 5077482255123808645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 247
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96621fe9b449ee0b0800000000000000
+      internalID: -5697453426067036567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 247
+        width: 52
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2cea8e6095d6c4d0800000000000000
+      internalID: -3114567275973514195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 247
+        width: 64
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b799f48ff7166d40800000000000000
+      internalID: 5577171574759987125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 247
+        width: 48
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e185e2d9b0d21d180800000000000000
+      internalID: -9092436644779370466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 257
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a463ab403d2880a80800000000000000
+      internalID: -8500400453832788406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 252
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e040ba26d003d1f0800000000000000
+      internalID: -1021471770643775263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 258
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbeb9570c4f245990800000000000000
+      internalID: -7398236284275540293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 247
+        width: 67
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80194bba6e84ee40800000000000000
+      internalID: 5684825218708213903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 247
+        width: 66
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee19d4dab7040bee0800000000000000
+      internalID: -1247426196848930322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 247
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63d0ffa5e0a5a83e0800000000000000
+      internalID: -2050727662611133130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 247
+        width: 64
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 224254ee7fa343940800000000000000
+      internalID: 5274905900086535202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 247
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799ed5db5f7a89500800000000000000
+      internalID: 403256840535533975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 167
+        width: 53
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b056943d1b38dfa60800000000000000
+      internalID: 7709462936905409803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 167
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89efa4c245b15c10800000000000000
+      internalID: 2040611404547877259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 167
+        width: 58
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: debb876e8c5190e80800000000000000
+      internalID: -8212008492929074195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 167
+        width: 62
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3672297fb6f2c5790800000000000000
+      internalID: -7540099535363496093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 167
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80955ea8e92fa9f80800000000000000
+      internalID: -8098894217123374840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 167
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611e25fc62bebd220800000000000000
+      internalID: 2511859769108783382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 167
+        width: 85
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd6487991c8ae5a0800000000000000
+      internalID: -6491221871357039177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_134
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 167
+        width: 79
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a046bb61d1ee0270800000000000000
+      internalID: 8218754659569254564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_135
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 187
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30cfe3738db672910800000000000000
+      internalID: 1812535951423896579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_136
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 167
+        width: 84
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3245be8c0ee3d20800000000000000
+      internalID: 3260290333809058749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_137
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 167
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9217a08adb09bca70800000000000000
+      internalID: 8848325037141946665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_138
+      rect:
+        serializedVersion: 2
+        x: 1327
+        y: 167
+        width: 50
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd9846dddba94f70800000000000000
+      internalID: 9172051085387931082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_139
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 166
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2d494a1ab92e820800000000000000
+      internalID: 2946088224806982367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_140
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 87
+        width: 55
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5d77211b63b4e70800000000000000
+      internalID: 9100427606179173838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_141
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 87
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 447412672186278f0800000000000000
+      internalID: -544258176457816252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_142
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 7
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a35c8c7c31ad8290800000000000000
+      internalID: -7886470091296189536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_143
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 37
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c36a224206835900800000000000000
+      internalID: 672028113666466761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_144
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 28
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2118452ea61acecd0800000000000000
+      internalID: -2527467810425896686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_145
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 7
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 487336430fc82f570800000000000000
+      internalID: 8499010410100504452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_146
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 21
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec145229eed0ac420800000000000000
+      internalID: 2650946648966250958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_147
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 7
+        width: 50
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e14f16a39461a4f0800000000000000
+      internalID: -819263071894683162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_148
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 7
+        width: 39
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aba24e7501b62390800000000000000
+      internalID: -7843387063867888732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_149
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 7
+        width: 47
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b35dc5264935cf60800000000000000
+      internalID: 8053906482066707385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_150
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 30
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c042b2f64f565570800000000000000
+      internalID: 8455050108758802631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_151
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 7
+        width: 53
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25a3fc20cd06f380800000000000000
+      internalID: -8937941291431123670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_152
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 9
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b60764d40434f9b0800000000000000
+      internalID: -5047352087027448142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_153
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 15
+        width: 25
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12491b39ca045ff20800000000000000
+      internalID: 3455739399033164833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_154
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 6
+        width: 82
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3211ca6856b72fe70800000000000000
+      internalID: 9147509469124235555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_155
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 6
+        width: 34
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4f4e85975da84120800000000000000
+      internalID: 2398357393257680719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_156
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 7
+        width: 30
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc44a13cbe5ba050800000000000000
+      internalID: 5812843906431470786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_157
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 7
+        width: 54
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbdaaa23225636e70800000000000000
+      internalID: 9107234069026614719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_158
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 7
+        width: 55
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43968bbd14585e0e0800000000000000
+      internalID: -2241238721641289420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_159
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 7
+        width: 86
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 046f71501c267c310800000000000000
+      internalID: 1425216388239717952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_160
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 7
+        width: 87
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c76f1090be8626f0800000000000000
+      internalID: -709723002280908855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_161
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 7
+        width: 87
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff738cf88aeafc0c0800000000000000
+      internalID: -4553228659258279937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_162
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 6
+        width: 33
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f312df047920b9a0800000000000000
+      internalID: -6219425506940283919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_163
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 7
+        width: 31
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53316bb257744b020800000000000000
+      internalID: 2356587073591710517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkeletonKinight-Sheet_164
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 7
+        width: 31
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 630dbe6510dd6d290800000000000000
+      internalID: -7865856701332991946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
