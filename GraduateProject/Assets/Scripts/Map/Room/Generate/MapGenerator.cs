@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-// �� ��Ī�� 'MapNode'��! (�޼��� �ñ״�ó�� �̸����� ��ġ��Ŵ)
+// ★ 별칭을 'MapNode'로! (메서드 시그니처와 이름까지 일치시킴)
 using MapNode = Define.MapNode;
 
 public class MapGenerator : MonoBehaviour
@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     BSPMapDivider bsp;
     MSTPathConnector mst;
 
-    [SerializeField] private MapSO mapSO;
+    [SerializeField] private MapSO mapSO;   // 인스펙터 기본값(Stage1) – Start에서 GM의 stage1SO로 덮어씀
 
     private List<MapNode> leaves;
     private RoomGenerator roomGenerator;
@@ -33,12 +33,6 @@ public class MapGenerator : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "InGameScene")
             yield break;
 
-        // GameManager/RoomManager ����
-        if (GameManager.Instance == null)
-        {
-            var gm = new GameObject("GameManager");
-            gm.AddComponent<GameManager>();
-        }
 
         float t = 2f;
         while (t > 0f && (GameManager.Instance == null || GameManager.Instance.RoomManager == null))
@@ -53,21 +47,53 @@ public class MapGenerator : MonoBehaviour
             yield break;
         }
 
+        // ★ Stage1SO 우선 사용
+        var gm = GameManager.Instance;
+        if(gm.currentStage <= gm.stages.Count)
+        {
+            Debug.Log("[MGen]curState : " + gm.currentStage);
+            if (gm.stages[gm.currentStage - 1] != null)
+                mapSO = gm.stages[gm.currentStage - 1];
+        }
+
+        // ★ RoomsRoot 보장(모든 방은 RoomsRoot/Grid 하위로)
+        EnsureRoomsRootAndBindToRoomManager();
+
         if (mapSO == null) { Debug.LogError("[MapGenerator] mapSO is null."); yield break; }
         if (roomGenerator == null) { Debug.LogError("[MapGenerator] RoomGenerator missing."); yield break; }
 
-        // 0,0 ���� ����
-        leaves = bsp.GetLeavesByBSP(mapSO);
+        // 초기 1회: 인스펙터의 mapSO(혹은 GM.stage1SO)로 생성
+        yield return GenerateRoutine(mapSO);
+    }
+
+    // ====== 외부에서 스테이지 전환용 호출 ======
+    public void Generate(MapSO so)
+    {
+        // 스테이지 전환 시에도 RoomsRoot 보장
+        EnsureRoomsRootAndBindToRoomManager();
+        StartCoroutine(GenerateRoutine(so));
+    }
+
+    private IEnumerator GenerateRoutine(MapSO so)
+    {
+        if (so == null) { Debug.LogError("[MapGenerator] GenerateRoutine: MapSO is null."); yield break; }
+        if (roomGenerator == null) { Debug.LogError("[MapGenerator] RoomGenerator missing."); yield break; }
+
+        // 0,0 기준 분할
+        leaves = bsp.GetLeavesByBSP(so);
 
         var adjacent = getAdjacentLeaf(leaves);
         setId(leaves);
 
         result = mst.GetMSTPath(adjacent);
 
-        roomGenerator.CreateRooms(result, mapSO);
+        roomGenerator.CreateRooms(result, so);
 
         portalInit.SetPortalPrefabAsync();
         portalInit.Init(roomGenerator.rooms);
+
+        // StartRoom 생성 시 RoomGenerator가 RoomManager.SetStartPoint 호출함
+        yield return null;
     }
 
     private void setId(List<MapNode> leaves)
@@ -107,5 +133,33 @@ public class MapGenerator : MonoBehaviour
             (a.SpaceArea.yMin < b.SpaceArea.yMax && a.SpaceArea.yMax > b.SpaceArea.yMin);
 
         return xAxis || yAxis;
+    }
+
+    // --- RoomsRoot 생성 & RoomManager.roomsRoot 바인딩 ---
+    private void EnsureRoomsRootAndBindToRoomManager()
+    {
+        var active = SceneManager.GetActiveScene();
+        if (!active.IsValid()) return;
+
+        GameObject roomsRoot = null;
+        foreach (var go in active.GetRootGameObjects())
+        {
+            if (go.name.Equals("RoomsRoot", System.StringComparison.OrdinalIgnoreCase))
+            {
+                roomsRoot = go;
+                break;
+            }
+        }
+        if (roomsRoot == null)
+        {
+            var rootGo = new GameObject("RoomsRoot", typeof(Grid));
+            roomsRoot = rootGo;
+            SceneManager.MoveGameObjectToScene(rootGo, active);
+        }
+
+        // RoomManager에 roomsRoot 연결
+        var rm = GameManager.Instance?.RoomManager;
+        if (rm != null)
+            rm.Grid = roomsRoot.GetComponent<Grid>();
     }
 }

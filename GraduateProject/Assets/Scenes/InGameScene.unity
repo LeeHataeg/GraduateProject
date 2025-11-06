@@ -2375,7 +2375,7 @@ GameObject:
   - component: {fileID: 1466552925}
   - component: {fileID: 1466552924}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: RoomsRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2798,6 +2798,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: stage1SO
+      value: 
+      objectReference: {fileID: 11400000, guid: e6d4822f53dd57d4f995abe5f5398359, type: 2}
+    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: stage2SO
+      value: 
+      objectReference: {fileID: 11400000, guid: cd9982cd406b4124496c09ee0fbe57d0, type: 2}
+    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: stagePortalPrefab
+      value: 
+      objectReference: {fileID: 2776649909697778401, guid: ead13ed4bedadcf4fb6d582be3a3660c, type: 3}
+    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: stagePortalResourcesPath
+      value: Prefabs/Maps/Portal/Portal_Purple
+      objectReference: {fileID: 0}
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: itemPanel
       value: 
@@ -2806,6 +2822,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
+      propertyPath: ClearPanel
+      value: 
+      objectReference: {fileID: 8961181202608078938}
     - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: deathPopup
       value: 
@@ -3099,6 +3119,7 @@ MonoBehaviour:
   itemPanel: {fileID: 425063983}
   deathPopup: {fileID: 1991505380}
   equipmentPanel: {fileID: 0}
+  ClearPanel: {fileID: 8961181202608078938}
 --- !u!1001 &1563386670618864644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3575,6 +3596,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c76bfcef30821e349afec168ed585d18, type: 3}
+--- !u!1 &8961181202608078938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2394047441089100392, guid: c76bfcef30821e349afec168ed585d18, type: 3}
+  m_PrefabInstance: {fileID: 8961181202608078937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e839d37ec46ed408fef1f385a544e6, type: 3}
+  m_Name: Archetype_Undead_Sword
+  m_EditorClassIdentifier: 
+  kind: 5
+  displayName: "\uC5B8\uB370\uB4DC \uAC80\uC0AC"
+  prefab: {fileID: 9042662942535458148, guid: 8d752570cd8e189429e3af1de71264eb, type: 3}
+  attackMode: 0
+  statSheet: {fileID: 11400000, guid: a385875bf22120048a0e759a62531ba1, type: 2}
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 12
+  projectileLife: 3
+  projectileHitMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRangeOverride: 0
+  useBuffAura: 0
+  buffRadius: 4
+  buffDuration: 6
+  buffRefreshRate: 1
+  dmgMultiplier: 1.25

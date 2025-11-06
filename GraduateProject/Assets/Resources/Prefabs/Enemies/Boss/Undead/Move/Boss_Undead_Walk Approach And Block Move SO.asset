@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786baae0b3393b74db1790d447a19671, type: 3}
+  m_Name: Boss_Undead_Walk Approach And Block Move SO
+  m_EditorClassIdentifier: 
+  animKey: 42
+  windup: 0.05
+  recover: 0.1
+  cooldown: 1
+  lockMovement: 1
+  minRange: 0
+  maxRange: 999
+  requireGrounded: 0
+  toWalk: 42
+  walkLoop: 43
+  walkToIdle: 44
+  walkBlocking: 45
+  walkBLocking2: 46
+  walkBlocked: 47
+  outBlocked: 48
+  approachRangeX: 2
+  walkSpeed: 4.5
+  walkAccel: 14
+  dmgWhileWalking: 10
+  dmgWhileOthers: 6
+  blockingDuration: 1.2
+  blockedShowTime: 0.3
+  outBlockedShowTime: 0.25

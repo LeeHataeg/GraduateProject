@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d889cda518f44438811761fb45bb68, type: 3}
+  m_Name: Boss_Undead_Definition SO
+  m_EditorClassIdentifier: 
+  animMap: {fileID: 11400000, guid: f8ff5e21a18f0a84fa02d34c19619d3f, type: 2}
+  phase1: {fileID: 11400000, guid: 373e94b3bea1dfd418c872da4b44dff8, type: 2}
+  phase2: {fileID: 0}
+  singlePhase: 1
+  introMode: 1
+  entryKey: 38
+  idleKey: 14
+  walkingBoolKey: 13
+  deathKey: 0
+  fadeDelay: 1.2

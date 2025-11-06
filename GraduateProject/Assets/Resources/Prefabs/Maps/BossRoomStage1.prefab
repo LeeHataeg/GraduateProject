@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1361474856369329430}
   - component: {fileID: 6538551980861035261}
   - component: {fileID: 8180289497488142199}
+  - component: {fileID: 4825294887767257575}
+  - component: {fileID: 7357726038168387119}
   m_Layer: 0
   m_Name: Tilemap_Deco
   m_TagString: Untagged
@@ -311,6 +313,66 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!61 &4825294887767257575
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526817448540239438}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 7.5, y: 3.73}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.25, y: 3.42}
+  m_EdgeRadius: 0
+--- !u!114 &7357726038168387119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526817448540239438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4aac1efc18f49448f7f28ebf4829f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneShot: 1
+  clearNormalRoomsOnEnter: 0
 --- !u!1 &663875005083589365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1887842630257520695
 Transform:
   m_ObjectHideFlags: 0
@@ -1084,7 +1146,7 @@ GameObject:
   - component: {fileID: 807342110806739823}
   - component: {fileID: 1348001453604999427}
   - component: {fileID: 4594116096382067291}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Tilemap_RoomWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

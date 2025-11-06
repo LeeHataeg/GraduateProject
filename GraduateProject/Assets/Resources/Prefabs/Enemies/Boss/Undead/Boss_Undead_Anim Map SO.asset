@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e970cd6bdbcae9745ab3314c5e320d68, type: 3}
+  m_Name: Boss_Undead_Anim Map SO
+  m_EditorClassIdentifier: 
+  pairs:
+  - key: 50
+    param: Blocked
+    kind: 0
+    defaultBoolValue: 0
+  - key: 0
+    param: Death
+    kind: 0
+    defaultBoolValue: 0
+  - key: 38
+    param: Entry
+    kind: 0
+    defaultBoolValue: 0
+  - key: 3
+    param: Falling
+    kind: 0
+    defaultBoolValue: 0
+  - key: 34
+    param: FrontHeavyAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 14
+    param: Idle
+    kind: 0
+    defaultBoolValue: 0
+  - key: 40
+    param: Jumping
+    kind: 0
+    defaultBoolValue: 0
+  - key: 15
+    param: Land
+    kind: 0
+    defaultBoolValue: 0
+  - key: 32
+    param: LightAtk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 48
+    param: OutBlock
+    kind: 0
+    defaultBoolValue: 0
+  - key: 49
+    param: ToBlock
+    kind: 0
+    defaultBoolValue: 0
+  - key: 41
+    param: ToFall
+    kind: 0
+    defaultBoolValue: 0
+  - key: 39
+    param: ToJump
+    kind: 0
+    defaultBoolValue: 0
+  - key: 42
+    param: ToWalk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 43
+    param: Walk
+    kind: 0
+    defaultBoolValue: 0
+  - key: 47
+    param: WalkBlocked
+    kind: 0
+    defaultBoolValue: 0
+  - key: 45
+    param: WalkBlocking
+    kind: 0
+    defaultBoolValue: 0
+  - key: 46
+    param: WalkBLocking2
+    kind: 0
+    defaultBoolValue: 0
+  - key: 44
+    param: WalkToIdle
+    kind: 0
+    defaultBoolValue: 0

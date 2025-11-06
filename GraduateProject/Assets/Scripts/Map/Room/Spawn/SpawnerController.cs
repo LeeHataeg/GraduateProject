@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 using static Define;
+
 [DisallowMultipleComponent]
 public class SpawnerController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class SpawnerController : MonoBehaviour
     [Header("Catalog Auto-Load")]
     public bool autoLoadCatalogByRoomType = true;
     [Tooltip("1순위 검색 경로 (Resources 내부)")]
-    public string catalogResourcesPath = "Enemies/Archetypes";
+    public string catalogResourcesPath = "SO/Enemies/Archetype";
 
     [Header("Spawn Candidates (Final)")]
     public List<WeightedArchetype> candidates = new();
@@ -79,7 +80,6 @@ public class SpawnerController : MonoBehaviour
             Debug.Log($"[SpawnerController] Initialized from Tilemap. Bounds={roomBounds}, SeedCells={seedCells.Count}", this);
     }
 
-    // ---- 후보 직접 주입 ----
     public void SetCandidates(EnemyArchetypeSO[] archetypes, float[] weights = null, float defaultW = 0.25f)
     {
         candidates.Clear();
@@ -114,30 +114,34 @@ public class SpawnerController : MonoBehaviour
 
     private void Awake()
     {
-        // 1) 카탈로그 자동 로드(경로 폴백 지원)
+        // 1) 카탈로그 자동 로드
         if (autoLoadCatalogByRoomType && candidates.Count == 0)
         {
             var room = GetComponent<Room>() ?? GetComponentInParent<Room>();
             var roomType = room ? room.Type : RoomType.Normal;
 
-            // 내가 우선 제공한 경로 + 네가 실제 둔 경로 + 전체 스캔까지 전달
+            // ★ 현재 스테이지 참조
+            int stage = 1;
+            var gm = GameManager.Instance;
+            if (gm != null) stage = Mathf.Max(1, gm.currentStage);
+
+            // Stage×RoomType 조합으로 카탈로그 조회
             var catalog = EnemyArchetypeRegistry.GetCatalog(
-                roomType,
+                stage, roomType,
                 catalogResourcesPath,
                 "SO/Stats/Enemies/Archetype",
-                "" // 전체 스캔
+                "" // 전체 스캔 폴백
             );
 
             if (catalog)
             {
                 SetCatalog(catalog);
-                if (debugLog) Debug.Log($"[SpawnerController] Catalog '{catalog.name}' loaded for RoomType={roomType}", this);
+                if (debugLog) Debug.Log($"[SpawnerController] Catalog '{catalog.name}' loaded for Stage={stage}, RoomType={roomType}", this);
             }
             else
             {
-                Debug.LogWarning($"[SpawnerController] No catalog found for RoomType={roomType}. " +
-                                 $"Create one under Resources (e.g. '{catalogResourcesPath}' or 'SO/Stats/Enemies/Archetype'), " +
-                                 $"or call SetCandidates()/SetCatalog().");
+                Debug.LogWarning($"[SpawnerController] No catalog found for Stage={stage}, RoomType={roomType}. " +
+                                 $"Create one under Resources (e.g. '{catalogResourcesPath}'), or call SetCandidates()/SetCatalog().");
             }
         }
 
@@ -174,7 +178,7 @@ public class SpawnerController : MonoBehaviour
     public bool AllEnemiesDefeated() => hasSpawned && healths.Count == 0;
     public int ActiveEnemyCount => healths.Count;
 
-    // ---- 내부 구현 ----
+    // ---- 내부 구현 (이하 기존 그대로) ----
     private void RecalcWeight()
     {
         totalWeight = 0f;
@@ -208,7 +212,6 @@ public class SpawnerController : MonoBehaviour
 
     private void SafeFindPortals()
     {
-        // 1) Portal 컴포넌트를 우선으로 (추천)
         var comps = GetComponentsInChildren<Portal>(true);
         if (comps != null && comps.Length > 0)
         {
@@ -218,7 +221,6 @@ public class SpawnerController : MonoBehaviour
             return;
         }
 
-        // 2) 태그 기반 검색은 태그 미정의면 예외가 나므로 try/catch
         if (!string.IsNullOrEmpty(portalTag))
         {
             try
@@ -229,13 +231,9 @@ public class SpawnerController : MonoBehaviour
                     if (go.transform.IsChildOf(transform)) list.Add(go);
                 if (list.Count > 0) { portals = list.ToArray(); return; }
             }
-            catch (UnityException)
-            {
-                // 태그가 없으면 조용히 무시하고 이름 검색으로 넘어감
-            }
+            catch (UnityException) { }
         }
 
-        // 3) 이름 기반 폴백
         {
             var list = new List<GameObject>();
             foreach (var t in GetComponentsInChildren<Transform>(true))
@@ -279,21 +277,17 @@ public class SpawnerController : MonoBehaviour
             var go = Instantiate(arch.prefab, pos, Quaternion.identity, transform);
             go.name = $"{arch.kind}_{i}";
 
-            // ★★★ 컴포넌트 루트(보통 UnitRoot) 찾기
             var compRoot = FindComponentRoot(go.transform);
             var rootGO = compRoot ? compRoot.gameObject : go;
 
-            // Spawn 마커는 루트에만
             var tag = rootGO.GetComponent<SpawnedEnemyTag>() ?? rootGO.AddComponent<SpawnedEnemyTag>();
             tag.SourceSpawner = this;
 
-            // Assembler도 루트에만
             var assembler = rootGO.GetComponent<EnemyAssembler>() ?? rootGO.AddComponent<EnemyAssembler>();
             assembler.Setup(arch, compRoot);
 
             spawned.Add(rootGO);
 
-            // 체력/죽음 추적: 루트 → 없으면 자식에서
             IHealth hp = rootGO.GetComponent<IHealth>();
             if (hp == null) hp = rootGO.GetComponentInChildren<IHealth>(true);
 
@@ -340,7 +334,6 @@ public class SpawnerController : MonoBehaviour
 
     private Vector3 SampleSpawnPoint()
     {
-        // 1) RoomGenerator가 준 셀 우선
         if (sourceTilemap && seedCells.Count > 0)
         {
             int idx = Random.Range(0, seedCells.Count);
@@ -356,7 +349,6 @@ public class SpawnerController : MonoBehaviour
             if (!blocked) return new Vector3(p.x, p.y + 0.01f, 0f);
         }
 
-        // 2) 랜덤 샘플러
         var b = roomBounds;
         float minX = b.min.x + margin;
         float maxX = b.max.x - margin;
@@ -377,14 +369,13 @@ public class SpawnerController : MonoBehaviour
         if (debugLog) Debug.LogWarning("[SpawnerController] Failed to sample spawn point. Using room center.");
         return b.center;
     }
+
     private Transform FindComponentRoot(Transform instRoot)
     {
-        // 1) 이름 'UnitRoot' 우선(대소문자 무시)
         foreach (var t in instRoot.GetComponentsInChildren<Transform>(true))
-            if (t.name.Equals("UnitRoot", System.StringComparison.OrdinalIgnoreCase))
+            if (t.name.Equals("UnitRoot", StringComparison.OrdinalIgnoreCase))
                 return t;
 
-        // 2) StatController/ICombatStatHolder 보유 자식
         var monos = instRoot.GetComponentsInChildren<MonoBehaviour>(true);
         foreach (var m in monos)
         {
@@ -393,27 +384,12 @@ public class SpawnerController : MonoBehaviour
                 return m.transform;
         }
 
-        // 3) Rigidbody2D+Collider2D 조합 자식
         foreach (var m in monos)
         {
             if (!m) continue;
             if (m.GetComponent<Rigidbody2D>() && m.GetComponent<Collider2D>())
                 return m.transform;
         }
-
-        // 4) 실패 → 인스턴스 루트
         return instRoot;
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.25f);
-        var b = roomBounds.size == Vector3.zero ? new Bounds(transform.position, new Vector3(6f, 4f, 0f)) : roomBounds;
-        Gizmos.DrawWireCube(b.center, b.size);
-
-        Gizmos.color = new Color(1f, 0.3f, 0.3f, 0.35f);
-        Gizmos.DrawWireSphere(b.center, separationRadius);
-    }
-#endif
 }

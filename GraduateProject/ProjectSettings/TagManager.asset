@@ -11,6 +11,7 @@ TagManager:
   - PlayerSpawn
   - BossPlayerSpawn
   - Room
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Projectile
   - PlayerHitbox
   - EnemyHitbox
-  - 
+  - Wall
   - 
   - 
   - 

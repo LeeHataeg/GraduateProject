@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private EquipmentUI equipmentPanel;
 
+    [Header("Death Popup")]
+    [SerializeField] private GameObject ClearPanel;
+
     private bool isTurnedOnInven = false;
 
     private void Awake()
@@ -35,17 +38,16 @@ public class UIManager : MonoBehaviour
     {
         var pm = GameManager.Instance?.PlayerManager;
         if (pm != null)
-            pm.OnEquipmentReady += HandlePlayerEquipmentReady; // ★ Player가 준비되면 호출
+            pm.OnEquipmentReady += HandlePlayerEquipmentReady;
     }
 
     private void OnDisable()
     {
         var pm = GameManager.Instance?.PlayerManager;
         if (pm != null)
-            pm.OnEquipmentReady -= HandlePlayerEquipmentReady; // ★ 해제
+            pm.OnEquipmentReady -= HandlePlayerEquipmentReady;
     }
 
-    // ★ PlayerManager.OnEquipmentReady가 호출되면 여기로 들어옴
     private void HandlePlayerEquipmentReady(EquipmentManager eq)
     {
         // 1) 씬 오브젝트 자동 탐색(비어있다면만)
@@ -90,7 +92,11 @@ public class UIManager : MonoBehaviour
             invenPanel?.HidePopup();
     }
 
-    // UIManager.cs
+    public void ShowClearPanel()
+    {
+        ClearPanel.SetActive(true);
+    }
+
     public void ShowDeathPopup()
     {
         if (!deathPopup)
@@ -145,6 +151,9 @@ public class UIManager : MonoBehaviour
         // 데스 팝업 닫기(있을 때만)
         if (deathPopup != null && deathPopup.gameObject.activeSelf)
             deathPopup.Hide();
+
+        if(ClearPanel!= null && ClearPanel.activeSelf)
+            ClearPanel.SetActive(false);
 
 #if UNITY_EDITOR
         Debug.Log("[UIManager] HideAll called: all UI panels closed.");

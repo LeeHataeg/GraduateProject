@@ -69,3 +69,4 @@ MonoBehaviour:
   maxDepth: 4
   startRoom: {fileID: 7324910235987344611, guid: ab7f02d8fbf511f4dbcd0b7e20e715f9, type: 3}
   bossRoom: {fileID: 701798574792211494, guid: 9209b233a7cd7a847a4ca81055869ec1, type: 3}
+  BossFieldPrefab: {fileID: 3919608453310294863, guid: cdcd22cb1b288654ebdd6edf865aef67, type: 3}

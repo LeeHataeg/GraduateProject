@@ -43,6 +43,11 @@ public class MapSO : ScriptableObject
     [field: Header("#Room Prefabs")]
     [SerializeField] private GameObject startRoom;
     [SerializeField] private GameObject bossRoom;
+
+    [Header("Boss Field (Prefab)")]
+    [Tooltip("이 스테이지에서 사용할 Boss 전용 전투 방 프리팹(여러 Tilemap 포함 가능)")]
+    public GameObject BossFieldPrefab;
+
     #endregion  
 
     #region GETTERS
