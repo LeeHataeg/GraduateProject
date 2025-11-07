@@ -33,7 +33,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform atkStartPoint;
 
     [Header("AI Tuning")]
-    [SerializeField] private float stopDistance = 0.05f;    // 멈춤 임계 X거리
     [SerializeField] private float yThresholdMelee = 0.7f;  // 근접 Y허용치
     [SerializeField] private float attackCooldown = 0.8f;   // 공용 쿨
     [SerializeField] private float windup = 0.08f;          // 선딜

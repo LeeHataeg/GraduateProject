@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-/// 보스전 중에만 enable. Begin/End는 EchoManager가 호출.
+// 보스전 중에만 활성화 시작 종료는 Manager급 코드가 관리
 [DisallowMultipleComponent]
 public class EchoRecorder : MonoBehaviour
 {
@@ -16,7 +16,6 @@ public class EchoRecorder : MonoBehaviour
     Rigidbody2D rb;
     HealthController hc;
 
-    // 이동/HP 변화 추적
     bool lastMove;
     float lastHp;
     const float MOVE_EPS = 0.05f;
@@ -35,7 +34,7 @@ public class EchoRecorder : MonoBehaviour
         tape = new EchoTape();
         lastMove = false;
 
-        if (hc != null) lastHp = hc.CurrentHp; // HealthController.CurrentHp 사용 (파일에 공개 프로퍼티 있음) :contentReference[oaicite:0]{index=0}
+        if (hc != null) lastHp = hc.CurrentHp;
 
         enabled = true;
     }
@@ -48,7 +47,7 @@ public class EchoRecorder : MonoBehaviour
             tape.length = t;
             tape.wasClear = wasClear;
 
-            // 사망: isDeath=true + 4_Death 트리거를 마지막에 1회 기록
+            // 사망 관련 애니메이션 클립의 호출 변수를 마지막에 기록
             if (!wasClear)
             {
                 float tt = Mathf.Max(0f, t - 0.01f);
@@ -56,7 +55,7 @@ public class EchoRecorder : MonoBehaviour
                 tape.animParams.Add(new EchoTape.AnimParamEvt { t = tt, type = "trig", name = "4_Death", value = 0 });
             }
 
-            // 스냅샷(장비/외형)
+            // 장비와 외형 기록
             TrySnapshotEquipment(tape);
             TrySnapshotVisualsByPath(tape);
         }
@@ -122,7 +121,7 @@ public class EchoRecorder : MonoBehaviour
         }
     }
 
-    // === 공격 이벤트와 동기화: AtkBegin에 2_Attack 트리거를 같이 남김 ===
+    // 공격 이벤트 기록
     public void MarkActionBegin(string id, float factor = 1f)
     {
         tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkBegin", id = id, value = factor });
@@ -138,9 +137,6 @@ public class EchoRecorder : MonoBehaviour
             tape?.usedItemIds.Add(itemId);
     }
 
-    // ─────────────────────────────────────────────────────────
-    //                        스냅샷
-    // ─────────────────────────────────────────────────────────
     private void TrySnapshotEquipment(EchoTape dest)
     {
         var eq = GetComponentInChildren<EquipmentManager>(true);
@@ -166,7 +162,6 @@ public class EchoRecorder : MonoBehaviour
         var root = unitRoot.Find("Root");
         if (root == null)
         {
-            Debug.LogWarning("[EchoRecorder] 'Root'를 찾지 못해 외형 스냅샷을 생략합니다.");
             return;
         }
 

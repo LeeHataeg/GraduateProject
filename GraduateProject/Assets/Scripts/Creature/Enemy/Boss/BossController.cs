@@ -51,9 +51,6 @@ public class BossController : MonoBehaviour
 
     public bool IsInvulnerable => invulnerable;
 
-    // Intro flags
-    private bool entryLanded;
-    private bool entrySettled;
 
     public event System.Action GroundTouched;
 
@@ -65,8 +62,6 @@ public class BossController : MonoBehaviour
 
     private static readonly int T_EndFalling = Animator.StringToHash("EndFalling");
     private static readonly int T_IsEndFallingAlt = Animator.StringToHash("IsEndFalling");
-
-    private bool introFallingSet = false;
 
     private BossContext Ctx => new BossContext
     {
@@ -174,8 +169,8 @@ public class BossController : MonoBehaviour
     private void EnterIntro_FallFromSky()
     {
         state = BossState.Intro;
-        moveLocked = true; casting = false;
-        entryLanded = false; entrySettled = false;
+        moveLocked = true;
+        casting = false;
         curPhase = def ? def.phase1 : null;
 
         def?.animMap?.Play(anim, AnimKey.Falling, true);
@@ -302,7 +297,6 @@ public class BossController : MonoBehaviour
             fired |= TrySetTriggerSafe(T_EndFalling);
             fired |= TrySetTriggerSafe(T_IsEndFallingAlt);
             if (!fired) def?.animMap?.Play(anim, AnimKey.Land);
-            entryLanded = true;
             GroundTouched?.Invoke();
 
             // Land → Idle로 넘어가면 페이즈 시작

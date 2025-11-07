@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
 
 [RequireComponent(typeof(Collider2D))]

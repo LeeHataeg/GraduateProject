@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using static Define;
 using Edge = Define.Edge;
 
@@ -18,14 +16,15 @@ public class MSTPathConnector
     private List<Edge> setEdge(Dictionary<MapNode, List<MapNode>> adjacent)
     {
         List<Edge> edges = new List<Edge>();
-        // Step01 - MST(kruskal)
+        // 모든 Node에 대하여 수행
         foreach (var kv in adjacent)
         {
             MapNode node = kv.Key;
+            // 각 노드 간 거리 비교
             foreach (MapNode neighbor in kv.Value)
             {
-                // Defending Duplicated Connections
-                if (node.Id < neighbor.Id)
+                // id 목적은 이중 foa문 중에 양방향으로 동일한 두 연결상태가 생길까봐
+                if (node.Id < neighbor.Id)  
                 {
                     edges.Add(new Edge(node, neighbor));
                 }
@@ -35,6 +34,8 @@ public class MSTPathConnector
         return edges;
     }
 
+    // 요 함수는 Kruskal 방식임
+    //  -> UnionFind기법으로 이미 방문한 곳으로 복귀하는 것을 판정하고 간선이 N-1개가 되면 종료.
     private List<MapNode> constructMST(List<Edge> edges, int count)
     {
         UnionFind uf = new UnionFind(count);
@@ -61,12 +62,12 @@ public class MSTPathConnector
         if (sInd == -1)
         {
             result.Add(start);
-            sInd = result.IndexOf(start); // 추가된 위치 업데이트
+            sInd = result.IndexOf(start);
         }
         if (eInd == -1)
         {
             result.Add(end);
-            eInd = result.IndexOf(end); // 추가된 위치 업데이트
+            eInd = result.IndexOf(end);
         }
 
         Vector2 startCenter = start.SpaceArea.center;

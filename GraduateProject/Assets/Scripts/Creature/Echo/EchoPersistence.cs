@@ -65,16 +65,19 @@ public static class EchoPersistence
         catch { }
     }
 
-    /// 클리어 시: 각 저장된 **사망 테이프**에서 사용 아이템 1개 수확 → 스태시에 보관, 그리고 테이프 전부 삭제
+    // 클리어 시 기존 Echo 삭제
+    // TODO : 보상 제공 구현 필요
     public static void HarvestItemsFromAllTapes_ThenClear()
     {
         var tapes = LoadTapes();
         var stash = LoadStash();
         foreach (var t in tapes)
         {
-            foreach (var id in t.usedItemIds) { stash.Add(id); break; } // 1개만
+            // 아이템 보상 제공
+            foreach (var id in t.usedItemIds) { stash.Add(id); break; }
         }
         SaveStash(stash);
-        SaveTapes(new List<EchoTape>()); // 전부 삭제
+        // new List<EchoTape> 할당 == 이미 있던거 다 삭제
+        SaveTapes(new List<EchoTape>());
     }
 }

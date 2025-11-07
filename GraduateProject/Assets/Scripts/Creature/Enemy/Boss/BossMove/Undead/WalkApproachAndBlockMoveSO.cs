@@ -49,7 +49,7 @@ public class WalkApproachAndBlockMoveSO : BossMoveSO
 
         // Walk 루프: 사거리 진입까지
         float startHp = ctx.Health != null ? ctx.Health.CurrentHp : 999999f;
-        float accDmgWalk = 0f, accDmgOther = 0f;
+        float accDmgWalk = 0f;
 
         anims.Play(ctx.Anim, walkLoop);
         while (true)

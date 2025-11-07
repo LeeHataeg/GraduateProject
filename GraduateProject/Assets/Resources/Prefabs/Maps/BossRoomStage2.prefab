@@ -858,12 +858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4aac1efc18f49448f7f28ebf4829f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
-  bossFieldSceneName: BossField_Orc
-  playerSpawnTagInBoss: BossPlayerSpawn
   oneShot: 1
-  setActiveScene: 1
-  tryMovePlayerIfRoot: 0
+  clearNormalRoomsOnEnter: 0
 --- !u!1 &3582747104728960497
 GameObject:
   m_ObjectHideFlags: 0

@@ -112,7 +112,9 @@ public abstract class Define
             rank = new int[size];
             for (int i = 0; i < size; i++) { parent[i] = i; rank[i] = 0; }
         }
+        // 부모를 따라가며 압축하면서 대표를 찾음
         public int Find(int u) { if (parent[u] != u) parent[u] = Find(parent[u]); return parent[u]; }
+        // 두 대표간 비교로 트리 높이가 낮은 쪽을 높은 쪽  밑에 붙임.
         public bool Union(int u, int v)
         {
             int pu = Find(u), pv = Find(v);

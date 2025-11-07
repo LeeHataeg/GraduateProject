@@ -37,23 +37,19 @@ public class BSPMapDivider
 
     private void divideMap(BSPNode node, MapSO so)
     {
-        // 1. 너무 작은 영역이면 종료
-        if (node.BSPArea.width < so.MinSpaceSize.x || node.BSPArea.height < so.MinSpaceSize.y)
-        {
-            return;
-        }
+        // 영역이너무 작으면 return
+        if (node.BSPArea.width < so.MinSpaceSize.x || node.BSPArea.height < so.MinSpaceSize.y) return;
 
-        // 2. 최대 깊이에 도달하면 종료
-        if (node.depth == so.MaxDepth)
-        {
-            return;
-        }
 
-        // 3. 가로/세로 분할 결정
+        // 미리지정한 최대  깊이 도달 시 종료
+        if (node.depth == so.MaxDepth) return;
+
+
+        // 가로 세로 비율에 따라 어느 방향으로 분할할 지 결정
         node.dividedHorizontally = (node.BSPArea.width > node.BSPArea.height) ? true : false;
         float slice = Random.Range(so.MinDevideRate, so.MaxDevideRate);
 
-        // 4. 노드 분할
+        // 노드 분할 -> 이것도 미리 지정한 최대 or 최소 분할 비율을 적용
         BSPNode left, right;
         if (node.dividedHorizontally)
         {
@@ -70,11 +66,10 @@ public class BSPMapDivider
             right = new BSPNode(new RectInt(node.BSPArea.x, node.BSPArea.y + splitHeight, node.BSPArea.width, node.BSPArea.height - splitHeight));
         }
 
-        // 5. 부모 연결 및 깊이 설정
         left.parNode = right.parNode = node;
         left.depth = right.depth = node.depth + 1;
 
-        // 6. 노드 추가 및 재귀 분할
+        // 노드 추가 및 재귀 호출
         node.leftNode = left;
         node.rightNode = right;
 
@@ -88,14 +83,13 @@ public class BSPMapDivider
 
         if (node.leftNode != null)
         {
-            leaves.AddRange(convertBSPIntoNode(node.leftNode)); // 기존 값 유지하면서 추가
+            leaves.AddRange(convertBSPIntoNode(node.leftNode));
         }
         if (node.rightNode != null)
         {
-            leaves.AddRange(convertBSPIntoNode(node.rightNode)); // 기존 값 유지하면서 추가
+            leaves.AddRange(convertBSPIntoNode(node.rightNode));
         }
 
-        // 리프 노드만 리스트에 추가
         if (node.leftNode == null && node.rightNode == null)
         {
             MapNode leaf = new MapNode();

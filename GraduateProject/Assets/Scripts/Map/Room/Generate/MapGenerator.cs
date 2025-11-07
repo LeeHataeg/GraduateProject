@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     BSPMapDivider bsp;
     MSTPathConnector mst;
 
-    [SerializeField] private MapSO mapSO;   // 인스펙터 기본값(Stage1) – Start에서 GM의 stage1SO로 덮어씀
+    [SerializeField] private MapSO mapSO;
 
     private List<MapNode> leaves;
     private RoomGenerator roomGenerator;
@@ -47,7 +47,6 @@ public class MapGenerator : MonoBehaviour
             yield break;
         }
 
-        // ★ Stage1SO 우선 사용
         var gm = GameManager.Instance;
         if(gm.currentStage <= gm.stages.Count)
         {
@@ -56,17 +55,14 @@ public class MapGenerator : MonoBehaviour
                 mapSO = gm.stages[gm.currentStage - 1];
         }
 
-        // ★ RoomsRoot 보장(모든 방은 RoomsRoot/Grid 하위로)
         EnsureRoomsRootAndBindToRoomManager();
 
         if (mapSO == null) { Debug.LogError("[MapGenerator] mapSO is null."); yield break; }
         if (roomGenerator == null) { Debug.LogError("[MapGenerator] RoomGenerator missing."); yield break; }
 
-        // 초기 1회: 인스펙터의 mapSO(혹은 GM.stage1SO)로 생성
         yield return GenerateRoutine(mapSO);
     }
 
-    // ====== 외부에서 스테이지 전환용 호출 ======
     public void Generate(MapSO so)
     {
         // 스테이지 전환 시에도 RoomsRoot 보장
@@ -135,7 +131,6 @@ public class MapGenerator : MonoBehaviour
         return xAxis || yAxis;
     }
 
-    // --- RoomsRoot 생성 & RoomManager.roomsRoot 바인딩 ---
     private void EnsureRoomsRootAndBindToRoomManager()
     {
         var active = SceneManager.GetActiveScene();
