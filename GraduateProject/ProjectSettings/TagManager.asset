@@ -12,6 +12,8 @@ TagManager:
   - BossPlayerSpawn
   - Room
   - Wall
+  - StartRoom
+  - PlayerHurtbox
   layers:
   - Default
   - TransparentFX
