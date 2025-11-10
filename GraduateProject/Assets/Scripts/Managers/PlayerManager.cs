@@ -1,312 +1,323 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
+/// <summary>
+/// 플레이어의 생성/중복 제거/부활/텔레포트 등 런타임 제어 담당
+/// - StartScene에선 생성하지 않음
+/// - InGameScene에서만 "씬에 있으면 채택(adopt), 없으면 1회 생성"
+/// - 중복 발견 시 입력 차단 후 제거
+/// - Player 최상위 루트 아래에 UnitRoot(실행체)를 두는 프로젝트 구조를 전제로 함
+/// </summary>
+[DefaultExecutionOrder(-200)]
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager Instance { get; private set; }
+    [Header("Refs")]
+    [Tooltip("실제 조작 대상이 되는 최상위 루트(보통 'Player') 아래의 실행체 'UnitRoot'를 가리키도록 유지")]
+    public GameObject UnitRoot;   // ← 'Player' 루트 아래 자식 'UnitRoot' 오브젝트
 
-    [Header("Player Prefab & Spawn")]
-    public GameObject playerPrefab;                                   // 에디터에서 지정
-    public string playerResourcesPath = "Prefabs/Player/Player/Player";
-    [Tooltip("인게임 씬 이름")]
-    public string gameplaySceneName = "InGameScene";
-
-    [Header("Runtime Refs")]
-    [Tooltip("최상위 깡통(움직이지 않음)")]
-    public GameObject Player;                                          // Player(깡통)
-    [Tooltip("실제 물리 이동 루트(여기만 이동)")]
-    public GameObject UnitRoot;                                        // UnitRoot
-
-    // 내부 상태
-    private bool _forceFreshSpawn;                                     // 다음 씬에서 반드시 새 스폰
-    private bool _spawnedThisScene;                                    // 이번 씬에서 스폰/채택 완료
-    private int _runId;
-
-    // 외부(UIManager 등)
     public event Action<EquipmentManager> OnEquipmentReady;
 
-    // --- 안전장치 캐시 ---
-    private Transform _roomsRootCache;                                 // RoomsRoot 캐시(있을 때)
-    private Transform _playerAnchor;                                   // 씬 루트용 안전 앵커
+    // 캐시
+    Animator _anim;
+    Rigidbody2D _rb;
+    Collider2D[] _cols;
+    PlayerInputController _input;
+    PlayerMovement _move;
+    IAnimationController _animCtrl;
+    HealthController _hp;
+    PlayerHitReactor _hitReactor;                // 피격 반응 담당(플래그 초기화 필요)
+    PlayerAttackController _atk;                 // ★ 공격 컨트롤러
+
+    public string gameplaySceneName = "InGameScene";
+    bool _busyPreparing = false;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        CacheComponents(); // null일 수 있음
+    }
+
+    public void PreparePlayerForScene()
+    {
+        if (_busyPreparing) return;
+        _busyPreparing = true;
+
+        var candidates = FindAllPlayerControllersInScene();
+        if (candidates != null && candidates.Length > 0)
         {
-            Destroy(gameObject);
-            return;
+            var primary = PickPrimary(candidates);
+            var adoptedUnitRoot = GetUnitRootFromAny(primary);
+            Adopt(adoptedUnitRoot);
+
+            foreach (var c in candidates)
+            {
+                if (!c) continue;
+                var otherUnitRoot = GetUnitRootFromAny(c);
+                if (!otherUnitRoot) continue;
+                if (otherUnitRoot == UnitRoot) continue;
+
+                TryDisableInput(otherUnitRoot);
+                Destroy(otherUnitRoot.transform.root.gameObject);
+            }
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance == this) SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void Update()
-    {
-        // 런타임 중 누가 부모를 RoomsRoot 쪽으로 옮겨도 즉시 탈착
-        SafeDetachFromRoomsRoot();
-    }
-
-    /// <summary>다음 씬에서 "한 번" 깨끗하게 새로 스폰하자.</summary>
-    public void RequestFreshSpawnNextScene()
-    {
-        _forceFreshSpawn = true;
-        _spawnedThisScene = false;
-        _runId++;
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log($"[PM] RequestFreshSpawnNextScene (runId={_runId})");
-#endif
-    }
-
-    /// <summary>
-    /// 재시작 전에 호출: 파괴 금지! 참조·플래그만 초기화.
-    /// </summary>
-    public void ResetState(bool hard = true)
-    {
-        _spawnedThisScene = false;
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log("[PM] ResetState: refs/flags reset only. (no destroy)");
-#endif
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name != gameplaySceneName)
+        else
         {
-            _spawnedThisScene = false;
-            return;
+            SpawnFromPrefab();
         }
 
-        // 씬별 안전 앵커/RoomsRoot 캐시 갱신
-        RefreshSceneAnchors(scene);
+        CacheComponents();
+        EnableCombat(true);                   // ★ 전투 요소 확실히 활성화
+        StartCoroutine(Co_BroadcastEqNextFrame());
 
-        StartCoroutine(Co_SpawnAfterOneFrame(scene));
+        _busyPreparing = false;
     }
 
-    private System.Collections.IEnumerator Co_SpawnAfterOneFrame(Scene scene)
+    private IEnumerator Co_BroadcastEqNextFrame()
     {
         yield return null;
-        TrySpawnOrAdoptInScene(scene);
+        BroadcastEquipmentReadyIfFound();
     }
 
-    private void TrySpawnOrAdoptInScene(Scene scene)
+    private PlayerController[] FindAllPlayerControllersInScene()
     {
-        if (_spawnedThisScene) return;
-
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log($"[PM] TrySpawnOrAdoptInScene: scene='{scene.name}', forceFresh={_forceFreshSpawn}");
+#if UNITY_6000_0_OR_NEWER
+        return UnityEngine.Object.FindObjectsByType<PlayerController>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None);
+#else
+        return UnityEngine.Object.FindObjectsOfType<PlayerController>(true);
 #endif
+    }
 
-        var existing = FindPlayersInScene(scene);
+    private GameObject GetUnitRootFromAny(PlayerController pc)
+    {
+        if (!pc) return null;
+        var sceneRoot = pc.transform.root; // 최상위(보통 'Player')
+        var unit = FindChildRecursive(sceneRoot, "UnitRoot");
+        return unit ? unit.gameObject : sceneRoot.gameObject;
+    }
 
-        if (existing.Count > 0)
+    private PlayerController PickPrimary(PlayerController[] list)
+    {
+        foreach (var c in list)
         {
-            if (existing.Count == 1)
+            if (!c) continue;
+            var root = c.transform.root;
+            if (root && (root.name == "Player" || root.name == "UnitRoot"))
+                return c;
+        }
+        foreach (var c in list)
+        {
+            if (!c) continue;
+            if (c.CompareTag("Player") || (c.transform.root && c.transform.root.CompareTag("Player")))
+                return c;
+        }
+        return list[0];
+    }
+
+    private void Adopt(GameObject unitRootGO)
+    {
+        if (!unitRootGO)
+        {
+            Debug.LogError("[PlayerManager] Adopt: UnitRoot candidate is null.");
+            return;
+        }
+
+        var unit = (unitRootGO.name == "UnitRoot")
+            ? unitRootGO.transform
+            : FindChildRecursive(unitRootGO.transform, "UnitRoot");
+
+        UnitRoot = unit ? unit.gameObject : unitRootGO;
+
+        CacheComponents();
+        EnableCombat(true); // 안전망
+    }
+
+    private void SpawnFromPrefab()
+    {
+        var prefabRoot = Resources.Load<GameObject>(Const.Prefabs_Player); // "Prefabs/Player/Player/Player"
+        if (prefabRoot == null)
+        {
+            Debug.LogError($"[PlayerManager] Player prefab not found at Resources path: {Const.Prefabs_Player}");
+            return;
+        }
+
+        var rootGO = Instantiate(prefabRoot);
+        rootGO.name = "Player";
+        if (!rootGO.CompareTag("Player")) rootGO.tag = "Player";
+
+        var unit = FindChildRecursive(rootGO.transform, "UnitRoot");
+        UnitRoot = unit ? unit.gameObject : rootGO;
+
+        CacheComponents();
+        EnableCombat(true);
+    }
+
+    private void TryDisableInput(GameObject unitRootGO)
+    {
+        if (!unitRootGO) return;
+        var input = unitRootGO.GetComponent<PlayerInputController>();
+        if (input) input.enabled = false;
+        var move = unitRootGO.GetComponent<PlayerMovement>();
+        if (move) move.enabled = false;
+        var rb = unitRootGO.GetComponent<Rigidbody2D>();
+        if (rb)
+        {
+#if UNITY_6000_0_OR_NEWER
+            rb.linearVelocity = Vector2.zero;
+#else
+            rb.velocity = Vector2.zero;
+#endif
+            rb.simulated = false;
+        }
+    }
+
+    private void BroadcastEquipmentReadyIfFound()
+    {
+        if (!UnitRoot) return;
+        var eq = UnitRoot.GetComponentInChildren<EquipmentManager>(true);
+        if (eq != null) OnEquipmentReady?.Invoke(eq);
+    }
+
+    // ───── Revive/TP ─────
+    public void Revive()
+    {
+        if (!UnitRoot) return;
+        if (_anim == null || _rb == null || _cols == null || _atk == null) CacheComponents();
+
+        // 1) HP/죽음 플래그 복구
+        if (_hp != null) _hp.ResetHpToMax();
+        if (_hitReactor != null) _hitReactor.ClearDeadFlag();
+
+        // 2) 애니 복구
+        if (_anim != null)
+        {
+            _anim.ResetTrigger("4_Death");
+            _anim.SetBool("isDeath", false);
+            TryPlayIfExists(_anim, "IDLE");
+            TryPlayIfExists(_anim, "Idle");
+            TryPlayIfExists(_anim, "Base Layer.IDLE");
+        }
+
+        // 3) 전투 요소 활성화
+        EnableCombat(true);
+
+        // 4) ★ 플레이어 컨트롤러 쪽도 복구 호출(구독/상태 싱크)
+        var pc = UnitRoot.GetComponent<PlayerController>();
+        if (pc != null) pc.Revive();
+
+        // 5) 장비 UI 갱신
+        BroadcastEquipmentReadyIfFound();
+    }
+
+    public void TeleportTo(Vector3 worldPos)
+    {
+        if (!UnitRoot) return;
+        if (_rb != null)
+        {
+#if UNITY_6000_0_OR_NEWER
+            _rb.linearVelocity = Vector2.zero;
+#else
+            _rb.velocity = Vector2.zero;
+#endif
+        }
+        UnitRoot.transform.position = worldPos;
+    }
+
+    public GameObject Player => UnitRoot;
+
+    // ───── Combat Enabler ─────
+    private void EnableCombat(bool on)
+    {
+        if (!UnitRoot) return;
+
+        if (_input) _input.enabled = on;
+        if (_move) _move.enabled = on;
+        if (_atk) _atk.enabled = on;
+
+        if (_hitReactor)
+        {
+            var bhv = _hitReactor as Behaviour;
+            if (bhv) bhv.enabled = on;
+        }
+
+        if (_cols != null)
+        {
+            foreach (var c in _cols)
+                if (c) c.enabled = on;
+        }
+
+        if (_rb)
+        {
+            _rb.simulated = on;
+            if (!on)
             {
-                Adopt(existing[0], scene);
-                CompleteSpawn();
-                return;
+#if UNITY_6000_0_OR_NEWER
+                _rb.linearVelocity = Vector2.zero;
+#else
+                _rb.velocity = Vector2.zero;
+#endif
             }
+        }
 
-            var keeper = existing[0];
-            for (int i = 1; i < existing.Count; i++)
+        // (선택) Hurtbox 자식 자동 보정(레이어/콜라이더/스크립트)
+        int hurtLayer = SafeLayer("PlayerHurtbox");
+        var t = UnitRoot.transform;
+        for (int i = 0; i < t.childCount; i++)
+        {
+            var child = t.GetChild(i);
+            if (child.name.IndexOf("Hurtbox", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                child.CompareTag("PlayerHurtbox"))
             {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-                Debug.Log($"[PM] Extra Player purged: {existing[i].name}");
-#endif
-                // 부모 트리 최상단만 제거(여기선 keeper 외 중복만)
-                Destroy(existing[i].transform.root.gameObject);
+                if (hurtLayer != -1) child.gameObject.layer = hurtLayer;
+                foreach (var col in child.GetComponentsInChildren<Collider2D>(true))
+                    col.enabled = on;
+                foreach (var beh in child.GetComponentsInChildren<Behaviour>(true))
+                {
+                    if (beh.GetType().Name.Contains("Hurt", StringComparison.OrdinalIgnoreCase) ||
+                        beh.GetType().Name.Contains("Hit", StringComparison.OrdinalIgnoreCase))
+                        beh.enabled = on;
+                }
             }
-            Adopt(keeper, scene);
-            CompleteSpawn();
-            return;
         }
+    }
 
-        if (_forceFreshSpawn || Player == null || UnitRoot == null)
+    private static int SafeLayer(string name)
+    {
+        int id = LayerMask.NameToLayer(name);
+        return (id >= 0 && id < 32) ? id : -1;
+    }
+
+    // ───── helpers ─────
+    private void CacheComponents()
+    {
+        if (!UnitRoot) return;
+        _anim = UnitRoot.GetComponentInChildren<Animator>(true);
+        _rb = UnitRoot.GetComponent<Rigidbody2D>();
+        _cols = UnitRoot.GetComponentsInChildren<Collider2D>(true);
+        _input = UnitRoot.GetComponent<PlayerInputController>();
+        _move = UnitRoot.GetComponent<PlayerMovement>();
+        _animCtrl = UnitRoot.GetComponent<IAnimationController>();
+        _hp = UnitRoot.GetComponent<HealthController>();
+        _hitReactor = UnitRoot.GetComponent<PlayerHitReactor>();
+        _atk = UnitRoot.GetComponent<PlayerAttackController>();
+    }
+
+    private static Transform FindChildRecursive(Transform root, string name)
+    {
+        if (!root) return null;
+        if (root.name == name) return root;
+        for (int i = 0; i < root.childCount; i++)
         {
-            SpawnFresh(scene);
-            CompleteSpawn();
-            return;
-        }
-
-        MoveUnitRootToStartPoint();
-        CompleteSpawn();
-    }
-
-    private void Adopt(PlayerController pc, Scene scene)
-    {
-        UnitRoot = pc.gameObject;
-        Player = pc.transform.parent ? pc.transform.parent.gameObject : pc.gameObject;
-
-        // ★ 항상 씬 루트(또는 앵커)로 강제 탈착
-        HardReparentToAnchor(Player.transform, scene);
-
-        // UnitRoot는 Player 자식으로 유지
-        if (UnitRoot.transform.parent != Player.transform)
-            UnitRoot.transform.SetParent(Player.transform, worldPositionStays: true);
-
-        MoveUnitRootToStartPoint();
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log($"[PM] Adopted Player='{Player.name}', UnitRoot='{UnitRoot.name}'");
-#endif
-        RaiseEquipmentReadyIfPossible();
-    }
-
-    private void SpawnFresh(Scene scene)
-    {
-        var prefab = playerPrefab;
-        if (prefab == null && !string.IsNullOrEmpty(playerResourcesPath))
-            prefab = Resources.Load<GameObject>(playerResourcesPath);
-
-        if (prefab == null)
-        {
-            Debug.LogError("[PM] playerPrefab missing.");
-            return;
-        }
-
-        var go = Instantiate(prefab);
-
-        // ★ 생성 즉시 씬 루트(또는 앵커)로 강제 배치
-        HardReparentToAnchor(go.transform, scene);
-
-        Player = go;
-
-        var pc = go.GetComponentInChildren<PlayerController>(true);
-        UnitRoot = pc ? pc.gameObject : go;
-
-        MoveUnitRootToStartPoint();
-
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        Debug.Log($"[PM] Spawned '{Player.name}' (UnitRoot='{UnitRoot?.name}')");
-#endif
-        RaiseEquipmentReadyIfPossible();
-    }
-
-    private void CompleteSpawn()
-    {
-        _spawnedThisScene = true;
-        _forceFreshSpawn = false;  // 이후 드래그&드랍, 수동 배치 불살
-    }
-
-    private void MoveUnitRootToStartPoint()
-    {
-        var rm = GameManager.Instance ? GameManager.Instance.RoomManager : null;
-        if (rm != null && rm.HasStartPoint && UnitRoot != null)
-            UnitRoot.transform.position = rm.GetStartPoint();
-    }
-
-    private void RaiseEquipmentReadyIfPossible()
-    {
-        if (UnitRoot == null) return;
-        var eq = UnitRoot.GetComponent<EquipmentManager>();
-        if (eq != null)
-            OnEquipmentReady?.Invoke(eq);
-    }
-
-    // === deprecation-free: 현재 씬 한정 스캔(비활성 포함) ===
-    private static List<PlayerController> FindPlayersInScene(Scene scene)
-    {
-        var all = UnityEngine.Object.FindObjectsByType<PlayerController>(
-            FindObjectsInactive.Include,
-            FindObjectsSortMode.None
-        );
-
-        var list = new List<PlayerController>(all.Length);
-        for (int i = 0; i < all.Length; i++)
-        {
-            var pc = all[i];
-            if (pc == null) continue;
-            if (pc.gameObject.scene == scene) list.Add(pc);
-        }
-        return list;
-    }
-
-    // === 안전 앵커/RoomsRoot 캐시 & 방 트리 탈착 가드 =======================
-
-    private void RefreshSceneAnchors(Scene scene)
-    {
-        _roomsRootCache = FindRoomsRoot(scene);
-
-        // 전용 앵커가 없으면 만든다: 씬 루트에 고정
-        _playerAnchor = FindOrCreatePlayerAnchor(scene);
-    }
-
-    private Transform FindRoomsRoot(Scene scene)
-    {
-        // 관례: 이름이 "RoomsRoot" 이거나 "roomsRoot" 같은 루트 오브젝트
-        foreach (var go in scene.GetRootGameObjects())
-        {
-            if (go.name.Equals("RoomsRoot", StringComparison.OrdinalIgnoreCase))
-                return go.transform;
+            var c = root.GetChild(i);
+            var r = FindChildRecursive(c, name);
+            if (r != null) return r;
         }
         return null;
     }
 
-    private Transform FindOrCreatePlayerAnchor(Scene scene)
+    private static void TryPlayIfExists(Animator a, string stateName)
     {
-        // 고정 이름의 앵커를 씬 루트에 유지
-        const string AnchorName = "__PLAYER_ANCHOR__";
-        foreach (var go in scene.GetRootGameObjects())
-        {
-            if (go.name == AnchorName) return go.transform;
-        }
-        var anchor = new GameObject(AnchorName);
-        SceneManager.MoveGameObjectToScene(anchor, scene);
-        return anchor.transform;
-    }
-
-    private void HardReparentToAnchor(Transform t, Scene scene)
-    {
-        if (t == null) return;
-        // 먼저 씬 루트로 이동
-        t.SetParent(null, worldPositionStays: true);
-        SceneManager.MoveGameObjectToScene(t.gameObject, scene);
-
-        // 그리고 앵커 밑에 둔다(방 트리 정리와 논리적으로 분리)
-        if (_playerAnchor == null) _playerAnchor = FindOrCreatePlayerAnchor(scene);
-        t.SetParent(_playerAnchor, worldPositionStays: true);
-    }
-
-    private void SafeDetachFromRoomsRoot()
-    {
-        if (Player == null) return;
-        var pt = Player.transform;
-
-        if (pt == null) return;
-
-        // RoomsRoot 캐시가 없으면 시도해서 찾아본다(씬이 바뀐 직후 등)
-        if (_roomsRootCache == null && Player.scene.IsValid())
-            _roomsRootCache = FindRoomsRoot(Player.scene);
-
-        if (_roomsRootCache == null) return;
-
-        // Player가 RoomsRoot 하위에 들어가 있으면 즉시 탈착
-        if (IsUnder(pt, _roomsRootCache))
-        {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-            Debug.Log("[PM] Detected Player under RoomsRoot → reparent to anchor.");
-#endif
-            HardReparentToAnchor(pt, Player.scene);
-        }
-    }
-
-    private static bool IsUnder(Transform child, Transform root)
-    {
-        if (child == null || root == null) return false;
-        var p = child.parent;
-        while (p != null)
-        {
-            if (p == root) return true;
-            p = p.parent;
-        }
-        return false;
+        if (!a) return;
+        try { a.Play(stateName, 0, 0f); } catch { }
     }
 }

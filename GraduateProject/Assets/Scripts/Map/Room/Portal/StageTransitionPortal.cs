@@ -3,6 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class StageTransitionPortal : MonoBehaviour
 {
+    private void Start()
+    {
+        this.gameObject.SetActive(true);
+    }
+
     private void Reset()
     {
         if (TryGetComponent<Collider2D>(out var col))

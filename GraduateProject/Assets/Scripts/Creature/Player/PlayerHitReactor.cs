@@ -1,68 +1,109 @@
 using UnityEngine;
-using System;
-using System.Collections;
 
+/// <summary>
+/// 플레이어 피격/사망 반응. EnemyHitReactor와 동일 컨셉.
+/// Animator 파라미터: isDeath(bool), 3_Damaged(trigger), 4_Death(trigger)
+/// </summary>
 [RequireComponent(typeof(HealthController))]
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(IAnimationController))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerHitReactor : MonoBehaviour, IHitReactor
 {
-    private HealthController healthCtrl;
-    private Rigidbody2D rb;
-    private IAnimationController anim;
-    private Collider2D col;
+    private HealthController _hp;
+    private Animator _anim;
+    private Rigidbody2D _rb;
+    private Collider2D _col;
 
-    private bool isDead = false;
-    private bool isInvincible = false;
+    private bool _isDead;
 
     private void Awake()
     {
-        healthCtrl = GetComponent<HealthController>();
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<IAnimationController>();
-        col = GetComponent<Collider2D>();
-
-        if (healthCtrl == null)
-            Debug.LogError($"[{nameof(PlayerHitReactor)}] HealthController�� ���� ������ ó���� �� �� �����ϴ�.");
-        if (rb == null)
-            Debug.LogError($"[{nameof(PlayerHitReactor)}] Rigidbody2D�� ���� �˹� ó���� �� �� �����ϴ�.");
-        if (anim == null)
-            Debug.LogError($"[{nameof(PlayerHitReactor)}] IAnimationController�� ���� �ִϸ��̼��� ����� �� �����ϴ�.");
-        if (col == null)
-            Debug.LogError($"[{nameof(PlayerHitReactor)}] Collider2D�� ���� �浹 ó���� �� �� �����ϴ�.");
+        _hp = GetComponent<HealthController>();
+        _anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
+        _col = GetComponent<Collider2D>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        healthCtrl.OnDead += OnDeadHandler;
+        if (_hp != null) _hp.OnDead += OnDeadHandler;
+    }
+
+    private void OnDisable()
+    {
+        if (_hp != null) _hp.OnDead -= OnDeadHandler;
     }
 
     public void OnAttacked(float damage)
     {
-        if (isDead || isInvincible) return;
+        if (_isDead) return;
 
-        // 데미지 감산
-        healthCtrl.TakeDamage(damage);
+        _hp?.TakeDamage(damage);
 
-        // 애니메이션 작동
-        anim.SetTrigger("3_Damaged");
+        // 피격 연출
+        if (_anim != null)
+            _anim.SetTrigger("3_Damaged");
     }
 
     private void OnDeadHandler()
     {
-        if (isDead) return;
-        isDead = true;
+        if (_isDead) return;
+        _isDead = true;
 
-        // 애니메이션 작동
-        anim.SetBool("isDeath", true);
-        anim.SetTrigger("4_Death");
+        if (_anim != null)
+        {
+            _anim.SetBool("isDeath", true);
+            _anim.SetTrigger("4_Death");
+        }
 
-        //  기능 정지
-        col.enabled = false;
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        if (_col) _col.enabled = false;
 
-        // 게임오버 UI
-        GameManager.Instance.UIManager.ShowDeathPopup();
+        if (_rb)
+        {
+#if UNITY_6000_0_OR_NEWER
+            _rb.linearVelocity = Vector2.zero;
+#else
+            _rb.velocity = Vector2.zero;
+#endif
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.simulated = true;
+        }
+    }
+
+    /// <summary>
+    /// Restart/부활 시 호출: 사망 상태/컴포넌트/애니메이터를 정상화
+    /// </summary>
+    public void ClearDeadFlag()
+    {
+        _isDead = false;
+
+        if (_anim != null)
+        {
+            _anim.ResetTrigger("4_Death");
+            _anim.SetBool("isDeath", false);
+            // 필요하면 Idle로 강제 점프
+            TryPlay(_anim, "IDLE");
+            TryPlay(_anim, "Idle");
+        }
+
+        if (_col) _col.enabled = true;
+
+        if (_rb)
+        {
+            _rb.bodyType = RigidbodyType2D.Dynamic;
+            _rb.simulated = true;
+#if UNITY_6000_0_OR_NEWER
+            _rb.linearVelocity = Vector2.zero;
+#else
+            _rb.velocity = Vector2.zero;
+#endif
+        }
+    }
+
+    private static void TryPlay(Animator a, string state)
+    {
+        if (!a) return;
+        try { a.Play(state, 0, 0f); } catch { }
     }
 }

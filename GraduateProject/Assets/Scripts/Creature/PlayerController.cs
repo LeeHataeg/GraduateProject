@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isDead = false;
 
-
     private void Awake()
     {
         healthCtrl = GetComponent<HealthController>();
@@ -23,21 +22,33 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<IAnimationController>();
         rb = GetComponent<Rigidbody2D>();
 
-        if (healthCtrl == null)
-            Debug.LogError($"[{nameof(PlayerController)}] HealthController Null");
-        if (movement == null)
-            Debug.LogError($"[{nameof(PlayerController)}] PlayerMovement Null");
-        if (attackCtrl == null)
-            Debug.LogError($"[{nameof(PlayerController)}] PlayerAttackController Null");
-        if (anim == null)
-            Debug.LogError($"[{nameof(PlayerController)}] IAnimationController Null");
-        if (rb == null)
-            Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D Null");
+        if (!healthCtrl) Debug.LogError($"[{nameof(PlayerController)}] HealthController Null");
+        if (!movement) Debug.LogError($"[{nameof(PlayerController)}] PlayerMovement Null");
+        if (!attackCtrl) Debug.LogError($"[{nameof(PlayerController)}] PlayerAttackController Null");
+        if (anim == null) Debug.LogError($"[{nameof(PlayerController)}] IAnimationController Null");
+        if (!rb) Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D Null");
     }
 
+    // ★ Start는 디버그 로그만 유지(한 번만 호출됨)
     private void Start()
     {
-        healthCtrl.OnDead += OnPlayerDead;
+        Debug.Log("[PC] Start() once");
+    }
+
+    private void OnEnable()
+    {
+        // 구독 유실 방지: 항상 재구독(중복 방지 위해 먼저 제거 후 추가)
+        if (healthCtrl != null)
+        {
+            healthCtrl.OnDead -= OnPlayerDead;
+            healthCtrl.OnDead += OnPlayerDead;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (healthCtrl != null)
+            healthCtrl.OnDead -= OnPlayerDead;
     }
 
     private void OnPlayerDead()
@@ -45,44 +56,44 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        movement.enabled = false;
-        attackCtrl.enabled = false;
+        if (movement) movement.enabled = false;
+        if (attackCtrl) attackCtrl.enabled = false;
 
-        anim.SetBool("isDeath", true);
-        anim.SetTrigger("4_Death");
+        if (anim != null)
+        {
+            anim.SetBool("isDeath", true);
+            anim.SetTrigger("4_Death");
+        }
 
 #if UNITY_6000_0_OR_NEWER
-        rb.linearVelocity = Vector2.zero;
+        if (rb) rb.linearVelocity = Vector2.zero;
 #else
-        rb.velocity = Vector2.zero;
+        if (rb) rb.velocity = Vector2.zero;
 #endif
+        if (rb) rb.bodyType = RigidbodyType2D.Kinematic;
 
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        // DeathPopup 호출
+        var ui = GameManager.Instance ? GameManager.Instance.UIManager : null;
+        if (ui == null)
+        {
+            // 씬에 있는 UIManager를 폴백으로 탐색
+            ui = FindFirstObjectByType<UIManager>(FindObjectsInactive.Include);
+        }
 
-        var ui = GameManager.Instance != null ? GameManager.Instance.UIManager : null;
         if (ui != null)
-        {
             ui.ShowDeathPopup();
-        }
         else
-        {
-            Debug.Log("ziral");
             Debug.LogWarning("[PlayerController] UIManager가 없어 DeathPopup을 띄울 수 없습니다.");
-        }
 
-        // === [ADD] Echo Runner: 플레이어 사망 처리 ===
+        // Echo Runner
         if (EchoManager.I != null)
-        {
             EchoManager.I.EndBossBattle(playerDied: true);
-        }
     }
 
-    // PlayerController.cs
     public void Revive()
     {
         isDead = false;
 
-        // 컨트롤/충돌 복구
         var col = GetComponent<Collider2D>();
         if (col) col.enabled = true;
 
@@ -91,7 +102,7 @@ public class PlayerController : MonoBehaviour
 #if UNITY_6000_0_OR_NEWER
             rb.linearVelocity = Vector2.zero;
 #else
-        rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
 #endif
             rb.angularVelocity = 0f;
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -100,29 +111,12 @@ public class PlayerController : MonoBehaviour
         if (movement) movement.enabled = true;
         if (attackCtrl) attackCtrl.enabled = true;
 
-        // 애니 상태 복구
         if (anim != null)
         {
             anim.SetBool("isDeath", false);
-            // (선택) 트리거 초기화 유틸이 있다면 써주고, 없다면 Idle로 Play
             anim.Play("Idle");
         }
 
-        // HP 만땅
-        if (healthCtrl != null)
-        {
-            // 안전하게 HP를 최대치로
-            //typeof(HealthController).GetField("currentHp",
-            //    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public)
-            //    ?.SetValue(healthCtrl, healthCtrl.MaxHp);
-
-            healthCtrl.ResetHpToMax();
-        }
-
-        //if (hitReactor != null)
-        //{
-        //    hitReactor.SetTemporaryInvincible(0.2f); // 구현되어 있다면
-        //}
+        healthCtrl?.ResetHpToMax();
     }
-
 }

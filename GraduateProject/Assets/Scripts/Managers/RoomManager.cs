@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,19 +23,14 @@ public class RoomManager : MonoBehaviour
     public bool forceAttachToActiveScene = true;
 
     // === Rooms Cleanup (optional) ===
-    [Header("Rooms Cleanup (optional)")]
-    public Grid Grid;
-    public string roomTag = "Room";
+    [Header("Rooms Root / Cleanup")]
+    public Grid Grid;                 // RoomsRoot(Grid)
+    public string roomTag = "Room";   // í´ë°± íƒœê·¸
 
-    // ÁøÇà »óÅÂ
     private bool triedDiscover;
     private Coroutine _discoverCo;
 
-    // ¹æ Á¤¸® µ¿ÀÛ »óÅÂ
-    private bool _isClearing;
-    public event Action OnRoomsCleared; // ¿ÜºÎ°¡ ±â´Ù¸± ¼ö ÀÖ°Ô ÀÌº¥Æ® Á¦°ø
-
-    private void Awake()
+    void Awake()
     {
         _startPoint = null;
         triedDiscover = false;
@@ -53,14 +48,59 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        // ì”¬ ë¡œë“œ ì§í›„ë¼ë„ RoomsRootê°€ DDOLë¡œ ë‚¨ì•„ìˆì§€ ì•Šë„ë¡ ê°•ì œ
+        EnsureRoomsRootIsSceneLocal();
+
         if (autoDiscoverStartPoint && !triedDiscover)
             TryAutoDiscoverStartPoint();
     }
 
-    private void OnDisable() => StopDiscoverCo();
-    private void OnDestroy() => StopDiscoverCo();
+    void OnDisable() => StopDiscoverCo();
+    void OnDestroy() => StopDiscoverCo();
+
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // RoomsRootë¥¼ â€˜í•­ìƒâ€™ ì•¡í‹°ë¸Œ ì”¬ì— ìœ„ì¹˜ì‹œí‚¤ê³  ì´ë¦„ë„ í†µì¼
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    public void EnsureRoomsRootIsSceneLocal()
+    {
+        if (Grid == null)
+        {
+            // ì”¬ ì•ˆì— RoomsRootê°€ ìˆìœ¼ë©´ ë¶™ì¡ì•„ì˜´
+            var found = TryFindRoomsRootInActiveScene();
+            if (found == null)
+            {
+                var go = new GameObject("RoomsRoot", typeof(Grid));
+                Grid = go.GetComponent<Grid>();
+                SceneManager.MoveGameObjectToScene(go, SceneManager.GetActiveScene());
+#if UNITY_EDITOR
+                Debug.Log("[RoomManager] RoomsRoot(Grid) created in active scene.");
+#endif
+            }
+            else
+            {
+                Grid = found.GetComponent<Grid>();
+#if UNITY_EDITOR
+                Debug.Log("[RoomManager] RoomsRoot(Grid) bound from active scene.");
+#endif
+            }
+            return;
+        }
+
+        // Gridê°€ ì´ë¯¸ ìˆëŠ”ë° DDOLì— ìˆìœ¼ë©´ ê°•ì œë¡œ ì˜®ê¹€
+        if (Grid.gameObject.scene.name == "DontDestroyOnLoad")
+        {
+            var active = SceneManager.GetActiveScene();
+            SceneManager.MoveGameObjectToScene(Grid.gameObject, active);
+#if UNITY_EDITOR
+            Debug.Log("[RoomManager] Moved RoomsRoot(Grid) from DDOL to active scene.");
+#endif
+        }
+
+        if (!string.Equals(Grid.gameObject.name, "RoomsRoot", StringComparison.OrdinalIgnoreCase))
+            Grid.gameObject.name = "RoomsRoot";
+    }
 
     public void SetStartPoint(Vector2 pos)
     {
@@ -71,92 +111,63 @@ public class RoomManager : MonoBehaviour
         OnSetStartPoint?.Invoke(pos);
     }
 
-    /// <summary>
-    /// ¹æ Á¤¸®¸¦ ¿¹¾àÇÑ´Ù(¾ÈÀü ½ÃÁ¡¿¡ ½ÇÇà). Æ®¸®°Å/¹°¸® Äİ¹é Áß¿¡µµ È£Ãâ OK.
-    /// </summary>
+    // ì¦‰ì‹œ íŒŒê´´/ì •ë¦¬(ìœ„í—˜) ëŒ€ì‹ , í•­ìƒ ì½”ë£¨í‹´ ë²„ì „ì„ ì‚¬ìš©í•˜ë„ë¡ ìœ ë„
     public void ResetRooms(bool destroyRooms = true)
     {
-        // ÄÚ·çÆ¾À¸·Î ¹Ì·ï¼­ ¾ÈÀü ½ÃÁ¡¿¡ ¼öÇà
+        // í˜¸í™˜ìš©: ë‚´ë¶€ì ìœ¼ë¡œ ì½”ë£¨í‹´ í˜¸ì¶œ
         StartCoroutine(Co_ResetRooms(destroyRooms));
     }
 
-    /// <summary>
-    /// ¹æ Á¤¸®¸¦ ¼öÇàÇÏ°í ¿Ï·á±îÁö ±â´Ù¸®´Â ÄÚ·çÆ¾.
-    /// </summary>
-    public IEnumerator Co_ResetRooms(bool destroyRooms = true)
+    public IEnumerator Co_ResetRooms(bool destroyRooms)
     {
-        // Áßº¹ ÁøÀÔ ¹æÁö
-        if (_isClearing)
-            yield break;
-
-        _isClearing = true;
-
-        // ¹°¸®/·»´õ/¾Ö´Ï¸ŞÀÌ¼Ç Äİ¹éÀ» ¸ğµÎ ¹ş¾î³ª±â À§ÇØ ÇÑ ÇÁ·¹ÀÓ ¸»¹Ì±îÁö ´ë±â
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForEndOfFrame();
-
-        HardReset(); // ½ÃÀÛÁ¡/ÇÃ·¡±× ÃÊ±âÈ­
+        HardReset();
+        EnsureRoomsRootIsSceneLocal();
 
         if (!destroyRooms)
         {
 #if UNITY_EDITOR
-            Debug.Log("[RoomManager] ResetRooms: startPoint only.");
+            Debug.Log("[RoomManager] Co_ResetRooms: startPoint only.");
 #endif
-            _isClearing = false;
-            OnRoomsCleared?.Invoke();
             yield break;
         }
 
-        // null-safe roomsRoot
-        var root = (Grid != null ? Grid.transform : null) ?? TryFindRoomsRootInActiveScene();
+        // í•œ í”„ë ˆì„ ë¹„ì¼œì„œ(ë¬¼ë¦¬/ì• ë‹ˆë©”ì´ì…˜ ì½œë°± íšŒí”¼)
+        yield return null;
+
         int count = 0;
+        Transform root = Grid ? Grid.transform : TryFindRoomsRootInActiveScene();
 
         if (root != null)
         {
-            // ÆÄ±« ´ë»ó ¼öÁı ÈÄ Destroy (Áï½Ã ÆÄ±« ±İÁö)
-            var toDestroy = new List<GameObject>(root.childCount);
+            // RoomsRoot í•˜ìœ„ ì „ë¶€ ì•ˆì „í•˜ê²Œ Destroy
             for (int i = root.childCount - 1; i >= 0; i--)
             {
                 var child = root.GetChild(i);
                 if (IsProtectedDeep(child)) continue;
-                toDestroy.Add(child.gameObject);
+                Destroy(child.gameObject);
+                count++;
             }
-
-            foreach (var go in toDestroy)
-            {
-                if (go) Destroy(go); // ¡Ú DestroyImmediate »ç¿ë ±İÁö
-            }
-
-            count = toDestroy.Count;
 #if UNITY_EDITOR
-            Debug.Log($"[RoomManager] ResetRooms: cleared {count} rooms under '{root.name}'.");
+            Debug.Log($"[RoomManager] Co_ResetRooms: cleared {count} rooms under '{root.name}'.");
 #endif
         }
         else
         {
-            // roomsRoot°¡ ¾øÀ» ¶§ ÅÂ±× ±â¹İ Æú¹é
+            // í´ë°±: íƒœê·¸ ê¸°ë°˜ìœ¼ë¡œ ì œê±°
             var list = FindTaggedInActiveScene(roomTag);
             foreach (var go in list)
             {
-                if (go == null) continue;
+                if (!go) continue;
                 var t = go.transform;
                 if (IsProtectedDeep(t)) continue;
-                Destroy(go); // ¡Ú Destroy
+                Destroy(go);
                 count++;
             }
 #if UNITY_EDITOR
-            Debug.Log($"[RoomManager] ResetRooms: cleared {count} tagged('{roomTag}') rooms (no roomsRoot).");
+            Debug.Log($"[RoomManager] Co_ResetRooms: cleared {count} tagged('{roomTag}') rooms (no roomsRoot).");
 #endif
         }
-
-        // ÆÄ±«°¡ ½ÇÁ¦·Î ¹İ¿µµÇµµ·Ï ÇÑ ÇÁ·¹ÀÓ Á¤µµ ´õ ´ë±â
-        yield return null;
-
-        _isClearing = false;
-        OnRoomsCleared?.Invoke();
     }
-
-    public void ResetRooms() => ResetRooms(true);
 
     public void HardReset()
     {
@@ -189,7 +200,9 @@ public class RoomManager : MonoBehaviour
         var active = SceneManager.GetActiveScene();
         if (!active.IsValid()) yield break;
 
-        var root = (Grid != null ? Grid.transform : null) ?? TryFindRoomsRootInActiveScene();
+        EnsureRoomsRootIsSceneLocal();
+        var root = Grid ? Grid.transform : TryFindRoomsRootInActiveScene();
+
         if (root != null)
         {
             var rooms = FindAllInChildrenByTag(root.transform, startRoomTag, includeInactive: true);
@@ -203,9 +216,9 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        foreach (var rootGo in active.GetRootGameObjects())
+        foreach (var go in active.GetRootGameObjects())
         {
-            var direct = FindInChildrenByTag(rootGo.transform, playerSpawnTag, includeInactive: true);
+            var direct = FindInChildrenByTag(go.transform, playerSpawnTag, includeInactive: true);
             if (direct != null) { SetStartPoint(direct.position); yield break; }
         }
 
@@ -223,6 +236,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€ helpers / guards â”€â”€â”€â”€â”€â”€â”€â”€â”€
     private static bool IsProtected(Transform t)
     {
         if (t == null) return false;
@@ -259,10 +273,9 @@ public class RoomManager : MonoBehaviour
         if (!active.IsValid()) return null;
 
         foreach (var go in active.GetRootGameObjects())
-        {
-            if (go.name.Equals("RoomsRoot", System.StringComparison.OrdinalIgnoreCase))
+            if (go.name.Equals("RoomsRoot", StringComparison.OrdinalIgnoreCase))
                 return go.transform;
-        }
+
         return null;
     }
 

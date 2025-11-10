@@ -10,10 +10,6 @@ public class InventorySystem : MonoBehaviour
 
     public event Action OnInventoryChanged;
 
-    /// <summary>
-    /// 아이템을 인벤토리에 추가합니다.
-    /// 스택 가능한 아이템은 기존 슬롯에 합칩니다.
-    /// </summary>
     public bool AddItem(ItemData item, int quantity = 1)
     {
         if (item.maxStack > 1)
@@ -35,7 +31,6 @@ public class InventorySystem : MonoBehaviour
             if (slots.Count >= capacity)
             {
                 OnInventoryChanged?.Invoke();
-
                 return false;
             }
             int add = (item.maxStack > 1) ? Mathf.Min(item.maxStack, quantity) : 1;
@@ -50,7 +45,6 @@ public class InventorySystem : MonoBehaviour
     public bool CanAdd(ItemData item, int quantity = 1)
     {
         int free = 0;
-        // 1) 스택 여유
         if (item.maxStack > 1)
         {
             foreach (var s in slots)
@@ -59,16 +53,10 @@ public class InventorySystem : MonoBehaviour
                 if (free >= quantity) return true;
             }
         }
-        // 2) 빈 칸
         int empty = capacity - slots.Count;
         return (free + empty) >= quantity;
     }
 
-
-    /// <summary>
-    /// 인벤토리에서 아이템을 제거합니다.
-    /// 수량만큼 빼고 0이 되면 슬롯을 제거합니다.
-    /// </summary>
     public bool RemoveItem(ItemData item, int quantity = 1)
     {
         for (int i = slots.Count - 1; i >= 0 && quantity > 0; i--)
@@ -92,9 +80,6 @@ public class InventorySystem : MonoBehaviour
         return quantity <= 0;
     }
 
-    /// <summary>
-    /// 특정 아이템의 총 수량을 조회합니다.
-    /// </summary>
     public int GetItemCount(ItemData item)
     {
         int count = 0;
@@ -105,6 +90,7 @@ public class InventorySystem : MonoBehaviour
         }
         return count;
     }
+
     public bool RemoveAt(int index, int quantity = 1)
     {
         if (index < 0 || index >= slots.Count) return false;
@@ -116,5 +102,14 @@ public class InventorySystem : MonoBehaviour
         OnInventoryChanged?.Invoke();
         return true;
     }
-}
 
+    // ★ 추가: 전체 초기화(죽고 재시작 시 런 아이템을 날림)
+    public void ClearAll()
+    {
+        slots.Clear();
+        OnInventoryChanged?.Invoke();
+#if UNITY_EDITOR
+        Debug.Log("[Inventory] Cleared all items.");
+#endif
+    }
+}
