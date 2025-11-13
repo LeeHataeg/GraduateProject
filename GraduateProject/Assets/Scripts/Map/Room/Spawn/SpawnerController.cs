@@ -123,7 +123,7 @@ public class SpawnerController : MonoBehaviour
             // ★ 현재 스테이지 참조
             int stage = 1;
             var gm = GameManager.Instance;
-            if (gm != null) stage = Mathf.Max(1, gm.currentStage);
+            if (gm != null) stage = Mathf.Max(1, gm.CurrentStage);
 
             // Stage×RoomType 조합으로 카탈로그 조회
             var catalog = EnemyArchetypeRegistry.GetCatalog(

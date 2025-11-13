@@ -1,14 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// 원본 구조 유지 + 개선:
-/// 1) 입력 콜백 구독을 Awake → OnEnable, 해제를 OnDisable/OnDestroy로 이동(수명 주기 대칭).
-/// 2) 람다 구독 제거 → 전용 메서드로 구독/해제 가능(안전한 Unbind 보장).
-/// 3) 중복 바인딩 방지 플래그, 액션맵 Enable/Disable 관리.
-/// 4) Camera.main/transform 접근 널 가드(IsUsable).
-/// 5) 보스 필드 언로드/씬 전환 시 남는 콜백으로 인한 MissingReferenceException 방지.
-/// </summary>
 public class PlayerInputController : CharacterController
 {
     #region MOVE_VARIABLES
@@ -17,7 +9,7 @@ public class PlayerInputController : CharacterController
     // Look
     private Vector2 lookDir;
     private Vector2 mousePos;
-    // Jump / Hit / Inventory state (필요시 사용)
+    // Jump, Hit, Inventory state
     private float isPressed;
     private float isHit;
     private float isTurnedOnInven;
@@ -46,7 +38,6 @@ public class PlayerInputController : CharacterController
 
         if (plInput != null)
         {
-            // 우선 Player라는 이름의 맵을 찾고, 없으면 currentActionMap 사용
             mainActionMap = plInput.actions?.FindActionMap("Player", throwIfNotFound: false)
                            ?? plInput.currentActionMap;
         }
@@ -59,7 +50,6 @@ public class PlayerInputController : CharacterController
             return;
         }
 
-        // 액션 참조만 잡아두고, 구독은 OnEnable에서 한다.
         moveAction = mainActionMap.FindAction("Move", throwIfNotFound: false);
         teleportAction = mainActionMap.FindAction("Teleport", throwIfNotFound: false);
         crouchAction = mainActionMap.FindAction("Crouch", throwIfNotFound: false);
@@ -83,7 +73,6 @@ public class PlayerInputController : CharacterController
 
     private void OnDestroy()
     {
-        // 파괴 경로에서도 혹시 남아있을 구독 제거(안전망)
         Unbind();
     }
 
@@ -93,7 +82,6 @@ public class PlayerInputController : CharacterController
 
         if (!mainActionMap.enabled) mainActionMap.Enable();
 
-        // === 콜백 구독(람다 → 메서드로 변경하여 언바인드 가능) ===
         if (crouchAction != null)
         {
             crouchAction.performed += OnCrouchPerformed;
@@ -109,8 +97,6 @@ public class PlayerInputController : CharacterController
         if (lookAction != null)
         {
             lookAction.performed += OnLookPerformed;
-            // 필요시 canceled에서도 0 벡터 전달 등 처리 가능
-            // lookAction.canceled  += OnLookCanceled;
         }
 
         if (inventoryAction != null) inventoryAction.performed += OnInventoryPerformed;
@@ -144,19 +130,27 @@ public class PlayerInputController : CharacterController
         if (lookAction != null)
         {
             lookAction.performed -= OnLookPerformed;
-            // lookAction.canceled  -= OnLookCanceled;
         }
 
-        if (inventoryAction != null) inventoryAction.performed -= OnInventoryPerformed;
-        if (hitAction != null) hitAction.performed -= OnHitPerformed;
-        if (jumpAction != null) jumpAction.performed -= OnJumpPerformed;
-        if (teleportAction != null) teleportAction.performed -= OnTeleportPerformed;
-        if (dashAction != null) dashAction.performed -= OnDashPerformed;
+        if (inventoryAction != null) 
+            inventoryAction.performed -= OnInventoryPerformed;
 
-        // if (interactAction != null) interactAction.performed -= OnInteractPerformed;
+        if (hitAction != null) 
+
+            hitAction.performed -= OnHitPerformed;
+
+        if (jumpAction != null) 
+            jumpAction.performed -= OnJumpPerformed;
+
+        if (teleportAction != null) 
+            teleportAction.performed -= OnTeleportPerformed;
+
+        if (dashAction != null) 
+            dashAction.performed -= OnDashPerformed;
 
         // 씬 전환 시 불필요한 업데이트 루프를 막기 위해 비활성화
-        if (mainActionMap.enabled) mainActionMap.Disable();
+        if (mainActionMap.enabled) 
+            mainActionMap.Disable();
 
         _bound = false;
     }
@@ -234,33 +228,37 @@ public class PlayerInputController : CharacterController
 
     public void OnLook(Vector2 vec)
     {
-        // 화면 좌표 → 월드 좌표
+        // 월드 좌표 기준으로 계산
         mousePos = vec;
 
         Camera cam = Camera.main;
-        if (cam == null) return; // 씬 전환 타이밍에 메인 카메라가 아직 없을 수 있음
+        if (cam == null) 
+            return;
 
         Vector3 world = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Mathf.Abs(cam.transform.position.z)));
-        // transform 접근 시점 가드
-        if (!IsUsable()) return;
+        
+        if (!IsUsable()) 
+            return;
 
         lookDir = (Vector2)world - (Vector2)transform.position;
         CallLookEvent(lookDir);
     }
     #endregion
 
-    /// <summary>
-    /// 파괴/비활성/트랜스폼 접근 불가 등 예외 타이밍 가드
-    /// </summary>
     private bool IsUsable()
     {
-        if (this == null) return false;
-        if (!isActiveAndEnabled) return false;
+        if (this == null) 
+            return false;
+        if (!isActiveAndEnabled) 
+            return false;
 
-        // Unity 특성상 파괴 직후 프레임에 transform 접근 시 예외가 날 수 있으므로 한 번 잡아준다.
         Transform t;
-        try { t = transform; }
-        catch { return false; }
+        try { 
+            t = transform; 
+        }
+        catch { 
+            return false; 
+        }
 
         return t != null;
     }

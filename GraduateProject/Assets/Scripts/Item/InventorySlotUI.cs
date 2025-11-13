@@ -101,7 +101,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
                 EchoInventoryBridge.RaiseItemUsed(playerGO, eqData.name);
 
             // 2) 현재 클릭한 인벤 슬롯에서 정확히 1개 제거(★ 먼저 제거)
-            if (!inventory.RemoveAt(slotIndex, 1))
+            if (!inventory.RemoveAtInventory(slotIndex, 1))
             {
                 Debug.LogWarning("[INV] RemoveAt failed after equip. Consider rollback logic.");
                 return;

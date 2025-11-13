@@ -43,8 +43,8 @@ public class MapGenerator : MonoBehaviour
         }
 
         var gm = GameManager.Instance;
-        if (gm.currentStage <= gm.stages.Count && gm.stages[gm.currentStage - 1] != null)
-            mapSO = gm.stages[gm.currentStage - 1];
+        if (gm.CurrentStage <= gm.Stages.Count && gm.Stages[gm.CurrentStage - 1] != null)
+            mapSO = gm.Stages[gm.CurrentStage - 1];
 
         // ★ RoomsRoot는 항상 씬 로컬 보장
         gm.RoomManager.EnsureRoomsRootIsSceneLocal();

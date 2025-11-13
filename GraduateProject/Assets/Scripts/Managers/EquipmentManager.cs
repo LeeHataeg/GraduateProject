@@ -7,11 +7,11 @@ using static Define;
 public class EquipmentManager : MonoBehaviour
 {
     [Header("Refs")]
-    public InventorySystem inventory; // 인스펙터 할당 가능 / 런타임 탐색 백업
+    public InventorySystem Inventory; // 인스펙터에서 할당
 
     private StatController stats;
-
-    // 슬롯별 장착 장비
+    
+    // 각 슬롯과 장착 부위 매핑
     [SerializeField]
     private Dictionary<EquipmentSlot, EquipmentItemData> equipped = new();
 
@@ -31,23 +31,19 @@ public class EquipmentManager : MonoBehaviour
         // 1순위: 인스펙터에 수동 연결
         // 2순위: UIManager가 들고 있는 InventorySys
         // 3순위: 씬 전체에서 검색(비활성 포함)
-        if (inventory == null)
-            inventory = GameManager.Instance?.UIManager?.InventorySys;
+        if (Inventory == null)
+            Inventory = GameManager.Instance?.UIManager?.InventorySys;
 
-        if (inventory == null)
-            inventory ??= FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
+        if (Inventory == null)
+            Inventory ??= FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
 
-        if (inventory == null)
+        if (Inventory == null)
             Debug.LogWarning("[EquipmentManager] InventorySystem을 찾지 못했습니다. 장착/해제가 인벤토리에 반영되지 않습니다.");
     }
 
     public EquipmentItemData GetEquipped(EquipmentSlot slot)
         => equipped.TryGetValue(slot, out var it) ? it : null;
 
-    /// <summary>
-    /// 인벤토리를 절대 건드리지 않는 장착. 
-    /// 교체된 이전 장비(있다면)를 out으로 반환.
-    /// </summary>
     public bool TryEquip(EquipmentItemData item, out EquipmentItemData prevOut)
     {
         prevOut = null;
@@ -56,7 +52,7 @@ public class EquipmentManager : MonoBehaviour
         var slot = item.slot;
         var prev = GetEquipped(slot);
 
-        // 스탯 갱신 순서: 이전꺼 빼고 → 새것 더하기
+        // 옛날거 제거(인벤토리로 복귀), 새삥 장착
         if (prev != null)
             stats.Apply(prev.modifiers, -1);
 
@@ -69,10 +65,6 @@ public class EquipmentManager : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// 인벤토리를 절대 건드리지 않는 해제.
-    /// 성공 시 해제된 아이템을 out 반환.
-    /// </summary>
     public bool TryUnequip(EquipmentSlot slot, out EquipmentItemData removed)
     {
         removed = null;

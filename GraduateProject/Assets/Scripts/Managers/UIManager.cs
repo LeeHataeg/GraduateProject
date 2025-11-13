@@ -59,8 +59,8 @@ public class UIManager : MonoBehaviour
             equipmentPanel = FindFirstObjectByType<EquipmentUI>(FindObjectsInactive.Include);
 
         // 2) EquipmentManager ↔ InventorySystem 연결 (장비/인벤 동기화에 필요)
-        if (eq != null && eq.inventory == null)
-            eq.inventory = InventorySys;
+        if (eq != null && eq.Inventory == null)
+            eq.Inventory = InventorySys;
 
         // 3) EquipmentUI에 방금 스폰된 eq 바인딩
         if (equipmentPanel != null)

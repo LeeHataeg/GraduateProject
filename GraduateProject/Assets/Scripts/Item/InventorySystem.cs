@@ -5,22 +5,23 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
     [Header("Inventory Settings")]
-    [Tooltip("최대 슬롯 개수")] public int capacity = 20;
-    [Tooltip("현재 슬롯 목록")] public List<InventorySlot> slots = new List<InventorySlot>();
+    [Tooltip("최대 슬롯 개수")] public int MaxItemCount = 20;
+    [Tooltip("현재 슬롯 목록")] public List<InventorySlot> Slots = new List<InventorySlot>();
 
+    // 인벤토리 UI를 켤 때 마다 호출되는 이벤트 : 인벤토리 변화(장착, 제거, 추가 등)를 반영하기 위해
     public event Action OnInventoryChanged;
 
     public bool AddItem(ItemData item, int quantity = 1)
     {
         if (item.maxStack > 1)
         {
-            for (int i = 0; i < slots.Count && quantity > 0; i++)
+            for (int i = 0; i < Slots.Count && quantity > 0; i++)
             {
-                if (slots[i].item == item && slots[i].quantity < item.maxStack)
+                if (Slots[i].item == item && Slots[i].quantity < item.maxStack)
                 {
-                    int space = item.maxStack - slots[i].quantity;
+                    int space = item.maxStack - Slots[i].quantity;
                     int add = Mathf.Min(space, quantity);
-                    slots[i].quantity += add;
+                    Slots[i].quantity += add;
                     quantity -= add;
                 }
             }
@@ -28,50 +29,51 @@ public class InventorySystem : MonoBehaviour
 
         while (quantity > 0)
         {
-            if (slots.Count >= capacity)
+            if (Slots.Count >= MaxItemCount)
             {
                 OnInventoryChanged?.Invoke();
                 return false;
             }
             int add = (item.maxStack > 1) ? Mathf.Min(item.maxStack, quantity) : 1;
-            slots.Add(new InventorySlot(item, add));
+            Slots.Add(new InventorySlot(item, add));
             quantity -= add;
         }
 
         OnInventoryChanged?.Invoke();
         return true;
     }
-
-    public bool CanAdd(ItemData item, int quantity = 1)
+    
+    // 아직 스택형 아이템(예를 들어 포혓)이 적용되지 않아 사용되지 않는 함수
+    public bool CanAddItem(ItemData item, int quantity = 1)
     {
         int free = 0;
         if (item.maxStack > 1)
         {
-            foreach (var s in slots)
+            foreach (var s in Slots)
             {
                 if (s.item == item) free += (item.maxStack - s.quantity);
                 if (free >= quantity) return true;
             }
         }
-        int empty = capacity - slots.Count;
+        int empty = MaxItemCount - Slots.Count;
         return (free + empty) >= quantity;
     }
 
     public bool RemoveItem(ItemData item, int quantity = 1)
     {
-        for (int i = slots.Count - 1; i >= 0 && quantity > 0; i--)
+        for (int i = Slots.Count - 1; i >= 0 && quantity > 0; i--)
         {
-            if (slots[i].item == item)
+            if (Slots[i].item == item)
             {
-                if (slots[i].quantity > quantity)
+                if (Slots[i].quantity > quantity)
                 {
-                    slots[i].quantity -= quantity;
+                    Slots[i].quantity -= quantity;
                     quantity = 0;
                 }
                 else
                 {
-                    quantity -= slots[i].quantity;
-                    slots.RemoveAt(i);
+                    quantity -= Slots[i].quantity;
+                    Slots.RemoveAt(i);
                 }
             }
         }
@@ -83,7 +85,7 @@ public class InventorySystem : MonoBehaviour
     public int GetItemCount(ItemData item)
     {
         int count = 0;
-        foreach (var slot in slots)
+        foreach (var slot in Slots)
         {
             if (slot.item == item)
                 count += slot.quantity;
@@ -91,22 +93,21 @@ public class InventorySystem : MonoBehaviour
         return count;
     }
 
-    public bool RemoveAt(int index, int quantity = 1)
+    public bool RemoveAtInventory(int index, int quantity = 1)
     {
-        if (index < 0 || index >= slots.Count) return false;
+        if (index < 0 || index >= Slots.Count) return false;
 
-        var s = slots[index];
-        if (quantity >= s.quantity) slots.RemoveAt(index);
+        var s = Slots[index];
+        if (quantity >= s.quantity) Slots.RemoveAt(index);
         else s.quantity -= quantity;
 
         OnInventoryChanged?.Invoke();
         return true;
     }
 
-    // ★ 추가: 전체 초기화(죽고 재시작 시 런 아이템을 날림)
-    public void ClearAll()
+    public void ClearAllItems()
     {
-        slots.Clear();
+        Slots.Clear();
         OnInventoryChanged?.Invoke();
 #if UNITY_EDITOR
         Debug.Log("[Inventory] Cleared all items.");

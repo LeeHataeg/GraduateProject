@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// 스테이지 진행/맵 생성/보스필드/포탈/재시작 총괄
-/// - InGameScene 로드시 PlayerManager.PreparePlayerForScene() 호출(단일 보장)
-/// - 로드 직후 잠깐 대기 후 StartPoint로 텔레포트(맵-플레이어 타이밍 보정)
-/// </summary>
+// 겜 시작, 진행, 맵 생성 호출, 보스 필드 재시작 등 담당
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -15,10 +11,8 @@ public class GameManager : MonoBehaviour
     // Managers
     public DataManager DataManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
-    public PoolManager PoolManager { get; private set; }
     public RoomManager RoomManager { get; private set; }
     public PlayerManager PlayerManager { get; private set; }
-    //public RankingManager RankingManager { get; private set; }
     public UIManager UIManager { get; private set; }
 
     public void RegisterUIManager(UIManager ui)
@@ -29,43 +23,46 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    // Stage Maps
-    [Header("Stage MapSOs")]
-    public List<MapSO> stages = new List<MapSO>();
-    [Tooltip("1부터 시작하는 현재 스테이지 인덱스")]
-    public int currentStage = 1;
+    // 스테이지 맵 (MapSO)을 리스트로 관리
+    //이때ㅑ 각 인덱스는 stage 순서
+    [Header("Stage별 MapSO (순서 주의)")]
+    public List<MapSO> Stages = new List<MapSO>();
+    public int CurrentStage = 1;    // 이 변수는 현재 인덱스
 
-    // Stage Transition Portal
-    [Header("Stage Transition Portal")]
+    // 스테이지 전송 포탈 에셋
+    [Header("스테이지 전송 포탈")]
     public GameObject StagePortalPrefab;
-    public string stagePortalResourcesPath = "Prefabs/Maps/Portal/Portal_Purple";
 
-    private StageTransitionPortal _spawnedStagePortal;
-    private bool _bossClearHandledThisStage = false;
+    private StageTransitionPortal stagePortal;
+    private bool isBossCleared = false;
 
-    // BossField
-    [Header("BossField (Runtime)")]
-    public Transform bossFieldRootParent;
-    private GameObject _currentBossField;
+    [Header("BossField 관련 변수 (Runtime 체크용)")]
+    public Transform BossFieldRoot;
+    private GameObject curBossField;
 
-    // Internals
-    private MapGenerator _mapGen;
+    private MapGenerator mapGen;
 
     private void Awake()
     {
+        // 싱글톤 ㅇㅇ
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // NULL 예외 처리
         EnsureRoomManager();
         EnsurePlayerManager();
         EnsureMapGenerator();
 
+        // 씬 전환에 대해 이벤트 구독
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        if (!StagePortalPrefab && !string.IsNullOrEmpty(stagePortalResourcesPath))
-            StagePortalPrefab = Resources.Load<GameObject>(stagePortalResourcesPath);
+        // 스테이지 전환 포탈 NULL 예외 처리
+        if (!StagePortalPrefab && !string.IsNullOrEmpty(Const.Prefabs_Purple_Portal))
+            StagePortalPrefab = Resources.Load<GameObject>(Const.Prefabs_Purple_Portal);
 
+        // Enemy 프리팹과 기타 SO들 로드
+        //  아래는 그 예상(혹여나 경로명ㅇㅣ 다를 까봐) 경로들
         EnemyArchetypeRegistry.LoadAll(
             "SO/Stats/Enemies/Archtype",
             "SO/Stats/Enemies/Archetype",
@@ -76,105 +73,97 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (this) SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (this == null)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (RoomManager == null) EnsureRoomManager();
-        if (PlayerManager == null) EnsurePlayerManager();
-        if (_mapGen == null) EnsureMapGenerator();
+        if (RoomManager == null) 
+            EnsureRoomManager();
+        if (PlayerManager == null) 
+            EnsurePlayerManager();
+        if (mapGen == null) 
+            EnsureMapGenerator();
 
-        // ★ InGameScene 진입 시: Player 단일 보장 + 텔레포트 보정
-        if (scene.name == PlayerManager?.gameplaySceneName)
+        // "InGameScene" 진입 췤
+        if (scene.name == Const.Scene_InGame)
         {
-            PlayerManager.PreparePlayerForScene();
-            StartCoroutine(Co_TeleportPlayerToStartAfterMap());
+            PlayerManager.PreparePlayerObj();  // Player 단독 보장
+            PlayerManager.SpawnToStartPoint();   //. Playger 스폰 위치 지정.
         }
     }
 
-    private IEnumerator Co_TeleportPlayerToStartAfterMap()
-    {
-        // 맵 생성(Start 코루틴)과 타이밍을 맞추기 위해 몇 프레임 대기
-        float t = 0.3f;
-        while (t > 0f)
-        {
-            t -= Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        if (PlayerManager != null && PlayerManager.UnitRoot != null)
-            RoomManager?.TeleportToStart(PlayerManager.UnitRoot.transform);
-    }
-
-    // Ensure helpers
+    
     private void EnsureRoomManager()
     {
-        if (RoomManager == null) RoomManager = FindFirstObjectByType<RoomManager>();
+        if (RoomManager == null) 
+            RoomManager = FindFirstObjectByType<RoomManager>();
+
         if (RoomManager == null)
         {
             var go = new GameObject("RoomManager");
             RoomManager = go.AddComponent<RoomManager>();
             DontDestroyOnLoad(go);
-#if UNITY_EDITOR
-            Debug.Log("[GameManager] RoomManager created on the fly.");
-#endif
         }
     }
 
     private void EnsurePlayerManager()
     {
-        if (PlayerManager == null) PlayerManager = FindFirstObjectByType<PlayerManager>();
+        if (PlayerManager == null)
+            PlayerManager = FindFirstObjectByType<PlayerManager>();
+
         if (PlayerManager == null)
         {
             var go = new GameObject("PlayerManager");
             PlayerManager = go.AddComponent<PlayerManager>();
             DontDestroyOnLoad(go);
-#if UNITY_EDITOR
-            Debug.Log("[GameManager] PlayerManager created on the fly.");
-#endif
         }
     }
 
     private void EnsureMapGenerator()
     {
-        if (_mapGen == null) _mapGen = FindFirstObjectByType<MapGenerator>();
+        if (mapGen == null)
+            mapGen = FindFirstObjectByType<MapGenerator>();
+
+        // TODO - 이것도 없으면 만들어야함.
     }
 
-    // BossField API
+    // 보스 전투 필드 생성 기능 + 보스 방의 플레이어가 스폰될 위치 리턴
     public Vector3? SpawnBossFieldAndGetSpawnPoint()
     {
-        if (stages == null || stages.Count == 0 || currentStage < 1 || currentStage > stages.Count)
+        if (Stages == null || Stages.Count == 0 || CurrentStage < 1 || CurrentStage > Stages.Count)
         {
             Debug.LogError("[GameManager] SpawnBossFieldAndGetSpawnPoint: invalid stage index.");
             return null;
         }
 
-        var so = stages[currentStage - 1];
+        var so = Stages[CurrentStage - 1];
         if (!so || !so.BossFieldPrefab)
         {
             Debug.LogError("[GameManager] MapSO.BossFieldPrefab is not assigned.");
             return null;
         }
 
-        if (_currentBossField)
+        // 기존(이전 스테이지)꺼가 남아있으면 제거
+        if (curBossField)
         {
 #if UNITY_EDITOR
-            DestroyImmediate(_currentBossField);
+            DestroyImmediate(curBossField);
 #else
             Destroy(_currentBossField);
 #endif
-            _currentBossField = null;
+            curBossField = null;
         }
 
-        Transform parent = bossFieldRootParent;
+        Transform parent = BossFieldRoot;
         if (!parent && RoomManager != null && RoomManager.Grid != null)
             parent = RoomManager.Grid.transform;
 
-        _currentBossField = Instantiate(so.BossFieldPrefab, parent);
+        curBossField = Instantiate(so.BossFieldPrefab, parent);
 
         Transform spawn = null;
-        var trs = _currentBossField.GetComponentsInChildren<Transform>(true);
+        var trs = curBossField.GetComponentsInChildren<Transform>(true);
         foreach (var t in trs) { if (t.CompareTag("BossPlayerSpawn")) { spawn = t; break; } }
         if (!spawn)
             foreach (var t in trs) { if (t.name.Equals("SpawnPoint")) { spawn = t; break; } }
@@ -182,31 +171,30 @@ public class GameManager : MonoBehaviour
         if (!spawn)
         {
             Debug.LogWarning("[GameManager] BossPlayerSpawn/SpawnPoint not found. Using prefab root.");
-            return _currentBossField.transform.position;
+            return curBossField.transform.position;
         }
         return spawn.position;
     }
 
     public void ClearBossField()
     {
-        if (_currentBossField)
+        if (curBossField)
         {
 #if UNITY_EDITOR
-            DestroyImmediate(_currentBossField);
+            DestroyImmediate(curBossField);
 #else
             Destroy(_currentBossField);
 #endif
-            _currentBossField = null;
+            curBossField = null;
         }
     }
 
-    // Boss Clear Hook
     public void OnBossCleared(Room bossRoom)
     {
-        if (_bossClearHandledThisStage) return;
-        _bossClearHandledThisStage = true;
+        if (isBossCleared) return;
+        isBossCleared = true;
 
-        bool isFinal = (stages != null && stages.Count > 0) ? (currentStage >= stages.Count) : true;
+        bool isFinal = (Stages != null && Stages.Count > 0) ? (CurrentStage >= Stages.Count) : true;
         if (isFinal)
         {
             UIManager?.ShowClearPanel();
@@ -218,10 +206,10 @@ public class GameManager : MonoBehaviour
 
     private void TrySpawnStageTransitionPortal(Room bossRoom)
     {
-        if (_spawnedStagePortal != null) return;
+        if (stagePortal != null) return;
 
-        if (!StagePortalPrefab && !string.IsNullOrEmpty(stagePortalResourcesPath))
-            StagePortalPrefab = Resources.Load<GameObject>(stagePortalResourcesPath);
+        if (!StagePortalPrefab && !string.IsNullOrEmpty(Const.Prefabs_Purple_Portal))
+            StagePortalPrefab = Resources.Load<GameObject>(Const.Prefabs_Purple_Portal);
 
         if (!StagePortalPrefab)
         {
@@ -247,19 +235,19 @@ public class GameManager : MonoBehaviour
         if (!portalGO.TryGetComponent<StageTransitionPortal>(out var stp))
             stp = portalGO.AddComponent<StageTransitionPortal>();
 
-        _spawnedStagePortal = stp;
+        stagePortal = stp;
 #if UNITY_EDITOR
         Debug.Log($"[GameManager] StageTransitionPortal spawned once at {pos}.");
 #endif
     }
 
+    
     public void ResetStageClearFlags()
     {
-        _bossClearHandledThisStage = false;
-        _spawnedStagePortal = null;
+        isBossCleared = false;
+        stagePortal = null;
     }
 
-    // Stage Flow
     public void AdvanceToNextStage()
     {
         StartCoroutine(Co_AdvanceToNextStage());
@@ -267,7 +255,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Co_AdvanceToNextStage()
     {
-        if (_mapGen == null) { EnsureMapGenerator(); if (_mapGen == null) { Debug.LogError("[GameManager] Missing MapGenerator."); yield break; } }
+        if (mapGen == null) { EnsureMapGenerator(); if (mapGen == null) { Debug.LogError("[GameManager] Missing MapGenerator."); yield break; } }
 
         if (RoomManager != null)
             yield return RoomManager.Co_ResetRooms(true);
@@ -275,20 +263,20 @@ public class GameManager : MonoBehaviour
         ClearBossField();
         ResetStageClearFlags();
 
-        currentStage = Mathf.Min(currentStage + 1, Mathf.Max(1, stages.Count));
+        CurrentStage = Mathf.Min(CurrentStage + 1, Mathf.Max(1, Stages.Count));
 
-        var next = stages[currentStage - 1];
-        if (!next) { Debug.LogError($"[GameManager] MapSO for stage {currentStage} is null."); yield break; }
+        var next = Stages[CurrentStage - 1];
+        if (!next) { Debug.LogError($"[GameManager] MapSO for stage {CurrentStage} is null."); yield break; }
 
-        _mapGen.Generate(next);
+        mapGen.Generate(next);
 
         // 플레이어 확보 & 텔레포트 보정
-        PlayerManager?.PreparePlayerForScene(); // 혹시 모를 누락 대비
+        PlayerManager?.PreparePlayerObj(); // 혹시 모를 누락 대비
         yield return null;
         if (PlayerManager != null && PlayerManager.UnitRoot != null)
-            RoomManager?.TeleportToStart(PlayerManager.UnitRoot.transform);
+            RoomManager?.TeleportToSpawnPoint(PlayerManager.UnitRoot.transform);
 
-        Debug.Log($"[GameManager] Advanced to Stage {currentStage}.");
+        Debug.Log($"[GameManager] Advanced to Stage {CurrentStage}.");
     }
 
     // Restart
@@ -299,7 +287,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Co_RestartRun()
     {
-        if (_mapGen == null) { EnsureMapGenerator(); if (_mapGen == null) { Debug.LogError("[GameManager] Missing MapGenerator."); yield break; } }
+        if (mapGen == null) { EnsureMapGenerator(); if (mapGen == null) { Debug.LogError("[GameManager] Missing MapGenerator."); yield break; } }
 
         UIManager?.HideAll();
 
@@ -309,19 +297,19 @@ public class GameManager : MonoBehaviour
         ClearBossField();
         ResetStageClearFlags();
 
-        var so = (stages != null && stages.Count >= currentStage) ? stages[currentStage - 1] : null;
-        if (!so) { Debug.LogError($"[GameManager] MapSO for stage {currentStage} is null."); yield break; }
+        var so = (Stages != null && Stages.Count >= CurrentStage) ? Stages[CurrentStage - 1] : null;
+        if (!so) { Debug.LogError($"[GameManager] MapSO for stage {CurrentStage} is null."); yield break; }
 
-        _mapGen.Generate(so);
+        mapGen.Generate(so);
 
         // 플레이어 확보 & 텔레포트 보정
-        PlayerManager?.PreparePlayerForScene(); // 혹시 모를 누락 대비
+        PlayerManager?.PreparePlayerObj(); // 혹시 모를 누락 대비
         yield return null;
         if (PlayerManager != null && PlayerManager.UnitRoot != null)
-            RoomManager?.TeleportToStart(PlayerManager.UnitRoot.transform);
+            RoomManager?.TeleportToSpawnPoint(PlayerManager.UnitRoot.transform);
 
         PlayerManager?.Revive();
 
-        Debug.Log($"[GameManager] Restarted Stage {currentStage}.");
+        Debug.Log($"[GameManager] Restarted Stage {CurrentStage}.");
     }
 }

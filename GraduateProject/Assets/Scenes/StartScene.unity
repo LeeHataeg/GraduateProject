@@ -909,13 +909,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0f5ba4515886747b705f5c35e22d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stages:
+  Stages:
   - {fileID: 11400000, guid: e6d4822f53dd57d4f995abe5f5398359, type: 2}
   - {fileID: 11400000, guid: cd9982cd406b4124496c09ee0fbe57d0, type: 2}
-  StagePortalPrefab: {fileID: 0}
-  stagePortalResourcesPath: Prefabs/Maps/Portal/Portal_Purple
-  currentStage: 1
-  bossFieldRootParent: {fileID: 0}
+  CurrentStage: 1
+  StagePortalPrefab: {fileID: 2776649909697778401, guid: ead13ed4bedadcf4fb6d582be3a3660c, type: 3}
+  BossFieldRoot: {fileID: 0}
 --- !u!4 &9022668764411678133
 Transform:
   m_ObjectHideFlags: 0

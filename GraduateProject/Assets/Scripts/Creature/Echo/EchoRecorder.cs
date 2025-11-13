@@ -7,19 +7,19 @@ using static Define;
 [DisallowMultipleComponent]
 public class EchoRecorder : MonoBehaviour
 {
-    public float sampleDt = 0.05f;
+    public float sampleDeltaTime = 0.05f;
 
     IAnimationController anim;
     EchoTape tape;
-    float t, acc;
+    float totalTime, sampleTime;
 
     Rigidbody2D rb;
     HealthController hc;
 
     bool lastMove;
     float lastHp;
-    const float MOVE_EPS = 0.05f;
-    const float HP_EPS = 1e-4f;
+    const float MOVE_EPS = 0.05f;   // 잡음 고려
+    const float HP_EPS = 0.0001f;
 
     void Awake()
     {
@@ -30,12 +30,14 @@ public class EchoRecorder : MonoBehaviour
 
     public void BeginRecord()
     {
-        t = 0f; acc = 0f;
+        totalTime = 0f; sampleTime = 0f;
         tape = new EchoTape();
         lastMove = false;
 
-        if (hc != null) lastHp = hc.CurrentHp;
+        if (hc != null) 
+            lastHp = hc.CurrentHp;
 
+        // 오브젝트 활성화시켜 fixedUpdate 실시
         enabled = true;
     }
 
@@ -44,57 +46,64 @@ public class EchoRecorder : MonoBehaviour
         enabled = false;
         if (tape != null)
         {
-            tape.length = t;
+            tape.length = totalTime;
             tape.wasClear = wasClear;
 
             // 사망 관련 애니메이션 클립의 호출 변수를 마지막에 기록
             if (!wasClear)
             {
-                float tt = Mathf.Max(0f, t - 0.01f);
+                float tt = Mathf.Max(0f, totalTime - 0.01f);
                 tape.animParams.Add(new EchoTape.AnimParamEvt { t = tt, type = "bool", name = "isDeath", value = 1 });
                 tape.animParams.Add(new EchoTape.AnimParamEvt { t = tt, type = "trig", name = "4_Death", value = 0 });
             }
 
             // 장비와 외형 기록
             TrySnapshotEquipment(tape);
-            TrySnapshotVisualsByPath(tape);
+            TrySnapshotVisuals(tape);
         }
         return tape;
     }
 
     void FixedUpdate()
     {
-        if (tape == null) return;
-        t += Time.fixedDeltaTime;
-        acc += Time.fixedDeltaTime;
+        if (tape == null) // Begin하지 않았거나 End되었을 때 강종
+            return;
 
-        // 이동 Bool 추적(변화 시점만 이벤트로 남김)
+        totalTime += Time.fixedDeltaTime;
+        sampleTime += Time.fixedDeltaTime;
+
+        // 이동 중인지 여부 확인
         bool moving = false;
 #if UNITY_6000_0_OR_NEWER
-        if (rb) moving = rb.linearVelocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
+        // RB로부터 속도를 읽어서 이동 여부 판단
+        // magnitude :  벡터 크기(연산 비쌈)
+        // sqrMagnitudE : 벡터 크기 제곱 (연산 개꿀)
+        if (rb != null)
+            moving = rb.linearVelocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
 #else
-        if (rb) moving = rb.velocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
+        if (rb != null)
+            moving = rb.velocity.sqrMagnitude > (MOVE_EPS * MOVE_EPS);
 #endif
-        if (acc >= sampleDt)
+        if (sampleTime >= sampleDeltaTime)
         {
-            acc = 0f;
+            sampleTime = 0f;
 
-            // 프레임(위치/좌우/클립)도 보조로 계속 저장
+            // 프레임 신규 생성
             var f = new EchoTape.Frame
             {
-                t = t,
+                t = totalTime,
                 pos = transform.position,
                 faceRight = transform.localScale.x >= 0f,
                 clip = anim?.GetCurClipname()
             };
             tape.frames.Add(f);
 
-            // 이동 상태 변화 감지 시 1_Move Bool 이벤트 기록
+            // 이동 감지? 바로 Move 이벤트
             if (moving != lastMove)
             {
                 tape.animParams.Add(new EchoTape.AnimParamEvt
                 {
-                    t = t,
+                    t = totalTime,
                     type = "bool",
                     name = "1_Move",
                     value = moving ? 1 : 0
@@ -102,7 +111,7 @@ public class EchoRecorder : MonoBehaviour
                 lastMove = moving;
             }
 
-            // 피격(HP 감소) → 3_Damaged 트리거
+            // 피격? 3_Damaged 트리거
             if (hc != null)
             {
                 float cur = hc.CurrentHp;
@@ -110,7 +119,7 @@ public class EchoRecorder : MonoBehaviour
                 {
                     tape.animParams.Add(new EchoTape.AnimParamEvt
                     {
-                        t = t,
+                        t = totalTime,
                         type = "trig",
                         name = "3_Damaged",
                         value = 0
@@ -124,19 +133,21 @@ public class EchoRecorder : MonoBehaviour
     // 공격 이벤트 기록
     public void MarkActionBegin(string id, float factor = 1f)
     {
-        tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkBegin", id = id, value = factor });
-        tape?.animParams.Add(new EchoTape.AnimParamEvt { t = t, type = "trig", name = "2_Attack", value = 0 });
+        tape?.events.Add(new EchoTape.ActionEvt { t = totalTime, kind = "AtkBegin", id = id, value = factor });
+        tape?.animParams.Add(new EchoTape.AnimParamEvt { t = totalTime, type = "trig", name = "2_Attack", value = 0 });
     }
 
     public void MarkActionEnd(string id)
-        => tape?.events.Add(new EchoTape.ActionEvt { t = t, kind = "AtkEnd", id = id, value = 0f });
+        => tape?.events.Add(new EchoTape.ActionEvt { t = totalTime, kind = "AtkEnd", id = id, value = 0f });
 
+    // 아이템 사용 기록
     public void MarkItemUsed(string itemId)
     {
         if (!string.IsNullOrEmpty(itemId))
             tape?.usedItemIds.Add(itemId);
     }
 
+    //아이템 장착 상태 기록
     private void TrySnapshotEquipment(EchoTape dest)
     {
         var eq = GetComponentInChildren<EquipmentManager>(true);
@@ -156,7 +167,8 @@ public class EchoRecorder : MonoBehaviour
         }
     }
 
-    private void TrySnapshotVisualsByPath(EchoTape dest)
+    // Player오브젝트 하위의 모든 SpriterRenderer에 대하여 저장.
+    private void TrySnapshotVisuals(EchoTape dest)
     {
         var unitRoot = this.transform;
         var root = unitRoot.Find("Root");

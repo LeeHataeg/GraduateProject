@@ -20,7 +20,7 @@ public class EchoPlayback : MonoBehaviour
 
     readonly List<SpriteRenderer> _renderers = new();
     EchoTape tape;
-    int frame, actionEvent, animParameters;
+    int frame, actionEvent, animParameters; // 위치, 
     float t;
 
     // 애니메이션의 과도한 반복을 제한할거임
@@ -32,12 +32,14 @@ public class EchoPlayback : MonoBehaviour
     bool _autoAtkOpen;
     #endregion
 
+    // 비주얼
     public void AttachVisualFrom(PlayerController player)
     {
         if (visualParent == null) visualParent = this.transform;
 
         if (visualRoot != null)
         {
+            // Echo에 대하여 모든 하위 SR을 캐싱 ㄱㄱ
             _renderers.Clear();
             foreach (var r in visualRoot.GetComponentsInChildren<SpriteRenderer>(true))
                 _renderers.Add(r);
@@ -58,6 +60,7 @@ public class EchoPlayback : MonoBehaviour
         {
             var unitRoot = player.transform;
             sourceRoot = unitRoot.Find("Root");
+
             if (sourceRoot == null)
             {
                 var all = unitRoot.GetComponentsInChildren<SpriteRenderer>(true);
@@ -114,21 +117,32 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
+    //플레이어 ㅇㅇ
     void Update()
     {
-        if (tape == null || tape.frames.Count == 0) { Destroy(gameObject); return; }
+        // 재생 데이터 없다면 유령 제거
+        if (tape == null || tape.frames.Count == 0) {
+            Destroy(gameObject); return; 
+        }
 
         t += Time.deltaTime;
 
         // 위치 설정
-        while (frame + 1 < tape.frames.Count && tape.frames[frame + 1].t <= t) frame++;
+
+        // 현재 시간 t를 지날 때 까지 ㅇ오른쪽 프레임 인덱스로 전진
+        while (frame + 1 < tape.frames.Count && tape.frames[frame + 1].t <= t) 
+            frame++;
+
+        // data의 양 끝 프레임 확보
         var a = tape.frames[Mathf.Clamp(frame, 0, tape.frames.Count - 1)];
         var b = tape.frames[Mathf.Clamp(frame + 1, 0, tape.frames.Count - 1)];
+
+        // 두 구간에서 보간하여 계산
         float u = Mathf.Approximately(b.t, a.t) ? 0f : (t - a.t) / (b.t - a.t);
         transform.position = Vector2.Lerp(a.pos, b.pos, u);
 
         var s = transform.localScale;
-        s.x = (a.faceRight ? Mathf.Abs(s.x) : -Mathf.Abs(s.x));
+        s.x = (a.faceRight ? Mathf.Abs(s.x) : -Mathf.Abs(s.x)); // flip
         transform.localScale = s;
 
         // Animator의 Parameters를 통해 이벤트 처리 ㄱㄱ
@@ -178,6 +192,7 @@ public class EchoPlayback : MonoBehaviour
         }
     }
 
+    // 로드
     public void Load(EchoTape t_)
     {
         tape = t_;
@@ -248,6 +263,7 @@ public class EchoPlayback : MonoBehaviour
         return n.Contains("ATTACK") || n.Contains("ATK") || n.Contains("SLASH") || n.Contains("HIT") || n.Contains("2_ATTACK");
     }
 
+    // 비주얼
     void ApplyVisualSnapshotByPath()
     {
         if (visualRoot == null && transform != null)

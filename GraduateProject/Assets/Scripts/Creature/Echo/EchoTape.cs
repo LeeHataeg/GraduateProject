@@ -8,12 +8,7 @@ public class EchoTape
     [Serializable] public struct Frame { public float t; public Vector2 pos; public bool faceRight; public string clip; }
     [Serializable] public struct ActionEvt { public float t; public string kind; public string id; public float value; }
 
-    // ─────────────────────────────────────────────
-    // Animator Parameters 이벤트 (녹화→재생)
-    // type: "bool" | "trig"
-    // name: "1_Move", "2_Attack", "3_Damaged", "4_Death", "isDeath"
-    // value: bool은 0/1, trigger는 무시
-    // ─────────────────────────────────────────────
+
     [Serializable]
     public struct AnimParamEvt
     {

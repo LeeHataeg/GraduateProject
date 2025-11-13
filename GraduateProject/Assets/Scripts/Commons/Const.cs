@@ -2,7 +2,9 @@ using UnityEngine;
 
 public abstract class Const
 {
-    #region
+    #region SceneName
+    public const string Scene_InGame = "InGameScene";
+    public const string Scene_Start = "StartScene";
     #endregion
 
     #region Prefabs

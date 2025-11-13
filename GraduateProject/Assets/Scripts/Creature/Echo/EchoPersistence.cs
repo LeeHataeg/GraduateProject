@@ -10,6 +10,8 @@ public static class EchoPersistence
     static readonly string TapePath = Path.Combine(SaveDir, "death_tapes.json");
     static readonly string StashPath = Path.Combine(SaveDir, "stash_items.json");
 
+    // JsonUtility는 최상위가 List면 직렬화, 역직렬화하지 못하기도함
+    // 따라서 클래스를 생성하여 한번 감싸줌.
     [Serializable] class TapeList { public List<EchoTape> tapes = new(); }
     [Serializable] class Stash { public List<string> itemIds = new(); }
 
@@ -17,7 +19,9 @@ public static class EchoPersistence
     {
         try
         {
-            if (!File.Exists(TapePath)) return new List<EchoTape>();
+            if (!File.Exists(TapePath)) 
+                return new List<EchoTape>();
+
             var json = File.ReadAllText(TapePath);
             return JsonUtility.FromJson<TapeList>(json)?.tapes ?? new List<EchoTape>();
         }
@@ -28,7 +32,9 @@ public static class EchoPersistence
     {
         try
         {
-            if (!Directory.Exists(SaveDir)) Directory.CreateDirectory(SaveDir);
+            if (!Directory.Exists(SaveDir))
+                Directory.CreateDirectory(SaveDir);
+
             var json = JsonUtility.ToJson(new TapeList { tapes = list }, false);
             File.WriteAllText(TapePath, json);
         }
@@ -39,7 +45,9 @@ public static class EchoPersistence
     {
         var list = LoadTapes();
         list.Add(tape);
-        while (list.Count > MaxTapes) list.RemoveAt(0);
+
+        while (list.Count > MaxTapes) 
+            list.RemoveAt(0);
         SaveTapes(list);
     }
 
@@ -47,7 +55,9 @@ public static class EchoPersistence
     {
         try
         {
-            if (!File.Exists(StashPath)) return new List<string>();
+            if (!File.Exists(StashPath)) 
+                return new List<string>();
+
             var json = File.ReadAllText(StashPath);
             return JsonUtility.FromJson<Stash>(json)?.itemIds ?? new List<string>();
         }

@@ -1,109 +1,116 @@
 using UnityEngine;
 
-/// <summary>
-/// 플레이어 피격/사망 반응. EnemyHitReactor와 동일 컨셉.
-/// Animator 파라미터: isDeath(bool), 3_Damaged(trigger), 4_Death(trigger)
-/// </summary>
 [RequireComponent(typeof(HealthController))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class PlayerHitReactor : MonoBehaviour, IHitReactor
 {
-    private HealthController _hp;
-    private Animator _anim;
-    private Rigidbody2D _rb;
-    private Collider2D _col;
+    private HealthController healthCon;
+    private Animator anim;
+    private Rigidbody2D rigid;
+    private Collider2D col;
 
-    private bool _isDead;
+    private bool isDead;
 
     private void Awake()
     {
-        _hp = GetComponent<HealthController>();
-        _anim = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
-        _col = GetComponent<Collider2D>();
+        healthCon = GetComponent<HealthController>();
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
     }
 
     private void OnEnable()
     {
-        if (_hp != null) _hp.OnDead += OnDeadHandler;
+        if (healthCon != null) healthCon.OnDead += OnDead;
     }
 
     private void OnDisable()
     {
-        if (_hp != null) _hp.OnDead -= OnDeadHandler;
+        if (healthCon != null) healthCon.OnDead -= OnDead;
     }
 
     public void OnAttacked(float damage)
     {
-        if (_isDead) return;
+        if (isDead) return;
 
-        _hp?.TakeDamage(damage);
+        healthCon?.TakeDamage(damage);
 
-        // 피격 연출
-        if (_anim != null)
-            _anim.SetTrigger("3_Damaged");
+        // 피격 애니메이션 수행
+        if (anim != null)
+            anim.SetTrigger("3_Damaged");
     }
 
-    private void OnDeadHandler()
+    private void OnDead()
     {
-        if (_isDead) return;
-        _isDead = true;
+        if (isDead) 
+            return;
 
-        if (_anim != null)
+        isDead = true;
+
+        // 1. DEATH 애니메이션 수행
+        if (anim != null)
         {
-            _anim.SetBool("isDeath", true);
-            _anim.SetTrigger("4_Death");
+            anim.SetBool("isDeath", true);
+            anim.SetTrigger("4_Death");
         }
 
-        if (_col) _col.enabled = false;
+        // 2. collider off
+        if (col != null)
+            col.enabled = false;
 
-        if (_rb)
+        // 3. 리지드 바디  off해서 못 움직이게
+        if (rigid)
         {
 #if UNITY_6000_0_OR_NEWER
-            _rb.linearVelocity = Vector2.zero;
+            rigid.linearVelocity = Vector2.zero;
 #else
             _rb.velocity = Vector2.zero;
 #endif
-            _rb.bodyType = RigidbodyType2D.Kinematic;
-            _rb.simulated = true;
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+            rigid.simulated = true;
         }
     }
 
-    /// <summary>
-    /// Restart/부활 시 호출: 사망 상태/컴포넌트/애니메이터를 정상화
-    /// </summary>
-    public void ClearDeadFlag()
+    // 리스폰 시
+    public void Revive()
     {
-        _isDead = false;
+        isDead = false;
 
-        if (_anim != null)
+        if (anim != null)
         {
-            _anim.ResetTrigger("4_Death");
-            _anim.SetBool("isDeath", false);
-            // 필요하면 Idle로 강제 점프
-            TryPlay(_anim, "IDLE");
-            TryPlay(_anim, "Idle");
+            anim.ResetTrigger("4_Death");
+            anim.SetBool("isDeath", false);
+
+            // Idle 강제 시작
+            TryPlay(anim, "IDLE");
+            TryPlay(anim, "Idle");
         }
 
-        if (_col) _col.enabled = true;
+        if (col != null) 
+            col.enabled = true;
 
-        if (_rb)
+        if (rigid)
         {
-            _rb.bodyType = RigidbodyType2D.Dynamic;
-            _rb.simulated = true;
+            rigid.bodyType = RigidbodyType2D.Dynamic;
+            rigid.simulated = true;
 #if UNITY_6000_0_OR_NEWER
-            _rb.linearVelocity = Vector2.zero;
+            rigid.linearVelocity = Vector2.zero;
 #else
             _rb.velocity = Vector2.zero;
 #endif
         }
     }
 
-    private static void TryPlay(Animator a, string state)
+    private static void TryPlay(Animator anim, string state)
     {
-        if (!a) return;
-        try { a.Play(state, 0, 0f); } catch { }
+        if (anim == null) 
+            return;
+
+        try { 
+            anim.Play(state, 0, 0f);
+        } 
+        catch { }
     }
 }

@@ -10,12 +10,12 @@ public static class EnemyArchetypeRegistry
 
     private static bool loaded = false;
 
-    // 기본 검색 경로들(Resources)
+    // 예상 경로들 저장
     private static readonly string[] DefaultPaths =
     {
         "Enemies/Archetypes",
         "SO/Stats/Enemies/Archetype",
-        "" // 전체 Resources 스캔(폴백)
+        ""
     };
 
     public static void LoadAll(params string[] searchPaths)

@@ -60,9 +60,7 @@ public class RoomManager : MonoBehaviour
     void OnDisable() => StopDiscoverCo();
     void OnDestroy() => StopDiscoverCo();
 
-    // ─────────────────────────────────────────────────────
-    // RoomsRoot를 ‘항상’ 액티브 씬에 위치시키고 이름도 통일
-    // ─────────────────────────────────────────────────────
+    // tilemap을 담아둘 RoomsRoot를 단독 보장
     public void EnsureRoomsRootIsSceneLocal()
     {
         if (Grid == null)
@@ -110,6 +108,7 @@ public class RoomManager : MonoBehaviour
 #endif
         OnSetStartPoint?.Invoke(pos);
     }
+
 
     // 즉시 파괴/정리(위험) 대신, 항상 코루틴 버전을 사용하도록 유도
     public void ResetRooms(bool destroyRooms = true)
@@ -179,7 +178,7 @@ public class RoomManager : MonoBehaviour
 #endif
     }
 
-    public void TeleportToStart(Transform target)
+    public void TeleportToSpawnPoint(Transform target)
     {
         if (!HasStartPoint || !target) return;
         target.position = GetStartPoint();

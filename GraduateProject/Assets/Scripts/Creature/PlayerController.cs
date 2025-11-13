@@ -29,15 +29,8 @@ public class PlayerController : MonoBehaviour
         if (!rb) Debug.LogError($"[{nameof(PlayerController)}] Rigidbody2D Null");
     }
 
-    // ★ Start는 디버그 로그만 유지(한 번만 호출됨)
-    private void Start()
-    {
-        Debug.Log("[PC] Start() once");
-    }
-
     private void OnEnable()
     {
-        // 구독 유실 방지: 항상 재구독(중복 방지 위해 먼저 제거 후 추가)
         if (healthCtrl != null)
         {
             healthCtrl.OnDead -= OnPlayerDead;
@@ -66,17 +59,19 @@ public class PlayerController : MonoBehaviour
         }
 
 #if UNITY_6000_0_OR_NEWER
-        if (rb) rb.linearVelocity = Vector2.zero;
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
 #else
-        if (rb) rb.velocity = Vector2.zero;
+        if (rb != null)
+            rb.velocity = Vector2.zero;
 #endif
-        if (rb) rb.bodyType = RigidbodyType2D.Kinematic;
+        if (rb != null)
+            rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // DeathPopup 호출
+        // DeathPopupUi 호출
         var ui = GameManager.Instance ? GameManager.Instance.UIManager : null;
         if (ui == null)
         {
-            // 씬에 있는 UIManager를 폴백으로 탐색
             ui = FindFirstObjectByType<UIManager>(FindObjectsInactive.Include);
         }
 
@@ -85,7 +80,7 @@ public class PlayerController : MonoBehaviour
         else
             Debug.LogWarning("[PlayerController] UIManager가 없어 DeathPopup을 띄울 수 없습니다.");
 
-        // Echo Runner
+        // 해당 전투가 보스전이었다면 에코 러너 저장
         if (EchoManager.I != null)
             EchoManager.I.EndBossBattle(playerDied: true);
     }

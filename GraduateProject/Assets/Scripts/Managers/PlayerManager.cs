@@ -1,63 +1,58 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 
-/// <summary>
-/// 플레이어의 생성/중복 제거/부활/텔레포트 등 런타임 제어 담당
-/// - StartScene에선 생성하지 않음
-/// - InGameScene에서만 "씬에 있으면 채택(adopt), 없으면 1회 생성"
-/// - 중복 발견 시 입력 차단 후 제거
-/// - Player 최상위 루트 아래에 UnitRoot(실행체)를 두는 프로젝트 구조를 전제로 함
-/// </summary>
-[DefaultExecutionOrder(-200)]
+// 플레이어 생성, 제거, respawn, teleport, spawn 등 담당
+[DefaultExecutionOrder(-200)]   // DefaultExecutionOrder~~~ 이건 MonoBehaviour클래스 실행 순서 지정, 값이 작을 수록 먼저 실행
 public class PlayerManager : MonoBehaviour
 {
     [Header("Refs")]
-    [Tooltip("실제 조작 대상이 되는 최상위 루트(보통 'Player') 아래의 실행체 'UnitRoot'를 가리키도록 유지")]
-    public GameObject UnitRoot;   // ← 'Player' 루트 아래 자식 'UnitRoot' 오브젝트
+    public GameObject UnitRoot; // Player 몸체
 
+    // 각 Mono 어쩌고 별 Start, Awake 완료 시간 차이로 인해
+    // GetComponent 등에서 오류 발생 가능
+    //      따라서  컴포넌트 세팅 완료 여부를 Event 구독으로 통보
     public event Action<EquipmentManager> OnEquipmentReady;
 
-    // 캐시
-    Animator _anim;
-    Rigidbody2D _rb;
-    Collider2D[] _cols;
-    PlayerInputController _input;
-    PlayerMovement _move;
-    IAnimationController _animCtrl;
-    HealthController _hp;
-    PlayerHitReactor _hitReactor;                // 피격 반응 담당(플래그 초기화 필요)
-    PlayerAttackController _atk;                 // ★ 공격 컨트롤러
+    Animator anim;
+    Rigidbody2D rigid;
+    Collider2D[] colliders;
+    PlayerInputController inputController;
+    PlayerMovement plMove;
+    HealthController hpCont;
+    PlayerHitReactor hitReactor;
+    PlayerAttackController atkCont;
 
-    public string gameplaySceneName = "InGameScene";
-    bool _busyPreparing = false;
+    Coroutine spawnCoroutine;
+    bool finishPreparing = false;
 
     private void Awake()
     {
-        CacheComponents(); // null일 수 있음
+        CacheComponents();
     }
 
-    public void PreparePlayerForScene()
+    public void PreparePlayerObj()
     {
-        if (_busyPreparing) return;
-        _busyPreparing = true;
+        if (finishPreparing) return;
+        finishPreparing = true;
 
-        var candidates = FindAllPlayerControllersInScene();
-        if (candidates != null && candidates.Length > 0)
+        var allPlayers = FindAllPlayerControllers();
+        if (allPlayers != null && allPlayers.Length > 0)
         {
-            var primary = PickPrimary(candidates);
-            var adoptedUnitRoot = GetUnitRootFromAny(primary);
-            Adopt(adoptedUnitRoot);
+            var player = GetRealPlayer(allPlayers);
+            var unitRoot = GetUnitRoot(player);
+            Adopt(unitRoot);
 
-            foreach (var c in candidates)
+            foreach (var pl in allPlayers)
             {
-                if (!c) continue;
-                var otherUnitRoot = GetUnitRootFromAny(c);
+                if (!pl) continue;
+                var otherUnitRoot = GetUnitRoot(pl);
                 if (!otherUnitRoot) continue;
                 if (otherUnitRoot == UnitRoot) continue;
 
-                TryDisableInput(otherUnitRoot);
-                Destroy(otherUnitRoot.transform.root.gameObject);
+                TryDisableInput(otherUnitRoot);                     // 짜가 player 입력 비활성화
+                Destroy(otherUnitRoot.transform.root.gameObject);   // 그리고 짜가 obj 제거
             }
         }
         else
@@ -66,19 +61,19 @@ public class PlayerManager : MonoBehaviour
         }
 
         CacheComponents();
-        EnableCombat(true);                   // ★ 전투 요소 확실히 활성화
-        StartCoroutine(Co_BroadcastEqNextFrame());
+        EnableCombat(true);
+        StartCoroutine(Co_BroadcastEquipLater());
 
-        _busyPreparing = false;
+        finishPreparing = false;
     }
 
-    private IEnumerator Co_BroadcastEqNextFrame()
+    private IEnumerator Co_BroadcastEquipLater()
     {
         yield return null;
-        BroadcastEquipmentReadyIfFound();
+        BroadcastEquipReady();
     }
 
-    private PlayerController[] FindAllPlayerControllersInScene()
+    private PlayerController[] FindAllPlayerControllers()
     {
 #if UNITY_6000_0_OR_NEWER
         return UnityEngine.Object.FindObjectsByType<PlayerController>(
@@ -88,7 +83,7 @@ public class PlayerManager : MonoBehaviour
 #endif
     }
 
-    private GameObject GetUnitRootFromAny(PlayerController pc)
+    private GameObject GetUnitRoot(PlayerController pc)
     {
         if (!pc) return null;
         var sceneRoot = pc.transform.root; // 최상위(보통 'Player')
@@ -96,7 +91,7 @@ public class PlayerManager : MonoBehaviour
         return unit ? unit.gameObject : sceneRoot.gameObject;
     }
 
-    private PlayerController PickPrimary(PlayerController[] list)
+    private PlayerController GetRealPlayer(PlayerController[] list)
     {
         foreach (var c in list)
         {
@@ -152,6 +147,8 @@ public class PlayerManager : MonoBehaviour
         EnableCombat(true);
     }
 
+    // 만약에 혹~시라도 플레이어 obj가 여러개일 경우엔
+    // 입력 비활성화
     private void TryDisableInput(GameObject unitRootGO)
     {
         if (!unitRootGO) return;
@@ -171,51 +168,83 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void BroadcastEquipmentReadyIfFound()
+    private void BroadcastEquipReady()
     {
         if (!UnitRoot) return;
         var eq = UnitRoot.GetComponentInChildren<EquipmentManager>(true);
         if (eq != null) OnEquipmentReady?.Invoke(eq);
     }
 
-    // ───── Revive/TP ─────
+    // 부활이랑 스폰
     public void Revive()
     {
         if (!UnitRoot) return;
-        if (_anim == null || _rb == null || _cols == null || _atk == null) CacheComponents();
+        if (anim == null || rigid == null || colliders == null || atkCont == null) CacheComponents();
 
-        // 1) HP/죽음 플래그 복구
-        if (_hp != null) _hp.ResetHpToMax();
-        if (_hitReactor != null) _hitReactor.ClearDeadFlag();
+        // 1. HP/죽음 플래그 복구
+        if (hpCont != null) hpCont.ResetHpToMax();
+        if (hitReactor != null) hitReactor.Revive();
 
-        // 2) 애니 복구
-        if (_anim != null)
+        // 2. 애니 복구
+        if (anim != null)
         {
-            _anim.ResetTrigger("4_Death");
-            _anim.SetBool("isDeath", false);
-            TryPlayIfExists(_anim, "IDLE");
-            TryPlayIfExists(_anim, "Idle");
-            TryPlayIfExists(_anim, "Base Layer.IDLE");
+            anim.ResetTrigger("4_Death");
+            anim.SetBool("isDeath", false);
+            TryPlayIfExists(anim, "IDLE");
+            TryPlayIfExists(anim, "Idle");
+            TryPlayIfExists(anim, "Base Layer.IDLE");
         }
 
-        // 3) 전투 요소 활성화
+        // 3. 전투 요소 활성화
         EnableCombat(true);
 
-        // 4) ★ 플레이어 컨트롤러 쪽도 복구 호출(구독/상태 싱크)
+        // 4. 플레이어 컨트롤러 쪽도 복구 호출(구독/상태 싱크)
         var pc = UnitRoot.GetComponent<PlayerController>();
         if (pc != null) pc.Revive();
 
-        // 5) 장비 UI 갱신
-        BroadcastEquipmentReadyIfFound();
+        // 5. 장비 UI 갱신
+        BroadcastEquipReady();
+    }
+    
+    public void SpawnToStartPoint()
+    {
+        if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
+        spawnCoroutine = StartCoroutine(Co_SpawnPlayer());
+    }
+    private IEnumerator Co_SpawnPlayer()
+    {
+        // 맵이랑 방이 생성 완료될 때까지 대기
+        float timeout = 0.3f;
+        while (timeout > 0f)
+        {
+            if (this == null) yield break; // 파괴되었으면 종료
+
+            var rm = GameManager.Instance?.RoomManager;
+            // RoomManager랑 UnitRoot가 준비 여부 +  스폰 포인트가 설정여부 확인
+            if (rm != null && UnitRoot != null && rm.HasStartPoint)
+                break;
+
+            timeout -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (this != null && UnitRoot != null)
+        {
+            var rm = GameManager.Instance?.RoomManager;
+            if (rm != null && rm.HasStartPoint)
+                rm.TeleportToSpawnPoint(UnitRoot.transform);
+        }
+
+        spawnCoroutine = null;
     }
 
     public void TeleportTo(Vector3 worldPos)
     {
         if (!UnitRoot) return;
-        if (_rb != null)
+        if (rigid != null)
         {
 #if UNITY_6000_0_OR_NEWER
-            _rb.linearVelocity = Vector2.zero;
+            rigid.linearVelocity = Vector2.zero;
 #else
             _rb.velocity = Vector2.zero;
 #endif
@@ -225,41 +254,40 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject Player => UnitRoot;
 
-    // ───── Combat Enabler ─────
+    // 전투 관련
     private void EnableCombat(bool on)
     {
         if (!UnitRoot) return;
 
-        if (_input) _input.enabled = on;
-        if (_move) _move.enabled = on;
-        if (_atk) _atk.enabled = on;
+        if (inputController) inputController.enabled = on;
+        if (plMove) plMove.enabled = on;
+        if (atkCont) atkCont.enabled = on;
 
-        if (_hitReactor)
+        if (hitReactor)
         {
-            var bhv = _hitReactor as Behaviour;
+            var bhv = hitReactor as Behaviour;
             if (bhv) bhv.enabled = on;
         }
 
-        if (_cols != null)
+        if (colliders != null)
         {
-            foreach (var c in _cols)
+            foreach (var c in colliders)
                 if (c) c.enabled = on;
         }
 
-        if (_rb)
+        if (rigid)
         {
-            _rb.simulated = on;
+            rigid.simulated = on;
             if (!on)
             {
 #if UNITY_6000_0_OR_NEWER
-                _rb.linearVelocity = Vector2.zero;
+                rigid.linearVelocity = Vector2.zero;
 #else
                 _rb.velocity = Vector2.zero;
 #endif
             }
         }
 
-        // (선택) Hurtbox 자식 자동 보정(레이어/콜라이더/스크립트)
         int hurtLayer = SafeLayer("PlayerHurtbox");
         var t = UnitRoot.transform;
         for (int i = 0; i < t.childCount; i++)
@@ -287,19 +315,18 @@ public class PlayerManager : MonoBehaviour
         return (id >= 0 && id < 32) ? id : -1;
     }
 
-    // ───── helpers ─────
+    // 필드 캐싱 ㄱㄱ여
     private void CacheComponents()
     {
         if (!UnitRoot) return;
-        _anim = UnitRoot.GetComponentInChildren<Animator>(true);
-        _rb = UnitRoot.GetComponent<Rigidbody2D>();
-        _cols = UnitRoot.GetComponentsInChildren<Collider2D>(true);
-        _input = UnitRoot.GetComponent<PlayerInputController>();
-        _move = UnitRoot.GetComponent<PlayerMovement>();
-        _animCtrl = UnitRoot.GetComponent<IAnimationController>();
-        _hp = UnitRoot.GetComponent<HealthController>();
-        _hitReactor = UnitRoot.GetComponent<PlayerHitReactor>();
-        _atk = UnitRoot.GetComponent<PlayerAttackController>();
+        anim = UnitRoot.GetComponentInChildren<Animator>(true);
+        rigid = UnitRoot.GetComponent<Rigidbody2D>();
+        colliders = UnitRoot.GetComponentsInChildren<Collider2D>(true);
+        inputController = UnitRoot.GetComponent<PlayerInputController>();
+        plMove = UnitRoot.GetComponent<PlayerMovement>();
+        hpCont = UnitRoot.GetComponent<HealthController>();
+        hitReactor = UnitRoot.GetComponent<PlayerHitReactor>();
+        atkCont = UnitRoot.GetComponent<PlayerAttackController>();
     }
 
     private static Transform FindChildRecursive(Transform root, string name)

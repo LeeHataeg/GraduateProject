@@ -1,31 +1,26 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// 플레이어의 공격 입력을 받아 근접 공격 판정, 애니메이션, 데미지 전달을 담당합니다.
-/// </summary>
 [RequireComponent(typeof(ICombatStatHolder))]
 [RequireComponent(typeof(IAnimationController))]
 public class PlayerAttackController : MonoBehaviour
 {
-    private ICombatStatHolder statHolder;
+    private ICombatStatHolder stat;
     private IAnimationController anim;
-    private IHitReactor hitReactor; // 범위 내 적에게 데미지 전달 시 사용
-    private float attackCooldown = 0.5f;
+    private IHitReactor hitReactor;
+    private float attackDelay = 0.5f;
     private bool canAttack = true;
 
-    [Header("공격 설정")]
-    [Tooltip("공격 범위를 검사할 기준 위치 (플레이어 발끝 등)")]
+    [Header("공격")]
     [SerializeField] private Transform attackPoint;
-    [Tooltip("공격 시 적을 구분할 Layer")]
     [SerializeField] private LayerMask enemyLayer;
 
     private void Awake()
     {
-        statHolder = GetComponent<ICombatStatHolder>();
+        stat = GetComponent<ICombatStatHolder>();
         anim = GetComponent<IAnimationController>();
 
-        if (statHolder == null)
+        if (stat == null)
             Debug.LogError($"[{nameof(PlayerAttackController)}] ICombatStatHolder를 찾을 수 없습니다.");
         if (anim == null)
             Debug.LogError($"[{nameof(PlayerAttackController)}] IAnimationController를 찾을 수 없습니다.");
@@ -53,59 +48,37 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (!isPressed || !canAttack) return;
         StartCoroutine(PerformMeleeAttack());
+
+        // TODO - 원거리 공격 추가 및 Case 예외처리 로직 작성 ㄱㄱ
     }
 
     private IEnumerator PerformMeleeAttack()
     {
         canAttack = false;
 
-        // (1) 공격 애니메이션
+        // 1. 공격 애니메이션 시작
         anim.SetTrigger("2_Attack");
 
-        // (2) 스탯 딜레이
-        float delay = statHolder.Stats.AttackDelay;
+        // 2. 스텟에서 공격 간 딜레이 시간 체크 및 전달
+        float delay = stat.Stats.AttackDelay;
         yield return new WaitForSeconds(delay);
 
-        // (2.5) 시각 이펙트 (선택)
-        // Resources/Prefabs/Melee_Attck_Effect 프리팹이 있으면 스폰
-        GameObject fx = Resources.Load<GameObject>("Prefabs/Melee_Attck_Effect");
-        if (fx != null && attackPoint != null)
-        {
-            // 좌우 바라보는 방향 기반으로 간단 회전 (오른쪽: 0도, 왼쪽: 180도)
-            float dirX = transform.localScale.x >= 0 ? 1f : -1f;
-            Quaternion rot = (dirX >= 0)
-                ? Quaternion.identity
-                : Quaternion.Euler(0, 0, 180f);
+        // TODO - Player의 공격 이펙ㅌ트 구현
 
-            var inst = Instantiate(fx, attackPoint.position, rot);
-            // 이펙트가 데미지를 표시/연출용으로 쓰는 경우만 세팅
-            var fxCtrl = inst.GetComponent<EffectController>();
-            if (fxCtrl != null)
-                fxCtrl.SetDmg(statHolder.CalculatePhysicsDmg());
-        }
-
-        // (3) 판정 및 데미지 전달
-        float range = statHolder.Stats.AttackRange;
+        // 3.  데미지 전달
+        float range = stat.Stats.AttackRange;
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayer);
         foreach (var hit in hits)
         {
             var enemyHitReactor = hit.GetComponent<IHitReactor>();
             if (enemyHitReactor != null)
             {
-                enemyHitReactor.OnAttacked(statHolder.CalculatePhysicsDmg());
+                enemyHitReactor.OnAttacked(stat.CalculatePhysicsDmg());
             }
         }
 
-        // (4) 쿨다운
-        yield return new WaitForSeconds(attackCooldown);
+        // 4. 공격 딜레이 시작
+        yield return new WaitForSeconds(attackDelay);
         canAttack = true;
-    }
-
-
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, statHolder != null ? statHolder.Stats.AttackRange : 0f);
     }
 }

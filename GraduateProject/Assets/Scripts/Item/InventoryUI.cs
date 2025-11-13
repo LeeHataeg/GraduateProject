@@ -45,7 +45,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (slotContainer == null || slotPrefab == null || inventory == null) return;
 
-        int need = inventory.capacity;
+        int need = inventory.MaxItemCount;
         int have = slotContainer.childCount;
 
         for (int i = have; i < need; i++)
@@ -73,14 +73,14 @@ public class InventoryUI : MonoBehaviour
 
         var slotUIs = slotContainer.GetComponentsInChildren<InventorySlotUI>(includeInactive: true);
         int uiCount = slotUIs.Length;
-        int dataCount = inventory.slots.Count;
+        int dataCount = inventory.Slots.Count;
 
         for (int i = 0; i < uiCount; i++)
         {
             // ★ 혹시라도 동적으로 바뀐 인벤 연결을 보정
             if (slotUIs[i] != null) slotUIs[i].Bind(this, inventory);
 
-            if (i < dataCount) slotUIs[i].SetData(inventory.slots[i], i);
+            if (i < dataCount) slotUIs[i].SetData(inventory.Slots[i], i);
             else slotUIs[i].SetEmpty();
         }
     }

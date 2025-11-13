@@ -104,8 +104,8 @@ public abstract class Define
 
     public class UnionFind
     {
-        private int[] parent;
-        private int[] rank;
+        private int[] parent;   // 각 노드의 부모 번호
+        private int[] rank;     // 각 집합 트리의 대략적 높이
         public UnionFind(int size)
         {
             parent = new int[size];
@@ -118,10 +118,15 @@ public abstract class Define
         public bool Union(int u, int v)
         {
             int pu = Find(u), pv = Find(v);
-            if (pu == pv) return false;
-            if (rank[pu] > rank[pv]) parent[pv] = pu;
-            else if (rank[pu] < rank[pv]) parent[pu] = pv;
-            else { parent[pv] = pu; rank[pu]++; }
+            if (pu == pv) 
+                return false;
+            if (rank[pu] > rank[pv]) 
+                parent[pv] = pu;
+            else if (rank[pu] < rank[pv]) 
+                parent[pu] = pv;
+            else { 
+                parent[pv] = pu; rank[pu]++; 
+            }
             return true;
         }
     }
