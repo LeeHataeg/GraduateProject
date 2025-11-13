@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
             healthCtrl.OnDead -= OnPlayerDead;
             healthCtrl.OnDead += OnPlayerDead;
         }
+
+        GameManager.Instance.UIManager.SetHpUI(healthCtrl);
     }
 
     private void OnDisable()

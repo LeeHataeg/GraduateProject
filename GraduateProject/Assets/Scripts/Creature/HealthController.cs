@@ -13,6 +13,7 @@ public class HealthController : MonoBehaviour, IHealth
     public float MaxHp => stats != null ? stats.MaxHp : 1f;
 
     public event Action OnDead;
+    public event Action<float, float> OnHealthChanged;
 
     private void Awake()
     {
@@ -21,11 +22,13 @@ public class HealthController : MonoBehaviour, IHealth
 
     private void Start()
     {
-        if (stats == null) FindStatHolder(needLog: false);
+        if (stats == null) 
+            FindStatHolder(needLog: false);
 
         if (stats != null)
         {
             currentHp = stats.MaxHp;
+            OnHealthChanged?.Invoke(currentHp, stats.MaxHp);
         }
         else
         {
@@ -43,7 +46,7 @@ public class HealthController : MonoBehaviour, IHealth
 
         if (holder == null)
             holder = GetComponentInParent<ICombatStatHolder>();         //부모로부터 탐색
-        if (holder == null) 
+        if (holder == null)
             holder = GetComponentInChildren<ICombatStatHolder>(true);   // 없으면 자식에서 탐색
 
         if (holder != null)
@@ -65,6 +68,7 @@ public class HealthController : MonoBehaviour, IHealth
     {
         if (stats == null) return;
         currentHp = Mathf.Min(currentHp + amount, stats.MaxHp);
+        OnHealthChanged?.Invoke(currentHp, stats.MaxHp);
     }
 
     public void TakeDamage(float amount)
@@ -79,13 +83,18 @@ public class HealthController : MonoBehaviour, IHealth
             currentHp = 0f;
             OnDead?.Invoke();
         }
+
+        OnHealthChanged?.Invoke(currentHp, stats.MaxHp);
     }
 
     public void ResetHpToMax()
     {
-        if (Stats != null) 
+        if (Stats != null)
+        {
             currentHp = Stats.MaxHp;
-        else 
+            OnHealthChanged?.Invoke(currentHp, stats.MaxHp);
+        }
+        else
             currentHp = Mathf.Max(1f, currentHp);
     }
 }

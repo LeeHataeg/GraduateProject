@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 3582187459953888252}
   - component: {fileID: 6481767994335760917}
   m_Layer: 10
-  m_Name: SkeletonKinight
+  m_Name: Boss_SkeletonKinight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

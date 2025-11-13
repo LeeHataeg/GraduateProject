@@ -4,6 +4,8 @@ using static Define;
 [CreateAssetMenu(menuName = "Boss/Definition")]
 public class BossDefinitionSO : ScriptableObject
 {
+    public string Name;
+
     public AnimMapSO animMap;
 
     [Header("Phases (Phase2는 비워둘 수 있음)")]

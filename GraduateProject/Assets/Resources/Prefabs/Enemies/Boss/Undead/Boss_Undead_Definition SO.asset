@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d889cda518f44438811761fb45bb68, type: 3}
   m_Name: Boss_Undead_Definition SO
   m_EditorClassIdentifier: 
+  Name: "\uC5B8\uB370\uB4DC \uBC29\uD328\uBCD1 \uAC8C\uD558\uC784"
   animMap: {fileID: 11400000, guid: f8ff5e21a18f0a84fa02d34c19619d3f, type: 2}
   phase1: {fileID: 11400000, guid: 373e94b3bea1dfd418c872da4b44dff8, type: 2}
   phase2: {fileID: 0}

@@ -113,11 +113,19 @@ public class BossController : MonoBehaviour
             EnterIntro_EntryOnce();
         else
             EnterIntro_FallFromSky();
+
+        GameManager.Instance.UIManager.SetActiveBossHpUI(true);
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.UIManager.SetHpUI(hp, def.Name);
     }
 
     private void OnDestroy()
     {
         if (hp != null) hp.OnDead -= HandleDead;
+        GameManager.Instance.UIManager.SetActiveBossHpUI(false);
     }
 
     private void Update()

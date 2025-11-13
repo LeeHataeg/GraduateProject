@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class UIManager : MonoBehaviour
     public InventorySystem InventorySys;
     [SerializeField] private InventoryUI invenPanel;
     [SerializeField] private GameObject itemPanel;
+
+    [Header("HpUI")]
+    [SerializeField] private CharacteCurStateUI playerHp;
+    [SerializeField] private CharacteCurStateUI bossHp;
 
     [Header("Death Popup")]
     [SerializeField] private DeathPopupUI deathPopup;    // InGameScene Canvas 안의 팝업
@@ -111,6 +116,20 @@ public class UIManager : MonoBehaviour
         deathPopup.Show();
     }
 
+    public void SetHpUI(HealthController hp)
+    {
+        playerHp.SetTarget(hp);
+    }
+    public void SetHpUI(HealthController hp, string name)
+    {
+        bossHp.SetTarget(hp);
+        bossHp.SetTargetName(name);
+    }
+
+    public void SetActiveBossHpUI(bool value)
+    {
+        bossHp.gameObject.SetActive(value);
+    }
 
     // ★★ 씬 전환 후, InGameScene의 실제 UI들과 연결해주는 진입점
     public void BindSceneInventory(InventorySystem sys, InventoryUI panel, GameObject panelGO)
@@ -132,12 +151,6 @@ public class UIManager : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// 현재 표시 중인 모든 UI를 안전하게 닫는다.
-    /// - 인벤토리 패널/툴팁
-    /// - 데스 팝업
-    /// - (필요 시) 기타 패널을 여기서 추가
-    /// </summary>
     public void HideAll()
     {
         // 인벤토리 패널 끄기

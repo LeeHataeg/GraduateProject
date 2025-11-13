@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d889cda518f44438811761fb45bb68, type: 3}
   m_Name: Boss_Orc_Definition SO
   m_EditorClassIdentifier: 
+  Name: "\uC624\uD06C \uC871\uC7A5 \uADF8\uB85C\uADF8\uB099"
   animMap: {fileID: 11400000, guid: 6280052f2ffba1a4ab44cc2ddb08cafc, type: 2}
   phase1: {fileID: 11400000, guid: 37baca65ff56b474abc25e0671896bac, type: 2}
   phase2: {fileID: 11400000, guid: 2bfd82eb534f1ca4497ad90fccf6c475, type: 2}
+  singlePhase: 0
+  introMode: 0
+  entryKey: 38
+  idleKey: 14
+  walkingBoolKey: 13
   deathKey: 0
   fadeDelay: 1.2
