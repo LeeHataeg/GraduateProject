@@ -16,7 +16,7 @@ public class EnemyArchetypeSO : ScriptableObject
     public CombatStatSheet statSheet;       // 타입별 스탯 시트 (SO)
 
     [Header("Ranged Only")]
-    public SimpleProjectile projectilePrefab;
+    public Bullet projectilePrefab;
     public float projectileSpeed = 12f;
     public float projectileLife = 3f;
     public LayerMask projectileHitMask;

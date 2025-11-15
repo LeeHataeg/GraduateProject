@@ -4207,10 +4207,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7869579461634775627}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15625, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7463143760186362816}
   m_Father: {fileID: 4867470468670959319}
@@ -4507,7 +4507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8283783329593913262}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4784,6 +4784,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+  rightArm: {fileID: 7869579461634775627}
 --- !u!114 &7348074053654486295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4820,7 +4821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b05b2926b56cf24cb90d0abe6513c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!114 &274771417560005180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,7 +4976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90572b7b0ac4dfb4f8a487a7f25abd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleDt: 0.05
+  sampleDeltaTime: 0.05
 --- !u!1 &8319773875024194684
 GameObject:
   m_ObjectHideFlags: 0

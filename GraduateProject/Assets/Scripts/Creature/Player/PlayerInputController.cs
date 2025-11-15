@@ -235,11 +235,13 @@ public class PlayerInputController : CharacterController
         if (cam == null) 
             return;
 
+        // 카메라에서 mouse 포인터 위치를 웣르 좌표로 변환
         Vector3 world = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Mathf.Abs(cam.transform.position.z)));
         
         if (!IsUsable()) 
             return;
 
+        // 화면 기준에서 player transform 기준으로 뵨환
         lookDir = (Vector2)world - (Vector2)transform.position;
         CallLookEvent(lookDir);
     }

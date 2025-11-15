@@ -53,6 +53,8 @@ public abstract class Define
 
     public enum EquipmentSlot { Head, Chest, Legs, Weapon, Ring, Amulet }
 
+    public enum WeaponType { Sword, Spear, SingleShot, AutoShot }
+
     // ---- 스탯/모디파이어 ----
     public enum StatType { PhysAtk, MagicAtk, BaseDmg, MaxHp, CritChance, CritDamage /* 필요시 추가 */ }
     public enum ModMethod { Flat, Percent }
@@ -83,7 +85,7 @@ public abstract class Define
     }
 
     [Description("전투 방식")]
-    public enum AttackMode { Melee, Ranged, RangedBuffer }
+    public enum AttackMode { Melee, Ranged, RangedBuffer /* 연발 사격 */}
     #endregion
 
     #region Class

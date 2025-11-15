@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
 
     private MapGenerator mapGen;
 
+    [Header("TODO - 풀매니저 적용 때릴 것")]
+    public GameObject PoolObjects;
+
     private void Awake()
     {
         // 싱글톤 ㅇㅇ
@@ -69,6 +72,11 @@ public class GameManager : MonoBehaviour
             "Enemies/Archetypes",
             ""
         );
+
+        if(PoolObjects == null)
+        {
+            PoolObjects = new GameObject("PoolObjects");
+        }
     }
 
     private void OnDestroy()

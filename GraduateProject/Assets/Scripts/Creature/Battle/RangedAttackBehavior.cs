@@ -7,14 +7,14 @@ public class RangedAttackBehavior : MonoBehaviour, IAttackBehavior
     [SerializeField] private Transform firePoint;
 
     [Header("Runtime Config (set by Assembler)")]
-    [SerializeField] private SimpleProjectile projectilePrefab;
+    [SerializeField] private Bullet projectilePrefab;
     [SerializeField] private float projectileSpeed = 12f;
     [SerializeField] private float projectileLife = 3f;
     [SerializeField] private LayerMask hitLayers;
 
     public float Range => range;
 
-    public void Configure(SimpleProjectile prefab, float speed, float life, LayerMask mask, float rangeOverride)
+    public void Configure(Bullet prefab, float speed, float life, LayerMask mask, float rangeOverride)
     {
         if (prefab) projectilePrefab = prefab;
         if (speed > 0f) projectileSpeed = speed;

@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 [DisallowMultipleComponent]
-public class SimpleProjectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Collider2D col;
@@ -53,7 +53,6 @@ public class SimpleProjectile : MonoBehaviour
                  defaultSpeed, defaultLifeTime, damage, owner, ~0);
     }
 
-    /// <summary>외부에서 반드시 호출(추천): 즉시 회전/속도/수명 설정</summary>
     public void Init(Vector2 direction, float dmg, GameObject owner, LayerMask hitMask, float speed, float lifeTime)
     {
         this.owner = owner;

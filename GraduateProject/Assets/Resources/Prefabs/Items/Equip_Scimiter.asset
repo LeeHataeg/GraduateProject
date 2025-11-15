@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b3f3fa6b3a72f746b2331823bc7e013, type: 3}
-  m_Name: Equip_Sword
+  m_Name: Equip_Scimiter
   m_EditorClassIdentifier: 
-  itemName: "\uCCA0\uC81C \uAC80"
-  icon: {fileID: 21300000, guid: 621aac84b88ffbf4dba37cfe2e935691, type: 3}
-  itemType: 1
+  itemName: "\uC2DC\uBBF8\uD130"
+  icon: {fileID: 21300000, guid: 76571959ec9e7fb4ab54081f7c22a348, type: 3}
+  itemType: 0
   maxStack: 1
-  description: "\uC655\uAD6D\uAD70\uC5D0\uAC8C \uC9C0\uAE09\uB418\uB294 \uAE30\uBCF8
-    \uCCA0\uC81C \uAC80"
+  description: "\uCD08\uC2B9\uB2EC \uBAA8\uC591 \uB3D9\uC591\uC2DD \uCE7C"
   slot: 3
   modifiers:
   - stat: 0
     method: 0
-    value: 5
+    value: 10
   visuals:
   - part: 9
-    sprite: {fileID: 21300000, guid: 621aac84b88ffbf4dba37cfe2e935691, type: 3}
+    sprite: {fileID: 21300000, guid: 76571959ec9e7fb4ab54081f7c22a348, type: 3}
     useIconIfEmpty: 1
     offset: {x: 0, y: 0}
     scale: {x: 0, y: 0}
@@ -52,5 +51,6 @@ MonoBehaviour:
   WeaponType: 0
   IsRanged: 0
   Bullet: {fileID: 0}
-  magMaxCount: 0
-  bulletSpeed: 0
+  MagMaxCount: 0
+  BulletSpeed: 0
+  ReloadTime: 0
