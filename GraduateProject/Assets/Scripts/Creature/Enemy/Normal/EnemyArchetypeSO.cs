@@ -8,6 +8,9 @@ public class EnemyArchetypeSO : ScriptableObject
     public EnemyKind kind;
     public string displayName;
 
+    [Header("Ranking 감산 점수")]
+    public int killScore;
+
     [Header("Prefab & Visual")]
     public GameObject prefab;               // 이 프리팹에는 EnemyController, StatController, Health, Animator 등이 붙어있어야 함 (또는 아래 Assembler가 채워줌)
 

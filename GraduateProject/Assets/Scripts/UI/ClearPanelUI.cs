@@ -35,7 +35,10 @@ public class ClearPanelUI : MonoBehaviour
         // ★★ 핵심: 다음 회차를 위해 시작점/방 정보 초기화
         gm.RoomManager?.ResetRooms();
 
-        // PlayerManager 내부 상태가 필요하다면 다음 줄도 고려(메서드가 없다면 생략)
-        // gm.PlayerManager?.SendMessage("ResetState", SendMessageOptions.DontRequireReceiver);
+        // ★ 플레이어 제거 (카메라 + AudioListener 포함)
+        gm.PlayerManager?.DespawnPlayer();
+
+        // ★ 랭킹 런타임도 깨끗하게 하고 싶으면 옵션으로:
+        gm.RankingManager?.ResetAllRuntime();
     }
 }

@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private DeathPopupUI deathPopup;    // InGameScene Canvas 안의 팝업
     public DeathPopupUI DeathPopup => deathPopup;
 
+    [Header("Ranking UI")]
+    [SerializeField] private RankingUI rankingPanel;
+
     [Header("Clear Popup")]
     [SerializeField] private GameObject ClearPanel;
 
@@ -57,6 +60,40 @@ public class UIManager : MonoBehaviour
         if (pm != null)
             pm.OnEquipmentReady -= HandlePlayerEquipmentReady;
     }
+
+    public void ShowRankingOrClearPanel(int stageIndex)
+    {
+        // RankingUI가 세팅되어 있으면 → 랭킹 먼저
+        Debug.Log("[UIManager] - ShowRank");
+
+        if (rankingPanel != null)
+        {
+            Debug.Log("[UIManager] - rankingPanel이 null 아니에용");
+
+            int lastScore = 0;
+
+            var rm = FindFirstObjectByType<RankingManager>(FindObjectsInactive.Include);
+            if (rm != null)
+            {
+                var rec = rm.GetRecord(stageIndex);
+                if (rec != null)
+                    lastScore = rec.lastScore;
+            }
+
+            // ClearPanel은 RankingUI 인스펙터에서 nextPanel로 연결해 둔다.
+            Debug.Log("[UIManager] - OpenForStage호출해용");
+            rankingPanel.OpenForStage(stageIndex, lastScore);
+        }
+        else
+        {
+            // 랭킹 UI 없으면 기존처럼 바로 클리어 패널
+            Debug.Log("[UIManager] - rankingPanel이 null 이에용");
+
+            if (stageIndex <= GameManager.Instance.Stages.Count)
+                ShowClearPanel();
+        }
+    }
+
 
     private void HandlePlayerEquipmentReady(EquipmentManager eq)
     {

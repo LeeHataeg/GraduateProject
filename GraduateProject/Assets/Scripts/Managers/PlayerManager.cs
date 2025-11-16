@@ -342,6 +342,39 @@ public class PlayerManager : MonoBehaviour
         return null;
     }
 
+    public void DespawnPlayer()
+    {
+        if (UnitRoot != null)
+        {
+            // Player 전체 루트 오브젝트 가져오기
+            var root = UnitRoot.transform.root.gameObject;
+
+            Debug.Log("[PlayerManager] DespawnPlayer: destroying player root " + root.name);
+
+            UnitRoot = null;
+
+            // 실제로 파괴
+            Destroy(root);
+        }
+
+        // 캐싱된 컴포넌트들 정리
+        anim = null;
+        rigid = null;
+        colliders = null;
+        inputController = null;
+        plMove = null;
+        hpCont = null;
+        hitReactor = null;
+        atkCont = null;
+
+        // 스폰 코루틴도 리셋
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+    }
+
     private static void TryPlayIfExists(Animator a, string stateName)
     {
         if (!a) return;

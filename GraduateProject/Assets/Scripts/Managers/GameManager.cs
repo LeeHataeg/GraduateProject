@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public RoomManager RoomManager { get; private set; }
     public PlayerManager PlayerManager { get; private set; }
     public UIManager UIManager { get; private set; }
+    public RankingManager RankingManager { get; private set; }
 
     public void RegisterUIManager(UIManager ui)
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     [Header("TODO - 풀매니저 적용 때릴 것")]
     public GameObject PoolObjects;
+    public bool isFinal = false;
 
     private void Awake()
     {
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         EnsureRoomManager();
         EnsurePlayerManager();
         EnsureMapGenerator();
+        EnsureRankingManager();
 
         // 씬 전환에 대해 이벤트 구독
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
             ""
         );
 
-        if(PoolObjects == null)
+        if (PoolObjects == null)
         {
             PoolObjects = new GameObject("PoolObjects");
         }
@@ -87,25 +90,30 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (RoomManager == null) 
+        if (RoomManager == null)
             EnsureRoomManager();
-        if (PlayerManager == null) 
+        if (PlayerManager == null)
             EnsurePlayerManager();
-        if (mapGen == null) 
+        if (mapGen == null)
             EnsureMapGenerator();
+        if (RankingManager == null)
+            EnsureRankingManager();
 
         // "InGameScene" 진입 췤
         if (scene.name == Const.Scene_InGame)
         {
             PlayerManager.PreparePlayerObj();  // Player 단독 보장
             PlayerManager.SpawnToStartPoint();   //. Playger 스폰 위치 지정.
+
+            if (RankingManager != null)
+                RankingManager.BeginStage(CurrentStage);
         }
     }
 
-    
+
     private void EnsureRoomManager()
     {
-        if (RoomManager == null) 
+        if (RoomManager == null)
             RoomManager = FindFirstObjectByType<RoomManager>();
 
         if (RoomManager == null)
@@ -135,6 +143,19 @@ public class GameManager : MonoBehaviour
             mapGen = FindFirstObjectByType<MapGenerator>();
 
         // TODO - 이것도 없으면 만들어야함.
+    }
+
+    private void EnsureRankingManager()
+    {
+        if (RankingManager == null)
+            RankingManager = FindFirstObjectByType<RankingManager>();
+
+        if (RankingManager == null)
+        {
+            var go = new GameObject("RankingManager");
+            RankingManager = go.AddComponent<RankingManager>();
+            DontDestroyOnLoad(go);
+        }
     }
 
     // 보스 전투 필드 생성 기능 + 보스 방의 플레이어가 스폰될 위치 리턴
@@ -202,13 +223,18 @@ public class GameManager : MonoBehaviour
         if (isBossCleared) return;
         isBossCleared = true;
 
-        bool isFinal = (Stages != null && Stages.Count > 0) ? (CurrentStage >= Stages.Count) : true;
-        if (isFinal)
-        {
-            UIManager?.ShowClearPanel();
-            return;
-        }
+        isFinal = (Stages != null && Stages.Count > 0) ? (CurrentStage >= Stages.Count) : true;
+        //if (isFinal)
+        //{
+        //    UIManager?.ShowClearPanel();
+        //    return;
+        //}
 
+        if (CurrentStage <= Stages.Count)
+        {
+            Debug.Log("초~비상 - currentStage : " + CurrentStage);
+            UIManager.ShowRankingOrClearPanel(CurrentStage);
+        }
         TrySpawnStageTransitionPortal(bossRoom);
     }
 
@@ -249,7 +275,7 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    
+
     public void ResetStageClearFlags()
     {
         isBossCleared = false;
@@ -284,6 +310,8 @@ public class GameManager : MonoBehaviour
         if (PlayerManager != null && PlayerManager.UnitRoot != null)
             RoomManager?.TeleportToSpawnPoint(PlayerManager.UnitRoot.transform);
 
+        RankingManager?.BeginStage(CurrentStage);
+
         Debug.Log($"[GameManager] Advanced to Stage {CurrentStage}.");
     }
 
@@ -317,6 +345,8 @@ public class GameManager : MonoBehaviour
             RoomManager?.TeleportToSpawnPoint(PlayerManager.UnitRoot.transform);
 
         PlayerManager?.Revive();
+
+        RankingManager?.BeginStage(CurrentStage);
 
         Debug.Log($"[GameManager] Restarted Stage {CurrentStage}.");
     }

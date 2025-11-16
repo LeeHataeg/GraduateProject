@@ -14,6 +14,7 @@ public class EchoManager : MonoBehaviour
     EchoRecorder recorder;
     PlayerController player;
 
+    public int LastEchoCount { get; private set; }
     #endregion
 
     public void BeginBossBattle(PlayerController playerController)
@@ -27,6 +28,9 @@ public class EchoManager : MonoBehaviour
         // 사망 기록 재생
         var tapes = EchoPersistence.LoadTapes();
         int n = tapes.Count;
+
+        LastEchoCount = n;
+
         for (int i = 0; i < n; i++)
         {
             var tape = tapes[i];

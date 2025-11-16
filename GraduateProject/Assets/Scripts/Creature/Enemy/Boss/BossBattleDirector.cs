@@ -87,6 +87,15 @@ public class BossBattleDirector : MonoBehaviour
         if (EchoManager.I != null)
             EchoManager.I.EndBossBattle(playerDied: false);
 
+        var rm = GameManager.Instance.RankingManager;
+        if (rm != null)
+        {
+            if (bossInstance != null && bossInstance.def != null)
+            {
+                rm.OnBossKilled(bossInstance.def);
+            }
+            rm.OnStageCleared();
+        }
         // 게이트 열기
         SetGates(false);
 

@@ -105,6 +105,11 @@ public class EnemyAssembler : MonoBehaviour
         {
             Debug.LogWarning($"[EnemyAssembler] {RootGO.name} has no StatController/ICombatStatHolder.");
         }
+
+        var score = RootGO.GetComponent<EnemyScore>();
+        if(score == null)
+            score = RootGO.AddComponent<EnemyScore>();
+        score.Setup(archetype);
     }
 
     private void ApplyAttackMode()

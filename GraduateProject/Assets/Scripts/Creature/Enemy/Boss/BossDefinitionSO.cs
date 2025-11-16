@@ -6,6 +6,9 @@ public class BossDefinitionSO : ScriptableObject
 {
     public string Name;
 
+    [Header("Ranking 감산 점수")]
+    public int clearScore = 1000;
+
     public AnimMapSO animMap;
 
     [Header("Phases (Phase2는 비워둘 수 있음)")]
