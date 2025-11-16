@@ -10,9 +10,9 @@ public class MagCountUI : MonoBehaviour
     private int curMagCount;
     private int maxMagCount;
 
-    public void SetActivation()
+    public void SetActivation(bool on)
     {
-        magPanel.SetActive(!magPanel.activeSelf);
+        magPanel.SetActive(on);
     }
 
     public void SetRanged(int maxMagCount, int curMagCount)

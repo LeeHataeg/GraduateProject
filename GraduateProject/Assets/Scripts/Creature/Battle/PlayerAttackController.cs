@@ -166,7 +166,7 @@ public class PlayerAttackController : MonoBehaviour
         // 설정 할 것 : weaponItem, AtkMode, Bullet, curMagCount, maxMagCount
         curWeapon = item;
 
-        if(rightArm == null)
+        if(rightArm != null)
         {
             rightArm.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
@@ -178,6 +178,7 @@ public class PlayerAttackController : MonoBehaviour
             curAttackMode = AttackMode.Melee; // or AttackMode.None 만들면 그걸로
             curBulletPrefab = null;
             isReloading = false;
+            GameManager.Instance.UIManager.TurnOnOrOffMagUI(false);
             return;
         }
 
@@ -185,6 +186,7 @@ public class PlayerAttackController : MonoBehaviour
         if (curWeapon.WeaponType == WeaponType.Sword || curWeapon.WeaponType == WeaponType.Spear)
         {
             curAttackMode = AttackMode.Melee;
+            GameManager.Instance.UIManager.TurnOnOrOffMagUI(false);
 
         }
         else if (curWeapon.WeaponType == WeaponType.SingleShot || curWeapon.WeaponType == WeaponType.AutoShot)
@@ -195,8 +197,8 @@ public class PlayerAttackController : MonoBehaviour
             curMagCount = maxMagCount;
             isReloading = false;
 
-            GameManager.Instance.UIManager.TurnOnOrOffMagUI();
             GameManager.Instance.UIManager.SetRangedMagUI(maxMagCount, curMagCount);
+            GameManager.Instance.UIManager.TurnOnOrOffMagUI(true);
         }
     }
 

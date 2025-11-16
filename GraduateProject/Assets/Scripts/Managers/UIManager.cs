@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
             invenPanel?.HidePopup();
     }
 
-    public void TurnOnOrOffMagUI() => magCountPanel.SetActivation();
+    public void TurnOnOrOffMagUI(bool on) => magCountPanel.SetActivation(on);
 
     public void SetRangedMagUI(int max, int cur) => magCountPanel.SetRanged(max, cur);
 
