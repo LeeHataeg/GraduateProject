@@ -41,8 +41,6 @@ public class PlayerAttackController : MonoBehaviour
     private const float ARM_MIN_DEGREE = -135f;
     private const float ARM_MAX_DEGREE = 45f;
     private float armAngle;
-    // 디버깅 후 제거할 것
-    [SerializeField] private float armAngleOffset = 0f;  // 제거?할 것
 
     // 런타임 발사 변수
     private Transform firePoint;
@@ -168,8 +166,12 @@ public class PlayerAttackController : MonoBehaviour
         // 설정 할 것 : weaponItem, AtkMode, Bullet, curMagCount, maxMagCount
         curWeapon = item;
 
-        // 무기 장착
+        if(rightArm == null)
+        {
+            rightArm.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
+        // 무기 장착
         // 무기 없음(맨손 무기) 장착
         if (curWeapon == null)
         {
@@ -192,6 +194,9 @@ public class PlayerAttackController : MonoBehaviour
             maxMagCount = curWeapon.MagMaxCount;
             curMagCount = maxMagCount;
             isReloading = false;
+
+            GameManager.Instance.UIManager.TurnOnOrOffMagUI();
+            GameManager.Instance.UIManager.SetRangedMagUI(maxMagCount, curMagCount);
         }
     }
 
@@ -262,18 +267,8 @@ public class PlayerAttackController : MonoBehaviour
         // delay 구현똥마려
         canAttack = false;
 
-
-        // TODO - RightNow - 문제점 발견
-        // 딜레이는 무기에 따라 지정되어야함.
-        //      따라서 Player에 속해있는 delay Time을 공속 증감 관련으로 변경해야함.
-        //      근접 무기 포함. ㅇㅇ
-        float delay = stat.Stats.AttackDelay;
-        if (delay > 0f)
-        {
-            yield return new WaitForSeconds(delay);
-        }
-
         curMagCount--;
+        GameManager.Instance.UIManager.SetCurMagUI(curMagCount);
 
         // 발사
         /* TODO
@@ -325,6 +320,7 @@ public class PlayerAttackController : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
 
         curMagCount = maxMagCount;
+        GameManager.Instance.UIManager.SetCurMagUI(curMagCount);
         isReloading = false;
     }
 

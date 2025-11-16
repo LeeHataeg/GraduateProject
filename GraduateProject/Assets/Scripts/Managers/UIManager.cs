@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     public InventorySystem InventorySys;
     [SerializeField] private InventoryUI invenPanel;
     [SerializeField] private GameObject itemPanel;
+    [SerializeField] private EquipmentUI equipmentPanel;
+
+    [SerializeField] private MagCountUI magCountPanel;
 
     [Header("HpUI")]
     [SerializeField] private CharacteCurStateUI playerHp;
@@ -17,9 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private DeathPopupUI deathPopup;    // InGameScene Canvas 안의 팝업
     public DeathPopupUI DeathPopup => deathPopup;
 
-    [SerializeField] private EquipmentUI equipmentPanel;
-
-    [Header("Death Popup")]
+    [Header("Clear Popup")]
     [SerializeField] private GameObject ClearPanel;
 
     private bool isTurnedOnInven = false;
@@ -96,6 +97,12 @@ public class UIManager : MonoBehaviour
         else
             invenPanel?.HidePopup();
     }
+
+    public void TurnOnOrOffMagUI() => magCountPanel.SetActivation();
+
+    public void SetRangedMagUI(int max, int cur) => magCountPanel.SetRanged(max, cur);
+
+    public void SetCurMagUI(int cur) => magCountPanel.SetCurMagCount(cur);
 
     public void ShowClearPanel()
     {

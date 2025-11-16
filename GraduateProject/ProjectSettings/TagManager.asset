@@ -14,6 +14,7 @@ TagManager:
   - Wall
   - StartRoom
   - PlayerHurtbox
+  - Enemy
   layers:
   - Default
   - TransparentFX

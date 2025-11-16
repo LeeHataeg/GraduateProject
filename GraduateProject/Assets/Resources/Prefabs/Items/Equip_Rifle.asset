@@ -53,4 +53,6 @@ MonoBehaviour:
   Bullet: {fileID: 1441991008618834753, guid: a5754ef445f89af4384b280a92c011c2, type: 3}
   MagMaxCount: 20
   BulletSpeed: 6
-  ReloadTime: 3
+  BulletLifeTime: 2
+  ReloadTime: 2.5
+  atkCoolTime: 0.25
