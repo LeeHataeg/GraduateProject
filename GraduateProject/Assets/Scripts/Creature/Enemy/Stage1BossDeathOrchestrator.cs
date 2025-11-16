@@ -204,6 +204,7 @@ public class Stage1BossDeathOrchestrator : MonoBehaviour
 
         if (log) Debug.Log($"[Stage1BossDeathOrchestrator] Spawned stage portal at {pos}, parent={parent?.name}", this);
 
+        go.gameObject.SetActive(true);
         // 일반적으로 포탈 프리팹이 자체적으로 동작(트리거/OnInteract)하지만,
         // 필요 시 여기서 바로 초기화해줄 수 있음.
         // (예: StageTransitionPortal 같은 스크립트가 있으면 자동으로 동작)

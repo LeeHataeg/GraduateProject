@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("초~비상 - currentStage : " + CurrentStage);
             UIManager.ShowRankingOrClearPanel(CurrentStage);
         }
-        TrySpawnStageTransitionPortal(bossRoom);
+        //TrySpawnStageTransitionPortal(bossRoom);
     }
 
     private void TrySpawnStageTransitionPortal(Room bossRoom)
@@ -273,6 +273,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"[GameManager] StageTransitionPortal spawned once at {pos}.");
 #endif
+        stagePortal.gameObject.SetActive(true);
     }
 
 
