@@ -28,6 +28,7 @@ public class PlayerInputController : CharacterController
     private InputAction interactAction;
     private InputAction dashAction;
     private InputAction inventoryAction;
+    private InputAction minimapAction;
     #endregion
 
     private bool _bound;
@@ -59,6 +60,7 @@ public class PlayerInputController : CharacterController
         interactAction = mainActionMap.FindAction("Interaction", throwIfNotFound: false);
         dashAction = mainActionMap.FindAction("Dash", throwIfNotFound: false);
         inventoryAction = mainActionMap.FindAction("Inventory", throwIfNotFound: false);
+        minimapAction = mainActionMap.FindAction("Minimap", throwIfNotFound: false);
     }
 
     private void OnEnable()
@@ -104,7 +106,8 @@ public class PlayerInputController : CharacterController
         if (jumpAction != null) jumpAction.performed += OnJumpPerformed;
         if (teleportAction != null) teleportAction.performed += OnTeleportPerformed;
         if (dashAction != null) dashAction.performed += OnDashPerformed;
-
+        if (minimapAction != null)
+            minimapAction.performed += OnMinimap;
         // TODO - Fix
         // if (interactAction != null) interactAction.performed += OnInteractPerformed;
 
@@ -148,6 +151,9 @@ public class PlayerInputController : CharacterController
         if (dashAction != null) 
             dashAction.performed -= OnDashPerformed;
 
+        if (minimapAction != null)
+            minimapAction.performed -= OnMinimap;
+
         // 씬 전환 시 불필요한 업데이트 루프를 막기 위해 비활성화
         if (mainActionMap.enabled) 
             mainActionMap.Disable();
@@ -156,6 +162,13 @@ public class PlayerInputController : CharacterController
     }
 
     #region Input Callbacks (performed/canceled 핸들러)
+
+    private void OnMinimap(InputAction.CallbackContext ctx)
+    {
+        if (!IsUsable()) return;
+        CallMinimapEvent(true);
+    }
+
     private void OnCrouchPerformed(InputAction.CallbackContext ctx)
     {
         if (!IsUsable()) return;

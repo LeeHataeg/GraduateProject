@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         control.OnCrouchEvent += Crouch;
         // control.OnHitEvent     += Hit;   // 공격은 PlayerAttackController가 처리하므로 제거
         control.OnInventoryEvent += Inventory;
-
+        control.OnMinimapEvent += Minimap;
         // 이동속도는 StatController → CombatStatSheet 에서 직접 읽음
         if (statHolder != null && statHolder.Stats != null)
             speed = statHolder.Stats.MoveSpeed;
@@ -111,6 +111,11 @@ public class PlayerMovement : MonoBehaviour
             isPlatform = false;
             comCol = null;
         }
+    }
+
+    private void Minimap(bool isPressed)
+    {
+        GameManager.Instance.UIManager.SetActivationMinmap();
     }
 
     private void Move(Vector2 direction)

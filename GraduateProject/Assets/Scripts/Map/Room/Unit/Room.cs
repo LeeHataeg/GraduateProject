@@ -1,8 +1,12 @@
 // Room.cs
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static Define;
+using Color = UnityEngine.Color;
 
 public class Room : MonoBehaviour
 {
@@ -14,8 +18,43 @@ public class Room : MonoBehaviour
     public PortalConnection PortalConnection { get; private set; }
     public SpawnerController spawnManager { get; private set; }
 
-    // ▼ 추가: 이 방 안의 포탈 캐시
     private readonly List<Portal> _portals = new();
+
+    private void SetDark()
+    {
+        // TMI. GetComponentsInChildren는 List가 아닌 배열을 리턴하여 아래는 틀린 문법
+        //List<SpriteRenderer> sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        var tilemaps = GetComponentsInChildren<Tilemap>(true);
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var tilemap in tilemaps)
+        {
+            tilemap.color = new Color(0f, 0f, 0f, 1f);
+        }
+
+        foreach (var sprite in sprites)
+        {
+            sprite.color = new Color(0f, 0f, 0f, 1f);
+        }
+    }
+
+    private void SetLight()
+    {
+
+        var tilemaps = GetComponentsInChildren<Tilemap>(true);
+        var sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var tilemap in tilemaps)
+        {
+            tilemap.color = new Color(1f, 1f, 1f, 1f);
+        }
+
+        foreach (var sprite in sprites)
+        {
+            sprite.color = new Color(1f, 1f, 1f, 1f);
+        }
+    }
 
     public void Initialize(RoomInitData init)
     {
@@ -35,6 +74,9 @@ public class Room : MonoBehaviour
         }
 
         PortalConnection.Initialize(init.Node.Portals);
+
+        if(init.RoomType != RoomType.Start)
+            SetDark();
     }
 
     private void OnDestroy()
@@ -43,14 +85,12 @@ public class Room : MonoBehaviour
             spawnManager.OnAllEnemiesDefeated -= HandleAllEnemiesDefeated;
     }
 
-    // ▼ 포탈 목록 캐시(PortalInitializer가 포탈 생성한 뒤 1회 호출해줄 것)
     public void CachePortals()
     {
         _portals.Clear();
         GetComponentsInChildren<Portal>(true, _portals);
     }
 
-    // ▼ Normal방의 포탈만 on/off (Start/Boss는 항상 on)
     public void SetPortalsActive(bool active)
     {
         if (Type == RoomType.Start || Type == RoomType.Boss) return;
@@ -84,6 +124,8 @@ public class Room : MonoBehaviour
         // StartRoom/BossRoom은 포탈을 끄지 않고, 몬스터도 스폰하지 않음
         if (Type == RoomType.Normal)
         {
+            SetLight();
+
             if (!RoomState.IsCleared)
             {
                 SetPortalsActive(false);     // 입장 시 포탈 OFF

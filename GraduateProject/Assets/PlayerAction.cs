@@ -171,6 +171,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Minimap"",
+                    ""type"": ""Button"",
+                    ""id"": ""12816021-ded8-4375-a4c5-862d2657ee9d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -316,6 +325,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5501d8f-e656-4ae5-8bd8-05011f4b1980"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Minimap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -350,6 +370,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_Minimap = m_Player.FindAction("Minimap", throwIfNotFound: true);
     }
 
     ~@PlayerAction()
@@ -439,6 +460,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_Minimap;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -486,6 +508,10 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Inventory".
         /// </summary>
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Minimap".
+        /// </summary>
+        public InputAction @Minimap => m_Wrapper.m_Player_Minimap;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -539,6 +565,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Minimap.started += instance.OnMinimap;
+            @Minimap.performed += instance.OnMinimap;
+            @Minimap.canceled += instance.OnMinimap;
         }
 
         /// <summary>
@@ -577,6 +606,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Minimap.started -= instance.OnMinimap;
+            @Minimap.performed -= instance.OnMinimap;
+            @Minimap.canceled -= instance.OnMinimap;
         }
 
         /// <summary>
@@ -693,5 +725,12 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Minimap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMinimap(InputAction.CallbackContext context);
     }
 }

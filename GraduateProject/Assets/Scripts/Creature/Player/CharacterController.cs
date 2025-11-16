@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnHitEvent;
     public event Action<bool> OnInventoryEvent;
+    public event Action<bool> OnMinimapEvent;
     #endregion
 
     public void CallInventoryEvent(bool isTurnedOnInven)
@@ -58,5 +59,9 @@ public class CharacterController : MonoBehaviour
     public void CallCrouchEvent(bool isCrouch)
     {
         OnCrouchEvent?.Invoke(isCrouch);
+    }
+    public void CallMinimapEvent(bool isPressed)
+    {
+        OnMinimapEvent?.Invoke(isPressed);
     }
 }

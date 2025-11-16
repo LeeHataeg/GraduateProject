@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject ClearPanel;
 
     private bool isTurnedOnInven = false;
+
+    [Header("Minimap")]
+    [SerializeField] private GameObject minimap;
 
     private void Awake()
     {
@@ -138,6 +142,11 @@ public class UIManager : MonoBehaviour
         bossHp.gameObject.SetActive(value);
     }
 
+    public void SetActivationMinmap()
+    {
+        minimap.SetActive(!minimap.activeSelf);
+    }
+
     // ★★ 씬 전환 후, InGameScene의 실제 UI들과 연결해주는 진입점
     public void BindSceneInventory(InventorySystem sys, InventoryUI panel, GameObject panelGO)
     {
@@ -175,6 +184,11 @@ public class UIManager : MonoBehaviour
         if(ClearPanel!= null && ClearPanel.activeSelf)
             ClearPanel.SetActive(false);
 
+        if (magCountPanel != null)
+            magCountPanel.gameObject.SetActive(false);
+
+        if(minimap != null)
+            minimap.SetActive(false);
 #if UNITY_EDITOR
         Debug.Log("[UIManager] HideAll called: all UI panels closed.");
 #endif
