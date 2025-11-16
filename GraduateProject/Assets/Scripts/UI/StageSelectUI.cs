@@ -21,6 +21,15 @@ public class StageSelectUI : MonoBehaviour
     {
         if (startButton != null)
             startButton.onClick.AddListener(OnClickStart);
+
+        for (int i = 0; i < stageButtons.Count; i++)
+        {
+            var btn = stageButtons[i];
+            if (btn == null) continue;
+
+            int stageIndex = i + 1; // 리스트 순서가 1,2,3,... 스테이지라고 가정
+            btn.Init(stageIndex, SetSelectedStage);
+        }
     }
 
     private void OnEnable()
