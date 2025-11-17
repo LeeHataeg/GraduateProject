@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Firebase config
+google-services-desktop.json
+google-services.json
+GoogleService-Info.plist
+*.keystore
+
+# Firebase native libs (too big for GitHub)
+firebaseCppApp-*.bundle
+firebaseCppApp-*.so
