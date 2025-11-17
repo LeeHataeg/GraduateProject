@@ -39,10 +39,8 @@ public class RankingManager : MonoBehaviour
     [Tooltip("보스전에서 사용된 Echo(유령) 한 개당 감점될 점수")]
     public int echoPenaltyPerGhost = 200;
 
-    // stageIndex -> 기록
     private readonly Dictionary<int, StageRecord> _records = new();
 
-    // 현재 진행중인 스테이지 런 정보
     private int _currentStageIndex = -1;
     private float _stageStartTime;
     private bool _stageRunning;
@@ -57,7 +55,6 @@ public class RankingManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>스테이지 시작 시 호출 (GameManager에서 호출 예정)</summary>
     public void BeginStage(int stageIndex)
     {
         _currentStageIndex = stageIndex;
@@ -72,7 +69,6 @@ public class RankingManager : MonoBehaviour
 #endif
     }
 
-    /// <summary>적 처치 시 EnemyScore를 더해준다.</summary>
     public void OnEnemyKilled(EnemyArchetypeSO archetype)
     {
         if (!_stageRunning || _currentStageIndex <= 0) return;
@@ -83,7 +79,6 @@ public class RankingManager : MonoBehaviour
         _enemyScoreThisRun += add;
     }
 
-    /// <summary>보스 처치 시 BossScore를 더해준다.</summary>
     public void OnBossKilled(BossDefinitionSO bossDef)
     {
         if (!_stageRunning || _currentStageIndex <= 0) return;
@@ -94,10 +89,6 @@ public class RankingManager : MonoBehaviour
         _bossScoreThisRun += add;
     }
 
-    /// <summary>
-    /// 스테이지 클리어 시 최종 점수를 계산하고 기록한다.
-    /// BossBattleDirector에서 보스 사망 시점에 호출.
-    /// </summary>
     public void OnStageCleared()
     {
         if (!_stageRunning || _currentStageIndex <= 0) return;
@@ -152,7 +143,7 @@ public class RankingManager : MonoBehaviour
 
         _stageRunning = false;
 
-        // ★ Firebase로 최고 기록 업로드
+        // Firebase로 최고 기록 업로드
         TryUploadBestScoreToFirebase(_currentStageIndex, record.bestScore, record.bestClearTime);
     }
 
@@ -172,7 +163,6 @@ public class RankingManager : MonoBehaviour
         return rec;
     }
 
-    /// <summary>런 전체를 리셋하고 싶을 때 사용(필요시)</summary>
     public void ResetAllRuntime()
     {
         _stageRunning = false;
@@ -181,11 +171,6 @@ public class RankingManager : MonoBehaviour
         _bossScoreThisRun = 0;
     }
 
-    /// <summary>
-    /// Firebase Firestore에 최고 점수를 업로드 (로그인 되어 있을 때만).
-    /// 컬렉션 경로:
-    ///  leaderboards / stage_{stageIndex} / scores / {userId}
-    /// </summary>
     private void TryUploadBestScoreToFirebase(int stageIndex, int bestScore, float bestTime)
     {
         var auth = FirebaseAuth.DefaultInstance;
@@ -224,6 +209,4 @@ public class RankingManager : MonoBehaviour
         });
     }
 
-    // ★ 이후 Firebase 연동 시: _records를 그대로 DTO로 변환해서 업로드하면 됨.
-    // public List<StageScoreDTO> BuildBestScoreList() { ... } 이런식으로 확장 가능.
 }
