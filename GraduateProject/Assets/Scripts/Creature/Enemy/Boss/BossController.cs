@@ -124,9 +124,16 @@ public class BossController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (hp != null) hp.OnDead -= HandleDead;
-        GameManager.Instance.UIManager.SetActiveBossHpUI(false);
+        if (hp != null)
+            hp.OnDead -= HandleDead;
+
+        var gm = GameManager.Instance;
+        if (gm != null && gm.UIManager != null)
+        {
+            gm.UIManager.SetActiveBossHpUI(false);
+        }
     }
+
 
     private void Update()
     {

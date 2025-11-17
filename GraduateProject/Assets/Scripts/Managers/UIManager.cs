@@ -176,7 +176,16 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveBossHpUI(bool value)
     {
-        bossHp.gameObject.SetActive(value);
+        // bossHp 컴포넌트 자체가 이미 Destroy 되었으면 그냥 리턴
+        if (bossHp == null)
+            return;
+
+        // 혹시 모를 안전빵 (보통 여기까지 오면 gameObject도 같이 죽어있긴 함)
+        var go = bossHp.gameObject;
+        if (go == null)
+            return;
+
+        go.SetActive(value);
     }
 
     public void SetActivationMinmap()

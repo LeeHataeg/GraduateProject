@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager PlayerManager { get; private set; }
     public UIManager UIManager { get; private set; }
     public RankingManager RankingManager { get; private set; }
-
+    public AuthenticationManager AuthenticationManager { get; private set; }
     public void RegisterUIManager(UIManager ui)
     {
         UIManager = ui;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         EnsurePlayerManager();
         EnsureMapGenerator();
         EnsureRankingManager();
-
+        EnsureAuthenticationManager();
         // 씬 전환에 대해 이벤트 구독
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -98,6 +98,8 @@ public class GameManager : MonoBehaviour
             EnsureMapGenerator();
         if (RankingManager == null)
             EnsureRankingManager();
+        if(AuthenticationManager == null)
+            EnsureAuthenticationManager();
 
         // "InGameScene" 진입 췤
         if (scene.name == Const.Scene_InGame)
@@ -157,6 +159,22 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(go);
         }
     }
+
+    private void EnsureAuthenticationManager()
+    {
+        if (AuthenticationManager == null)
+            AuthenticationManager = FindFirstObjectByType<AuthenticationManager>();
+
+        if (AuthenticationManager == null)
+        {
+            var go = new GameObject("AuthenticationManager");
+            AuthenticationManager = go.AddComponent<AuthenticationManager>();
+            DontDestroyOnLoad(go);
+        }
+    }
+
+
+
 
     // 보스 전투 필드 생성 기능 + 보스 방의 플레이어가 스폰될 위치 리턴
     public Vector3? SpawnBossFieldAndGetSpawnPoint()

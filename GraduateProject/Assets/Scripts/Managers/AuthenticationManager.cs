@@ -37,7 +37,6 @@ public class AuthenticationManager : MonoBehaviour
     {
         auth = FirebaseAuth.DefaultInstance;
     }
-
     public void CreateAccount()
     {
         Debug.Log("Register ¿‘¿Â");
@@ -130,7 +129,7 @@ public class AuthenticationManager : MonoBehaviour
         auth.SignOut();
         loginPanel.SetActive(true);
         StartPanel.SetActive(false);
-
+        SetBtnInteractable(true);
     }
 
     private IEnumerator popupAndFadeoutAuthStatus(string status)
