@@ -30,20 +30,33 @@ public class UIManager : MonoBehaviour
 
     [Header("Minimap")]
     [SerializeField] private GameObject minimap;
-
     private void Awake()
     {
         // 프로젝트에 따라 GameManager에 등록 메서드가 없을 수도 있으니, 예외 없이 시도만 함
         var gm = GameManager.Instance;
         if (gm != null)
         {
-            // GameManager에 RegisterUIManager가 있으면 호출(없으면 무시)
-            var mi = gm.GetType().GetMethod("RegisterUIManager");
-            if (mi != null) mi.Invoke(gm, new object[] { this });
+            gm.SetUIManger(this);
         }
 
         if (invenPanel && InventorySys)
             invenPanel.SetInventory(InventorySys);
+    }
+
+    private void Start()
+    {
+        if (InventorySys == null)
+            InventorySys = FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
+
+        if (invenPanel && InventorySys)
+            invenPanel.SetInventory(InventorySys);
+    }
+
+    public void SetInven(InventorySystem inven)
+    {
+        this.InventorySys = inven;
+        if (invenPanel != null)
+            invenPanel.SetInventory(inven);
     }
 
     private void OnEnable()
@@ -98,7 +111,7 @@ public class UIManager : MonoBehaviour
     {
         // 1) 씬 오브젝트 자동 탐색(비어있다면만)
         if (InventorySys == null)
-            InventorySys = FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
+            InventorySys = FindFirstObjectByType<InventorySystem>();
         if (invenPanel == null)
             invenPanel = FindFirstObjectByType<InventoryUI>(FindObjectsInactive.Include);
         if (equipmentPanel == null)

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9022668763829811983}
   - component: {fileID: 1943946151112508361}
-  - component: {fileID: 6163327881723914418}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,16 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0f5ba4515886747b705f5c35e22d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6163327881723914418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191492008299447180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c04cce9aac3fbb64bb24e9ba1d7cca4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryPanel: {fileID: 0}
+  Stages:
+  - {fileID: 11400000, guid: e6d4822f53dd57d4f995abe5f5398359, type: 2}
+  - {fileID: 11400000, guid: cd9982cd406b4124496c09ee0fbe57d0, type: 2}
+  CurrentStage: 1
+  StagePortalPrefab: {fileID: 0}
+  BossFieldRoot: {fileID: 0}
+  PoolObjects: {fileID: 0}
+  isFinal: 0

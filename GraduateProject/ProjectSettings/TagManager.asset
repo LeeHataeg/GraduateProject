@@ -33,7 +33,7 @@ TagManager:
   - PlayerHitbox
   - EnemyHitbox
   - Wall
-  - MinimapPlayerIcon
+  - MinimapIcon
   - 
   - 
   - 

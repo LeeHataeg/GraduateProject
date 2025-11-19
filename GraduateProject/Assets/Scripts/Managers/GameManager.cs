@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             EnsureMapGenerator();
         if (RankingManager == null)
             EnsureRankingManager();
-        if(AuthenticationManager == null)
+        if (scene.name.Equals("StartScene") && AuthenticationManager == null)
             EnsureAuthenticationManager();
 
         // "InGameScene" 진입 췤
@@ -112,7 +112,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public void SetUIManger(UIManager uiM)
+    {
+        this.UIManager = uiM;
+    }
     private void EnsureRoomManager()
     {
         if (RoomManager == null)
@@ -169,7 +172,6 @@ public class GameManager : MonoBehaviour
         {
             var go = new GameObject("AuthenticationManager");
             AuthenticationManager = go.AddComponent<AuthenticationManager>();
-            DontDestroyOnLoad(go);
         }
     }
 

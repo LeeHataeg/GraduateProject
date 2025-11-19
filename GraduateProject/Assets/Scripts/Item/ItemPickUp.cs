@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+[DefaultExecutionOrder(10)]
 [RequireComponent(typeof(Collider2D))]
 public class ItemPickUp : MonoBehaviour
 {
@@ -9,60 +9,59 @@ public class ItemPickUp : MonoBehaviour
     [Tooltip("획득 수량")]
     public int quantity = 1;
 
-    private InventorySystem inventory;
     private SpriteRenderer icon;
+    private InventorySystem inventory;   // ★ 로컬 캐시
 
     private void Awake()
     {
-        inventory = GameManager.Instance?.UIManager?.InventorySys
-                 ?? Object.FindFirstObjectByType<InventorySystem>(FindObjectsInactive.Include);
-
-        if (inventory == null)
-            Debug.LogError("[ItemPickUp] InventorySystem을 찾을 수 없습니다!");
-
         icon = GetComponent<SpriteRenderer>();
 
-        // 충돌 세팅 체크 (필수)
         var col = GetComponent<Collider2D>();
-        if (col) col.isTrigger = true;  // 트리거로 동작
+        if (col == null)
+        {
+            col = gameObject.AddComponent<BoxCollider2D>();
+            Debug.Log("[ItemPickup] BoxCollider2D added.");
+        }
+
+        col.isTrigger = true;
     }
-
-
     public void SetSprite()
     {
-        if (icon == null)
-            Debug.Log("SpriteRenderer null");
-        if (itemData == null)
-            Debug.Log("ItemData null");
+        if (!icon)
+            icon = GetComponent<SpriteRenderer>();
 
-        icon.sprite = itemData.icon;
+        if (icon == null)
+            Debug.LogWarning("[ItemPickup] SpriteRenderer null");
+        if (itemData == null)
+            Debug.LogWarning("[ItemPickup] ItemData null");
+
+        if (icon != null && itemData != null)
+            icon.sprite = itemData.icon;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
-
-
-        var inv = GameManager.Instance?.UIManager?.InventorySys;
-        if (inv == null)
+        if (GameManager.Instance.UIManager.InventorySys == null)
         {
-            Debug.LogWarning("[ItemPickup] InventorySys가 아직 바인딩되지 않았습니다.");
-            return;
+            if (inventory == null)
+            {
+                Debug.Log("[ItemPickup] Not InvenSys (InventorySystem ㄹㅇ 없음)");
+                return;
+            }
         }
 
-        bool added = inv.AddItem(itemData); // ← InventorySystem의 API에 맞춰 호출명 변경
+        bool added = GameManager.Instance.UIManager.InventorySys.AddItem(itemData, quantity);
         if (added)
         {
-            // UI 즉시 반영 (인벤이 열려 있지 않으면 생략해도 됨)
-            GameManager.Instance.UIManager?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
-            GameManager.Instance.UIManager?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
+            var ui = GameManager.Instance?.UIManager;
+            ui?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
+            ui?.SendMessage("TurnOnorOffInven", SendMessageOptions.DontRequireReceiver);
 
             Destroy(gameObject);
         }
         else
         {
-            // 꽉 찼거나 조건 불만족
-            Debug.Log("[ItemPickup] 인벤토리에 여유가 없습니다.");
+            Debug.Log("[ItemPickup] Not Capacity in Inven");
         }
     }
 }

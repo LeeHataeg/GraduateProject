@@ -184,25 +184,6 @@ MonoBehaviour:
   sliderCurVal: {fileID: 255205016}
   targetName: {fileID: 617747421}
   targetObj: {fileID: 0}
---- !u!1 &117270568 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1191492008299447180, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-  m_PrefabInstance: {fileID: 1983349186}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &117270569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117270568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4657a70ec27936d4a9b44d267365916e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxItemCount: 20
-  Slots: []
 --- !u!1 &131774879
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +756,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187364654}
   m_CullTransparentMesh: 1
+--- !u!1 &197529299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197529301}
+  - component: {fileID: 197529300}
+  m_Layer: 0
+  m_Name: InvenSys
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &197529300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197529299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4657a70ec27936d4a9b44d267365916e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxItemCount: 20
+  Slots: []
+--- !u!4 &197529301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197529299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255205014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,7 +5106,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 197511
+    m_Bits: 197510
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5707,82 +5734,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: stage1SO
-      value: 
-      objectReference: {fileID: 11400000, guid: e6d4822f53dd57d4f995abe5f5398359, type: 2}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: stage2SO
-      value: 
-      objectReference: {fileID: 11400000, guid: cd9982cd406b4124496c09ee0fbe57d0, type: 2}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: Stages.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: stagePortalPrefab
-      value: 
-      objectReference: {fileID: 2776649909697778401, guid: ead13ed4bedadcf4fb6d582be3a3660c, type: 3}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: 'Stages.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e6d4822f53dd57d4f995abe5f5398359, type: 2}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: 'Stages.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: cd9982cd406b4124496c09ee0fbe57d0, type: 2}
-    - target: {fileID: 1943946151112508361, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: stagePortalResourcesPath
-      value: Prefabs/Maps/Portal/Portal_Purple
-      objectReference: {fileID: 0}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: bossHp
-      value: 
-      objectReference: {fileID: 95533259}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: minimap
-      value: 
-      objectReference: {fileID: 1760226599}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: playerHp
-      value: 
-      objectReference: {fileID: 1867119331}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: itemPanel
-      value: 
-      objectReference: {fileID: 425063983}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: ClearPanel
-      value: 
-      objectReference: {fileID: 8961181202608078938}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: deathPopup
-      value: 
-      objectReference: {fileID: 1991505380}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: invenPanel
-      value: 
-      objectReference: {fileID: 79166133}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: InventorySys
-      value: 
-      objectReference: {fileID: 117270569}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: rankingPanel
-      value: 
-      objectReference: {fileID: 2144604492}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: magCountPanel
-      value: 
-      objectReference: {fileID: 1087972115}
-    - target: {fileID: 6163327881723914418, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      propertyPath: equipmentPanel
-      value: 
-      objectReference: {fileID: 7379607052637837569}
     - target: {fileID: 9022668763829811983, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5826,10 +5777,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1191492008299447180, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 117270569}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75dd7c76e8265c64ca03a579785ed8ce, type: 3}
 --- !u!224 &1991505377 stripped
 RectTransform:
@@ -6341,7 +6289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04cce9aac3fbb64bb24e9ba1d7cca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventorySys: {fileID: 5884761109560550528}
+  InventorySys: {fileID: 197529300}
   invenPanel: {fileID: 79166133}
   itemPanel: {fileID: 425063983}
   equipmentPanel: {fileID: 7379607052637837569}
@@ -6596,7 +6544,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4329416954106518780}
   - component: {fileID: 1489374992149647169}
-  - component: {fileID: 5884761109560550528}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -6604,20 +6551,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5884761109560550528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5884761109560550527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4657a70ec27936d4a9b44d267365916e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxItemCount: 20
-  Slots: []
 --- !u!1001 &6668130446004408756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6951,5 +6884,6 @@ SceneRoots:
   - {fileID: 1364477408}
   - {fileID: 4847215916336903945}
   - {fileID: 4329416954106518780}
+  - {fileID: 197529301}
   - {fileID: 1983349186}
   - {fileID: 1760226603}
