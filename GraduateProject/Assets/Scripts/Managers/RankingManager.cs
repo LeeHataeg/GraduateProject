@@ -27,28 +27,25 @@ public class StageRecord
 
 public class RankingManager : MonoBehaviour
 {
-    [Header("Time Score")]
-    [Tooltip("시간 점수 기본값. clearTime이 짧을수록 TimeScore = base / time 이 커짐")]
+    [Header("시간 보너스")]
     public float timeScoreBase = 10000f;
 
-    [Header("Enemy Score")]
-    [Tooltip("EnemyArchetypeSO에 killScore가 비어 있을 때 쓸 기본값")]
+    [Header("적 처치 점수")]
     public int defaultEnemyKillScore = 10;
 
-    [Header("Echo Penalty")]
-    [Tooltip("보스전에서 사용된 Echo(유령) 한 개당 감점될 점수")]
+    [Header("에코가 많을 수록 감점")]
     public int echoPenaltyPerGhost = 200;
 
-    private readonly Dictionary<int, StageRecord> _records = new();
+    private readonly Dictionary<int, StageRecord> records = new();
 
-    private int _currentStageIndex = -1;
-    private float _stageStartTime;
-    private bool _stageRunning;
+    private int curStageInd = -1;
+    private float stageStartTime;
+    private bool isStageRun;
 
-    private int _enemyScoreThisRun;
-    private int _bossScoreThisRun;
+    private int enemyScore;
+    private int bossScore;
 
-    public IReadOnlyDictionary<int, StageRecord> Records => _records;
+    public IReadOnlyDictionary<int, StageRecord> Records => records;
 
     private void Awake()
     {
@@ -57,45 +54,42 @@ public class RankingManager : MonoBehaviour
 
     public void BeginStage(int stageIndex)
     {
-        _currentStageIndex = stageIndex;
-        _stageStartTime = Time.time;
-        _stageRunning = true;
+        curStageInd = stageIndex;
+        stageStartTime = Time.time;
+        isStageRun = true;
 
-        _enemyScoreThisRun = 0;
-        _bossScoreThisRun = 0;
-
-#if UNITY_EDITOR
-        Debug.Log($"[Ranking] BeginStage {stageIndex} at t={_stageStartTime:F2}");
-#endif
+        enemyScore = 0;
+        bossScore = 0;
     }
 
     public void OnEnemyKilled(EnemyArchetypeSO archetype)
     {
-        if (!_stageRunning || _currentStageIndex <= 0) return;
+        if (!isStageRun || curStageInd <= 0) return;
 
         int add = (archetype != null) ? archetype.killScore : defaultEnemyKillScore;
         if (add < 0) add = 0;
 
-        _enemyScoreThisRun += add;
+        enemyScore += add;
     }
 
     public void OnBossKilled(BossDefinitionSO bossDef)
     {
-        if (!_stageRunning || _currentStageIndex <= 0) return;
+        if (!isStageRun || curStageInd <= 0) return;
 
         int add = (bossDef != null) ? bossDef.clearScore : 0;
         if (add < 0) add = 0;
 
-        _bossScoreThisRun += add;
+        bossScore += add;
     }
 
+    // firebase와 통신
     public void OnStageCleared()
     {
-        if (!_stageRunning || _currentStageIndex <= 0) return;
+        if (!isStageRun || curStageInd <= 0) return;
 
-        float clearTime = Mathf.Max(0f, Time.time - _stageStartTime);
-        int enemyScore = _enemyScoreThisRun;
-        int bossScore = _bossScoreThisRun;
+        float clearTime = Mathf.Max(0f, Time.time - stageStartTime);
+        int enemyScore = this.enemyScore;
+        int bossScore = this.bossScore;
 
         // Echo 개수는 EchoManager에서 가져옴
         int echoCount = 0;
@@ -108,80 +102,70 @@ public class RankingManager : MonoBehaviour
         // Echo 감점
         int echoPenalty = echoCount * echoPenaltyPerGhost;
 
-        int total = Mathf.Max(0, timeScore + enemyScore + bossScore - echoPenalty);
+        int totalRecord = Mathf.Max(0, timeScore + enemyScore + bossScore - echoPenalty);
 
-        var record = GetOrCreateRecord(_currentStageIndex);
-        record.stageIndex = _currentStageIndex;
-        record.lastScore = total;
+        var record = GetOrCreateRecord(curStageInd);
+        record.stageIndex = curStageInd;
+        record.lastScore = totalRecord;
         record.lastClearTime = clearTime;
         record.lastEnemyScore = enemyScore;
         record.lastBossScore = bossScore;
         record.lastEchoCount = echoCount;
 
         // 최고 기록 갱신
-        if (total > record.bestScore)
+        if (totalRecord > record.bestScore)
         {
-            record.bestScore = total;
+            record.bestScore = totalRecord;
             record.bestClearTime = clearTime;
             record.bestEnemyScore = enemyScore;
             record.bestBossScore = bossScore;
             record.bestEchoCount = echoCount;
         }
 
-#if UNITY_EDITOR
-        Debug.Log(
-            $"[Ranking] Stage {_currentStageIndex} cleared.\n" +
-            $"  Time   : {clearTime:F2}s ⇒ TimeScore {timeScore}\n" +
-            $"  Enemy  : {enemyScore}\n" +
-            $"  Boss   : {bossScore}\n" +
-            $"  Echoes : {echoCount} ⇒ Penalty {echoPenalty}\n" +
-            $"  Total  : {total}  (Best: {record.bestScore})");
-#else
-        Debug.Log($"[Ranking] Stage {_currentStageIndex} cleared. " +
-                  $"Score={total} (time={clearTime:F2}s, enemy={enemyScore}, boss={bossScore}, echoes={echoCount})");
-#endif
+        isStageRun = false;
 
-        _stageRunning = false;
-
-        // Firebase로 최고 기록 업로드
-        TryUploadBestScoreToFirebase(_currentStageIndex, record.bestScore, record.bestClearTime);
+        // Firebase에 최고 거점수 기입 ㄱㄱ
+        CompareAndUploadBestScore(curStageInd, record.bestScore, record.bestClearTime);
     }
 
     private StageRecord GetOrCreateRecord(int stageIndex)
     {
-        if (!_records.TryGetValue(stageIndex, out var rec))
+        if (!records.TryGetValue(stageIndex, out var rec))
         {
             rec = new StageRecord { stageIndex = stageIndex };
-            _records[stageIndex] = rec;
+            records[stageIndex] = rec;
         }
         return rec;
     }
 
     public StageRecord GetRecord(int stageIndex)
     {
-        _records.TryGetValue(stageIndex, out var rec);
+        records.TryGetValue(stageIndex, out var rec);
         return rec;
     }
 
     public void ResetAllRuntime()
     {
-        _stageRunning = false;
-        _currentStageIndex = -1;
-        _enemyScoreThisRun = 0;
-        _bossScoreThisRun = 0;
+        isStageRun = false;
+        curStageInd = -1;
+        enemyScore = 0;
+        bossScore = 0;
     }
 
-    private void TryUploadBestScoreToFirebase(int stageIndex, int bestScore, float bestTime)
+    private void CompareAndUploadBestScore(int stageIndex, int bestScore, float bestTime)
     {
         var auth = FirebaseAuth.DefaultInstance;
         var user = auth.CurrentUser;
         if (user == null)
         {
-            Debug.LogWarning("[Ranking] Firebase 업로드 스킵: 로그인 유저 없음");
+            Debug.LogWarning("[Ranking] Firebase 업로드 제낌: 유저 정보 없음");
             return;
         }
 
         var db = FirebaseFirestore.DefaultInstance;
+        // 데이터 저장할 경로 지정하여 reference 하나 만듦 
+        //  Collection : 최상위 컬렉션
+        //  Document 해당 컬렉션 안에서 
         var docRef = db.Collection("leaderboards")
                        .Document($"stage_{stageIndex}")
                        .Collection("scores")

@@ -35,7 +35,44 @@ public class AuthenticationManager : MonoBehaviour
 
     private void Awake()
     {
-        auth = FirebaseAuth.DefaultInstance;
+        if(authUser == null)
+            auth = FirebaseAuth.DefaultInstance;
+        else
+        {
+            Debug.Log($"[Auth] 이미 로그인 상태: {authUser.Email}");
+
+            if (loginPanel != null) loginPanel.SetActive(false);
+            if (StartPanel != null) StartPanel.SetActive(true);
+
+            // 로그인 버튼은 사실상 쓸 일 없으니 꺼버려도 됨(선택사항)
+            SetBtnInteractable(false);
+        }
+    }
+
+    private void Start()
+    {
+        // 앱/씬이 새로 켜졌을 때, 이미 로그인된 유저가 있는지 확인
+        authUser = auth.CurrentUser;
+
+        if (authUser != null)
+        {
+            Debug.Log($"[Auth] 이미 로그인 상태: {authUser.Email}");
+
+            if (loginPanel != null) loginPanel.SetActive(false);
+            if (StartPanel != null) StartPanel.SetActive(true);
+
+            // 로그인 버튼은 사실상 쓸 일 없으니 꺼버려도 됨(선택사항)
+            SetBtnInteractable(false);
+        }
+        else
+        {
+            Debug.Log("[Auth] 로그인 필요.");
+
+            if (loginPanel != null) loginPanel.SetActive(true);
+            if (StartPanel != null) StartPanel.SetActive(false);
+
+            SetBtnInteractable(true);
+        }
     }
     public void CreateAccount()
     {
@@ -130,8 +167,7 @@ public class AuthenticationManager : MonoBehaviour
         loginPanel.SetActive(true);
         StartPanel.SetActive(false);
         SetBtnInteractable(true);
-    }
-
+     }
     private IEnumerator popupAndFadeoutAuthStatus(string status)
     {
         if (authStatus == null)

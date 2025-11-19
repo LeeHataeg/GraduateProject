@@ -195,11 +195,7 @@ public class GameManager : MonoBehaviour
         // 기존(이전 스테이지)꺼가 남아있으면 제거
         if (curBossField)
         {
-#if UNITY_EDITOR
             DestroyImmediate(curBossField);
-#else
-            Destroy(_currentBossField);
-#endif
             curBossField = null;
         }
 
@@ -227,11 +223,7 @@ public class GameManager : MonoBehaviour
     {
         if (curBossField)
         {
-#if UNITY_EDITOR
             DestroyImmediate(curBossField);
-#else
-            Destroy(_currentBossField);
-#endif
             curBossField = null;
         }
     }

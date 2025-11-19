@@ -44,10 +44,6 @@ public class RankingUI : MonoBehaviour
             closeButton.onClick.AddListener(OnClickClose);
     }
 
-    /// <summary>
-    /// 해당 스테이지의 랭킹 UI 활성화.
-    /// lastRunScore: 방금 클리어한 점수(없으면 -1)
-    /// </summary>
     public void OpenForStage(int stageIndex, int lastRunScore = -1)
     {
         Debug.Log("켜져용");
@@ -87,7 +83,6 @@ public class RankingUI : MonoBehaviour
                           .Document($"stage_{stageIndex}")
                           .Collection("scores");
 
-        // ★ 인덱스 이슈 피하려고 bestScore만 정렬 기준으로 사용
         scoresCol.OrderByDescending("bestScore")
                  .Limit(100)
                  .GetSnapshotAsync()
@@ -142,7 +137,6 @@ public class RankingUI : MonoBehaviour
 
         int count = list.Count;
 
-        // 1~3등 표시
         if (count >= 1 && firstRow != null)
             firstRow.ShowEntry(1, list[0].userName, list[0].bestScore, list[0].bestTime);
 
@@ -152,7 +146,6 @@ public class RankingUI : MonoBehaviour
         if (count >= 3 && thirdRow != null)
             thirdRow.ShowEntry(3, list[2].userName, list[2].bestScore, list[2].bestTime);
 
-        // 유저 기록이 없다면 (랭킹에 아직 없음) -> 여기서 끝
         if (myEntry == null || myRank <= 0)
         {
             if (userRow != null) userRow.Hide();
@@ -161,39 +154,31 @@ public class RankingUI : MonoBehaviour
             return;
         }
 
-        // 유저가 3등 이내라면 이미 위에서 표시됨.
-        // (원하면 해당 Row에 하이라이트 효과 넣을 수 있음)
         if (myRank <= 3)
         {
             if (upperRow != null) upperRow.Hide();
             if (emptyRow != null) emptyRow.Hide();
-            if (userRow != null) userRow.Hide();   // 별도 줄은 숨김
+            if (userRow != null) userRow.Hide();
             return;
         }
 
-        // 여기서부터 myRank > 3인 경우
-        int myIndex = myRank - 1;      // 0-based
-        int upperIndex = myIndex - 1;  // 바로 위 사람
+        int myIndex = myRank - 1; 
+        int upperIndex = myIndex - 1;
 
-        // UpperRecords: 나보다 한 등수 위 유저
         if (upperIndex >= 0 && upperIndex < list.Count && upperRow != null)
         {
             var upper = list[upperIndex];
             upperRow.ShowEntry(upperIndex + 1, upper.userName, upper.bestScore, upper.bestTime);
         }
 
-        // UserRecord: 내 기록
         if (userRow != null)
         {
             userRow.ShowEntry(myRank, myEntry.userName, myEntry.bestScore, myEntry.bestTime);
         }
 
-        // EmptyRecords: 
-        // UpperRecords가 4등이 아니면 (즉, 3등과 UpperRecords 사이에 1명 이상 있음) -> ~ ~ ~ 표시
         if (emptyRow != null)
         {
-            // upperIndex 는 0-based, 3등은 index 2, 4등은 index 3
-            if (upperIndex > 3)   // upperRank >= 5
+            if (upperIndex > 3)
                 emptyRow.ShowEllipsis();
             else
                 emptyRow.Hide();
@@ -212,20 +197,16 @@ public class RankingUI : MonoBehaviour
 
         int bestScore = myEntry.bestScore;
 
-        // lastRunScore == 이번에 클리어한 점수
         if (lastRunScore > 0 && lastRunScore == bestScore)
         {
-            // 이번 런이 최고 기록
             myScoreText.text = $"Best Score : {bestScore}점";
         }
         else if (lastRunScore > 0)
         {
-            // 이번 런이 최고는 아님
             myScoreText.text = $"{lastRunScore}점";
         }
         else
         {
-            // 그냥 내 최고 기록만 보여줄 때
             myScoreText.text = $"Best Score : {bestScore}점";
         }
     }
