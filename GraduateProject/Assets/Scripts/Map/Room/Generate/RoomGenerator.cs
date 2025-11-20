@@ -180,8 +180,9 @@ public class RoomGenerator : MonoBehaviour
                         }
 
                         if (GameManager.Instance && GameManager.Instance.RoomManager)
+                        {
                             GameManager.Instance.RoomManager.SetStartPoint(spawnPoint.position);
-
+                        }
                         break;
                     }
 

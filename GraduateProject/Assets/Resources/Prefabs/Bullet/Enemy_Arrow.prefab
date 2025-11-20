@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1823229931371922793}
   - component: {fileID: 8999869532163382423}
   - component: {fileID: 794138313728583506}
-  - component: {fileID: 8055380291844230648}
+  - component: {fileID: 4846657789758022779}
   m_Layer: 15
   m_Name: Enemy_Arrow
   m_TagString: Untagged
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6244186, y: 0.49676305}
   m_EdgeRadius: 0
---- !u!114 &8055380291844230648
+--- !u!114 &4846657789758022779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,10 +172,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3988754472069115958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e70610365ededb446aa16aafe5588374, type: 3}
+  m_Script: {fileID: 11500000, guid: e44fa6aefc19fed41aae24b2e35c474d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   autoFireOnEnable: 0
-  defaultSpeed: 100
-  defaultLifeTime: 1.5
+  defaultSpeed: 12
+  defaultLifeTime: 5
   angleOffsetDeg: 0

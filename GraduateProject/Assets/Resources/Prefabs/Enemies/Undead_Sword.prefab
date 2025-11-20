@@ -4738,7 +4738,6 @@ MonoBehaviour:
   melee: {fileID: 0}
   componentRoot: {fileID: 1306413496882114395}
   atkStartPoint: {fileID: 3140887897058170024}
-  stopDistance: 0.05
   yThresholdMelee: 0.7
   attackCooldown: 0.8
   windup: 0.12

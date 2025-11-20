@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public GameObject PoolObjects;
     public bool isFinal = false;
 
+
     private void Awake()
     {
         // 싱글톤 ㅇㅇ
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
 
             if (RankingManager != null)
                 RankingManager.BeginStage(CurrentStage);
+
         }
     }
 
@@ -179,6 +181,39 @@ public class GameManager : MonoBehaviour
 
 
     // 보스 전투 필드 생성 기능 + 보스 방의 플레이어가 스폰될 위치 리턴
+
+    public void ForceEnterStartRoom()
+    {
+        // Unity 6 방식: FindObjectsByType 사용
+        Room startRoom = null;
+        // 정렬 필요 없으니까 None이 제일 빠름
+        var rooms = UnityEngine.Object.FindObjectsByType<Room>(FindObjectsSortMode.None);
+
+        foreach (var room in rooms)
+        {
+            if (room != null && room.Type == Define.RoomType.Start)
+            {
+                startRoom = room;
+                break;
+            }
+        }
+
+        if (startRoom != null)
+        {
+#if UNITY_EDITOR
+            Debug.Log($"[GameManager] ForceEnterStartRoom: {startRoom.name}");
+#endif
+            // ★ StartRoom 입장 처리 강제 호출 → 여기서 MinimapRenderer가 방 잡아줌
+            startRoom.OnPlayerEnter();
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning("[GameManager] ForceEnterStartRoom: Start 타입 Room을 찾지 못했습니다.");
+#endif
+        }
+    }
+
     public Vector3? SpawnBossFieldAndGetSpawnPoint()
     {
         if (Stages == null || Stages.Count == 0 || CurrentStage < 1 || CurrentStage > Stages.Count)

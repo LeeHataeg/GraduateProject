@@ -13,14 +13,14 @@ public class ClearPanelUI : MonoBehaviour
     public void OnClickRestart()
     {
         if (normalizeTimeScale) Time.timeScale = 1f;
-        TrySoftResetManagers();                 // ★ 상태 초기화
+        TrySoftResetManagers();
         SceneManager.LoadScene(inGameSceneName, LoadSceneMode.Single);
     }
 
     public void OnClickHome()
     {
         if (normalizeTimeScale) Time.timeScale = 1f;
-        TrySoftResetManagers();                 // ★ 상태 초기화
+        TrySoftResetManagers();
         SceneManager.LoadScene(startSceneName, LoadSceneMode.Single);
     }
 

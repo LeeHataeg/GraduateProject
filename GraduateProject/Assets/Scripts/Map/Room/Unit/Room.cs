@@ -20,6 +20,17 @@ public class Room : MonoBehaviour
 
     private readonly List<Portal> _portals = new();
 
+    public RoomType RoomType;
+
+    private void OnEnable()
+    {
+        if(RoomType == RoomType.Start)
+        {
+            GameManager.Instance.ForceEnterStartRoom();
+            MinimapRenderer.NotifyPlayerEnteredRoom(this);
+        }
+    }
+
     private void SetDark()
     {
         // TMI. GetComponentsInChildren는 List가 아닌 배열을 리턴하여 아래는 틀린 문법
@@ -61,6 +72,7 @@ public class Room : MonoBehaviour
         Node = init.Node;
         RoomSpace = init.RoomSpace;
         Type = init.RoomType;
+        RoomType = init.RoomType;
 
         RoomState = gameObject.AddComponent<RoomState>();
         PortalConnection = gameObject.AddComponent<PortalConnection>();
@@ -77,6 +89,12 @@ public class Room : MonoBehaviour
 
         if(init.RoomType != RoomType.Start)
             SetDark();
+
+        if (RoomType == RoomType.Start)
+        {
+            Debug.Log("[Room.cs]- 일단 분기문 들어옴. RoomType : " + RoomType);
+            MinimapRenderer.NotifyPlayerEnteredRoom(this);
+        }
     }
 
     private void OnDestroy()
@@ -121,6 +139,9 @@ public class Room : MonoBehaviour
 
     public void OnPlayerEnter()
     {
+
+        MinimapRenderer.NotifyPlayerEnteredRoom(this);
+
         // StartRoom/BossRoom은 포탈을 끄지 않고, 몬스터도 스폰하지 않음
         if (Type == RoomType.Normal)
         {
@@ -136,5 +157,6 @@ public class Room : MonoBehaviour
                 SetPortalsActive(true);      // 재방문(클리어 방) → 포탈 유지
             }
         }
+
     }
 }

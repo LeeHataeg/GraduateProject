@@ -5390,6 +5390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d48c7eac1ab2e44d87cf73ef9be17c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 0
 --- !u!114 &630396947724340005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5426,9 +5427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3234725091164da5289f1fbb7b8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ranged: {fileID: 0}
+  melee: {fileID: 0}
   componentRoot: {fileID: 286785281927477632}
   atkStartPoint: {fileID: 5729207715632277467}
-  stopDistance: 0.05
   yThresholdMelee: 0.7
   attackCooldown: 0.8
   windup: 0.12

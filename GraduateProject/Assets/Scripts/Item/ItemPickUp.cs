@@ -10,7 +10,7 @@ public class ItemPickUp : MonoBehaviour
     public int quantity = 1;
 
     private SpriteRenderer icon;
-    private InventorySystem inventory;   // ★ 로컬 캐시
+    private InventorySystem inventory;
 
     private void Awake()
     {
