@@ -268,7 +268,8 @@ public class EnemyController : MonoBehaviour
         attackBehavior = root.GetComponent<IAttackBehavior>() ?? GetComponentInChildren<IAttackBehavior>(true);
         ranged = root.GetComponent<RangedAttackBehavior>() ?? GetComponentInChildren<RangedAttackBehavior>(true);
         melee = root.GetComponent<MeleeAttackBehavior>() ?? GetComponentInChildren<MeleeAttackBehavior>(true);
-        if(melee != null){
+        if (melee != null)
+        {
             melee.SetAttackPoint(atkStartPoint);
         }
 

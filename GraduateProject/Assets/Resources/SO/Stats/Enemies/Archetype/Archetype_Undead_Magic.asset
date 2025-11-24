@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 6
   displayName: "\uC5B8\uB370\uB4DC \uB9C8\uBC95\uC0AC"
+  killScore: 100
   prefab: {fileID: 2726242781872511720, guid: 8136b787956d1b14a8aae9308efa189c, type: 3}
   attackMode: 1
   statSheet: {fileID: 11400000, guid: aac0352ebb410e64795ec5918ca6b56b, type: 2}
-  projectilePrefab: {fileID: 1425001756386864760, guid: 5094d1557b7552c48a113895b688591a, type: 3}
+  projectilePrefab: {fileID: 8650873072140274251, guid: 5094d1557b7552c48a113895b688591a, type: 3}
   projectileSpeed: 12
   projectileLife: 3
   projectileHitMask:

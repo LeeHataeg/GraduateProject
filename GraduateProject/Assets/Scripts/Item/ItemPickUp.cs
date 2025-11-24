@@ -50,6 +50,9 @@ public class ItemPickUp : MonoBehaviour
             }
         }
 
+        if(other.CompareTag("Player") == false || other.gameObject.layer != LayerMask.NameToLayer("Player"))
+            return;
+
         bool added = GameManager.Instance.UIManager.InventorySys.AddItem(itemData, quantity);
         if (added)
         {

@@ -73,6 +73,7 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
+  RoomType: 0
 --- !u!1 &4343273417424472960
 GameObject:
   m_ObjectHideFlags: 0

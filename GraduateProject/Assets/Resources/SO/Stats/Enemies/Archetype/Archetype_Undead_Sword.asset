@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 5
   displayName: "\uC5B8\uB370\uB4DC \uAC80\uC0AC"
+  killScore: 80
   prefab: {fileID: 9042662942535458148, guid: 8d752570cd8e189429e3af1de71264eb, type: 3}
   attackMode: 0
   statSheet: {fileID: 11400000, guid: a385875bf22120048a0e759a62531ba1, type: 2}
