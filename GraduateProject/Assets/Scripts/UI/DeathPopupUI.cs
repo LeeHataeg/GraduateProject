@@ -27,6 +27,7 @@ public class DeathPopupUI : MonoBehaviour
     private void OnClickHome()
     {
         Hide();
+        Destroy(GameManager.Instance.PlayerManager.Player.transform.parent.gameObject);
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
     }
 

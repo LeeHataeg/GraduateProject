@@ -83,4 +83,23 @@ public class EquipmentManager : MonoBehaviour
         OnEquippedChanged(slot, null);
         return true;
     }
+
+    public bool TryUnequipAll()
+    {
+        if (stats == null || equipped.Count == 0)
+            return false;
+
+        // Dictionary를 돌면서 Remove를 해야 하니까,
+        // 키 목록을 따로 복사해서 그걸 기준으로 순회
+        var slots = new List<EquipmentSlot>(equipped.Keys);
+        bool any = false;
+
+        foreach (var slot in slots)
+        {
+            if (TryUnequip(slot, out _))
+                any = true;
+        }
+
+        return any;
+    }
 }

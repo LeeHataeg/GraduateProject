@@ -364,6 +364,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Restart
+
     public void RestartRun()
     {
         StartCoroutine(Co_RestartRun());
@@ -388,6 +389,18 @@ public class GameManager : MonoBehaviour
 
         // 플레이어 확보 & 텔레포트 보정
         PlayerManager?.PreparePlayerObj(); // 혹시 모를 누락 대비
+
+        if(PlayerManager != null && PlayerManager.UnitRoot != null){
+            // 장비부터 초기화 ㄱ
+            var eq = PlayerManager?.UnitRoot?.GetComponentInChildren<EquipmentManager>();
+            if (eq != null)
+            {
+                eq.TryUnequipAll();
+                eq.Inventory.ClearAllItems();
+            }
+        }
+
+
         yield return null;
         if (PlayerManager != null && PlayerManager.UnitRoot != null)
             RoomManager?.TeleportToSpawnPoint(PlayerManager.UnitRoot.transform);
