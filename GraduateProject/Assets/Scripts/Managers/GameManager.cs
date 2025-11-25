@@ -328,6 +328,7 @@ public class GameManager : MonoBehaviour
     {
         isBossCleared = false;
         stagePortal = null;
+        isFinal = false;
     }
 
     public void AdvanceToNextStage()

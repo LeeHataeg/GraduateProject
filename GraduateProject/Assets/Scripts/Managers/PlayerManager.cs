@@ -27,9 +27,20 @@ public class PlayerManager : MonoBehaviour
     Coroutine spawnCoroutine;
     bool finishPreparing = false;
 
+    RoomManager tempForSpawnEvent;
+
     private void Awake()
     {
         CacheComponents();
+    }
+
+    private void OnDestroy()
+    {
+        if (tempForSpawnEvent != null)
+        {
+            tempForSpawnEvent.OnSetStartPoint -= HandleStartPoint;
+            tempForSpawnEvent = null;
+        }
     }
 
     public void PreparePlayerObj()
@@ -205,35 +216,61 @@ public class PlayerManager : MonoBehaviour
         // 5. 장비 UI 갱신
         BroadcastEquipReady();
     }
-    
+    private void HandleStartPoint(Vector2 pos)
+    {
+        if (!UnitRoot) return;
+
+        // 바로 텔레포트
+        UnitRoot.transform.position = pos;
+    }
     public void SpawnToStartPoint()
     {
         if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
+
+        var rm = GameManager.Instance?.RoomManager;
+        if(rm != null){
+            if(tempForSpawnEvent != null)
+            {
+                tempForSpawnEvent.OnSetStartPoint -= HandleStartPoint;
+            }
+
+            tempForSpawnEvent = rm;
+            tempForSpawnEvent.OnSetStartPoint += HandleStartPoint;
+        }
+
         spawnCoroutine = StartCoroutine(Co_SpawnPlayer());
     }
     private IEnumerator Co_SpawnPlayer()
     {
-        // 맵이랑 방이 생성 완료될 때까지 대기
-        float timeout = 0.3f;
+        float timeout = 1f;   // 여유 조금 더 줘도 됨
+
         while (timeout > 0f)
         {
-            if (this == null) yield break; // 파괴되었으면 종료
+            if (this == null) yield break;
 
             var rm = GameManager.Instance?.RoomManager;
-            // RoomManager랑 UnitRoot가 준비 여부 +  스폰 포인트가 설정여부 확인
-            if (rm != null && UnitRoot != null && rm.HasStartPoint)
+            if (rm != null && UnitRoot != null)
+            {
+                if (rm.HasStartPoint)
+                {
+                    rm.TeleportToSpawnPoint(UnitRoot.transform);
+                    spawnCoroutine = null;
+                    yield break;
+                }
+
+                // HasStartPoint가 아직 false라면
+                // OnSetStartPoint 이벤트에서 이동할 것
                 break;
+            }
 
             timeout -= Time.unscaledDeltaTime;
             yield return null;
         }
 
-        if (this != null && UnitRoot != null)
-        {
-            var rm = GameManager.Instance?.RoomManager;
-            if (rm != null && rm.HasStartPoint)
-                rm.TeleportToSpawnPoint(UnitRoot.transform);
-        }
+        // 마지막 안전망
+        var rmFinal = GameManager.Instance?.RoomManager;
+        if (rmFinal != null && UnitRoot != null && rmFinal.HasStartPoint)
+            rmFinal.TeleportToSpawnPoint(UnitRoot.transform);
 
         spawnCoroutine = null;
     }
@@ -346,18 +383,20 @@ public class PlayerManager : MonoBehaviour
     {
         if (UnitRoot != null)
         {
-            // Player 전체 루트 오브젝트 가져오기
             var root = UnitRoot.transform.root.gameObject;
-
             Debug.Log("[PlayerManager] DespawnPlayer: destroying player root " + root.name);
 
             UnitRoot = null;
-
-            // 실제로 파괴
             Destroy(root);
         }
 
-        // 캐싱된 컴포넌트들 정리
+        // ★ RoomManager 이벤트 구독 해제
+        if (tempForSpawnEvent != null)
+        {
+            tempForSpawnEvent.OnSetStartPoint -= HandleStartPoint;
+            tempForSpawnEvent = null;
+        }
+
         anim = null;
         rigid = null;
         colliders = null;
@@ -367,13 +406,13 @@ public class PlayerManager : MonoBehaviour
         hitReactor = null;
         atkCont = null;
 
-        // 스폰 코루틴도 리셋
         if (spawnCoroutine != null)
         {
             StopCoroutine(spawnCoroutine);
             spawnCoroutine = null;
         }
     }
+
 
     private static void TryPlayIfExists(Animator a, string stateName)
     {

@@ -40,5 +40,7 @@ public class ClearPanelUI : MonoBehaviour
 
         // ★ 랭킹 런타임도 깨끗하게 하고 싶으면 옵션으로:
         gm.RankingManager?.ResetAllRuntime();
+
+        gm.ResetStageClearFlags();
     }
 }
