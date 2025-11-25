@@ -1895,6 +1895,15 @@ MonoBehaviour:
   visualRoot: {fileID: 51252483027816663}
   visualAnimator: {fileID: 171702957801927585}
   alpha: 0.4
+  playRecordedClipsDirectly: 0
+  rangedFirePoint: {fileID: 2730875581049616314}
+  fallbackBulletPrefab: {fileID: 0}
+  defaultBulletSpeed: 10
+  defaultBulletLifeTime: 3
+  rangedHitMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  rangedDamageScale: 0.5
 --- !u!1 &3744237700072853788
 GameObject:
   m_ObjectHideFlags: 0

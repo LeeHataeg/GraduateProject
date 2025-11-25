@@ -30,6 +30,35 @@ public class EchoPlayback : MonoBehaviour
     static Dictionary<string, Sprite> spriteCache;
 
     bool _autoAtkOpen;
+
+    [Header("Ranged Echo Attack")]
+    [Tooltip("유령이 총을 쏠 위치 (없으면 자기 transform.position 사용)")]
+    public Transform rangedFirePoint;
+
+    [Tooltip("장비 SO에서 못 찾았을 때 쓸 기본 탄환 프리팹")]
+    public GameObject fallbackBulletPrefab;
+
+    [Tooltip("기본 총알 속도 (장비 SO에 없을 때)")]
+    public float defaultBulletSpeed = 10f;
+
+    [Tooltip("기본 총알 수명 (장비 SO에 없을 때)")]
+    public float defaultBulletLifeTime = 3f;
+
+    [Tooltip("총알이 맞출 레이어(비어 있으면 자동으로 Enemies 레이어 찾음)")]
+    public LayerMask rangedHitMask;
+
+    [Range(0f, 5f)]
+    [Tooltip("EchoGhost 원거리 공격 데미지 배율")]
+    public float rangedDamageScale = 0.5f;
+
+    // 런타임용
+    private EquipmentItemData rangedWeaponData;
+    private GameObject rangedBulletPrefab;
+    private float rangedBulletSpeed;
+    private float rangedBulletLife;
+
+    bool HasRangedWeapon => rangedWeaponData != null;
+    bool CanShootRanged => HasRangedWeapon || fallbackBulletPrefab != null;
     #endregion
 
     // 비주얼
@@ -154,28 +183,47 @@ public class EchoPlayback : MonoBehaviour
         {
             processedEvt = true;
             var e = tape.events[actionEvent++];
+
             if (e.kind == "AtkBegin")
             {
-                if (hitbox != null)
+                bool rangedEvt = string.Equals(e.id, "Ranged", StringComparison.OrdinalIgnoreCase);
+
+                if (rangedEvt && CanShootRanged)
                 {
-                    hitbox.Source = this.gameObject;
-                    if (hitbox.hitMask == 0)
-                    {
-                        int enemies = LayerMask.NameToLayer("Enemies");
-                        if (enemies >= 0) hitbox.hitMask = 1 << enemies;
-                    }
+                    // ★ 원거리 공격: 기록된 각도로 총알 발사
+                    FireRangedShot(e.value);
+                    _autoAtkOpen = false;
                 }
-                hitbox?.BeginWindow();
-                _autoAtkOpen = false;
+                else
+                {
+                    // ★ 근접 공격 (기존 로직 유지)
+                    if (hitbox != null)
+                    {
+                        hitbox.Source = this.gameObject;
+                        if (hitbox.hitMask == 0)
+                        {
+                            int enemies = LayerMask.NameToLayer("Enemies");
+                            if (enemies >= 0) hitbox.hitMask = 1 << enemies;
+                        }
+                    }
+                    hitbox?.BeginWindow();
+                    _autoAtkOpen = false;
+                }
             }
             else if (e.kind == "AtkEnd")
             {
-                hitbox?.EndWindow();
+                bool rangedEvt = string.Equals(e.id, "Ranged", StringComparison.OrdinalIgnoreCase);
+
+                if (!rangedEvt)
+                {
+                    // 근접 공격만 창 닫기
+                    hitbox?.EndWindow();
+                }
                 _autoAtkOpen = false;
             }
         }
 
-        if (!processedEvt && hitbox != null && !string.IsNullOrEmpty(a.clip))
+        if (!processedEvt && hitbox != null && !string.IsNullOrEmpty(a.clip) && !HasRangedWeapon)
         {
             bool isAttackClip = IsAttackClipName(a.clip);
             if (isAttackClip && !_autoAtkOpen)
@@ -209,7 +257,89 @@ public class EchoPlayback : MonoBehaviour
                 if (enemies >= 0) hitbox.hitMask = 1 << enemies;
             }
         }
+
+        SetupRangedWeaponFromTape();
     }
+
+    private void SetupRangedWeaponFromTape()
+    {
+        rangedWeaponData = null;
+        rangedBulletPrefab = null;
+
+        if (tape == null || tape.equipped == null)
+            return;
+
+        // EchoTape.equipped 안에서 Weapon 슬롯 찾기
+        foreach (var eq in tape.equipped)
+        {
+            if (string.Equals(eq.slot, "Weapon", StringComparison.OrdinalIgnoreCase))
+            {
+                // 이름으로 EquipmentItemData 찾아오기
+                var all = Resources.FindObjectsOfTypeAll<EquipmentItemData>();
+                foreach (var data in all)
+                {
+                    if (data != null && string.Equals(data.name, eq.itemId, StringComparison.OrdinalIgnoreCase))
+                    {
+                        rangedWeaponData = data;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+        // 실제로 원거리 무기인지 확인
+        if (rangedWeaponData != null && rangedWeaponData.IsRanged)
+        {
+            rangedBulletPrefab = rangedWeaponData.Bullet;
+            rangedBulletSpeed = (rangedWeaponData.BulletSpeed > 0f) ? rangedWeaponData.BulletSpeed : defaultBulletSpeed;
+            rangedBulletLife = (rangedWeaponData.BulletLifeTime > 0f) ? rangedWeaponData.BulletLifeTime : defaultBulletLifeTime;
+        }
+        else
+        {
+            rangedWeaponData = null;
+            rangedBulletPrefab = null;
+            rangedBulletSpeed = defaultBulletSpeed;
+            rangedBulletLife = defaultBulletLifeTime;
+        }
+
+        // 총알 히트 마스크 기본값 세팅
+        if (rangedHitMask == 0)
+        {
+            int enemies = LayerMask.NameToLayer("Enemies");
+            if (enemies >= 0) rangedHitMask = 1 << enemies;
+            else rangedHitMask = ~0;   // 최후의 수단: 전부
+        }
+    }
+
+    private void FireRangedShot(float angleDeg)
+    {
+        if (!CanShootRanged)
+            return;
+
+        GameObject prefab = rangedBulletPrefab != null ? rangedBulletPrefab : fallbackBulletPrefab;
+        if (prefab == null)
+            return;
+
+        Vector3 pos = (rangedFirePoint != null) ? rangedFirePoint.position : transform.position;
+
+        var go = Instantiate(prefab, pos, Quaternion.identity);
+        var b = go.GetComponent<Bullet>();
+        if (b == null) b = go.AddComponent<Bullet>();
+
+        float rad = angleDeg * Mathf.Deg2Rad;
+        Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+
+        if (dir.sqrMagnitude < 0.0001f)
+            dir = (transform.localScale.x >= 0f) ? Vector2.right : Vector2.left;
+
+        float dmg = (hitbox != null)
+            ? hitbox.baseDamage * rangedDamageScale
+            : 10f;
+
+        b.Init(dir.normalized, dmg, this.gameObject, rangedHitMask, rangedBulletSpeed, rangedBulletLife);
+    }
+
 
     public void SetAlpha(float a) { alpha = Mathf.Clamp01(a); ApplyAlphaToAll(); }
 

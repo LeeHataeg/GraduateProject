@@ -34,7 +34,7 @@ public class EchoRecorder : MonoBehaviour
         tape = new EchoTape();
         lastMove = false;
 
-        if (hc != null) 
+        if (hc != null)
             lastHp = hc.CurrentHp;
 
         // 오브젝트 활성화시켜 fixedUpdate 실시
@@ -133,8 +133,25 @@ public class EchoRecorder : MonoBehaviour
     // 공격 이벤트 기록
     public void MarkActionBegin(string id, float factor = 1f)
     {
-        tape?.events.Add(new EchoTape.ActionEvt { t = totalTime, kind = "AtkBegin", id = id, value = factor });
-        tape?.animParams.Add(new EchoTape.AnimParamEvt { t = totalTime, type = "trig", name = "2_Attack", value = 0 });
+        tape?.events.Add(new EchoTape.ActionEvt
+        {
+            t = totalTime,
+            kind = "AtkBegin",
+            id = id,
+            value = factor
+        });
+
+
+        if(id == "Melee")
+        {
+            tape?.animParams.Add(new EchoTape.AnimParamEvt
+            {
+                t = totalTime,
+                type = "trig",
+                name = "2_Attack",
+                value = 0
+            });
+        }
     }
 
     public void MarkActionEnd(string id)

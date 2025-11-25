@@ -12,6 +12,7 @@ public class PlayerAttackController : MonoBehaviour
     private IAnimationController anim;
     private PlayerInputController inputCtrl;
     private EquipmentManager equipMG;  // 이건 또 Player에 붙는거라 GM 통해서 못가져옴 ㅅㄱ
+    private EchoRecorder echoRecorder;
 
     private float attackDelay = 0.5f;
     private bool canAttack = true;
@@ -61,6 +62,8 @@ public class PlayerAttackController : MonoBehaviour
             Debug.LogError($"[{nameof(PlayerAttackController)}] IAnimationController를 찾을 수 없습니다.");
         if (attackPoint == null)
             Debug.LogError($"[{nameof(PlayerAttackController)}] attackPoint가 할당되지 않았습니다. 인스펙터에서 지정해주세요.");
+
+        echoRecorder = GetComponent<EchoRecorder>();
     }
 
     private void OnEnable()
@@ -227,6 +230,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         canAttack = false;
 
+        echoRecorder?.MarkActionBegin("Melee", 0f);
+        
         // 1. 공격 애니메이션 시작
         anim.SetTrigger("2_Attack");
 
@@ -248,6 +253,8 @@ public class PlayerAttackController : MonoBehaviour
             }
         }
 
+        echoRecorder?.MarkActionEnd("Melee");
+
         // 4. 공격 딜레이 시작
         yield return new WaitForSeconds(attackDelay);
         canAttack = true;
@@ -268,6 +275,14 @@ public class PlayerAttackController : MonoBehaviour
 
         // delay 구현똥마려
         canAttack = false;
+
+        Vector2 shotDir = atkDir.sqrMagnitude > 0.000001f
+        ? atkDir.normalized
+        : Vector2.left;
+
+        float angleDeg = Mathf.Atan2(shotDir.y, shotDir.x) * Mathf.Rad2Deg;
+
+        echoRecorder?.MarkActionBegin("Ranged", angleDeg);
 
         curMagCount--;
         GameManager.Instance.UIManager.SetCurMagUI(curMagCount);
@@ -295,6 +310,8 @@ public class PlayerAttackController : MonoBehaviour
         dir = atkDir;
 
         Fire(initPoint, dir);
+
+        echoRecorder?.MarkActionEnd("Ranged");
 
         // 공격 쿨타임 - 무기 종속
         if (curWeapon.atkCoolTime > 0f)
